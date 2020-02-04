@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float motorForce;
     [SerializeField] private Rigidbody carRigidBody;
     [SerializeField] private Vector3 carCenterOfMass;
+    [SerializeField] private bool frontWheelDrive;
 
 
 
@@ -33,8 +34,17 @@ public class CarController : MonoBehaviour
 
     private void Accelerate()
     {
-        f_r_wheel.motorTorque = verticalInput * motorForce;
-        f_l_wheel.motorTorque = verticalInput * motorForce;
+        if(frontWheelDrive)
+        {
+            f_r_wheel.motorTorque = verticalInput * motorForce;
+            f_l_wheel.motorTorque = verticalInput * motorForce;
+        }
+        else
+        {
+            r_r_wheel.motorTorque = verticalInput * motorForce;
+            r_l_wheel.motorTorque = verticalInput * motorForce;
+        }
+        
     }
 
     private void UpdateAllWheelPoses()
