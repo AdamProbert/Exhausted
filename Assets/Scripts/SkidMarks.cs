@@ -25,7 +25,6 @@ public class SkidMarks : MonoBehaviour
         wheel.GetGroundHit(out groundHit);
         if ( Mathf.Abs( groundHit.sidewaysSlip ) > .8 )
 		{
-            skidMark.transform.position = groundHit.point;
 		    skidMark.gameObject.SetActive(true);
 		}
 	    else if ( Mathf.Abs( groundHit.sidewaysSlip ) <= .75 )
