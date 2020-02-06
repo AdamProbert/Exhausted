@@ -16,7 +16,7 @@ public class CarController : MonoBehaviour
     
     [SerializeField] private WheelCollider f_r_wheel, f_l_wheel, r_r_wheel, r_l_wheel;
     [SerializeField] private Transform f_r_transform, f_l_transform, r_r_transform, r_l_transform;
-    [SerializeField] private float maxSteerAngle;
+    [SerializeField] public float maxSteerAngle;
     [SerializeField] private float motorForce;
     [SerializeField] private float brakeTorque;
     [SerializeField] private Rigidbody carRigidBody;
@@ -24,28 +24,31 @@ public class CarController : MonoBehaviour
     [SerializeField] private bool frontWheelDrive;
 
 
-
-    public void GetInput()
+    public void Move(float h, float v)
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        Debug.Log("Car input horizontal: " + h + "       vertical: " + v);
+        this.horizontalInput = h;
+        this.verticalInput = v;
+        Steer();    
+        Accelerate(v);
+        UpdateAllWheelPoses(); 
     }
 
-    private void Steer()
+    public void Steer()
     {
         steeringAngle = maxSteerAngle * horizontalInput;
         f_r_wheel.steerAngle = steeringAngle;
         f_l_wheel.steerAngle = steeringAngle;
     }
 
-    private void Accelerate()
+    public void Accelerate(float speed, bool autoBrake=true)
     {
 
         velocity = transform.InverseTransformDirection(carRigidBody.velocity);
         
-        if (velocity.z > 0 && verticalInput < 0)
+        if (velocity.z > 0 && speed < 0)
         {
-            if(!braking)
+            if(!braking & autoBrake)
             {
                 // We're braking
                 BrakeAllWheels(true);
@@ -57,18 +60,18 @@ public class CarController : MonoBehaviour
             // We're moving
             if(frontWheelDrive)
             {
-                f_r_wheel.motorTorque = verticalInput * motorForce;
-                f_l_wheel.motorTorque = verticalInput * motorForce;
+                f_r_wheel.motorTorque = speed * motorForce;
+                f_l_wheel.motorTorque = speed * motorForce;
             }
             else
             {
-                r_r_wheel.motorTorque = verticalInput * motorForce;
-                r_l_wheel.motorTorque = verticalInput * motorForce;
+                r_r_wheel.motorTorque = speed * motorForce;
+                r_l_wheel.motorTorque = speed * motorForce;
             }    
         }        
     }
 
-    private void BrakeAllWheels(bool brake)
+    public void BrakeAllWheels(bool brake)
     {
         if(brake & !braking)
         {
@@ -156,9 +159,6 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        GetInput();
-        Steer();
-        Accelerate();
-        UpdateAllWheelPoses();    
+   
     }
 }
