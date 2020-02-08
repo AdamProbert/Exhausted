@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CarController))]
+[RequireComponent(typeof(WeaponController))]
 
 public class UserInput : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class UserInput : MonoBehaviour
     private float verticalInput;
 
     private CarController carController;
+    private WeaponController weaponController;
 
 
     private void Start() 
     {
         carController = GetComponent<CarController>();    
+        weaponController = GetComponent<WeaponController>();
     }
 
     public void GetInput()
