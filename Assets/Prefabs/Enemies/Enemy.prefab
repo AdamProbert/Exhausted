@@ -215,6 +215,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b759fbb5b7c5824c8670a2fcb6ed7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: {fileID: 0}
+  destinationAngle: {fileID: 0}
+  horizontalIn: {fileID: 0}
+  verticalIn: {fileID: 0}
+  distanceToTarget: {fileID: 0}
 --- !u!114 &2245002561142579456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +246,7 @@ MonoBehaviour:
   brakeTorque: 2000
   carRigidBody: {fileID: 2245002561142579463}
   carCenterOfMass: {x: 0, y: -0.5, z: 0}
-  frontWheelDrive: 0
+  frontWheelDrive: 1
 --- !u!195 &810941912945095148
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -251,7 +256,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2245002561142579461}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 0.5
+  m_Radius: 1.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

@@ -936,7 +936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609939386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.2, y: 0, z: 0}
+  m_LocalPosition: {x: 14.2, y: 0, z: 27.5}
   m_LocalScale: {x: 1, y: 4.1615, z: 19.430494}
   m_Children: []
   m_Father: {fileID: 1395211677}
@@ -2008,30 +2008,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 810941912945095148, guid: f5a010da83abd6047bce32bd797cda64,
-        type: 3}
-      propertyPath: m_Radius
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245002560045111993, guid: f5a010da83abd6047bce32bd797cda64,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245002561142579456, guid: f5a010da83abd6047bce32bd797cda64,
-        type: 3}
-      propertyPath: frontWheelDrive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2245002561142579461, guid: f5a010da83abd6047bce32bd797cda64,
         type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245002561142579461, guid: f5a010da83abd6047bce32bd797cda64,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2245002561142579462, guid: f5a010da83abd6047bce32bd797cda64,
         type: 3}
@@ -2090,6 +2070,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5387078909786383057, guid: f5a010da83abd6047bce32bd797cda64,
         type: 3}
+      propertyPath: direction
+      value: 
+      objectReference: {fileID: 1181999113}
+    - target: {fileID: 5387078909786383057, guid: f5a010da83abd6047bce32bd797cda64,
+        type: 3}
+      propertyPath: destinationAngle
+      value: 
+      objectReference: {fileID: 1877962909}
+    - target: {fileID: 5387078909786383057, guid: f5a010da83abd6047bce32bd797cda64,
+        type: 3}
       propertyPath: horizontalIn
       value: 
       objectReference: {fileID: 1271206419}
@@ -2103,16 +2093,6 @@ PrefabInstance:
       propertyPath: distanceToTarget
       value: 
       objectReference: {fileID: 2070846023}
-    - target: {fileID: 5387078909786383057, guid: f5a010da83abd6047bce32bd797cda64,
-        type: 3}
-      propertyPath: destinationAngle
-      value: 
-      objectReference: {fileID: 1877962909}
-    - target: {fileID: 5387078909786383057, guid: f5a010da83abd6047bce32bd797cda64,
-        type: 3}
-      propertyPath: direction
-      value: 
-      objectReference: {fileID: 1181999113}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5a010da83abd6047bce32bd797cda64, type: 3}
 --- !u!1 &1609338112
