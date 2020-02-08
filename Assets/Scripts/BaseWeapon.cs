@@ -2,15 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(ObjectPooler))]
 public class BaseWeapon : MonoBehaviour
 {
-    [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private Transform projectileSpawn;
     [Tooltip ("Bullets spawned per second")]
     [SerializeField] private float fireRate;
 
     private float nextFireTime = 0;
+    private bool firing = false;
+
+    private ObjectPooler projectilePool;
+
+    private void Start() 
+    {
+        projectilePool = GetComponent<ObjectPooler>();    
+    }
+
+    private void Update() 
+    {
+        if(firing)
+        {
+            Fire();
+        }
+    }
 
     public void Fire()
     {
@@ -20,8 +37,22 @@ public class BaseWeapon : MonoBehaviour
         }
 
         nextFireTime = Time.time + (1 / fireRate);
-        Rigidbody projectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Rigidbody>();
-        projectile.velocity = transform.forward * projectileSpeed;
 
+        GameObject projectile = projectilePool.GetPooledObject();
+        projectile.SetActive(true);
+        projectile.transform.position = projectileSpawn.position;
+        projectile.transform.rotation = projectileSpawn.rotation;
+        projectile.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed;
     }
+
+    public void StartFiring()
+    {
+        firing = true;
+    }
+
+    public void StopFiring()
+    {
+        firing = false;
+    }
+
 }
