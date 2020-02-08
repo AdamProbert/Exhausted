@@ -1084,67 +1084,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1639931434, guid: 2e3f66772351c9d42bafab97bd6a503a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.00000000832971
-      objectReference: {fileID: 0}
-    - target: {fileID: 1639931434, guid: 2e3f66772351c9d42bafab97bd6a503a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.000000004322954
-      objectReference: {fileID: 0}
-    - target: {fileID: 1639931434, guid: 2e3f66772351c9d42bafab97bd6a503a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.054352447
-      objectReference: {fileID: 0}
-    - target: {fileID: 1639931434, guid: 2e3f66772351c9d42bafab97bd6a503a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654936393023626, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_SuspensionDistance
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654936393023626, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_SuspensionSpring.spring
-      value: 6000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654937092759244, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_SuspensionDistance
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654937125663031, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.00000000832971
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654937125663031, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.000000004322954
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654937125663031, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.054352447
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654937125663031, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654937173857579, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: carCenterOfMass.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654937173857579, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: carCenterOfMass.y
-      value: -0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 2230654937173857581, guid: 2e3f66772351c9d42bafab97bd6a503a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1204,21 +1143,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654937502169586, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_SuspensionDistance
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2230654938041698928, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_SuspensionDistance
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232399798206948503, guid: 2e3f66772351c9d42bafab97bd6a503a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e3f66772351c9d42bafab97bd6a503a, type: 3}
