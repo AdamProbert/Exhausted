@@ -156,9 +156,4 @@ public class CarController : MonoBehaviour
     {
         carRigidBody.centerOfMass = carCenterOfMass;  
     }
-
-    private void FixedUpdate() 
-    {
-   
-    }
 }
