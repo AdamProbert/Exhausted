@@ -9,7 +9,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] BaseWeapon leftWeapon;
     [SerializeField] BaseWeapon rightWeapon;
 
-    private BaseWeapon selectedWeapon ;
+    private BaseWeapon selectedWeapon;
     public enum Weapon
     {
         front,
@@ -80,11 +80,19 @@ public class WeaponController : MonoBehaviour
 
     public void Fire()
     {   
-        selectedWeapon.StartFiring();
+        if(selectedWeapon != null)
+        {
+            selectedWeapon.StartFiring();
+        }
+        
     }
 
     public void StopFiring()
     {
-        selectedWeapon.StopFiring();
+        if(selectedWeapon != null)
+        {
+            selectedWeapon.StopFiring();
+        }
+        
     }
 }

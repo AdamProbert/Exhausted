@@ -4,55 +4,28 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(ObjectPooler))]
-public class BaseWeapon : MonoBehaviour
+abstract public class BaseWeapon : MonoBehaviour
 {
-    [SerializeField] private float projectileSpeed;
-    [SerializeField] private Transform projectileSpawn;
+    [SerializeField] protected float projectileSpeed;
+    [SerializeField] protected Transform projectileSpawn;
     [Tooltip ("Bullets spawned per second")]
-    [SerializeField] private float fireRate;
+    [SerializeField] protected float fireRate;
+    [SerializeField] protected Rigidbody parentRigidBody; // Usually the car
 
-    private float nextFireTime = 0;
-    private bool firing = false;
+    protected ObjectPooler projectilePool;
 
-    private ObjectPooler projectilePool;
-
-    private void Start() 
+    protected void Init() 
     {
         projectilePool = GetComponent<ObjectPooler>();    
     }
 
-    private void Update() 
+    protected Vector3 GetParentVelocity()
     {
-        if(firing)
-        {
-            Fire();
-        }
+        return parentRigidBody.velocity;
     }
 
-    public void Fire()
-    {
-        if(Time.time < nextFireTime)
-        {
-            return;
-        }
-
-        nextFireTime = Time.time + (1 / fireRate);
-
-        GameObject projectile = projectilePool.GetPooledObject();
-        projectile.SetActive(true);
-        projectile.transform.position = projectileSpawn.position;
-        projectile.transform.rotation = projectileSpawn.rotation;
-        projectile.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed;
-    }
-
-    public void StartFiring()
-    {
-        firing = true;
-    }
-
-    public void StopFiring()
-    {
-        firing = false;
-    }
+    public abstract void Fire();
+    public abstract void StartFiring();
+    public abstract void StopFiring();
 
 }
