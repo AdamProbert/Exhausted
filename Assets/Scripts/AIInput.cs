@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
- 
+using UnityEngine.InputSystem;
+
 // Use physics raycast hit from mouse click 
 // to set agent destination
 [RequireComponent(typeof(NavMeshAgent))]
@@ -56,22 +57,21 @@ public class AIInput : MonoBehaviour
     {
         // Debug.Log("Car world position: " + carController.transform.position);
         // m_Agent.nextPosition = carController.transform.position;
-        if (Input.GetMouseButtonDown(0) && 
-            !Input.GetKey(KeyCode.LeftShift))
+        Debug.Log("Mouse clicked? " + Mouse.current.leftButton.wasPressedThisFrame);
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.Log("Mouse pos: " + Mouse.current.position.ReadValue());
+            var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
             {
                 //m_Agent.destination = m_HitInfo.point;
                 m_Path = new NavMeshPath();
                 endDestination = m_HitInfo.point;
+                m_Agent.CalculatePath(endDestination, m_Path);
+                pathIter = 1;
             }
         }
 
-        // Recalc path every frame..
-        m_Agent.CalculatePath(endDestination, m_Path);
-        pathIter = 1;
- 
         if (m_Path.corners == null || m_Path.corners.Length == 0)
             return;
  

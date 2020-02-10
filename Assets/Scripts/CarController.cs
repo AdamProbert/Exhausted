@@ -43,7 +43,7 @@ public class CarController : MonoBehaviour
 
     public void Accelerate(float speed, bool autoBrake=true)
     {
-
+        Debug.Log("speed: " + speed);
         velocity = transform.InverseTransformDirection(carRigidBody.velocity);
         
         if (velocity.z > 0 && speed < 0)
