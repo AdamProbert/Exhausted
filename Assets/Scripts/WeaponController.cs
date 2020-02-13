@@ -50,23 +50,26 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public BaseWeapon SelectWeapon(Weapon weaponChoice)
+    public BaseWeapon SelectWeapon(int weaponChoice)
     {
+        // Ensure current weapon stops first
+        selectedWeapon.StopFiring();
+        
         switch (weaponChoice)
         {
-            case Weapon.front:
+            case 1:
                 selectedWeapon = frontWeapon;
                 break;
                 
-            case Weapon.rear:
+            case 2:
                 selectedWeapon = rearWeapon;
                 break;
 
-            case Weapon.left:
+            case 3:
                 selectedWeapon = leftWeapon;
                 break;
 
-            case Weapon.right:
+            case 4:
                 selectedWeapon = rightWeapon;
                 break;
             

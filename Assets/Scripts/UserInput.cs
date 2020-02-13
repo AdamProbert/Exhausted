@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityStandardAssets.Vehicles.Car;
 
-[RequireComponent(typeof(CarController))]
+// [RequireComponent(typeof(CarController))]
 [RequireComponent(typeof(WeaponController))]
 
 public class UserInput : MonoBehaviour
@@ -16,7 +17,7 @@ public class UserInput : MonoBehaviour
     private float firing = 0; // Float not bool cause InputSystem
     private bool zoomToggle = false;
 
-    private CarController carController;
+    private CarController carController;    // Reference to actual car controller we are controlling
     private WeaponController weaponController;
 
 
@@ -24,18 +25,16 @@ public class UserInput : MonoBehaviour
     {
         controls = new InputMaster();
 
-        // One event for pressing fire, second for releasing
-        // controls.Player.Fire.performed += ctx => HandleFire(ctx.ReadValue<float>());
         controls.Player.Zoom.performed += ctx => HandleZoom();
-
-        // controls.Player.Move.performed += ctx => HandleMove(ctx.ReadValue<Vector2>()); // This is read every frame so we can get 0 when no input..
-        // controls.Player.Look.performed += ctx => HandleLook(ctx.ReadValue<Vector2>()); // This is read every frame so we can get 0 when no input..
-        
+        controls.Player.Weapon1.performed += ctx => HandleWeaponSwitch(1);
+        controls.Player.Weapon2.performed += ctx => HandleWeaponSwitch(2);
+        controls.Player.Weapon3.performed += ctx => HandleWeaponSwitch(3);
+        controls.Player.Weapon4.performed += ctx => HandleWeaponSwitch(4);
     }
 
     private void Start() 
     {
-        carController = GetComponent<CarController>();    
+        carController = GetComponent<UnityStandardAssets.Vehicles.Car.CarController>();
         weaponController = GetComponent<WeaponController>();
     }
 
@@ -43,6 +42,12 @@ public class UserInput : MonoBehaviour
     {
         // Need this for Cinemachine free look camera
         CinemachineCore.GetInputAxis = GetAxisCustom;
+    }
+
+    private void HandleWeaponSwitch(int weaponNumber)
+    {
+        Debug.Log("Player requested switch to weapon: " + weaponNumber);
+        weaponController.SelectWeapon(weaponNumber);
     }
 
     private void HandleFire(float fire)
@@ -93,8 +98,10 @@ public class UserInput : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        moveInput = controls.Player.Move.ReadValue<Vector2>();    
-        carController.Move(moveInput.x, moveInput.y);
+        moveInput = controls.Player.Move.ReadValue<Vector2>();
+        carController.Move(moveInput.x, moveInput.y, moveInput.y, 0);
+    
+        // carController.Move(moveInput.x, moveInput.y);
 
         firing = controls.Player.Fire.ReadValue<float>();
         HandleFire(firing);

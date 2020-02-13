@@ -6,6 +6,7 @@ public class Explode : MonoBehaviour
 {
     [SerializeField][Range(0,5000)] public float force;
     [SerializeField][Range(0,20)] public float radius;
+    [SerializeField][Range(0,10)] public float upwardMultiplier;
     [SerializeField]public ParticleSystem effect;
 
     public void DOIT()
@@ -15,9 +16,9 @@ public class Explode : MonoBehaviour
         foreach(Collider c in colliders)
         {
             Rigidbody rb = c.GetComponent<Rigidbody>();
-            if(rb != null)
+            if(rb != null && c.gameObject.layer != 10)
             {
-                rb.AddExplosionForce(force, transform.position, radius);
+                rb.AddExplosionForce(force, transform.position, radius, 2f);
             }
         }
     }
