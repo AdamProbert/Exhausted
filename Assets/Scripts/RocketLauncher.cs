@@ -23,15 +23,10 @@ public class RocketLauncher : BaseWeapon
     {
         if(firing)
         {
-            Debug.Log("Inside the fire");
             if(currentSalvoNumber < rocketsPerSalvo)
             {
-                Debug.Log("Inside the salvo");
-                Debug.Log("Next fire time: " + nextRocketFireTime);
-                Debug.Log("Time.time: " + Time.time);
                 if(Time.time > nextRocketFireTime)
                 {
-                    Debug.Log("INside the fire");
                     Fire();
                     nextRocketFireTime = Time.time + timeBetweenRockets;
                     currentSalvoNumber++;
@@ -65,7 +60,6 @@ public class RocketLauncher : BaseWeapon
 
     public override void Fire()
     {
-        Debug.Log("Firing");
         GameObject projectile = base.projectilePool.GetPooledObject();
         projectile.SetActive(true);
         projectile.transform.position = base.projectileSpawn.position;
