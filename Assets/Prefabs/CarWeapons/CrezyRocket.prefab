@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5006802412952818384}
   - component: {fileID: -2041831213611976780}
   - component: {fileID: 1545057341454795647}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CrezyRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,6 +154,26 @@ PrefabInstance:
     - target: {fileID: 131070, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
       propertyPath: m_Name
       value: RocketMissileFire 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 131070, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 143216, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 155406, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 160648, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 197782, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 474460, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
       propertyPath: m_LocalPosition.x

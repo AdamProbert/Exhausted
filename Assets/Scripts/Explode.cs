@@ -16,7 +16,7 @@ public class Explode : MonoBehaviour
         foreach(Collider c in colliders)
         {
             Rigidbody rb = c.GetComponent<Rigidbody>();
-            if(rb != null)
+            if(rb != null && c.gameObject.layer != 10)
             {
                 rb.AddExplosionForce(force, transform.position, radius, 2f);
             }
