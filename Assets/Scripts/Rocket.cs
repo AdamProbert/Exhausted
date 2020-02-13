@@ -25,7 +25,7 @@ public class Rocket : MonoBehaviour
 
     private void OnEnable() 
     {
-        rb.AddForce(Vector3.up * Random.Range(3, 8), ForceMode.Impulse);
+        // rb.AddForce(Vector3.up * Random.Range(3, 8), ForceMode.Impulse);
         startTime = Time.time;
     }
 

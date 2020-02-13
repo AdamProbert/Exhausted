@@ -6,6 +6,7 @@ public class Explode : MonoBehaviour
 {
     [SerializeField][Range(0,5000)] public float force;
     [SerializeField][Range(0,20)] public float radius;
+    [SerializeField][Range(0,10)] public float upwardMultiplier;
     [SerializeField]public ParticleSystem effect;
 
     public void DOIT()
@@ -17,7 +18,7 @@ public class Explode : MonoBehaviour
             Rigidbody rb = c.GetComponent<Rigidbody>();
             if(rb != null)
             {
-                rb.AddExplosionForce(force, transform.position, radius);
+                rb.AddExplosionForce(force, transform.position, radius, 2f);
             }
         }
     }
