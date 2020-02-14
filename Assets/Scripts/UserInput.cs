@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityStandardAssets.Vehicles.Car;
+using TMPro;
 
 // [RequireComponent(typeof(CarController))]
 [RequireComponent(typeof(WeaponController))]
@@ -14,11 +15,21 @@ public class UserInput : MonoBehaviour
     private Vector2 lookDelta;
     private Vector2 moveInput;
 
+    private float accelerate;
+    
+    private float boost;
+    private float brake;
+
     private float firing = 0; // Float not bool cause InputSystem
     private bool zoomToggle = false;
 
     private CarController carController;    // Reference to actual car controller we are controlling
     private WeaponController weaponController;
+    [SerializeField] bool debugMode;
+    [SerializeField] TextMeshProUGUI turnValue;
+    [SerializeField] TextMeshProUGUI accelerateValue;
+    [SerializeField] TextMeshProUGUI brakeValue;
+    [SerializeField] TextMeshProUGUI boostValue;
 
 
     private void Awake() 
@@ -42,17 +53,27 @@ public class UserInput : MonoBehaviour
     {
         // Need this for Cinemachine free look camera
         CinemachineCore.GetInputAxis = GetAxisCustom;
+        if(debugMode)
+            debug();
+    }
+
+    private void debug()
+    {
+        turnValue.text = moveInput.ToString();
+        accelerateValue.text = accelerate.ToString();
+        brakeValue.text = brake.ToString();
+        boostValue.text = boost.ToString();
     }
 
     private void HandleWeaponSwitch(int weaponNumber)
     {
-        Debug.Log("Player requested switch to weapon: " + weaponNumber);
+        if(debugMode) Debug.Log("Player requested switch to weapon: " + weaponNumber);
         weaponController.SelectWeapon(weaponNumber);
     }
 
     private void HandleFire(float fire)
     {   
-        Debug.Log("Handle fire called with: " + fire);
+        if(debugMode) Debug.Log("Handle fire called with: " + fire);
         if(fire > 0)
         {
             weaponController.Fire();
@@ -98,11 +119,13 @@ public class UserInput : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        moveInput = controls.Player.Move.ReadValue<Vector2>();
-        carController.Move(moveInput.x, moveInput.y, moveInput.y, 0);
+        moveInput = controls.Player.Turn.ReadValue<Vector2>();
+        accelerate = controls.Player.Accelerate.ReadValue<float>();
+        boost = controls.Player.Boost.ReadValue<float>();
+        brake = controls.Player.Brake.ReadValue<float>();
+        brake *= -1;
+        carController.Move(moveInput.x, accelerate, brake, 0, boost);
     
-        // carController.Move(moveInput.x, moveInput.y);
-
         firing = controls.Player.Fire.ReadValue<float>();
         HandleFire(firing);
     }

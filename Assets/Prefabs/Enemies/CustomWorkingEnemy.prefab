@@ -5795,12 +5795,13 @@ MonoBehaviour:
   m_MaximumSteerAngle: 30
   m_SteerHelper: 0.7
   m_TractionControl: 1
-  m_FullTorqueOverAllWheels: 5000
+  m_FullTorqueOverAllWheels: 3000
+  boostTorqueMultiplier: 0
   m_ReverseTorque: 150
-  m_MaxHandbrakeTorque: 50000
+  handbrakeTorqueMultiplier: 0
   m_Downforce: 0
   m_SpeedType: 0
-  m_Topspeed: 200
+  m_Topspeed: 100
   m_RevRangeBoundary: 1
   m_SlipLimit: 1
   m_BrakeTorque: 5000
@@ -5858,7 +5859,7 @@ MonoBehaviour:
   m_ReachTargetThreshold: 5
   secondsPerPathUpdate: 1
   player: {fileID: 0}
-  debugMode: 0
+  debugMode: 1
 --- !u!114 &154137053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6169,6 +6170,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.7144165
       objectReference: {fileID: 0}
+    - target: {fileID: 57026979, guid: d1102d228d962ce46bd2efcb00c224d2, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 01571ba68fb2dad46aa03094ab219579,
+        type: 2}
     - target: {fileID: 551990276, guid: d1102d228d962ce46bd2efcb00c224d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7690811

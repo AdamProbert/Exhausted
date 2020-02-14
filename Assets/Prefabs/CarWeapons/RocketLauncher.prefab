@@ -96,6 +96,8 @@ MonoBehaviour:
   projectileSpeed: 50
   projectileSpawn: {fileID: 3133251987110557488}
   fireRate: 0.3
+  parentRigidBody: {fileID: 0}
+  uiImage: {fileID: 21300000, guid: d8a07b1c66eaa724db557715967ffa32, type: 3}
   rocketsPerSalvo: 4
   timeBetweenRockets: 0.1
 --- !u!1001 &7234188027222214892

@@ -66,6 +66,8 @@ MonoBehaviour:
   projectileSpeed: 200
   projectileSpawn: {fileID: 8402867351572036405}
   fireRate: 10
+  parentRigidBody: {fileID: 0}
+  uiImage: {fileID: 21300000, guid: 821132cd34be1c143b411ee1a3c0eb6d, type: 3}
 --- !u!1 &6460815612015795914
 GameObject:
   m_ObjectHideFlags: 0
