@@ -12,6 +12,8 @@ abstract public class BaseWeapon : MonoBehaviour
     [SerializeField] protected float fireRate;
     [SerializeField] protected Rigidbody parentRigidBody; // Usually the car
 
+    [SerializeField] Sprite uiImage;
+
     protected ObjectPooler projectilePool;
 
     protected void Init() 
@@ -27,5 +29,10 @@ abstract public class BaseWeapon : MonoBehaviour
     public abstract void Fire();
     public abstract void StartFiring();
     public abstract void StopFiring();
+
+    public Sprite GetUIImage()
+    {
+        return uiImage;
+    }
 
 }

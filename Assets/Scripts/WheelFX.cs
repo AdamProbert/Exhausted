@@ -5,7 +5,7 @@ using UnityEngine;
 // Example skid script. Put this on a WheelCollider.
 // Copyright 2017 Nition, BSD licence (see LICENCE file). http://nition.co
 [RequireComponent(typeof(WheelCollider))]
-public class WheelSkid : MonoBehaviour {
+public class WheelFX : MonoBehaviour {
 
 	// INSPECTOR SETTINGS
 
@@ -13,6 +13,10 @@ public class WheelSkid : MonoBehaviour {
 	Rigidbody rb;
 	[SerializeField]
 	Skidmarks skidmarksController;
+
+	[SerializeField] ParticleSystem tireSmokePrefab;
+	[SerializeField] float wheelSpinForSmoke;
+	ParticleSystem tireSmoke;
 
 	// END INSPECTOR SETTINGS
 
@@ -30,15 +34,21 @@ public class WheelSkid : MonoBehaviour {
 	protected void Awake() {
 		wheelCollider = GetComponent<WheelCollider>();
 		lastFixedUpdateTime = Time.time;
+		skidmarksController = GameObject.FindObjectOfType<Skidmarks>();
+		tireSmoke = Instantiate(tireSmokePrefab, transform.position, Quaternion.identity, transform);
 	}
 
 	protected void FixedUpdate() {
 		lastFixedUpdateTime = Time.time;
 	}
 
-	protected void LateUpdate() {
+	protected void LateUpdate() 
+	{
+		var emission = tireSmoke.emission;
+
 		if (wheelCollider.GetGroundHit(out wheelHitInfo))
 		{
+			
 			// Check sideways speed
 
 			// Gives velocity with +z being the car's forward axis
@@ -68,15 +78,21 @@ public class WheelSkid : MonoBehaviour {
 			else {
 				lastSkid = -1;
 			}
+
+			if(skidTotal >= wheelSpinForSmoke)
+			{
+				emission.enabled = true;
+			}
+			else
+			{
+				emission.enabled = false;
+			}
+
+			
 		}
 		else {
 			lastSkid = -1;
+			emission.enabled = false;
 		}
 	}
-
-	// #### PUBLIC METHODS ####
-
-	// #### PROTECTED/PRIVATE METHODS ####
-
-
 }
