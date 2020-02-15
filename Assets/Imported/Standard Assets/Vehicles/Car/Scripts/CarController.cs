@@ -205,7 +205,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void ApplyDrive(float accel, float footbrake)
         {
-            Debug.Log("Accel:" + accel);
             float thrustTorque;
             switch (m_CarDriveType)
             {

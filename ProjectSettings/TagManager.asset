@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Missile
+  - World
   layers:
   - Default
   - TransparentFX
