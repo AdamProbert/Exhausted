@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using NodeCanvas.StateMachines;
 
 public class Player : MonoBehaviour
 {
@@ -55,6 +56,18 @@ public class Player : MonoBehaviour
         GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, 1f, 2f, ForceMode.VelocityChange);
         state = playerState.Dead;
         Instantiate(carExplode, transform.position, Quaternion.identity);
+        
+        // Deactivate input
+        if(GetComponent<FSMOwner>())
+        {
+            GetComponent<FSMOwner>().enabled = false;
+            GetComponent<AIInput2>().enabled = false;
+        }
+
+        if(GetComponent<UserInput>())
+        {
+            GetComponent<UserInput>().enabled = false;
+        }
     }
 
     private void OnCollisionEnter(Collision other) 
