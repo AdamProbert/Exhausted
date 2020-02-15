@@ -96,7 +96,6 @@ public class AIInput2 : MonoBehaviour
             var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray.origin, ray.direction, out m_HitInfo))
             {
-                Debug.Log("Hit point: " + m_HitInfo.point);
                 return m_HitInfo.point;
             }
         }
@@ -182,10 +181,9 @@ public class AIInput2 : MonoBehaviour
 
         if(Physics.SphereCast(sensorsStartPos, 1f, transform.forward, out hit, sensorLength))
         {
-            Debug.Log("Avoiding shiz");
-            if(hit.collider.CompareTag("World"))
+            if(hit.collider.gameObject.layer == 9 || hit.collider.CompareTag("World"))
             {
-                Debug.DrawLine(sensorsStartPos, hit.point, sensorColor, 10f);
+                Debug.DrawLine(sensorsStartPos, transform.forward * 5f, sensorColor, 10f);
                 float revSteer = 0f;
                 Vector3 perp = Vector3.Cross(transform.forward, m_Target.position - transform.position);
                 float dir = Vector3.Dot(perp, transform.up);
@@ -196,7 +194,6 @@ public class AIInput2 : MonoBehaviour
                     revSteer = 1f;
                 }
                 m_CarController.Move(revSteer, -1, -1, 0, 0);
-                Debug.Log("Reversing and turning with: " + revSteer);
                 avoiding = true;
                 return true;
             }

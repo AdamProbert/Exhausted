@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5637cd40534c5409cbfe2a3d300b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 5000
-  radius: 10
+  force: 1000
+  radius: 13
   upwardMultiplier: 10
   effect: {fileID: 19849376, guid: b42b8677df418c047aef5d8ce9c66663, type: 3}
 --- !u!1001 &2654164594781788449

@@ -13,10 +13,10 @@ namespace NodeCanvas.Tasks.Conditions
 
         [RequiredField]
         public BBParameter<GameObject> target;
-        public BBParameter<float> maxDistance = 50;
-        public BBParameter<float> awarnessDistance = 0f;
+        public BBParameter<float> maxDistance;
+        public BBParameter<float> awarnessDistance;
         [SliderField(1, 180)]
-        public BBParameter<float> viewAngle = 70f;
+        public BBParameter<float> viewAngle;
         public Vector3 offset;
 
         private RaycastHit hit;
@@ -29,14 +29,16 @@ namespace NodeCanvas.Tasks.Conditions
 
             var t = target.value.transform;
             if ( Vector3.Distance(agent.position, t.position) > maxDistance.value ) {
+                Debug.Log("Failed on distance");
                 return false;
             }
 
-            if ( Physics.Linecast(agent.position + offset, t.position + offset, out hit) ) {
-                if ( hit.collider != t.GetComponent<Collider>() ) {
-                    return false;
-                }
-            }
+            // if ( Physics.Linecast(agent.position + offset, t.position + offset, out hit) ) {
+            //     if ( hit.collider != t.GetComponent<Collider>() ) {
+            //         Debug.Log("Failed on line cast");
+            //         return false;
+            //     }
+            // }
 
             if ( Vector3.Angle(t.position - agent.position, agent.forward) < viewAngle.value ) {
                 return true;
@@ -46,6 +48,7 @@ namespace NodeCanvas.Tasks.Conditions
                 return true;
             }
 
+            Debug.Log("Failed at end");
             return false;
         }
 

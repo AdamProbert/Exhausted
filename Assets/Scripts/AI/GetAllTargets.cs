@@ -26,8 +26,6 @@ namespace NodeCanvas.Tasks.Actions
             List<GameObject> targets = new List<GameObject>();    
             foreach(GameObject g in GameObject.FindGameObjectsWithTag(searchTag))
             {
-                Debug.Log("Ignorecurrent: " + ignoreCurrent);
-                Debug.Log("agent: " + ownerAgent.gameObject + " g: " + g);
                 if(ignoreCurrent)
                 {
                     if(g != ownerAgent.gameObject)
