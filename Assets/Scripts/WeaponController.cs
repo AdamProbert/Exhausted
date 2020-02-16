@@ -9,6 +9,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] BaseWeapon leftWeapon;
     [SerializeField] BaseWeapon rightWeapon;
 
+    [SerializeField] WeaponUIUpdate weaponUIUpdate;
+
     private BaseWeapon selectedWeapon;
     public enum Weapon
     {
@@ -20,11 +22,16 @@ public class WeaponController : MonoBehaviour
 
     private void Start() 
     {
-        SetInitialWeapon();
+        weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();
+        WeaponRegister();
     }
 
-    private void SetInitialWeapon()
+    private void WeaponRegister()
     {
+        // Scan through weapon options
+        // Assign first found to current weapon
+        // Register all available weapons with UI
+
         bool found = false;
         List<BaseWeapon> wList = new List<BaseWeapon>()
         {
@@ -33,22 +40,29 @@ public class WeaponController : MonoBehaviour
             leftWeapon,
             rightWeapon
         };
+        List<BaseWeapon> availableWeapons = new List<BaseWeapon>();
 
         foreach (BaseWeapon w in wList)
         {
             if(w != null)
             {
-                selectedWeapon = w;
-                found = true;
-                break;
+                availableWeapons.Add(w);
+                if(found == false)
+                {
+                    selectedWeapon = w;
+                    found = true;
+                }                
             }
-        }  
+        }
+
+        weaponUIUpdate.RegisterWeapons(availableWeapons);
 
         if(!found)
         {
             Debug.Log("No weapon found on vehicle");
         }
     }
+
 
     public BaseWeapon SelectWeapon(int weaponChoice)
     {
@@ -58,25 +72,32 @@ public class WeaponController : MonoBehaviour
         switch (weaponChoice)
         {
             case 1:
-                selectedWeapon = frontWeapon;
+                if(frontWeapon)
+                    selectedWeapon = frontWeapon;
+                    UpdateUIComponent(1);
                 break;
                 
             case 2:
-                selectedWeapon = rearWeapon;
+                if(rearWeapon) 
+                    selectedWeapon = rearWeapon;
+                    UpdateUIComponent(2);
                 break;
 
             case 3:
-                selectedWeapon = leftWeapon;
+                if(leftWeapon)
+                    selectedWeapon = leftWeapon;
+                    UpdateUIComponent(3);
                 break;
 
             case 4:
-                selectedWeapon = rightWeapon;
+                if(rightWeapon)
+                    selectedWeapon = rightWeapon;
+                    UpdateUIComponent(4);
                 break;
             
             default:
                 return null;
         }
-        
         return selectedWeapon;
     }
 
@@ -97,5 +118,13 @@ public class WeaponController : MonoBehaviour
             selectedWeapon.StopFiring();
         }
         
+    }
+
+    private void UpdateUIComponent(int weaponNumber)
+    {
+        if(weaponUIUpdate != null)
+        {
+            weaponUIUpdate.SetCurrentWeapon(weaponNumber);
+        }
     }
 }

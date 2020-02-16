@@ -1,0 +1,234 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
+  m_Name: Hunt
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":671.0,"y":389.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"0"},{"_action":{"method":{"_baseInfo":"AIInput2|SetPlayerTarget|System.Void","_paramsInfo":"UnityEngine.Transform"},"parameters":[{"_type":"UnityEngine.Transform","_name":"CurrentTarget","_targetVariableID":"58626642-2fd7-45dc-b8b5-d33bcbefcda0"}],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_position":{"x":361.0,"y":625.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"1"},{"repeaterMode":2,"repeatTimes":{"_value":1},"_position":{"x":879.0,"y":694.0},"$type":"NodeCanvas.BehaviourTrees.Repeater","$id":"2"},{"_position":{"x":869.0,"y":817.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"3"},{"_condition":{"target":{"_name":"CurrentTarget","_targetVariableID":"58626642-2fd7-45dc-b8b5-d33bcbefcda0"},"maxDistance":{"_value":100.0},"awarnessDistance":{"_value":70.0},"viewAngle":{"_value":120.0},"_invert":true,"$type":"NodeCanvas.Tasks.Conditions.CanSeeTarget"},"_tag":"","_position":{"x":629.0,"y":859.0},"_comment":"If
+    we can''t seem them, or we smashed into them.. pick a new target","$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"4"},{"_action":{"method":{"_baseInfo":"AIInput2|UnsetPlayerTarget|System.Void","_paramsInfo":"UnityEngine.Transform"},"parameters":[{"_type":"UnityEngine.Transform","_name":"CurrentTarget","_targetVariableID":"58626642-2fd7-45dc-b8b5-d33bcbefcda0"}],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_position":{"x":758.0,"y":1024.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"5"},{"_action":{"valueA":{"_name":"CurrentTarget","_targetVariableID":"58626642-2fd7-45dc-b8b5-d33bcbefcda0"},"valueB":{},"$type":"NodeCanvas.Tasks.Actions.SetVariable`1[[UnityEngine.GameObject,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":975.0,"y":944.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"6"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[{"name":"Lost
+    him","rect":{"xMin":609.0,"yMin":629.0,"xMax":1155.0,"yMax":1104.0},"autoGroup":true}],"localBlackboard":{"_variables":{}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
+  _objectReferences: []
+  _graphSource:
+    _version: 3.03
+    _category: 
+    _comments: 
+    _translation: {x: -298, y: -143}
+    _zoomFactor: 1
+  _haltSerialization: 0
+#---GRAPH_START---
+#The pretty formatted json serialization bellow is only a reference to help in version control diff. Other than that it is not used at all.
+#{
+#    "type": "NodeCanvas.BehaviourTrees.BehaviourTree",
+#    "nodes": [
+#        {
+#            "_position": {
+#                "x": 671.0,
+#                "y": 389.0
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.Sequencer",
+#            "$id": "0"
+#        },
+#        {
+#            "_action": {
+#                "method": {
+#                    "_baseInfo": "AIInput2|SetPlayerTarget|System.Void",
+#                    "_paramsInfo": "UnityEngine.Transform"
+#                },
+#                "parameters": [
+#                    {
+#                        "_type": "UnityEngine.Transform",
+#                        "_name": "CurrentTarget",
+#                        "_targetVariableID": "58626642-2fd7-45dc-b8b5-d33bcbefcda0"
+#                    }
+#                ],
+#                "returnValue": {
+#
+#                },
+#                "$type": "NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"
+#            },
+#            "_position": {
+#                "x": 361.0,
+#                "y": 625.0
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.ActionNode",
+#            "$id": "1"
+#        },
+#        {
+#            "repeaterMode": 2,
+#            "repeatTimes": {
+#                "_value": 1
+#            },
+#            "_position": {
+#                "x": 879.0,
+#                "y": 694.0
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.Repeater",
+#            "$id": "2"
+#        },
+#        {
+#            "_position": {
+#                "x": 869.0,
+#                "y": 817.0
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.Sequencer",
+#            "$id": "3"
+#        },
+#        {
+#            "_condition": {
+#                "target": {
+#                    "_name": "CurrentTarget",
+#                    "_targetVariableID": "58626642-2fd7-45dc-b8b5-d33bcbefcda0"
+#                },
+#                "maxDistance": {
+#                    "_value": 100.0
+#                },
+#                "awarnessDistance": {
+#                    "_value": 70.0
+#                },
+#                "viewAngle": {
+#                    "_value": 120.0
+#                },
+#                "_invert": true,
+#                "$type": "NodeCanvas.Tasks.Conditions.CanSeeTarget"
+#            },
+#            "_tag": "",
+#            "_position": {
+#                "x": 629.0,
+#                "y": 859.0
+#            },
+#            "_comment": "If we can't seem them, or we smashed into them.. pick a new target",
+#            "$type": "NodeCanvas.BehaviourTrees.ConditionNode",
+#            "$id": "4"
+#        },
+#        {
+#            "_action": {
+#                "method": {
+#                    "_baseInfo": "AIInput2|UnsetPlayerTarget|System.Void",
+#                    "_paramsInfo": "UnityEngine.Transform"
+#                },
+#                "parameters": [
+#                    {
+#                        "_type": "UnityEngine.Transform",
+#                        "_name": "CurrentTarget",
+#                        "_targetVariableID": "58626642-2fd7-45dc-b8b5-d33bcbefcda0"
+#                    }
+#                ],
+#                "returnValue": {
+#
+#                },
+#                "$type": "NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"
+#            },
+#            "_position": {
+#                "x": 758.0,
+#                "y": 1024.0
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.ActionNode",
+#            "$id": "5"
+#        },
+#        {
+#            "_action": {
+#                "valueA": {
+#                    "_name": "CurrentTarget",
+#                    "_targetVariableID": "58626642-2fd7-45dc-b8b5-d33bcbefcda0"
+#                },
+#                "valueB": {
+#
+#                },
+#                "$type": "NodeCanvas.Tasks.Actions.SetVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+#            },
+#            "_position": {
+#                "x": 975.0,
+#                "y": 944.0
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.ActionNode",
+#            "$id": "6"
+#        }
+#    ],
+#    "connections": [
+#        {
+#            "_sourceNode": {
+#                "$ref": "0"
+#            },
+#            "_targetNode": {
+#                "$ref": "1"
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
+#        },
+#        {
+#            "_sourceNode": {
+#                "$ref": "0"
+#            },
+#            "_targetNode": {
+#                "$ref": "2"
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
+#        },
+#        {
+#            "_sourceNode": {
+#                "$ref": "2"
+#            },
+#            "_targetNode": {
+#                "$ref": "3"
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
+#        },
+#        {
+#            "_sourceNode": {
+#                "$ref": "3"
+#            },
+#            "_targetNode": {
+#                "$ref": "4"
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
+#        },
+#        {
+#            "_sourceNode": {
+#                "$ref": "3"
+#            },
+#            "_targetNode": {
+#                "$ref": "5"
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
+#        },
+#        {
+#            "_sourceNode": {
+#                "$ref": "3"
+#            },
+#            "_targetNode": {
+#                "$ref": "6"
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
+#        }
+#    ],
+#    "canvasGroups": [
+#        {
+#            "name": "Lost him",
+#            "rect": {
+#                "xMin": 609.0,
+#                "yMin": 629.0,
+#                "xMax": 1155.0,
+#                "yMax": 1104.0
+#            },
+#            "autoGroup": true
+#        }
+#    ],
+#    "localBlackboard": {
+#        "_variables": {
+#
+#        }
+#    },
+#    "derivedData": {
+#        "repeat": true,
+#        "$type": "NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"
+#    }
+#}
+#---GRAPH_END---

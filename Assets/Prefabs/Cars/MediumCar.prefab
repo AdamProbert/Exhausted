@@ -888,7 +888,7 @@ GameObject:
   - component: {fileID: 33581473893217820}
   - component: {fileID: 23530628545943148}
   - component: {fileID: 57026978}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Veh_Car_Medium_Armour_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

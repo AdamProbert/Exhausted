@@ -27,8 +27,9 @@ namespace UnityStandardAssets.Vehicles.Car
         [Range(0, 1)] [SerializeField] private float m_SteerHelper; // 0 is raw physics , 1 the car will grip in the direction it is facing
         [Range(0, 1)] [SerializeField] private float m_TractionControl; // 0 is no traction control, 1 is full interference
         [SerializeField] private float m_FullTorqueOverAllWheels;
+        [SerializeField] private float boostTorqueMultiplier;
         [SerializeField] private float m_ReverseTorque;
-        [SerializeField] private float m_MaxHandbrakeTorque;
+        [SerializeField] private float handbrakeTorqueMultiplier;
         [SerializeField] private float m_Downforce = 100f;
         [SerializeField] private SpeedType m_SpeedType;
         [SerializeField] private float m_Topspeed = 200;
@@ -64,8 +65,6 @@ namespace UnityStandardAssets.Vehicles.Car
                 m_WheelMeshLocalRotations[i] = m_WheelMeshes[i].transform.localRotation;
             }
             m_WheelColliders[0].attachedRigidbody.centerOfMass = m_CentreOfMassOffset;
-
-            m_MaxHandbrakeTorque = float.MaxValue;
 
             m_Rigidbody = GetComponent<Rigidbody>();
             // m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
@@ -125,8 +124,7 @@ namespace UnityStandardAssets.Vehicles.Car
             Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
         }
 
-
-        public void Move(float steering, float accel, float footbrake, float handbrake)
+        public void Move(float steering, float accel, float footbrake, float handbrake, float boost = 0f)
         {
             for (int i = 0; i < 4; i++)
             {
@@ -149,6 +147,12 @@ namespace UnityStandardAssets.Vehicles.Car
             m_WheelColliders[0].steerAngle = m_SteerAngle;
             m_WheelColliders[1].steerAngle = m_SteerAngle;
 
+            //Add boost
+            if(boost > 0)
+            {
+                accel*=boostTorqueMultiplier;
+            }
+            
             SteerHelper();
             ApplyDrive(accel, footbrake);
             CapSpeed();
@@ -158,9 +162,14 @@ namespace UnityStandardAssets.Vehicles.Car
             if (handbrake > 0f)
             {
                 Debug.Log("Handbraking!");
-                var hbTorque = handbrake*m_MaxHandbrakeTorque;
+                var hbTorque = handbrake*handbrakeTorqueMultiplier;
                 m_WheelColliders[2].brakeTorque = hbTorque;
                 m_WheelColliders[3].brakeTorque = hbTorque;
+            }
+            else
+            {
+                m_WheelColliders[2].brakeTorque = 0;
+                m_WheelColliders[3].brakeTorque = 0; 
             }
 
 
@@ -196,7 +205,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void ApplyDrive(float accel, float footbrake)
         {
-            Debug.Log("Accel:" + accel);
             float thrustTorque;
             switch (m_CarDriveType)
             {
@@ -280,7 +288,6 @@ namespace UnityStandardAssets.Vehicles.Car
                 // is the tire slipping above the given threshhold
                 if (Mathf.Abs(wheelHit.forwardSlip) >= m_SlipLimit || Mathf.Abs(wheelHit.sidewaysSlip) >= m_SlipLimit)
                 {
-                    Debug.Log("CarController: Wheel slipping!");
                     // m_WheelEffects[i].EmitTyreSmoke();
 
                     // avoiding all four tires screeching at the same time
@@ -339,7 +346,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void AdjustTorque(float forwardSlip)
         {
-            // Debug.Log("Adjust torque: forwardSlip: " + forwardSlip);
             if (forwardSlip >= m_SlipLimit && m_CurrentTorque >= 0)
             {
                 m_CurrentTorque -= 10 * m_TractionControl;

@@ -63,9 +63,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed874024d63689479af33e867430dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 200
+  projectileSpeed: 100
   projectileSpawn: {fileID: 8402867351572036405}
   fireRate: 10
+  parentRigidBody: {fileID: 0}
+  uiImage: {fileID: 21300000, guid: 821132cd34be1c143b411ee1a3c0eb6d, type: 3}
 --- !u!1 &6460815612015795914
 GameObject:
   m_ObjectHideFlags: 0
