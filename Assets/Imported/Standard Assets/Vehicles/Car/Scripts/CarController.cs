@@ -205,7 +205,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void ApplyDrive(float accel, float footbrake)
         {
-            Debug.Log("Accel:" + accel);
             float thrustTorque;
             switch (m_CarDriveType)
             {
@@ -289,7 +288,6 @@ namespace UnityStandardAssets.Vehicles.Car
                 // is the tire slipping above the given threshhold
                 if (Mathf.Abs(wheelHit.forwardSlip) >= m_SlipLimit || Mathf.Abs(wheelHit.sidewaysSlip) >= m_SlipLimit)
                 {
-                    Debug.Log("CarController: Wheel slipping!");
                     // m_WheelEffects[i].EmitTyreSmoke();
 
                     // avoiding all four tires screeching at the same time

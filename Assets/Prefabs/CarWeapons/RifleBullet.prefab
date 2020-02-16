@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3173279099678854832}
   - component: {fileID: 8105346976796190720}
   - component: {fileID: 4070780636876701284}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RifleBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058201599352487386}
   serializedVersion: 2
-  m_Mass: 0.2
+  m_Mass: 0.05
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -87,6 +87,10 @@ PrefabInstance:
     - target: {fileID: 1703263380272892, guid: 7af0025c87c32d548bd8331f3955239a, type: 3}
       propertyPath: m_Name
       value: Bullet_Trail_FX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703263380272892, guid: 7af0025c87c32d548bd8331f3955239a, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4969994121227214, guid: 7af0025c87c32d548bd8331f3955239a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -150,6 +154,10 @@ PrefabInstance:
     - target: {fileID: 1551417492572840, guid: 79ea69f034f719f408ef7420f8bfb7d8, type: 3}
       propertyPath: m_Name
       value: SM_Item_Bullet_Rifle_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551417492572840, guid: 79ea69f034f719f408ef7420f8bfb7d8, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4058111068161934, guid: 79ea69f034f719f408ef7420f8bfb7d8, type: 3}
       propertyPath: m_LocalPosition.x
