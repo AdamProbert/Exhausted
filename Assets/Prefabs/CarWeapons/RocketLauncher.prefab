@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 2694928511872684069}
   - component: {fileID: 3675153390946322659}
   - component: {fileID: 5848967748269740640}
+  - component: {fileID: 5563357935945700472}
   m_Layer: 0
   m_Name: RocketLauncher
   m_TagString: Untagged
@@ -199,6 +200,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &5563357935945700472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7522007734434652433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ac9dfc29f1f6241a45727d690f3d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRotation: 180
+  rotationSpeed: 2.81
+  searchRadius: 10
+  searchLayers:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &7234188027222214892
 PrefabInstance:
   m_ObjectHideFlags: 0

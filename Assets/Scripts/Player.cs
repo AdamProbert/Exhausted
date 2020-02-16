@@ -4,8 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using NodeCanvas.StateMachines;
 
+[RequireComponent(typeof(WeaponController))]
 public class Player : MonoBehaviour
 {
+    private WeaponController weaponController;
+    private AIInput2 aIInput;
+    private bool isAI;
     [SerializeField] ParticleSystem carExplode;
     [SerializeField] float explosionForce;
     [SerializeField] float maxHealth;
@@ -26,20 +30,48 @@ public class Player : MonoBehaviour
     public event OnHealthChangeDelegate OnHealthChange;
     
 
-    [SerializeField] playerState state;
+    [SerializeField] public playerState state;
 
-    enum playerState{
+    public enum playerState{
         Alive,
         Dead
     };
 
 
-    private void Start() 
+    private void Awake()
     {
         currentHealth = maxHealth;
         state=playerState.Alive;
         this.OnHealthChange += StatusHandler;
+        weaponController = GetComponent<WeaponController>();
 
+        // Is us AI?
+        if(GetComponent<AIInput2>() && !GetComponent<UserInput>())
+        {
+            isAI = true;
+            aIInput = GetComponent<AIInput2>();
+            aIInput.OnTargetChange += OnNavTargetChange;
+            weaponController.RegisterAsAI();
+            // aIInput = GetComponent<AIInput2>();
+            // weaponController.RegisterAsAI();
+        }
+        else if(!GetComponent<AIInput2>() && GetComponent<UserInput>())
+        {
+            isAI = false;
+            // weaponController.SetAutoFind(false, null);
+        }
+        else
+        {
+            Debug.LogError("!Player must have either AIInput script or UserInput!");
+        }
+
+    }
+
+    private void OnNavTargetChange(Player newTarget)
+    {
+        // Broadcast message to all components on this game object
+        BroadcastMessage("NewTargetAcquired", newTarget);
+        Debug.Log("Player: On nav target change received");
     }
 
     private void StatusHandler(float newHealth)
@@ -58,16 +90,18 @@ public class Player : MonoBehaviour
         Instantiate(carExplode, transform.position, Quaternion.identity);
         
         // Deactivate input
-        if(GetComponent<FSMOwner>())
+        if(isAI)
         {
             GetComponent<FSMOwner>().enabled = false;
             GetComponent<AIInput2>().enabled = false;
         }
-
-        if(GetComponent<UserInput>())
+        else
         {
             GetComponent<UserInput>().enabled = false;
         }
+
+        BroadcastMessage("PlayerDied");
+
     }
 
     private void OnCollisionEnter(Collision other) 

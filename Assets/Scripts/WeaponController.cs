@@ -5,17 +5,20 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] BaseWeapon frontWeapon;
-    [SerializeField] BaseWeapon rearWeapon;
+    [SerializeField] BaseWeapon topWeapon;
     [SerializeField] BaseWeapon leftWeapon;
     [SerializeField] BaseWeapon rightWeapon;
-
+    List<BaseWeapon> availableWeapons;
     [SerializeField] WeaponUIUpdate weaponUIUpdate;
+
+    private bool IsAI = false;
+    [SerializeField] bool enableAutoAim = false;
 
     private BaseWeapon selectedWeapon;
     public enum Weapon
     {
         front,
-        rear,
+        top,
         left,
         right
     }
@@ -24,6 +27,7 @@ public class WeaponController : MonoBehaviour
     {
         weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();
         WeaponRegister();
+        SetupAutoFindOnWeapons();
     }
 
     private void WeaponRegister()
@@ -36,11 +40,12 @@ public class WeaponController : MonoBehaviour
         List<BaseWeapon> wList = new List<BaseWeapon>()
         {
             frontWeapon,
-            rearWeapon, 
+            topWeapon, 
             leftWeapon,
             rightWeapon
         };
-        List<BaseWeapon> availableWeapons = new List<BaseWeapon>();
+
+        availableWeapons = new List<BaseWeapon>();
 
         foreach (BaseWeapon w in wList)
         {
@@ -55,7 +60,10 @@ public class WeaponController : MonoBehaviour
             }
         }
 
-        weaponUIUpdate.RegisterWeapons(availableWeapons);
+        if(!IsAI)
+        {
+            weaponUIUpdate.RegisterWeapons(availableWeapons);
+        }
 
         if(!found)
         {
@@ -78,8 +86,8 @@ public class WeaponController : MonoBehaviour
                 break;
                 
             case 2:
-                if(rearWeapon) 
-                    selectedWeapon = rearWeapon;
+                if(topWeapon) 
+                    selectedWeapon = topWeapon;
                     UpdateUIComponent(2);
                 break;
 
@@ -125,6 +133,32 @@ public class WeaponController : MonoBehaviour
         if(weaponUIUpdate != null)
         {
             weaponUIUpdate.SetCurrentWeapon(weaponNumber);
+        }
+    }
+
+    public void RegisterAsAI()
+    {
+        IsAI = true;
+    }
+
+    public void SetupAutoFindOnWeapons()
+    {
+        // Scan through all available weapons and allow auto aim if AI
+    
+        foreach(BaseWeapon bw in availableWeapons)
+        {
+            if(bw.GetComponent<AutoAimAndFIre>())
+            {
+                if(enableAutoAim)
+                {
+                    bw.GetComponent<AutoAimAndFIre>().SetAutoFindTarget(true);
+                }
+                else
+                {
+                    bw.GetComponent<AutoAimAndFIre>().SetAutoFindTarget(false);
+                }
+                
+            }
         }
     }
 }

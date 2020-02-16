@@ -64,10 +64,25 @@ public class AIInput2 : MonoBehaviour
 
     [SerializeField] Vector3 frontSensorPosOffset;
 
+    [SerializeField] private Player m_NavTarget;
+    [SerializeField] public Player navTarget{
+        get{return m_NavTarget;}
+        set{
+            if(m_NavTarget == value) return;
+            m_NavTarget = value;
+            Debug.Log("AIInput: Setting new target");
+            if(OnTargetChange != null)
+            {
+                Debug.Log("AIInput: New target event sent");
+                OnTargetChange(m_NavTarget);
+            }
+        }
+    }
 
+    public delegate void OnTargetChangeDelegate(Player newVal);
+    public event OnTargetChangeDelegate OnTargetChange;
 
     // Debug
-    [SerializeField] private Transform playerTarget;
     [SerializeField] private bool debugMode;
 
     private void Awake()
@@ -109,9 +124,9 @@ public class AIInput2 : MonoBehaviour
             Vector3 pos = GetClickPosition();
             endDestination = m_HitInfo.point;
         }
-        else if(playerTarget != null)
+        else if(navTarget != null)
         {
-            endDestination = playerTarget.position;
+            endDestination = navTarget.transform.position;
         }
 
         if(endDestination != Vector3.zero)
@@ -377,20 +392,25 @@ public class AIInput2 : MonoBehaviour
     }
 
 
-    public void SetPlayerTarget(Transform target)
+    public void SetPlayerTarget(Player target)
     {
-        playerTarget = target;
+        navTarget = target;
     }
 
     public void UnsetPlayerTarget(Transform target)
     {
-        playerTarget = null;
+        navTarget = null;
+    }
+
+    private void OnDisable() 
+    {
+        m_CarController.Move(0, 0, 1, 1, 0);
     }
 
 
     private void OnDrawGizmos()
     {
-        if(playerTarget != null)
+        if(navTarget != null)
         {
             Gizmos.color = Color.red;
         }

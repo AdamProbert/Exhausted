@@ -16,6 +16,14 @@ abstract public class BaseWeapon : MonoBehaviour
 
     protected ObjectPooler projectilePool;
 
+    public status currentStatus = status.Active;
+    public enum status
+    {
+        Active,
+        Inactive
+    }
+
+    [Header("Audio")]
     protected AudioSource audioSource;
     [SerializeField] protected AudioClip fireSound;
 
@@ -23,6 +31,11 @@ abstract public class BaseWeapon : MonoBehaviour
     {
         projectilePool = GetComponent<ObjectPooler>();    
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlayerDied()
+    {
+        currentStatus = status.Inactive;
     }
 
     protected Vector3 GetParentVelocity()
