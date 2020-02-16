@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 {
     private WeaponController weaponController;
     private AIInput2 aIInput;
-    private bool isAI;
+    public bool isAI;
     [SerializeField] ParticleSystem carExplode;
     [SerializeField] float explosionForce;
     [SerializeField] float maxHealth;
@@ -29,13 +29,26 @@ public class Player : MonoBehaviour
     public delegate void OnHealthChangeDelegate(float newVal);
     public event OnHealthChangeDelegate OnHealthChange;
     
-
-    [SerializeField] public playerState state;
+    private playerState m_state;
+    [SerializeField] public playerState state{
+        get{return m_state;}
+        set{
+            if(m_state == value) return;
+            m_state = value;
+            if(OnStateChange != null)
+            {
+                OnStateChange(m_state, this);
+            }
+        }
+    }
 
     public enum playerState{
         Alive,
         Dead
     };
+
+    public delegate void OnStateChangeDelegate(playerState newState, Player thisPlayer);
+    public event OnStateChangeDelegate OnStateChange;
 
 
     private void Awake()

@@ -115,7 +115,8 @@ public class AutoAimAndFIre : MonoBehaviour
                 {
                     continue;
                 }
-
+                
+                Debug.Log("Autoaim found someone to hit");
                 Vector3 diff = (hit.transform.position - transform.position);
                 var curDistance = diff.sqrMagnitude;
                 if (curDistance < distance)
@@ -124,7 +125,12 @@ public class AutoAimAndFIre : MonoBehaviour
                     closest = hit.transform;
                 }
             }
-            target = closest.GetComponent<Player>();
+            if(closest != null)
+            {
+                target = closest.transform.root.GetComponent<Player>();
+                Debug.Log("Set target to: " + target);
+            }
+                
         } 
     }
 
