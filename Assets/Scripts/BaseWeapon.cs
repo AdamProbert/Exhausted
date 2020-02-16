@@ -16,9 +16,13 @@ abstract public class BaseWeapon : MonoBehaviour
 
     protected ObjectPooler projectilePool;
 
+    protected AudioSource audioSource;
+    [SerializeField] protected AudioClip fireSound;
+
     protected void Init() 
     {
         projectilePool = GetComponent<ObjectPooler>();    
+        audioSource = GetComponent<AudioSource>();
     }
 
     protected Vector3 GetParentVelocity()

@@ -60,6 +60,7 @@ public class RocketLauncher : BaseWeapon
 
     public override void Fire()
     {
+        audioSource.PlayOneShot(base.fireSound, 1f);
         GameObject projectile = base.projectilePool.GetPooledObject();
         projectile.SetActive(true);
         projectile.transform.position = base.projectileSpawn.position;
