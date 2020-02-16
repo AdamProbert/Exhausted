@@ -21,7 +21,7 @@ public class RocketLauncher : BaseWeapon
 
     private void Update() 
     {
-        if(firing)
+        if(currentStatus == BaseWeapon.status.Active && firing)
         {
             if(currentSalvoNumber < rocketsPerSalvo)
             {

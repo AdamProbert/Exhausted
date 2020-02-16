@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
   m_Name: Search
   m_EditorClassIdentifier: 
-  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"repeaterMode":2,"repeatTimes":{"_value":1},"_position":{"x":499.0,"y":413.0},"$type":"NodeCanvas.BehaviourTrees.Repeater","$id":"0"},{"dynamic":true,"_condition":{"targets":{"_name":"Players","_targetVariableID":"c46ca489-2f8d-444b-9e02-b3fdfa4e8464"},"maxDistance":{"_value":250.0},"awarnessDistance":{"_value":100.0},"viewAngle":{"_value":70.0},"$type":"NodeCanvas.Tasks.Conditions.CanSeeAnyone"},"_position":{"x":481.0,"y":586.0},"$type":"NodeCanvas.BehaviourTrees.BinarySelector","$id":"1"},{"_action":{"actions":[{"saveAs":{"_name":"CurrentTarget","_targetVariableID":"58626642-2fd7-45dc-b8b5-d33bcbefcda0"},"possibleTargets":{"_name":"Players","_targetVariableID":"c46ca489-2f8d-444b-9e02-b3fdfa4e8464"},"maxDistance":{"_value":100.0},"awarnessDistance":{"_value":50.0},"viewAngle":{"_value":100.0},"$type":"NodeCanvas.Tasks.Actions.PrioritiseTarget"},{"log":{"_value":"Found
+  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"repeaterMode":2,"repeatTimes":{"_value":1},"_position":{"x":500.0,"y":425.0},"$type":"NodeCanvas.BehaviourTrees.Repeater","$id":"0"},{"dynamic":true,"_condition":{"targets":{"_name":"Players","_targetVariableID":"ade0004e-7574-40c4-b48e-a3faf6f8b99f"},"maxDistance":{"_value":250.0},"awarnessDistance":{"_value":100.0},"viewAngle":{"_value":70.0},"$type":"NodeCanvas.Tasks.Conditions.CanSeeAnyone"},"_position":{"x":481.0,"y":586.0},"$type":"NodeCanvas.BehaviourTrees.BinarySelector","$id":"1"},{"_action":{"actions":[{"saveAs":{"_name":"navTarget","_targetVariableID":"50f5a4d1-2660-408d-9ea9-ad786698aa57"},"possibleTargets":{"_name":"Players","_targetVariableID":"ade0004e-7574-40c4-b48e-a3faf6f8b99f"},"maxDistance":{"_value":100.0},"awarnessDistance":{"_value":50.0},"viewAngle":{"_value":100.0},"$type":"NodeCanvas.Tasks.Actions.PrioritiseTarget"},{"log":{"_value":"Found
     someone!"},"labelYOffset":2.0,"$type":"NodeCanvas.Tasks.Actions.DebugLogText"}],"$type":"NodeCanvas.Framework.ActionList"},"_position":{"x":184.6494,"y":755.4422},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"2"},{"_action":{"actions":[{"saveAs":{"_name":"EndDestination","_targetVariableID":"6699e5fb-7cb1-44d6-a389-088d7aace87c"},"minWanderDistance":{"_value":50.0},"maxWanderDistance":{"_value":100.0},"$type":"NodeCanvas.Tasks.Actions.GetPointOnNavemesh"},{"waitTime":{"_value":3.0},"$type":"NodeCanvas.Tasks.Actions.Wait"}],"$type":"NodeCanvas.Framework.ActionList"},"_position":{"x":606.5686,"y":737.4516},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"3"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
   _objectReferences: []
   _graphSource:
     _version: 3.03
     _category: 
     _comments: 
-    _translation: {x: 0, y: 0}
+    _translation: {x: -80, y: -51}
     _zoomFactor: 1
   _haltSerialization: 0
 #---GRAPH_START---
@@ -33,8 +33,8 @@ MonoBehaviour:
 #                "_value": 1
 #            },
 #            "_position": {
-#                "x": 499.0,
-#                "y": 413.0
+#                "x": 500.0,
+#                "y": 425.0
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.Repeater",
 #            "$id": "0"
@@ -44,7 +44,7 @@ MonoBehaviour:
 #            "_condition": {
 #                "targets": {
 #                    "_name": "Players",
-#                    "_targetVariableID": "c46ca489-2f8d-444b-9e02-b3fdfa4e8464"
+#                    "_targetVariableID": "ade0004e-7574-40c4-b48e-a3faf6f8b99f"
 #                },
 #                "maxDistance": {
 #                    "_value": 250.0
@@ -69,12 +69,12 @@ MonoBehaviour:
 #                "actions": [
 #                    {
 #                        "saveAs": {
-#                            "_name": "CurrentTarget",
-#                            "_targetVariableID": "58626642-2fd7-45dc-b8b5-d33bcbefcda0"
+#                            "_name": "navTarget",
+#                            "_targetVariableID": "50f5a4d1-2660-408d-9ea9-ad786698aa57"
 #                        },
 #                        "possibleTargets": {
 #                            "_name": "Players",
-#                            "_targetVariableID": "c46ca489-2f8d-444b-9e02-b3fdfa4e8464"
+#                            "_targetVariableID": "ade0004e-7574-40c4-b48e-a3faf6f8b99f"
 #                        },
 #                        "maxDistance": {
 #                            "_value": 100.0
