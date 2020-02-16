@@ -10,6 +10,7 @@ public class AutoAimAndFIre : MonoBehaviour
     [SerializeField][Range(.1f, 10f)] protected float rotationSpeed;
     [SerializeField][Range(5f, 100f)] private float searchRadius;
     [SerializeField]private LayerMask searchLayers;
+    [SerializeField] private Vector3 aimOffset = new Vector3(0,1,-1);
 
     private Player target;
     private float turnRateRadians;
@@ -82,7 +83,7 @@ public class AutoAimAndFIre : MonoBehaviour
 
         if (target != null)
         {
-            Vector3 targetDir = target.transform.position - transform.position;
+            Vector3 targetDir = (target.transform.position + aimOffset) - transform.position;
             targetDir = targetDir.normalized;
 
             Vector3 currentDir = transform.forward;

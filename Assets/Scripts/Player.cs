@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using NodeCanvas.StateMachines;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(WeaponController))]
 public class Player : MonoBehaviour
@@ -14,6 +15,10 @@ public class Player : MonoBehaviour
     [SerializeField] float explosionForce;
     [SerializeField] float maxHealth;
     [SerializeField] float m_currentHealth;
+
+    private RectTransform healthBar;
+    private Vector2 ogHealhBarSize;
+
     [SerializeField] public float currentHealth{
         get{return m_currentHealth;}
         set{
@@ -71,6 +76,8 @@ public class Player : MonoBehaviour
         else if(!GetComponent<AIInput2>() && GetComponent<UserInput>())
         {
             isAI = false;
+            healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
+            ogHealhBarSize = healthBar.sizeDelta;
             // weaponController.SetAutoFind(false, null);
         }
         else
@@ -89,6 +96,9 @@ public class Player : MonoBehaviour
 
     private void StatusHandler(float newHealth)
     {
+        float percentHealth = (newHealth/maxHealth) * ogHealhBarSize.x;
+        healthBar.sizeDelta = new Vector2(percentHealth, healthBar.sizeDelta.y);
+
         if(newHealth <= 0)
         {
             KillPlayer();

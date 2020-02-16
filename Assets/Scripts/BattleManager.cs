@@ -10,7 +10,9 @@ public class BattleManager : MonoBehaviour
     private List<Player> deadPlayers = new List<Player>();
 
     private Player humanPlayer;
-    
+    private IEnumerator endGameRoutine;
+    [SerializeField] private GameObject endGameUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,9 @@ public class BattleManager : MonoBehaviour
             activePlayers.Add(p);
             p.OnStateChange += HandlePlayerDied;
         }
+
+        endGameRoutine = EndGame();
+        endGameUI.SetActive(false);
     }
 
     public void HandlePlayerDied(Player.playerState newstate, Player deadPlayer)
@@ -35,16 +40,19 @@ public class BattleManager : MonoBehaviour
         if(activePlayers.Count == 1)
         {
             Debug.Log("One player left! " + activePlayers[0].name + " WON!");
-            EndGame();
+            StartCoroutine(endGameRoutine);
         }
         if(deadPlayer == humanPlayer)
         {
-            EndGame();
+            Debug.Log("Player died ending game");
+            StartCoroutine(endGameRoutine);
         }
     }
 
-    private void EndGame()
+    private IEnumerator EndGame()
     {
+        endGameUI.SetActive(true);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("MainMenu");
     }
 
