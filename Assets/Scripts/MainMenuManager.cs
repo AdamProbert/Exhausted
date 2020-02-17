@@ -8,4 +8,9 @@ using UnityEngine.SceneManagement;
     {
         SceneManager.LoadScene("DesertArena");
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
  }

@@ -47,8 +47,6 @@ public class UserInput : MonoBehaviour
     {
         carController = GetComponent<UnityStandardAssets.Vehicles.Car.CarController>();
         weaponController = GetComponent<WeaponController>();
-        UnityEngine.Cursor.visible = false;
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update() 

@@ -30,6 +30,10 @@ public class BattleManager : MonoBehaviour
 
         endGameRoutine = EndGame();
         endGameUI.SetActive(false);
+        
+        // Lock cursor for gameplay
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void HandlePlayerDied(Player.playerState newstate, Player deadPlayer)
@@ -58,6 +62,9 @@ public class BattleManager : MonoBehaviour
             endGameUI.SetActive(true);
             yield return new WaitForSeconds(10);
             SceneManager.LoadScene("MainMenu");
+
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
         }
     }
 
