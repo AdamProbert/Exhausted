@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520092240}
-  m_LocalRotation: {x: 0.25985762, y: 0.898412, z: -0.2023056, w: 0.29052097}
+  m_LocalRotation: {x: 0.25985777, y: 0.8984119, z: -0.20230554, w: 0.290521}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -751,7 +751,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867465366}
-  m_LocalRotation: {x: -0.039197296, y: -0.95609075, z: 0.15108651, w: -0.24804631}
+  m_LocalRotation: {x: -0.03919731, y: -0.95609075, z: 0.15108652, w: -0.24804634}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1507,7 +1507,7 @@ MonoBehaviour:
   leftWeapon: {fileID: 0}
   rightWeapon: {fileID: 0}
   weaponUIUpdate: {fileID: 0}
-  enableAutoAim: 0
+  enableAutoAim: 1
 --- !u!114 &1408003090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,9 +1587,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carExplode: {fileID: 782365431, guid: a663016779ce653458b08fe54f658621, type: 3}
   explosionForce: 0
-  maxHealth: 1000
+  maxHealth: 3000
   m_currentHealth: 0
-  state: 0
 --- !u!146 &2230654937502169586
 WheelCollider:
   m_ObjectHideFlags: 0
@@ -2342,6 +2341,11 @@ PrefabInstance:
       propertyPath: parentRigidBody
       value: 
       objectReference: {fileID: 2230654937173857580}
+    - target: {fileID: 5563357935945700472, guid: 675c7b82bccdca245bba06a2fd04d9f0,
+        type: 3}
+      propertyPath: searchRadius
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7233105105856525836, guid: 675c7b82bccdca245bba06a2fd04d9f0,
         type: 3}
       propertyPath: m_Layer

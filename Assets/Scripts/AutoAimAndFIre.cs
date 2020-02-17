@@ -10,6 +10,7 @@ public class AutoAimAndFIre : MonoBehaviour
     [SerializeField][Range(.1f, 10f)] protected float rotationSpeed;
     [SerializeField][Range(5f, 100f)] private float searchRadius;
     [SerializeField]private LayerMask searchLayers;
+    [SerializeField] private Vector3 aimOffset = new Vector3(0,1,-1);
 
     private Player target;
     private float turnRateRadians;
@@ -82,7 +83,7 @@ public class AutoAimAndFIre : MonoBehaviour
 
         if (target != null)
         {
-            Vector3 targetDir = target.transform.position - transform.position;
+            Vector3 targetDir = (target.transform.position + aimOffset) - transform.position;
             targetDir = targetDir.normalized;
 
             Vector3 currentDir = transform.forward;
@@ -115,7 +116,8 @@ public class AutoAimAndFIre : MonoBehaviour
                 {
                     continue;
                 }
-
+                
+                Debug.Log("Autoaim found someone to hit");
                 Vector3 diff = (hit.transform.position - transform.position);
                 var curDistance = diff.sqrMagnitude;
                 if (curDistance < distance)
@@ -124,7 +126,12 @@ public class AutoAimAndFIre : MonoBehaviour
                     closest = hit.transform;
                 }
             }
-            target = closest.GetComponent<Player>();
+            if(closest != null)
+            {
+                target = closest.transform.root.GetComponent<Player>();
+                Debug.Log("Set target to: " + target);
+            }
+                
         } 
     }
 

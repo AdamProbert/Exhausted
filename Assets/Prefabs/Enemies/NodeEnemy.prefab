@@ -593,9 +593,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carExplode: {fileID: 782365431, guid: a663016779ce653458b08fe54f658621, type: 3}
   explosionForce: 20
-  maxHealth: 1000
+  maxHealth: 3000
   m_currentHealth: 0
-  state: 0
 --- !u!114 &2040928120
 MonoBehaviour:
   m_ObjectHideFlags: 0
