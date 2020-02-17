@@ -8,10 +8,7 @@ using UnityEngine;
 public class WheelFX : MonoBehaviour {
 
 	// INSPECTOR SETTINGS
-
-	[SerializeField]
 	Rigidbody rb;
-	[SerializeField]
 	Skidmarks skidmarksController;
 
 	[SerializeField] ParticleSystem tireSmokePrefab;
@@ -35,6 +32,7 @@ public class WheelFX : MonoBehaviour {
 		wheelCollider = GetComponent<WheelCollider>();
 		lastFixedUpdateTime = Time.time;
 		skidmarksController = GameObject.FindObjectOfType<Skidmarks>();
+		rb = transform.root.GetComponent<Rigidbody>();
 		tireSmoke = Instantiate(tireSmokePrefab, transform.position, Quaternion.identity, transform);
 	}
 

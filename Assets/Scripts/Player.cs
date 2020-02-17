@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using NodeCanvas.StateMachines;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(WeaponController))]
 public class Player : MonoBehaviour
@@ -15,12 +11,6 @@ public class Player : MonoBehaviour
 
     [Header("PlayerDeathStuff")]
     [SerializeField] ParticleSystem carExplode;
-    [SerializeField] Material destroyMaterial;
-    private Material instantiatedBurnMaterial;
-    [SerializeField] float burnSpeed;
-    private IEnumerator playerBurnRoutine;
-
-    [SerializeField] MeshRenderer mainCarRenderer;
     [SerializeField] float explosionForce;
 
     [Header("Health")]
@@ -73,8 +63,6 @@ public class Player : MonoBehaviour
         state=playerState.Alive;
         this.OnHealthChange += StatusHandler;
         weaponController = GetComponent<WeaponController>();
-        playerBurnRoutine = BurnAfterDeath();
-        instantiatedBurnMaterial = new Material(destroyMaterial);
 
         // Is us AI?
         if(GetComponent<AIInput2>() && !GetComponent<UserInput>())
@@ -145,10 +133,8 @@ public class Player : MonoBehaviour
         {
             GetComponent<UserInput>().enabled = false;
         } 
-        StartCoroutine(playerBurnRoutine);
        
         BroadcastMessage("PlayerDied");
-
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -167,34 +153,5 @@ public class Player : MonoBehaviour
             }
             
         }    
-    }
-
-    private IEnumerator BurnAfterDeath() 
-    {
-        mainCarRenderer.material = instantiatedBurnMaterial;
-        float burnDissolveAmountMax = 1.1f;
-        float currentDissolveAmount = 0f;
-        float currentBurnAmount = 0f;
-        Debug.Log("routine running: burn speed: " + burnSpeed);
-        while (currentDissolveAmount <= burnDissolveAmountMax)
-        {
-            instantiatedBurnMaterial.SetFloat("_Burn", currentDissolveAmount += burnSpeed);    
-            currentDissolveAmount += burnSpeed;
-
-            if(currentDissolveAmount > burnDissolveAmountMax /2)
-            {
-                instantiatedBurnMaterial.SetFloat("_Dissolve", currentBurnAmount += burnSpeed);    
-                currentBurnAmount += burnSpeed;
-            }
-            
-            yield return new WaitForSeconds(burnSpeed*5);
-        }
-
-        while (currentBurnAmount <= burnDissolveAmountMax)
-        {
-            instantiatedBurnMaterial.SetFloat("_Dissolve", currentBurnAmount += burnSpeed);
-            currentBurnAmount += burnSpeed;
-            yield return new WaitForSeconds(burnSpeed*5);
-        }
     }
 }

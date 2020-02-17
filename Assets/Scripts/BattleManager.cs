@@ -56,7 +56,7 @@ public class BattleManager : MonoBehaviour
         if(autoEndGame)
         {
             endGameUI.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(10);
             SceneManager.LoadScene("MainMenu");
         }
     }
