@@ -13,6 +13,8 @@ public class BattleManager : MonoBehaviour
     private IEnumerator endGameRoutine;
     [SerializeField] private GameObject endGameUI;
 
+    [SerializeField] private bool autoEndGame = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,9 +53,12 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator EndGame()
     {
-        endGameUI.SetActive(true);
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("MainMenu");
+        if(autoEndGame)
+        {
+            endGameUI.SetActive(true);
+            yield return new WaitForSeconds(3);
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     // Update is called once per frame
