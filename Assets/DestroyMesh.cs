@@ -13,13 +13,14 @@ public class DestroyMesh : MonoBehaviour
     [SerializeField] float burnSpeed;
     private IEnumerator playerBurnRoutine;
 
-    [SerializeField] MeshRenderer mainCarRenderer;
+    private MeshRenderer mainCarRenderer;
 
 
     private void Awake()
     {
         playerBurnRoutine = BurnAfterDeath();
         instantiatedBurnMaterial = new Material(destroyMaterial);      
+        mainCarRenderer = GetComponent<MeshRenderer>();
     }
 
     public void DestroyIt()
