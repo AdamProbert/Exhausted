@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 64a9b8fef19eef246ab6ae4f0c05d1ee
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Mask: {fileID: 2800000, guid: c32efdffcbd28e942bfb521dcc5704b2, type: 3}
+  - _PolygonPrototype_Texture_Metallic: {fileID: 2800000, guid: 9dec2143ea353f54797f8eb01cf46827,
+      type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

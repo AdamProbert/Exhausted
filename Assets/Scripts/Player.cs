@@ -1,19 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using NodeCanvas.StateMachines;
 
 [RequireComponent(typeof(WeaponController))]
 public class Player : MonoBehaviour
 {
+    [Header("Setup")]
     private WeaponController weaponController;
     private AIInput2 aIInput;
-    private bool isAI;
+    public bool isAI;
+
+    [Header("PlayerDeathStuff")]
     [SerializeField] ParticleSystem carExplode;
     [SerializeField] float explosionForce;
+
+    [Header("Health")]
     [SerializeField] float maxHealth;
     [SerializeField] float m_currentHealth;
+
+    private RectTransform healthBar;
+    private Vector2 ogHealhBarSize;
+
     [SerializeField] public float currentHealth{
         get{return m_currentHealth;}
         set{
@@ -29,13 +35,26 @@ public class Player : MonoBehaviour
     public delegate void OnHealthChangeDelegate(float newVal);
     public event OnHealthChangeDelegate OnHealthChange;
     
-
-    [SerializeField] public playerState state;
+    private playerState m_state;
+    [SerializeField] public playerState state{
+        get{return m_state;}
+        set{
+            if(m_state == value) return;
+            m_state = value;
+            if(OnStateChange != null)
+            {
+                OnStateChange(m_state, this);
+            }
+        }
+    }
 
     public enum playerState{
         Alive,
         Dead
     };
+
+    public delegate void OnStateChangeDelegate(playerState newState, Player thisPlayer);
+    public event OnStateChangeDelegate OnStateChange;
 
 
     private void Awake()
@@ -58,12 +77,16 @@ public class Player : MonoBehaviour
         else if(!GetComponent<AIInput2>() && GetComponent<UserInput>())
         {
             isAI = false;
+            healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
+            ogHealhBarSize = healthBar.sizeDelta;
             // weaponController.SetAutoFind(false, null);
         }
         else
         {
             Debug.LogError("!Player must have either AIInput script or UserInput!");
         }
+
+        
 
     }
 
@@ -76,6 +99,13 @@ public class Player : MonoBehaviour
 
     private void StatusHandler(float newHealth)
     {
+        
+        if(healthBar)
+        {
+            float percentHealth = (newHealth/maxHealth) * ogHealhBarSize.x;
+            healthBar.sizeDelta = new Vector2(percentHealth, healthBar.sizeDelta.y);
+        }
+
         if(newHealth <= 0)
         {
             KillPlayer();
@@ -85,7 +115,11 @@ public class Player : MonoBehaviour
 
     private void KillPlayer()
     {
-        GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, 1f, 2f, ForceMode.VelocityChange);
+        if(explosionForce > 0f)
+        {
+            GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, 1f, 2f, ForceMode.VelocityChange);
+        }
+        
         state = playerState.Dead;
         Instantiate(carExplode, transform.position, Quaternion.identity);
         
@@ -98,10 +132,9 @@ public class Player : MonoBehaviour
         else
         {
             GetComponent<UserInput>().enabled = false;
-        }
-
+        } 
+       
         BroadcastMessage("PlayerDied");
-
     }
 
     private void OnCollisionEnter(Collision other) 
