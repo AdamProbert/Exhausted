@@ -9,10 +9,6 @@ public class Player : MonoBehaviour
     private AIInput2 aIInput;
     public bool isAI;
 
-    [Header("PlayerDeathStuff")]
-    [SerializeField] ParticleSystem carExplode;
-    [SerializeField] float explosionForce;
-
     [Header("Health")]
     [SerializeField] float maxHealth;
     [SerializeField] float m_currentHealth;
@@ -115,14 +111,7 @@ public class Player : MonoBehaviour
 
     private void KillPlayer()
     {
-        if(explosionForce > 0f)
-        {
-            GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, 1f, 2f, ForceMode.VelocityChange);
-        }
-        
         state = playerState.Dead;
-        Instantiate(carExplode, transform.position, Quaternion.identity);
-        
         // Deactivate input
         if(isAI)
         {

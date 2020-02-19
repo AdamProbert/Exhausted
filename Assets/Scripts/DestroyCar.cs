@@ -5,37 +5,46 @@ using UnityEngine.Events;
 using NodeCanvas.StateMachines;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(MeshFilter))]
-public class DestroyMesh : MonoBehaviour
+[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(Rigidbody))]
+
+public class DestroyCar : MonoBehaviour
 {
     [SerializeField] Material destroyMaterial;
-    private Material instantiatedBurnMaterial;
     [SerializeField] float burnSpeed;
+    [SerializeField] ParticleSystem carExplodePS;
+    [SerializeField] float explosionForce;
+    private Material instantiatedBurnMaterial;
     private IEnumerator playerBurnRoutine;
-
-    private MeshRenderer mainCarRenderer;
-
+    private MeshRenderer m_Renderer;
 
     private void Awake()
     {
         playerBurnRoutine = BurnAfterDeath();
-        instantiatedBurnMaterial = new Material(destroyMaterial);      
-        mainCarRenderer = GetComponent<MeshRenderer>();
+        m_Renderer = GetComponent<MeshRenderer>();
     }
 
-    public void DestroyIt()
-    {
-        StartCoroutine(playerBurnRoutine);
-    }
-
+    // Broadcast receiver    
     public void PlayerDied()
     {
-        DestroyIt();
+        StartCoroutine(playerBurnRoutine);
+        Explosion();
+    }
+
+    private void Explosion()
+    {
+        if(explosionForce > 0f)
+        {
+            GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, 1f, 2f, ForceMode.VelocityChange);
+        }
+        
+        Instantiate(carExplodePS, transform.position, Quaternion.identity);
     }
     
     private IEnumerator BurnAfterDeath() 
     {
-        mainCarRenderer.material = instantiatedBurnMaterial;
+        instantiatedBurnMaterial = new Material(destroyMaterial); 
+        m_Renderer.material = instantiatedBurnMaterial;
         float burnDissolveAmountMax = 1.1f;
         float currentDissolveAmount = 0f;
         float currentBurnAmount = 0f;
