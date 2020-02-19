@@ -5,15 +5,20 @@ using UnityEngine.InputSystem;
 
 public class TesterScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] GameObject car;
     // Update is called once per frame
     void Update()
     {
-        
+        if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            BroadcastMessage("PlayerDied");
+        }
+
+        if(Keyboard.current.backspaceKey.wasPressedThisFrame)
+        {
+            Destroy(car);
+            car = Instantiate(car, transform.position, Quaternion.identity, transform);
+        }
+
     }
 }
