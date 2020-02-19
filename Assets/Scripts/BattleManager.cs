@@ -12,7 +12,6 @@ public class BattleManager : MonoBehaviour
     private Player humanPlayer;
     private IEnumerator endGameRoutine;
     [SerializeField] private GameObject endGameUI;
-
     [SerializeField] private bool autoEndGame = true;
 
     // Start is called before the first frame update
