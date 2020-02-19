@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using NodeCanvas.StateMachines;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(WeaponController))]
 public class Player : MonoBehaviour
 {
+    [Header("Setup")]
     private WeaponController weaponController;
     private AIInput2 aIInput;
     public bool isAI;
+
+    [Header("PlayerDeathStuff")]
     [SerializeField] ParticleSystem carExplode;
     [SerializeField] float explosionForce;
+
+    [Header("Health")]
     [SerializeField] float maxHealth;
     [SerializeField] float m_currentHealth;
 
@@ -85,6 +86,8 @@ public class Player : MonoBehaviour
             Debug.LogError("!Player must have either AIInput script or UserInput!");
         }
 
+        
+
     }
 
     private void OnNavTargetChange(Player newTarget)
@@ -96,8 +99,12 @@ public class Player : MonoBehaviour
 
     private void StatusHandler(float newHealth)
     {
-        float percentHealth = (newHealth/maxHealth) * ogHealhBarSize.x;
-        healthBar.sizeDelta = new Vector2(percentHealth, healthBar.sizeDelta.y);
+        
+        if(healthBar)
+        {
+            float percentHealth = (newHealth/maxHealth) * ogHealhBarSize.x;
+            healthBar.sizeDelta = new Vector2(percentHealth, healthBar.sizeDelta.y);
+        }
 
         if(newHealth <= 0)
         {
@@ -108,7 +115,11 @@ public class Player : MonoBehaviour
 
     private void KillPlayer()
     {
-        GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, 1f, 2f, ForceMode.VelocityChange);
+        if(explosionForce > 0f)
+        {
+            GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, 1f, 2f, ForceMode.VelocityChange);
+        }
+        
         state = playerState.Dead;
         Instantiate(carExplode, transform.position, Quaternion.identity);
         
@@ -121,10 +132,9 @@ public class Player : MonoBehaviour
         else
         {
             GetComponent<UserInput>().enabled = false;
-        }
-
+        } 
+       
         BroadcastMessage("PlayerDied");
-
     }
 
     private void OnCollisionEnter(Collision other) 

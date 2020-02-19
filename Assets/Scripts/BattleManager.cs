@@ -13,6 +13,8 @@ public class BattleManager : MonoBehaviour
     private IEnumerator endGameRoutine;
     [SerializeField] private GameObject endGameUI;
 
+    [SerializeField] private bool autoEndGame = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,10 @@ public class BattleManager : MonoBehaviour
 
         endGameRoutine = EndGame();
         endGameUI.SetActive(false);
+        
+        // Lock cursor for gameplay
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void HandlePlayerDied(Player.playerState newstate, Player deadPlayer)
@@ -51,9 +57,15 @@ public class BattleManager : MonoBehaviour
 
     private IEnumerator EndGame()
     {
-        endGameUI.SetActive(true);
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("MainMenu");
+        if(autoEndGame)
+        {
+            endGameUI.SetActive(true);
+            yield return new WaitForSeconds(10);
+            SceneManager.LoadScene("MainMenu");
+
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     // Update is called once per frame

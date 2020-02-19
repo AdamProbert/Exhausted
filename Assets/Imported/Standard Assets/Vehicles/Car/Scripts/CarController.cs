@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -19,8 +20,8 @@ namespace UnityStandardAssets.Vehicles.Car
     public class CarController : MonoBehaviour
     {
         [SerializeField] private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
-        [SerializeField] private WheelCollider[] m_WheelColliders = new WheelCollider[4];
-        [SerializeField] private GameObject[] m_WheelMeshes = new GameObject[4];
+        [SerializeField] private List<WheelCollider> m_WheelColliders = new List<WheelCollider>();
+        [SerializeField] private List<GameObject> m_WheelMeshes = new List<GameObject>();
         [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
         [SerializeField] private Vector3 m_CentreOfMassOffset;
         [SerializeField] private float m_MaximumSteerAngle;
@@ -59,6 +60,32 @@ namespace UnityStandardAssets.Vehicles.Car
         // Use this for initialization
         private void Start()
         {
+            // Find colliders and wheels if not assigned
+            if(m_WheelColliders.Count == 0)
+            {
+                foreach(WheelCollider col in GetComponentsInChildren<WheelCollider>())
+                {
+                    m_WheelColliders.Add(col);
+                }
+            }
+
+            if(m_WheelMeshes.Count == 0)
+            {
+                MeshRenderer[] allmeshes = GetComponentsInChildren<MeshRenderer>();
+                foreach(MeshRenderer mesh in allmeshes)
+                {
+                    if(mesh.transform.parent.name == "Wheels")
+                    {
+                        m_WheelMeshes.Add(mesh.gameObject);
+                    }
+                }
+            }
+            if(m_WheelMeshes.Count == 0 || m_WheelColliders.Count == 0)
+            {
+                Debug.LogError("Couldn't find any wheel meshes or colliders. This shit aint gonna work. Make sure the prefab is setup right!");
+            }
+
+
             m_WheelMeshLocalRotations = new Quaternion[4];
             for (int i = 0; i < 4; i++)
             {
@@ -68,6 +95,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody = GetComponent<Rigidbody>();
             // m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
+
         }
 
 
