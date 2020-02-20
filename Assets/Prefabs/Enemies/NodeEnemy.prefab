@@ -101,16 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CarDriveType: 1
-  m_WheelColliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_WheelMeshes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_WheelColliders: []
+  m_WheelMeshes: []
   m_WheelEffects: []
   m_CentreOfMassOffset: {x: 0, y: -0.3, z: -0.3}
   m_MaximumSteerAngle: 30
@@ -281,8 +273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAI: 0
-  carExplode: {fileID: 782365431, guid: a663016779ce653458b08fe54f658621, type: 3}
-  explosionForce: 20
   maxHealth: 3000
   m_currentHealth: 0
 --- !u!114 &2040928120
