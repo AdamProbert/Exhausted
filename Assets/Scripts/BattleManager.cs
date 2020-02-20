@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
  
+[RequireComponent(typeof(Spawner))]
 public class BattleManager : MonoBehaviour
 {
     
@@ -15,8 +16,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private bool autoEndGame = true;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        GetComponent<Spawner>().SpawnThem(4);
         foreach(Player p in FindObjectsOfType<Player>())
         {
             if(!p.isAI)
