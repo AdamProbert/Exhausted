@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PolygonApocalypse_Material_Vehicle_Standard_01
+  m_Name: Vehicle_Toon
   m_Shader: {fileID: 4800000, guid: 8b2f353da1dd05244a7bee1562a2306a, type: 3}
   m_ShaderKeywords: EDGE_COLOR _EMISSION _USEFOG_ON _USEILLUMINATION_ON
   m_LightmapFlags: 4
