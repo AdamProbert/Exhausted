@@ -525,6 +525,10 @@ MonoBehaviour:
   disableComponents:
   - {fileID: 9053489945751409351}
   - {fileID: 1754991359}
+  - {fileID: 5476714351531896430}
+  - {fileID: 4107197497115892530}
+  - {fileID: 8651757333853613579}
+  - {fileID: 7721647673181318789}
   enableComponents:
   - {fileID: 315950383}
   - {fileID: 1958449966}
@@ -1729,7 +1733,7 @@ PrefabInstance:
     - target: {fileID: 4298552534347600253, guid: 38eb871fdb594a242b7476f76dd52fa9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.178
+      value: 2.158
       objectReference: {fileID: 0}
     - target: {fileID: 4298552534347600253, guid: 38eb871fdb594a242b7476f76dd52fa9,
         type: 3}
@@ -1780,6 +1784,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AttachPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299583296778462852, guid: 38eb871fdb594a242b7476f76dd52fa9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.597
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38eb871fdb594a242b7476f76dd52fa9, type: 3}

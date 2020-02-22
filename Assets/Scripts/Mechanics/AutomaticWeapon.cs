@@ -8,12 +8,6 @@ public class AutomaticWeapon : BaseWeapon
     private float nextFireTime = 0;
     private bool firing = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        base.Init();
-    }
-
     private void Update() 
     {
         if(firing)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace Michsky.UI.Dark
 {
@@ -15,8 +16,8 @@ namespace Michsky.UI.Dark
 
         [Header("INPUT")]
         public EventSystem vEventSystem;
-        public string horizontalAxis = "Horizontal";
-        public string verticalAxis = "Vertical";
+        private  InputMaster controls;
+
 
         [Header("SETTINGS")]
         [Tooltip("1000 equals 1.0 sensivity")]
@@ -39,6 +40,8 @@ namespace Michsky.UI.Dark
 
         public new void Start()
         {
+            controls = new InputMaster();
+
             cursorObj = this.GetComponent<RectTransform>();
             pointer = new PointerEventData(vEventSystem);
 
@@ -90,10 +93,10 @@ namespace Michsky.UI.Dark
 
         void Update()
         {
-            cursorPos.x += Input.GetAxis(horizontalAxis) * speed * Time.deltaTime;
+            cursorPos.x += Mouse.current.position.ReadValue().x;
             cursorPos.x = Mathf.Clamp(cursorPos.x, -+border.rect.width / 2, border.rect.width / 2);
 
-            cursorPos.y += Input.GetAxis(verticalAxis) * speed * Time.deltaTime;
+            cursorPos.y += Mouse.current.position.ReadValue().y;
             cursorPos.y = Mathf.Clamp(cursorPos.y, -+border.rect.height / 2, border.rect.height / 2);
 
             cursorObj.anchoredPosition = cursorPos;
@@ -109,7 +112,7 @@ namespace Michsky.UI.Dark
             pointer.pointerCurrentRaycast = raycastResult;
             this.ProcessMove(pointer);
 
-            if (Input.GetButtonDown("Submit"))
+            if (controls.UI.Submit.ReadValue<float>() == 1)
             {
                 pointer.pressPosition = cursorPos;
                 pointer.clickTime = Time.unscaledTime;

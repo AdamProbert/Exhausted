@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     }
 
     public enum playerState{
+        Building,
         Alive,
         Dead
     };
@@ -55,8 +56,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        OnStateChange += HandlePlayerStateChange;
         currentHealth = maxHealth;
-        state=playerState.Alive;
         this.OnHealthChange += StatusHandler;
         weaponController = GetComponent<WeaponController>();
 
@@ -67,8 +68,6 @@ public class Player : MonoBehaviour
             aIInput = GetComponent<AIInput2>();
             aIInput.OnTargetChange += OnNavTargetChange;
             weaponController.RegisterAsAI();
-            // aIInput = GetComponent<AIInput2>();
-            // weaponController.RegisterAsAI();
         }
         else if(!GetComponent<AIInput2>() && GetComponent<UserInput>())
         {
@@ -85,9 +84,24 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("!Player must have either AIInput script or UserInput!");
         }
+    }
 
-        
+    private void Start() 
+    {
+        if(GameManager.Instance.gameState == GameManager.GameState.BUILD)
+        {
+            state=playerState.Building;    
+        }
 
+        if(GameManager.Instance.gameState == GameManager.GameState.PLAY)
+        {
+            state=playerState.Alive;    
+        }
+        Debug.Log("Player state set in start to: " +state);
+        // Manually call, unity stupid.
+        HandlePlayerStateChange(state, this);
+
+        GameManager.Instance.OnStateChange += HandleGameStateChange;    
     }
 
     private void OnNavTargetChange(Player newTarget)
@@ -99,18 +113,21 @@ public class Player : MonoBehaviour
 
     private void StatusHandler(float newHealth)
     {
-        
-        if(healthBar)
+        if(state == playerState.Alive)
         {
-            float percentHealth = (newHealth/maxHealth) * ogHealhBarSize.x;
-            healthBar.sizeDelta = new Vector2(percentHealth, healthBar.sizeDelta.y);
-        }
+            if(healthBar)
+            {
+                float percentHealth = (newHealth/maxHealth) * ogHealhBarSize.x;
+                healthBar.sizeDelta = new Vector2(percentHealth, healthBar.sizeDelta.y);
+            }
 
-        if(newHealth <= 0)
-        {
-            KillPlayer();
-            
+            if(newHealth <= 0)
+            {
+                KillPlayer();
+                
+            }
         }
+        
     }
 
     private void KillPlayer()
@@ -146,5 +163,41 @@ public class Player : MonoBehaviour
             }
             
         }    
+    }
+
+    public void HandleGameStateChange()
+    {
+        Debug.Log("Game state changed to: " + GameManager.Instance.gameState);
+        if(GameManager.Instance.gameState == GameManager.GameState.BUILD)
+        {
+            state=playerState.Building;
+        }
+
+        if(GameManager.Instance.gameState == GameManager.GameState.PLAY)
+        {
+            state=playerState.Alive;            
+        }
+    }
+
+    private void HandlePlayerStateChange(playerState newstate, Player player)
+    {
+        Debug.Log("Player state changed to: " + newstate);
+        if(newstate == Player.playerState.Building)
+        {
+            GetComponent<UserInput>().Deactivate();
+            transform.Find("Camera").gameObject.SetActive(false);
+            Debug.Log("Camera should be inactive");
+        }
+
+        if(newstate == Player.playerState.Alive)
+        {
+            if(!isAI)
+            {
+                GetComponent<UserInput>().SetActive();
+                transform.Find("Camera").gameObject.SetActive(true);
+                Debug.Log("Camera should be active");
+            }        
+            BroadcastMessage("PlayerActive");
+        }
     }
 }

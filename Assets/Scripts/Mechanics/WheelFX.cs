@@ -28,7 +28,7 @@ public class WheelFX : MonoBehaviour {
 
 	// #### UNITY INTERNAL METHODS ####
 
-	protected void Awake() {
+	public void PlayerActive() {
 		wheelCollider = GetComponent<WheelCollider>();
 		lastFixedUpdateTime = Time.time;
 		skidmarksController = GameObject.FindObjectOfType<Skidmarks>();

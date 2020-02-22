@@ -12,13 +12,6 @@ public class RocketLauncher : BaseWeapon
     private bool firing;
     private int currentSalvoNumber;
 
-
-     // Start is called before the first frame update
-    void Start()
-    {
-        base.Init();
-    }
-
     private void Update() 
     {
         if(currentStatus == BaseWeapon.status.Active && firing)
@@ -43,13 +36,16 @@ public class RocketLauncher : BaseWeapon
 
     public override void StartFiring()
     {
-        if(Time.time < nextSalvoFireTime || firing)
+        if(base.currentStatus == BaseWeapon.status.Active)
         {
-            return;
-        }
+            if(Time.time < nextSalvoFireTime || firing)
+            {
+                return;
+            }
 
-        nextRocketFireTime = Time.time;
-        firing = true;
+            nextRocketFireTime = Time.time;
+            firing = true;
+        }
     }
 
     public override void StopFiring()

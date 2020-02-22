@@ -7,6 +7,7 @@ using TMPro;
 
 // [RequireComponent(typeof(CarController))]
 [RequireComponent(typeof(WeaponController))]
+[RequireComponent(typeof(Player))]
 
 public class UserInput : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class UserInput : MonoBehaviour
 
     private CarController carController;    // Reference to actual car controller we are controlling
     private WeaponController weaponController;
+
+    private bool isActive;
+
     [SerializeField] bool debugMode;
     [SerializeField] TextMeshProUGUI turnValue;
     [SerializeField] TextMeshProUGUI accelerateValue;
@@ -37,10 +41,10 @@ public class UserInput : MonoBehaviour
         controls = new InputMaster();
 
         controls.Player.Zoom.performed += ctx => HandleZoom();
-        controls.Player.Weapon1.performed += ctx => HandleWeaponSwitch(1);
-        controls.Player.Weapon2.performed += ctx => HandleWeaponSwitch(2);
-        controls.Player.Weapon3.performed += ctx => HandleWeaponSwitch(3);
-        controls.Player.Weapon4.performed += ctx => HandleWeaponSwitch(4);
+        // controls.Player.Weapon1.performed += ctx => HandleWeaponSwitch(1);
+        // controls.Player.Weapon2.performed += ctx => HandleWeaponSwitch(2);
+        // controls.Player.Weapon3.performed += ctx => HandleWeaponSwitch(3);
+        // controls.Player.Weapon4.performed += ctx => HandleWeaponSwitch(4);
     }
 
     private void Start() 
@@ -65,24 +69,24 @@ public class UserInput : MonoBehaviour
         boostValue.text = boost.ToString();
     }
 
-    private void HandleWeaponSwitch(int weaponNumber)
-    {
-        if(debugMode) Debug.Log("Player requested switch to weapon: " + weaponNumber);
-        weaponController.SelectWeapon(weaponNumber);
-    }
+    // private void HandleWeaponSwitch(int weaponNumber)
+    // {
+    //     if(debugMode) Debug.Log("Player requested switch to weapon: " + weaponNumber);
+    //     weaponController.SelectWeapon(weaponNumber);
+    // }
 
-    private void HandleFire(float fire)
-    {   
-        if(debugMode) Debug.Log("Handle fire called with: " + fire);
-        if(fire > 0)
-        {
-            weaponController.Fire();
-        }
-        else
-        {
-            weaponController.StopFiring();
-        }
-    }
+    // private void HandleFire(float fire)
+    // {   
+    //     if(debugMode) Debug.Log("Handle fire called with: " + fire);
+    //     if(fire > 0)
+    //     {
+    //         weaponController.Fire();
+    //     }
+    //     else
+    //     {
+    //         weaponController.StopFiring();
+    //     }
+    // }
 
     private void HandleZoom()
     {
@@ -119,15 +123,18 @@ public class UserInput : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        moveInput = controls.Player.Turn.ReadValue<Vector2>();
-        accelerate = controls.Player.Accelerate.ReadValue<float>();
-        boost = controls.Player.Boost.ReadValue<float>();
-        brake = controls.Player.Brake.ReadValue<float>();
-        brake *= -1;
-        carController.Move(moveInput.x, accelerate, brake, 0, boost);
-    
-        firing = controls.Player.Fire.ReadValue<float>();
-        HandleFire(firing);
+        if(isActive)
+        {
+            moveInput = controls.Player.Turn.ReadValue<Vector2>();
+            accelerate = controls.Player.Accelerate.ReadValue<float>();
+            boost = controls.Player.Boost.ReadValue<float>();
+            brake = controls.Player.Brake.ReadValue<float>();
+            brake *= -1;
+            carController.Move(moveInput.x, accelerate, brake, 0, boost);
+        
+            // firing = controls.Player.Fire.ReadValue<float>();
+            // HandleFire(firing);
+        }
     }
 
 
@@ -140,5 +147,16 @@ public class UserInput : MonoBehaviour
     {
         if(carController)carController.Move(0, 0, 1, 1, 0);
         controls.Player.Disable();
+    }
+
+    public void SetActive()
+    {
+        controls.Player.Enable();
+        isActive = true;
+    }
+    public void Deactivate()
+    {
+        controls.Player.Disable();
+        isActive = false;
     }
 }

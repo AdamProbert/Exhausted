@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6771050430910594523}
   - component: {fileID: 8727088961950827896}
   - component: {fileID: 4149698880877036662}
+  - component: {fileID: 5619489168035031761}
   m_Layer: 0
   m_Name: Minigun
   m_TagString: Untagged
@@ -68,6 +69,22 @@ MonoBehaviour:
   fireRate: 10
   parentRigidBody: {fileID: 0}
   uiImage: {fileID: 21300000, guid: 821132cd34be1c143b411ee1a3c0eb6d, type: 3}
+  currentStatus: 0
+  fireSound: {fileID: 0}
+--- !u!114 &5619489168035031761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000601011492793620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980e06f9c0bc7a04482bcc82bc6db018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImage: {fileID: 21300000, guid: 821132cd34be1c143b411ee1a3c0eb6d, type: 3}
+  uiName: Gattling Gun
 --- !u!1 &6460815612015795914
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6460815612015795914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 1.484, z: 2.429}
+  m_LocalPosition: {x: 0, y: 0.247, z: 1.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6771050430910594523}
@@ -111,27 +128,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.017
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2589998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.3889999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_LocalRotation.w

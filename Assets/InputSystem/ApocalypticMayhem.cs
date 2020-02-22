@@ -512,6 +512,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CycleVehicle"",
+                    ""type"": ""Value"",
+                    ""id"": ""873c502a-056c-487f-a2de-293551c7dcd2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -727,10 +735,21 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9e92bb26-7e3b-4ec4-b06b-3c8f8e498ddc"",
-                    ""path"": ""*/{Submit}"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""294bef84-e286-402b-a9ae-889f79d523bd"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -866,6 +885,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""CycleAttachPoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85e1dd9c-f6e1-441f-a789-b8660729ce1b"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CycleVehicle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -958,6 +988,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_Rotate = m_UI.FindAction("Rotate", throwIfNotFound: true);
         m_UI_CycleAttachPoint = m_UI.FindAction("CycleAttachPoint", throwIfNotFound: true);
+        m_UI_CycleVehicle = m_UI.FindAction("CycleVehicle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1130,6 +1161,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_Rotate;
     private readonly InputAction m_UI_CycleAttachPoint;
+    private readonly InputAction m_UI_CycleVehicle;
     public struct UIActions
     {
         private @InputMaster m_Wrapper;
@@ -1144,6 +1176,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @Rotate => m_Wrapper.m_UI_Rotate;
         public InputAction @CycleAttachPoint => m_Wrapper.m_UI_CycleAttachPoint;
+        public InputAction @CycleVehicle => m_Wrapper.m_UI_CycleVehicle;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1183,6 +1216,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @CycleAttachPoint.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleAttachPoint;
                 @CycleAttachPoint.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleAttachPoint;
                 @CycleAttachPoint.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleAttachPoint;
+                @CycleVehicle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleVehicle;
+                @CycleVehicle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleVehicle;
+                @CycleVehicle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleVehicle;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1217,6 +1253,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @CycleAttachPoint.started += instance.OnCycleAttachPoint;
                 @CycleAttachPoint.performed += instance.OnCycleAttachPoint;
                 @CycleAttachPoint.canceled += instance.OnCycleAttachPoint;
+                @CycleVehicle.started += instance.OnCycleVehicle;
+                @CycleVehicle.performed += instance.OnCycleVehicle;
+                @CycleVehicle.canceled += instance.OnCycleVehicle;
             }
         }
     }
@@ -1292,5 +1331,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnCycleAttachPoint(InputAction.CallbackContext context);
+        void OnCycleVehicle(InputAction.CallbackContext context);
     }
 }
