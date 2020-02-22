@@ -28,7 +28,7 @@ public class WheelFX : MonoBehaviour {
 
 	// #### UNITY INTERNAL METHODS ####
 
-	protected void Awake() {
+	public void PlayerActive() {
 		wheelCollider = GetComponent<WheelCollider>();
 		lastFixedUpdateTime = Time.time;
 		skidmarksController = GameObject.FindObjectOfType<Skidmarks>();
@@ -44,7 +44,7 @@ public class WheelFX : MonoBehaviour {
 	{
 		var emission = tireSmoke.emission;
 
-		if (wheelCollider.GetGroundHit(out wheelHitInfo))
+		if (wheelCollider.GetGroundHit(out wheelHitInfo) && skidmarksController)
 		{
 			
 			// Check sideways speed

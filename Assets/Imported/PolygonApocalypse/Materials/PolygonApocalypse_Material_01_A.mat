@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PolygonApocalypse_Material_01_A
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _NORMALMAP
-  m_LightmapFlags: 4
+  m_Shader: {fileID: 4800000, guid: 8b2f353da1dd05244a7bee1562a2306a, type: 3}
+  m_ShaderKeywords: _NORMALMAP _STATICHIGHLIGHTS_ON
+  m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Diffuse:
+        m_Texture: {fileID: 2800000, guid: 84508b93f15f2b64386ec07486afc7a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 2800000, guid: 52544eaa2c194144ab7b28fa647d781c, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -60,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Highlight:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e2ef9dde094871440bfdfb42d0165a1e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -72,7 +76,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5c99cec570bb90c4db42c3a608969eee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -91,6 +95,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ToonRamp:
+        m_Texture: {fileID: 2800000, guid: 52e66a9243cdfed44b5e906f5910d35b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -100,9 +108,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _ASEOutlineWidth: 0.02
     - _AlphaClip: 0
     - _BaseCellOffset: 0
-    - _BaseCellSharpness: 0.01
+    - _BaseCellSharpness: 1
     - _Blend: 0
     - _BloodAmount: 0
     - _BumpScale: 1
@@ -119,7 +128,7 @@ Material:
     - _HighlightCellOffset: -0.95
     - _HighlightCellSharpness: 0.01
     - _IndirectDiffuseContribution: 1
-    - _IndirectSpecularContribution: 1
+    - _IndirectSpecularContribution: 0.5
     - _Metallic: 0
     - _Mode: 0
     - _NormalScale: 1
@@ -130,14 +139,14 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimOffset: 0.6
-    - _RimPower: 0.4
-    - _ShadowContribution: 0.5
+    - _RimPower: 0.531
+    - _ShadowContribution: 0.921
     - _Smoothness: 0.2
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StaticHighLights: 0
+    - _StaticHighLights: 1
     - _Surface: 0
     - _TessMax: 25
     - _TessMin: 10
@@ -148,6 +157,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
+    - _ASEOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseTint: {r: 1, g: 1, b: 1, a: 0}
     - _BloodColor: {r: 0.6470588, g: 0.2569204, b: 0.2569204, a: 0}

@@ -10,13 +10,13 @@ abstract public class BaseWeapon : MonoBehaviour
     [SerializeField] protected Transform projectileSpawn;
     [Tooltip ("Bullets spawned per second")]
     [SerializeField] protected float fireRate;
-    [SerializeField] protected Rigidbody parentRigidBody; // Usually the car
+    [SerializeField] protected Rigidbody parentRigidBody;
 
     [SerializeField] Sprite uiImage;
 
     protected ObjectPooler projectilePool;
 
-    public status currentStatus = status.Active;
+    public status currentStatus = status.Inactive;
     public enum status
     {
         Active,
@@ -31,11 +31,19 @@ abstract public class BaseWeapon : MonoBehaviour
     {
         projectilePool = GetComponent<ObjectPooler>();    
         audioSource = GetComponent<AudioSource>();
+        parentRigidBody = transform.root.GetComponent<Rigidbody>();
     }
 
     public void PlayerDied()
     {
         currentStatus = status.Inactive;
+    }
+
+    public void PlayerActive()
+    {
+        Debug.Log("Base weapon: PLayer active received");
+        currentStatus = status.Active;
+        Init();
     }
 
     protected Vector3 GetParentVelocity()

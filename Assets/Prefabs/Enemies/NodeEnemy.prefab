@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 1681143631}
   - component: {fileID: 1531000730}
   - component: {fileID: 2040928120}
+  - component: {fileID: -6291496810190881940}
   m_Layer: 8
   m_Name: NodeEnemy
   m_TagString: Player
@@ -101,16 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CarDriveType: 1
-  m_WheelColliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_WheelMeshes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_WheelColliders: []
+  m_WheelMeshes: []
   m_WheelEffects: []
   m_CentreOfMassOffset: {x: 0, y: -0.3, z: -0.3}
   m_MaximumSteerAngle: 30
@@ -281,8 +274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAI: 0
-  carExplode: {fileID: 782365431, guid: a663016779ce653458b08fe54f658621, type: 3}
-  explosionForce: 20
   maxHealth: 3000
   m_currentHealth: 0
 --- !u!114 &2040928120
@@ -302,6 +293,21 @@ MonoBehaviour:
   leftWeapon: {fileID: 0}
   rightWeapon: {fileID: 0}
   weaponUIUpdate: {fileID: 0}
+  enableAutoAim: 1
+--- !u!114 &-6291496810190881940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167826977869424713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7f60c8276034a54992ddef2050fd7d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 8243019123377798634}
   enableAutoAim: 1
 --- !u!1001 &3545725819892311017
 PrefabInstance:
