@@ -2510,8 +2510,8 @@ GameObject:
   - component: {fileID: 2982420971241834472}
   - component: {fileID: 443717918}
   - component: {fileID: 2982420971241834487}
-  - component: {fileID: 443717917}
   - component: {fileID: 647435389935291943}
+  - component: {fileID: 443717917}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -2562,6 +2562,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skidmarksMaterial: {fileID: 2100000, guid: 944c39b017cd45d4ba430b27e81cb3d3, type: 2}
   MAX_MARKS: 10000
+--- !u!114 &647435389935291943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982420971241834473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ca20954f3164e039f358b6659c10c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefabs: []
 --- !u!82 &443717917
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2659,19 +2672,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &647435389935291943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2982420971241834473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3ca20954f3164e039f358b6659c10c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefabs: []
 --- !u!1001 &3207925696532156846
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -73,8 +73,12 @@ public class Player : MonoBehaviour
         else if(!GetComponent<AIInput2>() && GetComponent<UserInput>())
         {
             isAI = false;
-            healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
-            ogHealhBarSize = healthBar.sizeDelta;
+            if(healthBar)
+            {
+                healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
+                ogHealhBarSize = healthBar.sizeDelta;
+            }
+            
             // weaponController.SetAutoFind(false, null);
         }
         else

@@ -138,7 +138,7 @@ public class UserInput : MonoBehaviour
 
     private void OnDisable() 
     {
-        carController.Move(0, 0, 1, 1, 0);
-        controls.Disable();
+        if(carController)carController.Move(0, 0, 1, 1, 0);
+        controls.Player.Disable();
     }
 }

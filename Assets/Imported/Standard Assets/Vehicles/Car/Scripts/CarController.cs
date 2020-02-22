@@ -60,7 +60,6 @@ namespace UnityStandardAssets.Vehicles.Car
         // Use this for initialization
         private void Start()
         {
-            Debug.Log("START CALLED ON CAR CONTROLLER");
             // Find colliders and wheels if not assigned
             if(m_WheelColliders.Count == 0)
             {

@@ -44,7 +44,7 @@ public class WheelFX : MonoBehaviour {
 	{
 		var emission = tireSmoke.emission;
 
-		if (wheelCollider.GetGroundHit(out wheelHitInfo))
+		if (wheelCollider.GetGroundHit(out wheelHitInfo) && skidmarksController)
 		{
 			
 			// Check sideways speed

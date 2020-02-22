@@ -25,7 +25,10 @@ public class WeaponController : MonoBehaviour
 
     private void Start() 
     {
-        weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();
+        if(weaponUIUpdate)
+        {
+            weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();    
+        }
         WeaponRegister();
         SetupAutoFindOnWeapons();
     }
@@ -60,7 +63,7 @@ public class WeaponController : MonoBehaviour
             }
         }
 
-        if(!IsAI)
+        if(!IsAI && weaponUIUpdate)
         {
             weaponUIUpdate.RegisterWeapons(availableWeapons);
         }
@@ -130,7 +133,7 @@ public class WeaponController : MonoBehaviour
 
     private void UpdateUIComponent(int weaponNumber)
     {
-        if(weaponUIUpdate != null)
+        if(weaponUIUpdate)
         {
             weaponUIUpdate.SetCurrentWeapon(weaponNumber);
         }

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blur Grunge Masked
-  m_Shader: {fileID: 4800000, guid: 32d5a72d80e62864595bd2e62e6530b8, type: 3}
+  m_Name: AttachPointMaterial
+  m_Shader: {fileID: 4800000, guid: 8b2f353da1dd05244a7bee1562a2306a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseColorRGBOutlineWidthA:
+        m_Texture: {fileID: 2800000, guid: 52dc7fc8504ffa4478509abbf225397b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -39,12 +43,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Highlight:
+        m_Texture: {fileID: 2800000, guid: e2ef9dde094871440bfdfb42d0165a1e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: e08c295755c0885479ad19f518286ff2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -55,32 +67,48 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BumpAmt: 1
+    - _BaseCellOffset: 0
+    - _BaseCellSharpness: 0.01
     - _BumpScale: 1
-    - _ColorMask: 255
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HighlightCellOffset: -0.95
+    - _HighlightCellSharpness: 0.01
+    - _IndirectDiffuseContribution: 1
+    - _IndirectSpecularContribution: 1
     - _Metallic: 0
     - _Mode: 0
+    - _NormalScale: 1
     - _OcclusionStrength: 1
+    - _OutlineWidth: 0.02
     - _Parallax: 0.02
-    - _Radius: 10
-    - _Size: 0
+    - _RimOffset: 0.6
+    - _RimPower: 0.4
+    - _ShadowContribution: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Stencil: 255
-    - _StencilComp: 255
-    - _StencilOp: 255
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
+    - _StaticHighLights: 0
+    - _TessMax: 25
+    - _TessMin: 10
+    - _TessPhongStrength: 0.5
+    - _TessValue: 4
     - _UVSec: 0
     - _ZWrite: 1
+    - __dirty: 0
     m_Colors:
+    - _BaseTint: {r: 1, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HighlightTint: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineTint: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}
+    - _RimColor: {r: 0.34191445, g: 0.006512091, b: 0, a: 0}
