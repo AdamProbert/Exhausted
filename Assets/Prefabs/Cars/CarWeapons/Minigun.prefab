@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8727088961950827896}
   - component: {fileID: 4149698880877036662}
   - component: {fileID: 5619489168035031761}
+  - component: {fileID: 2143332102076114045}
   m_Layer: 0
   m_Name: Minigun
   m_TagString: Untagged
@@ -85,6 +86,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiImage: {fileID: 21300000, guid: 821132cd34be1c143b411ee1a3c0eb6d, type: 3}
   uiName: Gattling Gun
+--- !u!114 &2143332102076114045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000601011492793620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ac9dfc29f1f6241a45727d690f3d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRotation: 30
+  rotationSpeed: 5
+  searchRadius: 40
+  searchLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  aimOffset: {x: 0, y: 1, z: -1}
 --- !u!1 &6460815612015795914
 GameObject:
   m_ObjectHideFlags: 0

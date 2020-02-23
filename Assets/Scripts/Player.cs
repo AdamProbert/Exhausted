@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
             float forceHit = other.relativeVelocity.magnitude;
             forceHit *= other.rigidbody.mass;
 
-            Debug.Log("Player: " + gameObject.name + " hit for " + forceHit + " damage");
+            //Debug.Log("Player: " + gameObject.name + " hit for " + forceHit + " damage");
 
             if(state == playerState.Alive)
             {

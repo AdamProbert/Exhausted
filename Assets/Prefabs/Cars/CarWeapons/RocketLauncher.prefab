@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRotation: 180
   rotationSpeed: 2.81
-  searchRadius: 10
+  searchRadius: 25
   searchLayers:
     serializedVersion: 2
     m_Bits: 256

@@ -41,18 +41,26 @@ public class AutoAimAndFIre : MonoBehaviour
         {
             // Ray cast from weapon to target player, shoot if hit
             RaycastHit hit;
-            // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(transform.position, target.transform.position - transform.position, out hit, Mathf.Infinity, searchLayers))
+            // Does the ray hit player object
+            if (Physics.Raycast(transform.position, target.transform.position - transform.position, out hit, Mathf.Infinity))
             {
+                Debug.Log("Raycast hit: " + hit.transform.gameObject.name);
                 Debug.DrawRay(transform.position, (target.transform.position - transform.position) * hit.distance, Color.yellow);
-                weapon.StartFiring();
-                // Debug.Log("Did Hit");
+                if(hit.transform.root == target.transform.root)
+                {
+                    weapon.StartFiring();
+                    return;
+                }
             }
-            else
-            {
-                Debug.DrawRay(transform.position, (target.transform.position - transform.position) * 1000, Color.white);
-                // Debug.Log("Did not Hit");
-            }
+            
+            Debug.Log("Should have stopped firing");
+            Debug.DrawRay(transform.position, (target.transform.position - transform.position) * 1000, Color.black);
+            weapon.StopFiring();
+        }
+
+        else
+        {
+            weapon.StopFiring();
         }
     }
 
@@ -68,6 +76,12 @@ public class AutoAimAndFIre : MonoBehaviour
             {
                 target = null;
             }
+
+            if(target == null)
+            {
+                Debug.Log("Current target invalidated");
+            }
+            
         }
     }
 
@@ -89,10 +103,13 @@ public class AutoAimAndFIre : MonoBehaviour
             Vector3 currentDir = transform.forward;
 
             currentDir = Vector3.RotateTowards(currentDir, targetDir, turnRateRadians*Time.deltaTime, 1.0f);
+            currentDir.y = Mathf.Clamp(currentDir.y, -maxRotation, maxRotation);
 
             Quaternion qDir = new Quaternion();
             qDir.SetLookRotation(currentDir, Vector3.up);
             transform.rotation = qDir;
+
+            // Debug.Log("Target dir: " + targetDir +  " currentdir: " + currentDir + "  qdir: " + qDir);
         }
     }
 
@@ -107,7 +124,7 @@ public class AutoAimAndFIre : MonoBehaviour
             foreach(Collider hit in hits)
             {
                 
-                if(hit.transform.root == transform.root)
+                if(hit.transform.root == this.transform.root)
                 {
                     continue;
                 }
@@ -117,7 +134,6 @@ public class AutoAimAndFIre : MonoBehaviour
                     continue;
                 }
                 
-                Debug.Log("Autoaim found someone to hit");
                 Vector3 diff = (hit.transform.position - transform.position);
                 var curDistance = diff.sqrMagnitude;
                 if (curDistance < distance)
@@ -129,7 +145,7 @@ public class AutoAimAndFIre : MonoBehaviour
             if(closest != null)
             {
                 target = closest.transform.root.GetComponent<Player>();
-                Debug.Log("Set target to: " + target);
+                Debug.Log("Found new target: " + target);
             }
                 
         } 
@@ -149,5 +165,6 @@ public class AutoAimAndFIre : MonoBehaviour
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireSphere(transform.position, searchRadius);
+        Gizmos.DrawWireSphere(target.transform.position, 5f);
     }
 }
