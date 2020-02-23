@@ -186,7 +186,6 @@ public class Player : MonoBehaviour
         {
             GetComponent<UserInput>().Deactivate();
             transform.Find("Camera").gameObject.SetActive(false);
-            Debug.Log("Camera should be inactive");
         }
 
         if(newstate == Player.playerState.Alive)
@@ -195,7 +194,6 @@ public class Player : MonoBehaviour
             {
                 GetComponent<UserInput>().SetActive();
                 transform.Find("Camera").gameObject.SetActive(true);
-                Debug.Log("Camera should be active");
             }        
             BroadcastMessage("PlayerActive");
         }

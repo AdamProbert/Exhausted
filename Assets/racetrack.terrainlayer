@@ -6,11 +6,11 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: layer_RockwallRockwall_Normalb3407d0e55802f81
-  m_DiffuseTexture: {fileID: 2800000, guid: 66bfffbfc1446e24dbf6081d20fc9daa, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: ad5ab704b4310e6488aba63332144846, type: 3}
+  m_Name: racetrack
+  m_DiffuseTexture: {fileID: 2800000, guid: ef5c51cfa2ce46043a41a376b560c525, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: 58a059b07b093a745b47c2191525ddce, type: 3}
   m_MaskMapTexture: {fileID: 0}
-  m_TileSize: {x: 1, y: 3}
+  m_TileSize: {x: 2, y: 2}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0

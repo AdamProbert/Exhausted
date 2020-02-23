@@ -7,7 +7,7 @@ using UnityEngine;
 abstract public class BaseWeapon : MonoBehaviour
 {
     [SerializeField] protected float projectileSpeed;
-    [SerializeField] protected Transform projectileSpawn;
+    [SerializeField] public Transform projectileSpawn;
     [Tooltip ("Bullets spawned per second")]
     [SerializeField] protected float fireRate;
     [SerializeField] protected Rigidbody parentRigidBody;
@@ -27,11 +27,18 @@ abstract public class BaseWeapon : MonoBehaviour
     protected AudioSource audioSource;
     [SerializeField] protected AudioClip fireSound;
 
+    [SerializeField] private ParticleSystem fireEffectPrefab;
+    protected ParticleSystem fireEffect;
+
     protected void Init() 
     {
         projectilePool = GetComponent<ObjectPooler>();    
         audioSource = GetComponent<AudioSource>();
         parentRigidBody = transform.root.GetComponent<Rigidbody>();
+        if(fireEffectPrefab)
+        {
+            fireEffect = Instantiate(fireEffectPrefab, projectileSpawn.transform.position, projectileSpawn.transform.rotation, transform);
+        }
     }
 
     public void PlayerDied()

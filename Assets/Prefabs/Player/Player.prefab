@@ -1170,6 +1170,7 @@ GameObject:
   - component: {fileID: 1408003090}
   - component: {fileID: 1408003091}
   - component: {fileID: 1419037756}
+  - component: {fileID: -8504682281707413827}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1312,6 +1313,30 @@ MonoBehaviour:
   isAI: 0
   maxHealth: 3000
   m_currentHealth: 0
+--- !u!114 &-8504682281707413827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230654937173857582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fa55eb64c5cea4aa3c71ae19c434bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engineSoundStyle: 1
+  lowAccelClip: {fileID: 8300000, guid: c4d8928c75c21af43998193f0f038429, type: 3}
+  lowDecelClip: {fileID: 8300000, guid: 5699dddcce16c4543b95951c4ce0e092, type: 3}
+  highAccelClip: {fileID: 8300000, guid: 03e3bd08a6e70684dbe299a3e185fdd2, type: 3}
+  highDecelClip: {fileID: 8300000, guid: 03bf91d88fce91c41995d27de63cc967, type: 3}
+  pitchMultiplier: 1
+  lowPitchMin: 1
+  lowPitchMax: 5
+  highPitchMultiplier: 0.25
+  maxRolloffDistance: 500
+  dopplerLevel: 1
+  useDoppler: 1
 --- !u!1 &8695170375294984484
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,6 +25,12 @@ public class AutomaticWeapon : BaseWeapon
 
         nextFireTime = Time.time + (1 / base.fireRate);
 
+        audioSource.PlayOneShot(base.fireSound, 1f);
+        if(fireEffect)
+        {
+            fireEffect.Play();
+        }
+        
         GameObject projectile = base.projectilePool.GetPooledObject();
         projectile.SetActive(true);
         projectile.transform.position = base.projectileSpawn.position;

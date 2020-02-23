@@ -42,10 +42,10 @@ public class AutoAimAndFIre : MonoBehaviour
             // Ray cast from weapon to target player, shoot if hit
             RaycastHit hit;
             // Does the ray hit player object
-            if (Physics.Raycast(transform.position, target.transform.position - transform.position, out hit, Mathf.Infinity))
+            if (Physics.Raycast(weapon.projectileSpawn.position, target.transform.position - weapon.projectileSpawn.position, out hit, Mathf.Infinity))
             {
                 Debug.Log("Raycast hit: " + hit.transform.gameObject.name);
-                Debug.DrawRay(transform.position, (target.transform.position - transform.position) * hit.distance, Color.yellow);
+                Debug.DrawRay(weapon.projectileSpawn.position, (target.transform.position - weapon.projectileSpawn.position) * hit.distance, Color.yellow);
                 if(hit.transform.root == target.transform.root)
                 {
                     weapon.StartFiring();
@@ -54,7 +54,7 @@ public class AutoAimAndFIre : MonoBehaviour
             }
             
             Debug.Log("Should have stopped firing");
-            Debug.DrawRay(transform.position, (target.transform.position - transform.position) * 1000, Color.black);
+            Debug.DrawRay(weapon.projectileSpawn.position, (target.transform.position - weapon.projectileSpawn.position) * 1000, Color.black);
             weapon.StopFiring();
         }
 
@@ -165,6 +165,9 @@ public class AutoAimAndFIre : MonoBehaviour
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireSphere(transform.position, searchRadius);
-        Gizmos.DrawWireSphere(target.transform.position, 5f);
+        if(target!=null)
+        {
+            Gizmos.DrawWireSphere(target.transform.position, 5f);
+        }
     }
 }
