@@ -26,21 +26,18 @@ public class UserInput : MonoBehaviour
 
     private CarController carController;    // Reference to actual car controller we are controlling
     private WeaponController weaponController;
+    private LockOnController lockOnController;
 
-    private bool isActive;
+    private bool isActive = true;
 
     [SerializeField] bool debugMode;
-    [SerializeField] TextMeshProUGUI turnValue;
-    [SerializeField] TextMeshProUGUI accelerateValue;
-    [SerializeField] TextMeshProUGUI brakeValue;
-    [SerializeField] TextMeshProUGUI boostValue;
-
 
     private void Awake() 
     {
         controls = new InputMaster();
 
         controls.Player.Zoom.performed += ctx => HandleZoom();
+
         // controls.Player.Weapon1.performed += ctx => HandleWeaponSwitch(1);
         // controls.Player.Weapon2.performed += ctx => HandleWeaponSwitch(2);
         // controls.Player.Weapon3.performed += ctx => HandleWeaponSwitch(3);
@@ -51,22 +48,20 @@ public class UserInput : MonoBehaviour
     {
         carController = GetComponent<UnityStandardAssets.Vehicles.Car.CarController>();
         weaponController = GetComponent<WeaponController>();
+        lockOnController = transform.GetComponentInChildren<LockOnController>();
+
+        if(lockOnController)
+        {
+            controls.Player.LockOn.started += ctx => HandleLockOn(0);
+            controls.Player.LockOn.performed += ctx => HandleLockOn(1);
+            controls.Player.LockOn.canceled += ctx => HandleLockOn(2);
+        }
     }
 
     private void Update() 
     {
         // Need this for Cinemachine free look camera
         CinemachineCore.GetInputAxis = GetAxisCustom;
-        if(debugMode)
-            debug();
-    }
-
-    private void debug()
-    {
-        turnValue.text = moveInput.ToString();
-        accelerateValue.text = accelerate.ToString();
-        brakeValue.text = brake.ToString();
-        boostValue.text = boost.ToString();
     }
 
     // private void HandleWeaponSwitch(int weaponNumber)
@@ -75,18 +70,23 @@ public class UserInput : MonoBehaviour
     //     weaponController.SelectWeapon(weaponNumber);
     // }
 
-    // private void HandleFire(float fire)
-    // {   
-    //     if(debugMode) Debug.Log("Handle fire called with: " + fire);
-    //     if(fire > 0)
-    //     {
-    //         weaponController.Fire();
-    //     }
-    //     else
-    //     {
-    //         weaponController.StopFiring();
-    //     }
-    // }
+    private void HandleLockOn(float lockstate)
+    {
+        if(debugMode){Debug.Log("Handle lock called with" + lockstate);}
+
+        switch (lockstate)
+        {
+            case 0:
+                lockOnController.InitateLockOn();
+                break;
+            case 1:
+                lockOnController.LockOn();
+                break;
+            case 2:
+                lockOnController.RemoveLock();
+                break;
+        }
+    }
 
     private void HandleZoom()
     {
@@ -136,7 +136,6 @@ public class UserInput : MonoBehaviour
             // HandleFire(firing);
         }
     }
-
 
     private void OnEnable() 
     {

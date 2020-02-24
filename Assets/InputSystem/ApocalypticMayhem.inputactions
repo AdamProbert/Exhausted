@@ -22,12 +22,12 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "LockOn",
                     "type": "Button",
                     "id": "5cfcbd24-e96e-454c-94af-a771a9219d73",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Hold(duration=1)"
                 },
                 {
                     "name": "Zoom",
@@ -190,7 +190,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "LockOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -201,7 +201,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
+                    "action": "LockOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -212,7 +212,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Fire",
+                    "action": "LockOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

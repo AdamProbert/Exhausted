@@ -27,8 +27,18 @@ public class AutoAimAndFIre : MonoBehaviour
     {
         if(weapon.currentStatus == BaseWeapon.status.Active)
         {
-            CheckCurrentTargetValid();
+            if(autoFindTarget)
+            {
+                CheckCurrentTargetValid();
+            }
+            
+            if(target == null && autoFindTarget)
+            {
+                GetPlayerTarget();
+            }
+            
             TargetEnemy();
+            
             AutoFire();
         }
         
@@ -90,7 +100,6 @@ public class AutoAimAndFIre : MonoBehaviour
         
         if (target == null)
         {
-            GetPlayerTarget();
         }
 
             
@@ -155,6 +164,12 @@ public class AutoAimAndFIre : MonoBehaviour
     {
         Debug.Log("AutoAim: New target received");
         target = newTarget;
+    }
+
+    public void TargetLost()
+    {
+        Debug.Log("AutoAim: Target lost");
+        target = null;  
     }
 
     public void SetAutoFindTarget(bool val)

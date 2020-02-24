@@ -74,17 +74,10 @@ public class BattleManager : MonoBehaviour
         {
             endGameUI.SetActive(true);
             yield return new WaitForSeconds(10);
-            Destroy(humanPlayer.gameObject); // Make sure we clean up the player
             SceneManager.LoadScene("MainMenu");
-
+            Destroy(humanPlayer.gameObject); // Make sure we clean up the player
             UnityEngine.Cursor.visible = true;
             UnityEngine.Cursor.lockState = CursorLockMode.None;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

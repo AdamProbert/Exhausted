@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private AIInput2 aIInput;
     public bool isAI;
 
+    public bool testMode = false;
+
     [Header("Health")]
     [SerializeField] float maxHealth;
     [SerializeField] float m_currentHealth;
@@ -31,8 +33,8 @@ public class Player : MonoBehaviour
     public delegate void OnHealthChangeDelegate(float newVal);
     public event OnHealthChangeDelegate OnHealthChange;
     
-    private playerState m_state;
-    [SerializeField] public playerState state{
+    [SerializeField] private playerState m_state;
+    public playerState state{
         get{return m_state;}
         set{
             if(m_state == value) return;
@@ -92,11 +94,15 @@ public class Player : MonoBehaviour
         {
             state=playerState.Building;    
         }
-
-        if(GameManager.Instance.gameState == GameManager.GameState.PLAY)
+        else if(GameManager.Instance.gameState == GameManager.GameState.PLAY)
         {
             state=playerState.Alive;    
         }
+        else
+        {
+            state=playerState.Alive;
+        }
+
         Debug.Log("Player state set in start to: " +state);
         // Manually call, unity stupid.
         HandlePlayerStateChange(state, this);
