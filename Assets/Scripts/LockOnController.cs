@@ -11,6 +11,7 @@ public class LockOnController : MonoBehaviour
 
     [SerializeField] List<Player> possibleTargets = new List<Player>();
     [SerializeField] Player lockedTarget;
+    [SerializeField] GameObject reticleCanvas;
     [SerializeField] GameObject lockOnIndicatorPrefab;
     GameObject lockOnIndicator;
     Animator animator;
@@ -36,6 +37,7 @@ public class LockOnController : MonoBehaviour
             lockOnIndicator.SetActive(false);
             
         }
+        reticleCanvas.SetActive(true);
         state = lockState.NoLock;
     }   
 
@@ -43,7 +45,8 @@ public class LockOnController : MonoBehaviour
     private void LateUpdate()
     {
         // Rotate collider same direction as camera
-        transform.rotation = cam.transform.rotation;
+        // transform.rotation = cam.transform.rotation;
+        transform.eulerAngles =  new Vector3(0, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
 
         if(state == lockState.Acquiring)
         {
@@ -71,14 +74,15 @@ public class LockOnController : MonoBehaviour
         if(lockedTarget != null)
         {
             lockOnIndicator.transform.position = lockedTarget.transform.position;
-            lockOnIndicator.transform.LookAt(this.transform);
-            lockOnIndicator.transform.position += Vector3.forward *1.5f;
+            lockOnIndicator.transform.LookAt(cam.transform);
+    
+            lockOnIndicator.transform.position += lockOnIndicator.transform.forward *1.5f;
         }
     }
 
     public void InitateLockOn()
     {
-        CancelLock();
+        RemoveLock();
         state = lockState.Acquiring;
     }
 
@@ -91,42 +95,33 @@ public class LockOnController : MonoBehaviour
         }
     }
 
-    public void CancelLock()
+    public void RemoveLock()
     {
         lockedTarget = null;
         lockOnIndicator.SetActive(false);
         state = lockState.NoLock;
         animator.SetBool("acquiring", false);
         animator.SetBool("acquired", false);
-
-    }
-
-    public void RemoveLock()
-    {
-        CancelLock();
         transform.root.BroadcastMessage("TargetLost");
     }
     
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.transform.tag == "Player")
+        if(other.gameObject.layer == 8) //Player
         {
-            possibleTargets.Add(other.GetComponent<Player>());
+            if(!possibleTargets.Contains(other.transform.root.GetComponent<Player>()))
+            {
+                possibleTargets.Add(other.transform.root.GetComponent<Player>());
+            }
         }
-        
     }
 
     private void OnTriggerExit(Collider other) 
     {
-        if(other.transform.tag == "Player")
+        if(other.gameObject.layer == 8) //Player
         {
-            Player x = other.GetComponent<Player>();
+            Player x = other.transform.root.GetComponent<Player>();
             possibleTargets.Remove(x);
-            if(x == lockedTarget)
-            {
-                lockedTarget = null;
-                CancelLock();
-            }
         }
     }
 }

@@ -6,17 +6,24 @@ namespace Michsky.UI.Dark
 {
     public class ScrollGamepadManager : MonoBehaviour
     {
+        public InputMaster controls;
+
         [Header("SLIDER")]
         public Scrollbar scrollbarObject;
         public float changeValue = 0.05f;
 
         [Header("INPUT")]
-        public string inputAxis = "Xbox Right Stick Vertical";
         public bool invertAxis = false;
 
+
+        private void Awake() 
+        {
+            controls = new InputMaster();
+        }
+        
         void Update()
         {
-            float h = Input.GetAxis(inputAxis);
+            float h = controls.UI.ScrollWheel.ReadValue<float>();
 
             if (invertAxis == false)
             {

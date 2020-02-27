@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5619489168035031761}
   - component: {fileID: 2143332102076114045}
   - component: {fileID: 6306070126883971312}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Minigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,6 +106,9 @@ MonoBehaviour:
   searchLayers:
     serializedVersion: 2
     m_Bits: 256
+  raycastIgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 2147484471
   aimOffset: {x: 0, y: 1, z: -1}
 --- !u!82 &6306070126883971312
 AudioSource:
@@ -213,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8402867351572036405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,6 +247,14 @@ PrefabInstance:
     - target: {fileID: 1277969264105640, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_Name
       value: SM_Wep_Veh_MiniGun_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277969264105640, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388528498519288, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_LocalPosition.x

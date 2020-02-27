@@ -10,6 +10,7 @@ public class AutoAimAndFIre : MonoBehaviour
     [SerializeField][Range(.1f, 10f)] protected float rotationSpeed;
     [SerializeField][Range(5f, 100f)] private float searchRadius;
     [SerializeField]private LayerMask searchLayers;
+    [SerializeField]private LayerMask raycastIgnoreLayers;
     [SerializeField] private Vector3 aimOffset = new Vector3(0,1,-1);
 
     private Player target;
@@ -52,18 +53,22 @@ public class AutoAimAndFIre : MonoBehaviour
             // Ray cast from weapon to target player, shoot if hit
             RaycastHit hit;
             // Does the ray hit player object
-            if (Physics.Raycast(weapon.projectileSpawn.position, target.transform.position - weapon.projectileSpawn.position, out hit, Mathf.Infinity))
+            if (Physics.Raycast(weapon.projectileSpawn.position, target.transform.position - weapon.projectileSpawn.position, out hit, Mathf.Infinity, raycastIgnoreLayers))
             {
-                Debug.Log("Raycast hit: " + hit.transform.gameObject.name);
                 Debug.DrawRay(weapon.projectileSpawn.position, (target.transform.position - weapon.projectileSpawn.position) * hit.distance, Color.yellow);
-                if(hit.transform.root == target.transform.root)
+                Debug.DrawRay(target.transform.position, (weapon.projectileSpawn.position - target.transform.position) * hit.distance, Color.white);
+                RaycastHit returnhit;
+                // Check if the return raycast works too
+                if (!Physics.SphereCast(target.transform.position, .5f, (weapon.projectileSpawn.position - target.transform.position).normalized, out returnhit, hit.distance, raycastIgnoreLayers))
                 {
-                    weapon.StartFiring();
-                    return;
+                    if(hit.transform.root == target.transform.root)
+                    {
+                        weapon.StartFiring();
+                        return;
+                    }
                 }
             }
             
-            Debug.Log("Should have stopped firing");
             Debug.DrawRay(weapon.projectileSpawn.position, (target.transform.position - weapon.projectileSpawn.position) * 1000, Color.black);
             weapon.StopFiring();
         }
@@ -184,5 +189,11 @@ public class AutoAimAndFIre : MonoBehaviour
         {
             Gizmos.DrawWireSphere(target.transform.position, 5f);
         }
+
+        if(weapon)
+        {
+            Gizmos.DrawWireSphere(weapon.projectileSpawn.position, .5f);
+        }
+        
     }
 }
