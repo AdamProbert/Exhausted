@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a98ee21c3d8fa45a65d54de4909613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 50
   flightTimeBeforeWiggle: 0.5
   wiggle: 1
   wiggleAmount: 0.5
@@ -127,7 +128,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1545057341454795647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +145,7 @@ MonoBehaviour:
   radius: 13
   upwardMultiplier: 10
   effect: {fileID: 19849376, guid: b42b8677df418c047aef5d8ce9c66663, type: 3}
+  explosionSound: {fileID: 8300000, guid: 8dfcae34791b3a447b81d6653208f596, type: 3}
 --- !u!1001 &2654164594781788449
 PrefabInstance:
   m_ObjectHideFlags: 0

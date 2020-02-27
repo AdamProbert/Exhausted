@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3133251987110557488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5563357935945700472}
   - component: {fileID: 5848967748269740640}
   - component: {fileID: 5403771128711348822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,8 @@ MonoBehaviour:
   parentRigidBody: {fileID: 0}
   uiImage: {fileID: 21300000, guid: d8a07b1c66eaa724db557715967ffa32, type: 3}
   currentStatus: 0
-  fireSound: {fileID: 8300000, guid: 31d4354cef3a92a4481b8c1464e22afd, type: 3}
+  fireSound: {fileID: 8300000, guid: 7f60c2e8183eb524ca83f5d800cc93fb, type: 3}
+  fireEffectPrefab: {fileID: 0}
   rocketsPerSalvo: 4
   timeBetweenRockets: 0.1
 --- !u!114 &5563357935945700472
@@ -119,10 +120,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRotation: 180
   rotationSpeed: 2.81
-  searchRadius: 10
+  searchRadius: 25
   searchLayers:
     serializedVersion: 2
     m_Bits: 256
+  raycastIgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 2147484471
   aimOffset: {x: 0, y: 1, z: -1}
 --- !u!82 &5848967748269740640
 AudioSource:
@@ -143,7 +147,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 111
   DopplerLevel: 1
   MinDistance: 0
   MaxDistance: 500
@@ -245,6 +249,10 @@ PrefabInstance:
     - target: {fileID: 1646432114360032, guid: dd404c768a9323b4fb42bd3f8ea5c2fe, type: 3}
       propertyPath: m_Name
       value: SM_Wep_Veh_Rocket_Launcher_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646432114360032, guid: dd404c768a9323b4fb42bd3f8ea5c2fe, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4285322397440598, guid: dd404c768a9323b4fb42bd3f8ea5c2fe, type: 3}
       propertyPath: m_LocalPosition.x

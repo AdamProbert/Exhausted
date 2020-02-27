@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private AIInput2 aIInput;
     public bool isAI;
 
+    public bool testMode = false;
+
     [Header("Health")]
     [SerializeField] float maxHealth;
     [SerializeField] float m_currentHealth;
@@ -31,8 +33,8 @@ public class Player : MonoBehaviour
     public delegate void OnHealthChangeDelegate(float newVal);
     public event OnHealthChangeDelegate OnHealthChange;
     
-    private playerState m_state;
-    [SerializeField] public playerState state{
+    [SerializeField] private playerState m_state;
+    public playerState state{
         get{return m_state;}
         set{
             if(m_state == value) return;
@@ -76,9 +78,7 @@ public class Player : MonoBehaviour
             {
                 healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
                 ogHealhBarSize = healthBar.sizeDelta;
-            }
-            
-            // weaponController.SetAutoFind(false, null);
+            }            
         }
         else
         {
@@ -92,14 +92,18 @@ public class Player : MonoBehaviour
         {
             state=playerState.Building;    
         }
-
-        if(GameManager.Instance.gameState == GameManager.GameState.PLAY)
+        else if(GameManager.Instance.gameState == GameManager.GameState.PLAY)
         {
             state=playerState.Alive;    
         }
+        // else
+        // {
+        //     state=playerState.Alive;
+        // }
+
         Debug.Log("Player state set in start to: " +state);
         // Manually call, unity stupid.
-        HandlePlayerStateChange(state, this);
+        // HandlePlayerStateChange(state, this);
 
         GameManager.Instance.OnStateChange += HandleGameStateChange;    
     }
@@ -107,7 +111,14 @@ public class Player : MonoBehaviour
     private void OnNavTargetChange(Player newTarget)
     {
         // Broadcast message to all components on this game object
-        BroadcastMessage("NewTargetAcquired", newTarget);
+        if(newTarget != null)
+        {
+            BroadcastMessage("NewTargetAcquired", newTarget);    
+        }
+        else
+        {
+            BroadcastMessage("TargetLost");    
+        }
         Debug.Log("Player: On nav target change received");
     }
 
@@ -147,22 +158,32 @@ public class Player : MonoBehaviour
         BroadcastMessage("PlayerDied");
     }
 
-    private void OnCollisionEnter(Collision other) 
-    {   
-        // if projectile hit us
-        if(other.gameObject.layer == 10)
-        {
-            float forceHit = other.relativeVelocity.magnitude;
-            forceHit *= other.rigidbody.mass;
+    // Old collision based damage
+    // private void OnCollisionEnter(Collision other) 
+    // {   
+    //     // if projectile hit us
+    //     if(other.gameObject.layer == 10)
+    //     {
+    //         float forceHit = other.relativeVelocity.magnitude;
+    //         forceHit *= other.rigidbody.mass;
 
-            Debug.Log("Player: " + gameObject.name + " hit for " + forceHit + " damage");
+    //         //Debug.Log("Player: " + gameObject.name + " hit for " + forceHit + " damage");
 
-            if(state == playerState.Alive)
-            {
-                currentHealth -= forceHit;
-            }
+    //         if(state == playerState.Alive)
+    //         {
+    //             currentHealth -= forceHit;
+    //         }
             
-        }    
+    //     }    
+    // }
+
+    public void TakeDamage(float damage)
+    {
+        // TODO: Apply armour modifiers
+        if(state == playerState.Alive)
+        {
+            currentHealth -= damage;
+        }
     }
 
     public void HandleGameStateChange()
@@ -186,7 +207,6 @@ public class Player : MonoBehaviour
         {
             GetComponent<UserInput>().Deactivate();
             transform.Find("Camera").gameObject.SetActive(false);
-            Debug.Log("Camera should be inactive");
         }
 
         if(newstate == Player.playerState.Alive)
@@ -195,7 +215,6 @@ public class Player : MonoBehaviour
             {
                 GetComponent<UserInput>().SetActive();
                 transform.Find("Camera").gameObject.SetActive(true);
-                Debug.Log("Camera should be active");
             }        
             BroadcastMessage("PlayerActive");
         }

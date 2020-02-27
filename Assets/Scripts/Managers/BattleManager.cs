@@ -35,7 +35,7 @@ public class BattleManager : MonoBehaviour
                 humanPlayer = p;
             }
             activePlayers.Add(p);
-            p.OnStateChange += HandlePlayerDied;
+            p.OnStateChange += HandlePlayerStateChange;
         }
 
         endGameRoutine = EndGame();
@@ -48,21 +48,22 @@ public class BattleManager : MonoBehaviour
         GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
     }
 
-    public void HandlePlayerDied(Player.playerState newstate, Player deadPlayer)
+    public void HandlePlayerStateChange(Player.playerState newstate, Player player)
     {
         if(newstate == Player.playerState.Dead)
         {
-            activePlayers.Remove(deadPlayer);
-            deadPlayers.Add(deadPlayer);   
+            activePlayers.Remove(player);
+            deadPlayers.Add(player);
+            if(player == humanPlayer)
+            {
+                Debug.Log("Player died ending game");
+                StartCoroutine(endGameRoutine);
+            }   
         }
+
         if(activePlayers.Count == 1)
         {
             Debug.Log("One player left! " + activePlayers[0].name + " WON!");
-            StartCoroutine(endGameRoutine);
-        }
-        if(deadPlayer == humanPlayer)
-        {
-            Debug.Log("Player died ending game");
             StartCoroutine(endGameRoutine);
         }
     }
@@ -74,15 +75,9 @@ public class BattleManager : MonoBehaviour
             endGameUI.SetActive(true);
             yield return new WaitForSeconds(10);
             SceneManager.LoadScene("MainMenu");
-
+            Destroy(humanPlayer.gameObject); // Make sure we clean up the player
             UnityEngine.Cursor.visible = true;
             UnityEngine.Cursor.lockState = CursorLockMode.None;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

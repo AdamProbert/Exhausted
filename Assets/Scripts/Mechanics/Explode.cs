@@ -8,6 +8,7 @@ public class Explode : MonoBehaviour
     [SerializeField][Range(0,20)] public float radius;
     [SerializeField][Range(0,10)] public float upwardMultiplier;
     [SerializeField]public ParticleSystem effect;
+    [SerializeField] private AudioClip explosionSound;
 
     public void DOIT()
     {

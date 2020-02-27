@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3173279099678854832}
   - component: {fileID: 8105346976796190720}
-  - component: {fileID: 4070780636876701284}
+  - component: {fileID: -8538912134346521283}
   m_Layer: 10
   m_Name: RifleBullet
   m_TagString: Untagged
@@ -50,7 +50,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &4070780636876701284
+--- !u!114 &-8538912134346521283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,9 +59,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2058201599352487386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f539391b7a6690498498c9c11036cbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dbe39fd8e40995448f44c3b680fe131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 15
   bulletDecalMetal: {fileID: 198272901577952178, guid: 6d990eb8e29d9c647a06a43b40b03632,
     type: 3}
 --- !u!65 &1141106305602192677

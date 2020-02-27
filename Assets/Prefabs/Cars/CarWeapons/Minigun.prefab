@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 8727088961950827896}
   - component: {fileID: 4149698880877036662}
   - component: {fileID: 5619489168035031761}
-  m_Layer: 0
+  - component: {fileID: 2143332102076114045}
+  - component: {fileID: 6306070126883971312}
+  m_Layer: 8
   m_Name: Minigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +72,8 @@ MonoBehaviour:
   parentRigidBody: {fileID: 0}
   uiImage: {fileID: 21300000, guid: 821132cd34be1c143b411ee1a3c0eb6d, type: 3}
   currentStatus: 0
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 727e85301e987d24c907d694259f61bf, type: 3}
+  fireEffectPrefab: {fileID: 19896092, guid: 5c2bdcf6f0badc34f9f192b0995e4a79, type: 3}
 --- !u!114 &5619489168035031761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +88,125 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiImage: {fileID: 21300000, guid: 821132cd34be1c143b411ee1a3c0eb6d, type: 3}
   uiName: Gattling Gun
+--- !u!114 &2143332102076114045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000601011492793620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ac9dfc29f1f6241a45727d690f3d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRotation: 30
+  rotationSpeed: 5
+  searchRadius: 40
+  searchLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  raycastIgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 2147484471
+  aimOffset: {x: 0, y: 1, z: -1}
+--- !u!82 &6306070126883971312
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000601011492793620}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8746721390987911425, guid: 5f1f3c25a04eee04daf9345cc091c38b,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 111
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.125
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &6460815612015795914
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8402867351572036405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,6 +247,14 @@ PrefabInstance:
     - target: {fileID: 1277969264105640, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_Name
       value: SM_Wep_Veh_MiniGun_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277969264105640, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388528498519288, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4330984924424482, guid: 370e17f25eab9c74fa0390384a0e49b7, type: 3}
       propertyPath: m_LocalPosition.x

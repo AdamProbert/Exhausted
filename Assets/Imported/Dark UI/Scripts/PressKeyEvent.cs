@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 namespace Michsky.UI.Dark
 {
@@ -7,7 +9,7 @@ namespace Michsky.UI.Dark
     {
         [Header("KEY")]
         [SerializeField]
-        public KeyCode hotkey;
+        public KeyControl hotkey;
         public bool pressAnyKey;
 
         [Header("KEY ACTION")]
@@ -18,7 +20,7 @@ namespace Michsky.UI.Dark
         {
             if(pressAnyKey == true)
             {
-                if (Input.anyKeyDown)
+                if (Keyboard.current.anyKey.wasPressedThisFrame)
                 {
                     pressAction.Invoke();
                 } 
@@ -26,7 +28,7 @@ namespace Michsky.UI.Dark
 
             else
             {
-                if (Input.GetKeyDown(hotkey))
+                if (hotkey.wasPressedThisFrame)
                 {
                     pressAction.Invoke();
                 } 

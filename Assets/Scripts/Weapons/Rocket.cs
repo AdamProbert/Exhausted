@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Explode))]
-[RequireComponent(typeof(Rigidbody))]
-public class Rocket : MonoBehaviour
+public class Rocket : BaseProjectile
 {
-
-    Rigidbody rb;
-    Quaternion rotation;
     Explode explode;
     [SerializeField] private float flightTimeBeforeWiggle;
     [SerializeField] private bool wiggle;
@@ -19,7 +15,6 @@ public class Rocket : MonoBehaviour
     // Start is called before the first frame update
     private void Awake() 
     {
-        rb = GetComponent<Rigidbody>();    
         explode = GetComponent<Explode>();
     }
 
@@ -32,22 +27,17 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Face forward
-        rotation = transform.rotation;
-        rotation.SetLookRotation (rb.velocity);
-        transform.rotation = rotation;
-
-        if(wiggle && (startTime + flightTimeBeforeWiggle) < Time.time)
+        if(wiggle && (startTime + flightTimeBeforeWiggle) < Time.time && base.rb)
         {
             // Make it wiggle
-            rb.AddForce(Vector3.up * Random.Range(-wiggleAmount, wiggleAmount), ForceMode.Impulse);   
-            rb.AddForce(Vector3.right * Random.Range(-wiggleAmount, wiggleAmount), ForceMode.Impulse);   
+            base.rb.AddForce(Vector3.up * Random.Range(-wiggleAmount, wiggleAmount), ForceMode.Impulse);   
+            base.rb.AddForce(Vector3.right * Random.Range(-wiggleAmount, wiggleAmount), ForceMode.Impulse);   
         }
     }
 
     private void OnCollisionEnter(Collision other) 
     {
         explode.DOIT();
-        gameObject.SetActive(false);
+        base.HandleCollision(other);
     }
 }

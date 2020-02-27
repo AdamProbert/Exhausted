@@ -10,6 +10,7 @@ public class AutoAimAndFIre : MonoBehaviour
     [SerializeField][Range(.1f, 10f)] protected float rotationSpeed;
     [SerializeField][Range(5f, 100f)] private float searchRadius;
     [SerializeField]private LayerMask searchLayers;
+    [SerializeField]private LayerMask raycastIgnoreLayers;
     [SerializeField] private Vector3 aimOffset = new Vector3(0,1,-1);
 
     private Player target;
@@ -27,8 +28,18 @@ public class AutoAimAndFIre : MonoBehaviour
     {
         if(weapon.currentStatus == BaseWeapon.status.Active)
         {
-            CheckCurrentTargetValid();
+            if(autoFindTarget)
+            {
+                CheckCurrentTargetValid();
+            }
+            
+            if(target == null && autoFindTarget)
+            {
+                GetPlayerTarget();
+            }
+            
             TargetEnemy();
+            
             AutoFire();
         }
         
@@ -41,18 +52,30 @@ public class AutoAimAndFIre : MonoBehaviour
         {
             // Ray cast from weapon to target player, shoot if hit
             RaycastHit hit;
-            // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(transform.position, target.transform.position - transform.position, out hit, Mathf.Infinity, searchLayers))
+            // Does the ray hit player object
+            if (Physics.Raycast(weapon.projectileSpawn.position, target.transform.position - weapon.projectileSpawn.position, out hit, Mathf.Infinity, raycastIgnoreLayers))
             {
-                Debug.DrawRay(transform.position, (target.transform.position - transform.position) * hit.distance, Color.yellow);
-                weapon.StartFiring();
-                // Debug.Log("Did Hit");
+                Debug.DrawRay(weapon.projectileSpawn.position, (target.transform.position - weapon.projectileSpawn.position) * hit.distance, Color.yellow);
+                Debug.DrawRay(target.transform.position, (weapon.projectileSpawn.position - target.transform.position) * hit.distance, Color.white);
+                RaycastHit returnhit;
+                // Check if the return raycast works too
+                if (!Physics.SphereCast(target.transform.position, .5f, (weapon.projectileSpawn.position - target.transform.position).normalized, out returnhit, hit.distance, raycastIgnoreLayers))
+                {
+                    if(hit.transform.root == target.transform.root)
+                    {
+                        weapon.StartFiring();
+                        return;
+                    }
+                }
             }
-            else
-            {
-                Debug.DrawRay(transform.position, (target.transform.position - transform.position) * 1000, Color.white);
-                // Debug.Log("Did not Hit");
-            }
+            
+            Debug.DrawRay(weapon.projectileSpawn.position, (target.transform.position - weapon.projectileSpawn.position) * 1000, Color.black);
+            weapon.StopFiring();
+        }
+
+        else
+        {
+            weapon.StopFiring();
         }
     }
 
@@ -68,6 +91,12 @@ public class AutoAimAndFIre : MonoBehaviour
             {
                 target = null;
             }
+
+            if(target == null)
+            {
+                Debug.Log("Current target invalidated");
+            }
+            
         }
     }
 
@@ -76,7 +105,6 @@ public class AutoAimAndFIre : MonoBehaviour
         
         if (target == null)
         {
-            GetPlayerTarget();
         }
 
             
@@ -89,10 +117,13 @@ public class AutoAimAndFIre : MonoBehaviour
             Vector3 currentDir = transform.forward;
 
             currentDir = Vector3.RotateTowards(currentDir, targetDir, turnRateRadians*Time.deltaTime, 1.0f);
+            currentDir.y = Mathf.Clamp(currentDir.y, -maxRotation, maxRotation);
 
             Quaternion qDir = new Quaternion();
             qDir.SetLookRotation(currentDir, Vector3.up);
             transform.rotation = qDir;
+
+            // Debug.Log("Target dir: " + targetDir +  " currentdir: " + currentDir + "  qdir: " + qDir);
         }
     }
 
@@ -107,7 +138,7 @@ public class AutoAimAndFIre : MonoBehaviour
             foreach(Collider hit in hits)
             {
                 
-                if(hit.transform.root == transform.root)
+                if(hit.transform.root == this.transform.root)
                 {
                     continue;
                 }
@@ -117,7 +148,6 @@ public class AutoAimAndFIre : MonoBehaviour
                     continue;
                 }
                 
-                Debug.Log("Autoaim found someone to hit");
                 Vector3 diff = (hit.transform.position - transform.position);
                 var curDistance = diff.sqrMagnitude;
                 if (curDistance < distance)
@@ -129,7 +159,7 @@ public class AutoAimAndFIre : MonoBehaviour
             if(closest != null)
             {
                 target = closest.transform.root.GetComponent<Player>();
-                Debug.Log("Set target to: " + target);
+                Debug.Log("Found new target: " + target);
             }
                 
         } 
@@ -141,6 +171,12 @@ public class AutoAimAndFIre : MonoBehaviour
         target = newTarget;
     }
 
+    public void TargetLost()
+    {
+        Debug.Log("AutoAim: Target lost");
+        target = null;  
+    }
+
     public void SetAutoFindTarget(bool val)
     {
         autoFindTarget = val;
@@ -149,5 +185,15 @@ public class AutoAimAndFIre : MonoBehaviour
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireSphere(transform.position, searchRadius);
+        if(target!=null)
+        {
+            Gizmos.DrawWireSphere(target.transform.position, 5f);
+        }
+
+        if(weapon)
+        {
+            Gizmos.DrawWireSphere(weapon.projectileSpawn.position, .5f);
+        }
+        
     }
 }

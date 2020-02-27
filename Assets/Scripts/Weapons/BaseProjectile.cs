@@ -5,14 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BaseProjectile : MonoBehaviour
 {
-    [SerializeField] ParticleSystem bulletDecalMetal;
-    Rigidbody rb;
+    [SerializeField] float damage;
+    protected Rigidbody rb;
     Quaternion rotation;
 
-        // Start is called before the first frame update
     private void Awake() 
     {
-        rb = GetComponent<Rigidbody>();    
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -25,12 +24,14 @@ public class BaseProjectile : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision other) 
+    protected void HandleCollision(Collision other) 
     {
+
+        if(other.gameObject.layer == 8 && other.transform.root != this.transform.root)
+        {
+            other.gameObject.GetComponent<Player>().TakeDamage(damage);
+        }
+
         gameObject.SetActive(false);
-        ContactPoint hit = other.contacts[0];
-        GameObject bulletDecal = Instantiate(bulletDecalMetal, hit.point + hit.normal * 0.01f, Quaternion.FromToRotation(Vector3.forward, hit.normal)).gameObject;
-        bulletDecal.transform.SetParent(other.transform);
-        Destroy(bulletDecal, 10f);
     }
 }

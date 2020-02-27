@@ -26,14 +26,18 @@ public class WheelFX : MonoBehaviour {
 	int lastSkid = -1; // Array index for the skidmarks controller. Index of last skidmark piece this wheel used
 	float lastFixedUpdateTime;
 
+	private bool active = false;
+
 	// #### UNITY INTERNAL METHODS ####
 
-	public void PlayerActive() {
+	public void PlayerActive() 
+	{
 		wheelCollider = GetComponent<WheelCollider>();
 		lastFixedUpdateTime = Time.time;
 		skidmarksController = GameObject.FindObjectOfType<Skidmarks>();
 		rb = transform.root.GetComponent<Rigidbody>();
 		tireSmoke = Instantiate(tireSmokePrefab, transform.position, Quaternion.identity, transform);
+		active = true;
 	}
 
 	protected void FixedUpdate() {
@@ -42,55 +46,58 @@ public class WheelFX : MonoBehaviour {
 
 	protected void LateUpdate() 
 	{
-		var emission = tireSmoke.emission;
-
-		if (wheelCollider.GetGroundHit(out wheelHitInfo) && skidmarksController)
+		if(active)
 		{
-			
-			// Check sideways speed
+			var emission = tireSmoke.emission;
 
-			// Gives velocity with +z being the car's forward axis
-			Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
-			float skidTotal = Mathf.Abs(localVelocity.x);
+			if (wheelCollider.GetGroundHit(out wheelHitInfo) && skidmarksController)
+			{
+				
+				// Check sideways speed
 
-			// Check wheel spin as well
+				// Gives velocity with +z being the car's forward axis
+				Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
+				float skidTotal = Mathf.Abs(localVelocity.x);
 
-			float wheelAngularVelocity = wheelCollider.radius * ((2 * Mathf.PI * wheelCollider.rpm) / 60);
-			float carForwardVel = Vector3.Dot(rb.velocity, transform.forward);
-			float wheelSpin = Mathf.Abs(carForwardVel - wheelAngularVelocity) * WHEEL_SLIP_MULTIPLIER;
+				// Check wheel spin as well
 
-			// NOTE: This extra line should not be needed and you can take it out if you have decent wheel physics
-			// The built-in Unity demo car is actually skidding its wheels the ENTIRE time you're accelerating,
-			// so this fades out the wheelspin-based skid as speed increases to make it look almost OK
-			wheelSpin = Mathf.Max(0, wheelSpin * (10 - Mathf.Abs(carForwardVel)));
+				float wheelAngularVelocity = wheelCollider.radius * ((2 * Mathf.PI * wheelCollider.rpm) / 60);
+				float carForwardVel = Vector3.Dot(rb.velocity, transform.forward);
+				float wheelSpin = Mathf.Abs(carForwardVel - wheelAngularVelocity) * WHEEL_SLIP_MULTIPLIER;
 
-			skidTotal += wheelSpin;
+				// NOTE: This extra line should not be needed and you can take it out if you have decent wheel physics
+				// The built-in Unity demo car is actually skidding its wheels the ENTIRE time you're accelerating,
+				// so this fades out the wheelspin-based skid as speed increases to make it look almost OK
+				wheelSpin = Mathf.Max(0, wheelSpin * (10 - Mathf.Abs(carForwardVel)));
 
-			// Skid if we should
-			if (skidTotal >= SKID_FX_SPEED) {
-				float intensity = Mathf.Clamp01(skidTotal / MAX_SKID_INTENSITY);
-				// Account for further movement since the last FixedUpdate
-				Vector3 skidPoint = wheelHitInfo.point + (rb.velocity * (Time.time - lastFixedUpdateTime));
-				lastSkid = skidmarksController.AddSkidMark(skidPoint, wheelHitInfo.normal, intensity, lastSkid);
+				skidTotal += wheelSpin;
+
+				// Skid if we should
+				if (skidTotal >= SKID_FX_SPEED) {
+					float intensity = Mathf.Clamp01(skidTotal / MAX_SKID_INTENSITY);
+					// Account for further movement since the last FixedUpdate
+					Vector3 skidPoint = wheelHitInfo.point + (rb.velocity * (Time.time - lastFixedUpdateTime));
+					lastSkid = skidmarksController.AddSkidMark(skidPoint, wheelHitInfo.normal, intensity, lastSkid);
+				}
+				else {
+					lastSkid = -1;
+				}
+
+				if(skidTotal >= wheelSpinForSmoke)
+				{
+					emission.enabled = true;
+				}
+				else
+				{
+					emission.enabled = false;
+				}
+
+				
 			}
 			else {
 				lastSkid = -1;
-			}
-
-			if(skidTotal >= wheelSpinForSmoke)
-			{
-				emission.enabled = true;
-			}
-			else
-			{
 				emission.enabled = false;
 			}
-
-			
-		}
-		else {
-			lastSkid = -1;
-			emission.enabled = false;
 		}
 	}
 }
