@@ -5,13 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BaseProjectile : MonoBehaviour
 {
-    [SerializeField] float damage;
+    [SerializeField] protected float damage;
+    [SerializeField] protected AudioClip collisionSound;
     protected Rigidbody rb;
+    protected AudioSource audioSource;
     Quaternion rotation;
 
     private void Awake() 
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,7 +25,6 @@ public class BaseProjectile : MonoBehaviour
         rotation.SetLookRotation (rb.velocity);
         transform.rotation = rotation;
     }
-
 
     protected void HandleCollision(Collision other) 
     {

@@ -30,7 +30,7 @@ abstract public class BaseWeapon : MonoBehaviour
     [SerializeField] private ParticleSystem fireEffectPrefab;
     protected ParticleSystem fireEffect;
 
-    protected void Init() 
+    public void Init() 
     {
         projectilePool = GetComponent<ObjectPooler>();    
         audioSource = GetComponent<AudioSource>();

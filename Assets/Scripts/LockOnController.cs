@@ -78,6 +78,10 @@ public class LockOnController : MonoBehaviour
     
             lockOnIndicator.transform.position += lockOnIndicator.transform.forward *1.5f;
         }
+        else
+        {
+            possibleTargets.Remove(lockedTarget);
+        }
     }
 
     public void InitateLockOn()

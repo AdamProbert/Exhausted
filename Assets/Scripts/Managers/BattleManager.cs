@@ -44,7 +44,10 @@ public class BattleManager : MonoBehaviour
         // Lock cursor for gameplay
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+    }
 
+    private void Start() 
+    {
         GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
     }
 

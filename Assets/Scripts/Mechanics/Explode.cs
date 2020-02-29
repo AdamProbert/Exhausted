@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Explode : MonoBehaviour
 {
@@ -12,15 +13,25 @@ public class Explode : MonoBehaviour
 
     public void DOIT()
     {
-        Instantiate(effect, transform.position, transform.rotation);
+        Instantiate(effect, transform.position, Quaternion.identity);
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
         foreach(Collider c in colliders)
         {
-            Rigidbody rb = c.GetComponent<Rigidbody>();
+            Rigidbody rb = c.transform.root.GetComponent<Rigidbody>();
             if(rb != null && c.gameObject.layer != 10)
             {
+                Debug.Log("Found rb: " +rb.gameObject.name);
                 rb.AddExplosionForce(force, transform.position, radius, 2f);
             }
+        }
+        SendImpulse();
+    }
+
+    public void SendImpulse()
+    {
+        if(GetComponent<CinemachineImpulseSource>())
+        {
+            GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         }
     }
 }

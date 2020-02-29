@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 23156984524338796}
   - component: {fileID: 57026979}
   - component: {fileID: 5201491629796880600}
+  - component: {fileID: 8604080617159378885}
   m_Layer: 8
   m_Name: MuscleCar
   m_TagString: Untagged
@@ -520,7 +521,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyMaterial: {fileID: 2100000, guid: 114a6fba875454e429630d158ebf588c, type: 2}
   burnSpeed: 0.01
+  burnTickRate: 0
   carExplodePS: {fileID: 782365431, guid: a663016779ce653458b08fe54f658621, type: 3}
+  carExplodePS2: {fileID: 0}
   explosionForce: 15
   disableComponents:
   - {fileID: 9053489945751409351}
@@ -532,6 +535,29 @@ MonoBehaviour:
   enableComponents:
   - {fileID: 315950383}
   - {fileID: 1958449966}
+--- !u!114 &8604080617159378885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504709610077770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3381e3b78b9bca24da27d55561f6d32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hardness: 2.5
+  MaxDeformationRadius: 0
+  MaxVertexMov: 0
+  RandomFactorDeformation: 0
+  DeformationsScale: {x: 1, y: 1, z: 1}
+  DeformMeshCollider: 0
+  LimitDeformationToMeshBounds: 1
+  RecalculateNormals: 1
+  Master: {fileID: 0}
+  OverrideMaster: 0
+  MeshFilter: {fileID: 33299481239779160}
 --- !u!1 &127590608834460945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,6 +1810,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AttachPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7550081980923311519, guid: 38eb871fdb594a242b7476f76dd52fa9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8299583296778462852, guid: 38eb871fdb594a242b7476f76dd52fa9,
         type: 3}

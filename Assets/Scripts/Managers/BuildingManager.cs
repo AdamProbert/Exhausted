@@ -12,6 +12,8 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] List<Attachment> attachments = new List<Attachment>();
     [SerializeField] float rotationSpeed;
 
+    [SerializeField] GameObject attachPointGraphic;
+
     [SerializeField] ParticleSystem spawnVehicleEffect;
     private GameObject currentVehicle;
     private int currentVehicleIndex = 0;
@@ -121,6 +123,11 @@ public class BuildingManager : MonoBehaviour
         Destroy(effect.gameObject, 5f);
 
         attachPoints.AddRange(currentVehicle.GetComponentsInChildren<CarAttachPoint>());
+        // Add graphic per attach point
+        foreach(CarAttachPoint cap in attachPoints)
+        {
+            Instantiate(attachPointGraphic, cap.transform.position, cap.transform.rotation, cap.transform);
+        }
         Debug.Log("New attach points: " + attachPoints);
     }
 
@@ -175,7 +182,8 @@ public class BuildingManager : MonoBehaviour
 
     private void OnEnable() 
     {
-        controls.UI.Enable();    
+        controls.UI.Enable();
+        controls.Player.Disable();    
     }
 
     private void OnDisable() 

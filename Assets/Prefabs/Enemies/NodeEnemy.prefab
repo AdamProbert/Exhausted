@@ -31,6 +31,29 @@ Transform:
   m_Father: {fileID: 9167826977869132905}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7170641291644240963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544801703969742243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3381e3b78b9bca24da27d55561f6d32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hardness: 3
+  MaxDeformationRadius: 5
+  MaxVertexMov: 5
+  RandomFactorDeformation: 0
+  DeformationsScale: {x: 1, y: 1, z: 1}
+  DeformMeshCollider: 0
+  LimitDeformationToMeshBounds: 1
+  RecalculateNormals: 1
+  Master: {fileID: 7979698016321969746}
+  OverrideMaster: 1
+  MeshFilter: {fileID: 3549609924669265073}
 --- !u!1 &9167826977869424713
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,11 +67,11 @@ GameObject:
   - component: {fileID: 9167826977875959293}
   - component: {fileID: 9167826977875959283}
   - component: {fileID: 9167826978727361370}
-  - component: {fileID: 4126207629914068066}
   - component: {fileID: 5927849582270387990}
   - component: {fileID: 1681143631}
   - component: {fileID: 1531000730}
   - component: {fileID: -6291496810190881940}
+  - component: {fileID: 7979698016321969746}
   m_Layer: 8
   m_Name: NodeEnemy
   m_TagString: Player
@@ -180,29 +203,6 @@ MonoBehaviour:
   frontSensorPosOffset: {x: 0, y: 0, z: 0}
   m_NavTarget: {fileID: 0}
   debugMode: 0
---- !u!114 &4126207629914068066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9167826977869424713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3381e3b78b9bca24da27d55561f6d32c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hardness: 1.5
-  MaxDeformationRadius: 0
-  MaxVertexMov: 0
-  RandomFactorDeformation: 0
-  DeformationsScale: {x: 1, y: 1, z: 1}
-  DeformMeshCollider: 0
-  LimitDeformationToMeshBounds: 1
-  RecalculateNormals: 1
-  Master: {fileID: 0}
-  OverrideMaster: 0
-  MeshFilter: {fileID: 0}
 --- !u!114 &5927849582270387990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b9ab87393262a4cb78552ff914524f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAI: 0
+  isAI: 1
   testMode: 0
   maxHealth: 3000
   m_currentHealth: 0
@@ -293,6 +293,29 @@ MonoBehaviour:
   weapons:
   - {fileID: 8243019123377798634}
   enableAutoAim: 1
+--- !u!114 &7979698016321969746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167826977869424713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3381e3b78b9bca24da27d55561f6d32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hardness: 1
+  MaxDeformationRadius: 0
+  MaxVertexMov: 0
+  RandomFactorDeformation: 0
+  DeformationsScale: {x: 1, y: 1, z: 1}
+  DeformMeshCollider: 0
+  LimitDeformationToMeshBounds: 1
+  RecalculateNormals: 1
+  Master: {fileID: 0}
+  OverrideMaster: 0
+  MeshFilter: {fileID: 0}
 --- !u!1001 &3545725819892311017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -331,7 +354,7 @@ PrefabInstance:
     - target: {fileID: 1162034103, guid: d1102d228d962ce46bd2efcb00c224d2, type: 3}
       propertyPath: Master
       value: 
-      objectReference: {fileID: 4126207629914068066}
+      objectReference: {fileID: 0}
     - target: {fileID: 1457409287, guid: d1102d228d962ce46bd2efcb00c224d2, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -351,7 +374,7 @@ PrefabInstance:
     - target: {fileID: 2022519217, guid: d1102d228d962ce46bd2efcb00c224d2, type: 3}
       propertyPath: Master
       value: 
-      objectReference: {fileID: 4126207629914068066}
+      objectReference: {fileID: 0}
     - target: {fileID: 1278764733265322, guid: d1102d228d962ce46bd2efcb00c224d2, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -525,11 +548,24 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6848777142164449086, guid: d1102d228d962ce46bd2efcb00c224d2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d1102d228d962ce46bd2efcb00c224d2, type: 3}
+--- !u!1 &3544801703969742243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1504709610077770, guid: d1102d228d962ce46bd2efcb00c224d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3545725819892311017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3547431097649521427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4489379343909114, guid: d1102d228d962ce46bd2efcb00c224d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3545725819892311017}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &3549609924669265073 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 33299481239779160, guid: d1102d228d962ce46bd2efcb00c224d2,
     type: 3}
   m_PrefabInstance: {fileID: 3545725819892311017}
   m_PrefabAsset: {fileID: 0}

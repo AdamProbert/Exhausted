@@ -2547,7 +2547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endGameUI: {fileID: 2121600663}
-  autoEndGame: 1
+  autoEndGame: 0
+  requestedEnemyCount: 0
 --- !u!114 &2982420971241834487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2574,7 +2575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ca20954f3164e039f358b6659c10c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs: []
+  enemyPrefabs:
+  - {fileID: 1531000730, guid: 52b51f7496abcf54093f1a8132f9fb54, type: 3}
 --- !u!82 &443717917
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2586,7 +2588,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8117975099513096021, guid: 35504b9268033d5418091860d10f4d0c,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 9898f1d37bc572e4ba8a449f5fa4daf4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0d3280fb860d42843818d20b65519dfb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

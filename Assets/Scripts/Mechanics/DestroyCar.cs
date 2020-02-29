@@ -1,22 +1,23 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using NodeCanvas.StateMachines;
-using UnityEngine.UI;
+using Cinemachine;
 
 [RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(CinemachineImpulseSource))]
 
 public class DestroyCar : MonoBehaviour
 {
     [SerializeField] Material destroyMaterial;
     [SerializeField] float burnSpeed;
+    [SerializeField] float burnTickRate;
     [SerializeField] ParticleSystem carExplodePS;
+    [SerializeField] ParticleSystem carExplodePS2;
     [SerializeField] float explosionForce;
     [SerializeField] private GameObject[] disableComponents;
     [SerializeField] private GameObject[] enableComponents;
 
 
+    private CinemachineImpulseSource cinemachineImpulseSource;
     private Material instantiatedBurnMaterial;
     private IEnumerator playerBurnRoutine;
     private MeshRenderer m_Renderer;
@@ -26,6 +27,7 @@ public class DestroyCar : MonoBehaviour
     {
         playerBurnRoutine = BurnAfterDeath();
         m_Renderer = GetComponent<MeshRenderer>();
+        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     // Broadcast receiver    
@@ -33,7 +35,6 @@ public class DestroyCar : MonoBehaviour
     {
         EnableDestroyedParts();
         StartCoroutine(playerBurnRoutine);
-        Explosion();
     }
 
     private void EnableDestroyedParts()
@@ -58,10 +59,25 @@ public class DestroyCar : MonoBehaviour
         }
         
         Instantiate(carExplodePS, transform.position, Quaternion.identity);
+        cinemachineImpulseSource.GenerateImpulse();
+    }
+
+    private void Explosion2()
+    {
+        if(explosionForce > 0f)
+        {
+            transform.root.GetComponent<Rigidbody>().AddExplosionForce(explosionForce/2, transform.position, 1f, 2f, ForceMode.VelocityChange);
+        }
+        
+        Instantiate(carExplodePS2, transform.position, Quaternion.identity);
+        cinemachineImpulseSource.GenerateImpulse();
     }
     
     private IEnumerator BurnAfterDeath() 
     {
+        Explosion();
+        yield return new WaitForSeconds(.5f);
+        Explosion2();
         instantiatedBurnMaterial = new Material(destroyMaterial); 
         m_Renderer.material = instantiatedBurnMaterial;
         float burnDissolveAmountMax = 1.1f;
@@ -79,14 +95,16 @@ public class DestroyCar : MonoBehaviour
                 currentBurnAmount += burnSpeed;
             }
             
-            yield return new WaitForSeconds(burnSpeed*5);
+            yield return new WaitForSeconds(burnTickRate);
         }
 
         while (currentBurnAmount <= burnDissolveAmountMax)
         {
             instantiatedBurnMaterial.SetFloat("_Dissolve", currentBurnAmount += burnSpeed);
             currentBurnAmount += burnSpeed;
-            yield return new WaitForSeconds(burnSpeed*5);
+            yield return new WaitForSeconds(burnTickRate);
         }
+
+        Destroy(this.transform.root.gameObject);
     }
 }

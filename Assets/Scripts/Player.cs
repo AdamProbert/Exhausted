@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [Header("Setup")]
     private WeaponController weaponController;
     private AIInput2 aIInput;
-    public bool isAI;
+    public bool isAI = true;
 
     public bool testMode = false;
 
@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
     }
 
     public enum playerState{
+        Inactive,
         Building,
         Alive,
         Dead
@@ -58,7 +59,20 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        OnStateChange += HandlePlayerStateChange;
+        GameManager.Instance.OnStateChange += HandleGameStateChange;    
+        this.OnStateChange += HandlePlayerStateChange;
+
+        if(GameManager.Instance.gameState == GameManager.GameState.BUILD)
+        {
+            state=playerState.Building;    
+        }
+        else if(GameManager.Instance.gameState == GameManager.GameState.PLAY)
+        {
+            state=playerState.Alive;    
+        }
+
+        Debug.Log("Player state set in awake to: " +state);
+
         currentHealth = maxHealth;
         this.OnHealthChange += StatusHandler;
         weaponController = GetComponent<WeaponController>();
@@ -73,39 +87,12 @@ public class Player : MonoBehaviour
         }
         else if(!GetComponent<AIInput2>() && GetComponent<UserInput>())
         {
-            isAI = false;
-            if(healthBar)
-            {
-                healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
-                ogHealhBarSize = healthBar.sizeDelta;
-            }            
+            isAI = false;      
         }
         else
         {
             Debug.LogError("!Player must have either AIInput script or UserInput!");
         }
-    }
-
-    private void Start() 
-    {
-        if(GameManager.Instance.gameState == GameManager.GameState.BUILD)
-        {
-            state=playerState.Building;    
-        }
-        else if(GameManager.Instance.gameState == GameManager.GameState.PLAY)
-        {
-            state=playerState.Alive;    
-        }
-        // else
-        // {
-        //     state=playerState.Alive;
-        // }
-
-        Debug.Log("Player state set in start to: " +state);
-        // Manually call, unity stupid.
-        // HandlePlayerStateChange(state, this);
-
-        GameManager.Instance.OnStateChange += HandleGameStateChange;    
     }
 
     private void OnNavTargetChange(Player newTarget)
@@ -155,7 +142,7 @@ public class Player : MonoBehaviour
             GetComponent<UserInput>().enabled = false;
         } 
        
-        BroadcastMessage("PlayerDied");
+        BroadcastMessage("PlayerDied"); // Player removal handled in DestroyCar
     }
 
     // Old collision based damage
@@ -205,16 +192,28 @@ public class Player : MonoBehaviour
         Debug.Log("Player state changed to: " + newstate);
         if(newstate == Player.playerState.Building)
         {
-            GetComponent<UserInput>().Deactivate();
-            transform.Find("Camera").gameObject.SetActive(false);
+            if(!isAI)
+            {
+                GetComponent<UserInput>().Deactivate();
+                transform.Find("Camera").gameObject.SetActive(false);
+            }
         }
 
         if(newstate == Player.playerState.Alive)
         {
             if(!isAI)
             {
-                GetComponent<UserInput>().SetActive();
+                if(GetComponent<UserInput>())
+                {
+                    GetComponent<UserInput>().SetActive();
+                }
+
                 transform.Find("Camera").gameObject.SetActive(true);
+                if(!healthBar)
+                {
+                    healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
+                    ogHealhBarSize = healthBar.sizeDelta;
+                }      
             }        
             BroadcastMessage("PlayerActive");
         }
