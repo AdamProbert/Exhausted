@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Explode))]
+[RequireComponent(typeof(Rigidbody))]
 
 public class InteractableMapProp : MonoBehaviour
 {
 
     [SerializeField] LayerMask collisionLayers;
     [SerializeField] int collisionBeforeDeath;
-    private int currentCollisionCount = 0;
+    public int currentCollisionCount = 0;
+    public bool exploded = false;
 
     private Explode explode;
 
@@ -19,16 +21,28 @@ public class InteractableMapProp : MonoBehaviour
         explode = GetComponent<Explode>();
     }
 
+    public void ExplodeProp()
+    {
+        Debug.Log("Exploding");
+        exploded = true;
+        explode.DOIT();
+        Destroy(this.gameObject);
+    }
+
     private void OnCollisionEnter(Collision other) 
     {
-        if(other.gameObject.layer == collisionLayers)
+        if((collisionLayers & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
         {
             currentCollisionCount += 1;
         }
+
         if(currentCollisionCount >= collisionBeforeDeath)
         {
-            explode.DOIT();
-            Destroy(this.gameObject, 5f);
+            if(!exploded)
+            {
+                ExplodeProp();
+            }
         }    
     }
 }
+

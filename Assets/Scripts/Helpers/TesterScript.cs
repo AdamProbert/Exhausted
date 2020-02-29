@@ -10,25 +10,39 @@ public class TesterScript : MonoBehaviour
     
     [SerializeField] Vector3 spawnpoint;
 
-    [SerializeField] Explode barrel;
+    [SerializeField] Transform instantiationPoint;
+
+    [SerializeField] InteractableMapProp barrel;
+
+    private InteractableMapProp myBarrel;
 
     bool weaponfiriing = false;
     // Update is called once per frame
 
+    
+    // private void Start() 
+    // {
+    //     weapon.Init();     
+    // }
+    
     void Update()
     {
         if(Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            barrel.DOIT();
+            myBarrel.ExplodeProp();
+            // weapon.StartFiring();
             
             // car.BroadcastMessage("PlayerDied");
         }
 
-        // if(Keyboard.current.backspaceKey.wasPressedThisFrame)
-        // {
-        //     Destroy(car);
-        //     car = Instantiate(car, spawnpoint, Quaternion.identity);
-        // }
+        if(Keyboard.current.backspaceKey.wasPressedThisFrame)
+        {
+            if(myBarrel != null)
+            {
+                Destroy(myBarrel);
+            }
+            myBarrel = Instantiate(barrel, instantiationPoint.position, instantiationPoint.rotation).GetComponent<InteractableMapProp>();
+        }
 
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5847241901519561394}
   - component: {fileID: 5862805891419627276}
   - component: {fileID: 5870866693757481816}
-  - component: {fileID: 5849403344170186891}
+  - component: {fileID: 6052692560187733111}
   m_Layer: 0
   m_Name: SM_Prop_Barrel_Warning_01
   m_TagString: Untagged
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &5849403344170186891
-CapsuleCollider:
+--- !u!64 &6052692560187733111
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,10 +90,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 01571ba68fb2dad46aa03094ab219579, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.36306822
-  m_Height: 1.11
-  m_Direction: 1
-  m_Center: {x: -0.0000006109476, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: ae67f4ff29dc5324f93943776cc4be0d, type: 3}
 --- !u!1 &8850487447504361478
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,8 +160,17 @@ MonoBehaviour:
   force: 3500
   radius: 15
   upwardMultiplier: 10
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 3221226295
   effect: {fileID: 19800012, guid: 464e982a9d5976e46a460e6077548d7a, type: 3}
   explosionSound: {fileID: 8300000, guid: f3daf13c9ad43874fa8107fa36968986, type: 3}
+  shrapnelItemPrefabs:
+  - {fileID: 1535647755537840, guid: 66e5e5af7e3fece4fa5a0520c3497c2e, type: 3}
+  - {fileID: 1089289225629928, guid: 24214123f0eabb4439faca69b95057cf, type: 3}
+  - {fileID: 1180277074406206, guid: 8c4bfbbe76a91a547aef607aaef32fca, type: 3}
+  - {fileID: 1242744296811784, guid: 848ba459ba676974c823038e0fda68cb, type: 3}
+  shrapnelCount: 20
 --- !u!114 &8850487447504361474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,5 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 3328
   collisionBeforeDeath: 3
+  currentCollisionCount: 0
+  exploded: 1

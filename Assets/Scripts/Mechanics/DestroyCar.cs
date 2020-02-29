@@ -58,7 +58,8 @@ public class DestroyCar : MonoBehaviour
             transform.root.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, 1f, 2f, ForceMode.VelocityChange);
         }
         
-        Instantiate(carExplodePS, transform.position, Quaternion.identity);
+        ParticleSystem x = Instantiate(carExplodePS, transform.position, Quaternion.identity);
+        Destroy(x.gameObject, 7f);
         cinemachineImpulseSource.GenerateImpulse();
     }
 
@@ -69,7 +70,8 @@ public class DestroyCar : MonoBehaviour
             transform.root.GetComponent<Rigidbody>().AddExplosionForce(explosionForce/2, transform.position, 1f, 2f, ForceMode.VelocityChange);
         }
         
-        Instantiate(carExplodePS2, transform.position, Quaternion.identity);
+        ParticleSystem x = Instantiate(carExplodePS2, transform.position, Quaternion.identity);
+        Destroy(x.gameObject, 7f);
         cinemachineImpulseSource.GenerateImpulse();
     }
     
