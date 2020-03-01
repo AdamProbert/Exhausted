@@ -35,6 +35,7 @@ public class UserInput : MonoBehaviour
     private void Awake() 
     {
         controls = new InputMaster();
+        controls.Player.Enable();
 
         controls.Player.Zoom.performed += ctx => HandleZoom();
 

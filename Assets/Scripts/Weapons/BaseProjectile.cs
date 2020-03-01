@@ -22,9 +22,12 @@ public class BaseProjectile : MonoBehaviour
     public void FaceForward()
     {
         // Face forward
-        rotation = transform.rotation;
-        rotation.SetLookRotation(rb.velocity);
-        transform.rotation = rotation;
+        if(rb != null)
+        {
+            rotation = transform.rotation;
+            rotation.SetLookRotation(rb.velocity);
+            transform.rotation = rotation;
+        }
     }
 
     protected void HandleCollision(Collision other) 

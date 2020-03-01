@@ -144,9 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5637cd40534c5409cbfe2a3d300b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1506
-  radius: 5
-  upwardMultiplier: 10
+  force: 1000
+  radius: 2
+  upwardMultiplier: 5
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 3221228598
