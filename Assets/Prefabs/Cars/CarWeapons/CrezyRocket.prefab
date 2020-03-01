@@ -110,8 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a98ee21c3d8fa45a65d54de4909613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 25
   collisionSound: {fileID: 0}
+  playerShooter: {fileID: 0}
   flightTimeBeforeWiggle: 0.5
   wiggle: 1
   wiggleAmount: 0.5
@@ -144,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 1506
-  radius: 13
+  radius: 5
   upwardMultiplier: 10
   ignoreLayers:
     serializedVersion: 2

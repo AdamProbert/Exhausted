@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2938755455111852995}
   - component: {fileID: 2938755455111853006}
   - component: {fileID: 4946453868560626199}
+  - component: {fileID: 5089050571967425422}
   m_Layer: 10
   m_Name: BoomStick
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 4000
   radius: 5
-  upwardMultiplier: 5
+  upwardMultiplier: 3
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 3221228598
@@ -89,7 +90,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2938755455111852992}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.01
   m_UseGravity: 1
@@ -109,8 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbccbc3f434b40a4d9d4085c48ab83d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 50
   collisionSound: {fileID: 8300000, guid: 0f467dc08bf4d9a48b276245e7aef969, type: 3}
+  playerShooter: {fileID: 0}
   fuseTime: 1
   stickableSurfaces:
     serializedVersion: 2
@@ -225,6 +227,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 5}
+--- !u!75 &5089050571967425422
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2938755455111852992}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 200, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 90}
 --- !u!1001 &2600808154074876079
 PrefabInstance:
   m_ObjectHideFlags: 0

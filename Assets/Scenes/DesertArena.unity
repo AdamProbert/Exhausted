@@ -11068,6 +11068,10 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.3773585
       objectReference: {fileID: 0}
+    - target: {fileID: 443717918, guid: fded8108c8674b64ca82ba005dbf4431, type: 3}
+      propertyPath: autoEndGame
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1564637011, guid: fded8108c8674b64ca82ba005dbf4431, type: 3}
       propertyPath: m_Controller
       value: 

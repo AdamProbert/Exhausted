@@ -13,11 +13,21 @@ public class BoomStick : BaseProjectile
     private void OnEnable() 
     {
         flying = true;
+        transform.parent = null;
     }
 
     private void OnDisable() 
     {
         flying = false;
+    }
+
+    private void Update() 
+    {
+        if(flying)
+        {
+            base.FaceForward();
+        }
+        
     }
 
     private IEnumerator ExplodeOnTimer()
@@ -54,15 +64,8 @@ public class BoomStick : BaseProjectile
 
     private void OnTriggerEnter(Collider other) 
     {
-        Debug.Log("trigger called");
-
-        if(
-            (stickableSurfaces & 1 << other.gameObject.layer) == 1 << other.gameObject.layer
-            && flying
-            && other.transform.root != base.playerShooter 
-        )
+        if(other.gameObject && other.gameObject.layer == 8 && other.transform.root != base.playerShooter && flying)
         {
-            Debug.Log("Should be playing audio");
             // Dat sweet audio
             base.audioSource.clip = base.collisionSound;
             base.audioSource.pitch = Random.Range(0.6f, 0.9f);

@@ -33,11 +33,16 @@ public class Rocket : BaseProjectile
             base.rb.AddForce(Vector3.up * Random.Range(-wiggleAmount, wiggleAmount), ForceMode.Impulse);   
             base.rb.AddForce(Vector3.right * Random.Range(-wiggleAmount, wiggleAmount), ForceMode.Impulse);   
         }
+
+        base.FaceForward();
     }
 
     private void OnCollisionEnter(Collision other) 
     {
-        explode.DOIT();
-        base.HandleCollision(other);
+        if(other.transform.root != base.playerShooter)
+        {
+            explode.DOIT();
+            base.HandleCollision(other);    
+        }
     }
 }
