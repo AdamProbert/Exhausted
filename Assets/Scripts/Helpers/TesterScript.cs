@@ -20,29 +20,39 @@ public class TesterScript : MonoBehaviour
     // Update is called once per frame
 
     
-    // private void Start() 
-    // {
-    //     weapon.Init();     
-    // }
+    private void Start() 
+    {
+        weapon.Init();     
+    }
     
     void Update()
     {
         if(Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            myBarrel.ExplodeProp();
-            // weapon.StartFiring();
+            // myBarrel.ExplodeProp();
+            if(!weaponfiriing)
+            {
+                weapon.StartFiring();
+                weaponfiriing = true;
+            }
+            else
+            {
+                weapon.StopFiring();
+                weaponfiriing = false;
+            }
+            
             
             // car.BroadcastMessage("PlayerDied");
         }
 
-        if(Keyboard.current.backspaceKey.wasPressedThisFrame)
-        {
-            if(myBarrel != null)
-            {
-                Destroy(myBarrel);
-            }
-            myBarrel = Instantiate(barrel, instantiationPoint.position, instantiationPoint.rotation).GetComponent<InteractableMapProp>();
-        }
+        // if(Keyboard.current.backspaceKey.wasPressedThisFrame)
+        // {
+        //     if(myBarrel != null)
+        //     {
+        //         Destroy(myBarrel);
+        //     }
+        //     myBarrel = Instantiate(barrel, instantiationPoint.position, instantiationPoint.rotation).GetComponent<InteractableMapProp>();
+        // }
 
     }
 }

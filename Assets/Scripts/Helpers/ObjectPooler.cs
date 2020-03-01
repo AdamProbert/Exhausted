@@ -31,6 +31,7 @@ public class ObjectPooler : MonoBehaviour
             }
             if(!pooledObjects[i].activeInHierarchy)
             {
+                pooledObjects[i].transform.parent = transform;
                 return pooledObjects[i];
             }    
         }

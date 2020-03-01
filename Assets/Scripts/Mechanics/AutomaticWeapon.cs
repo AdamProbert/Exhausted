@@ -35,7 +35,7 @@ public class AutomaticWeapon : BaseWeapon
         projectile.SetActive(true);
         projectile.transform.position = base.projectileSpawn.position;
         projectile.transform.rotation = base.projectileSpawn.rotation;
-        projectile.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed;
+        projectile.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed + base.GetParentVelocity();
     }
     public override void StartFiring()
     {

@@ -42,7 +42,7 @@ public class Saw : BaseProjectile
             if(other.transform.root != this.transform.root)
             {
 
-                if(other.gameObject.layer == stickableSurfaces)
+                if((stickableSurfaces & 1 << other.gameObject.layer) == 1 << other.gameObject.layer)
                 {
                     // Stick it in the thing
                     Vector3 dir = other.contacts[0].point - transform.position;

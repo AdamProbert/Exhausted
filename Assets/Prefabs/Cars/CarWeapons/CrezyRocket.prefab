@@ -148,7 +148,7 @@ MonoBehaviour:
   upwardMultiplier: 10
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3221228598
   effect: {fileID: 19849376, guid: b42b8677df418c047aef5d8ce9c66663, type: 3}
   explosionSound: {fileID: 8300000, guid: 8dfcae34791b3a447b81d6653208f596, type: 3}
   shrapnelItemPrefabs:
