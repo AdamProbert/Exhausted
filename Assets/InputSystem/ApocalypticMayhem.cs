@@ -909,6 +909,156 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Campaign"",
+            ""id"": ""aae18089-5615-4b2e-92ac-3f30aeb51f4e"",
+            ""actions"": [
+                {
+                    ""name"": ""CameraControl"",
+                    ""type"": ""Value"",
+                    ""id"": ""98a404a4-4e3b-4974-ab8a-66c465b5e00f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CameraZoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""bba73f46-269c-484e-af27-4669e5748e3f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CameraRotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""f68aa050-164e-46ff-bc03-1dc4cff07857"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Selection"",
+                    ""type"": ""Button"",
+                    ""id"": ""ceabb94b-9d2f-46a2-aae4-57625a97509f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""KB+M"",
+                    ""id"": ""f804e60a-bac0-4305-b20f-66d88d721a79"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""5bf93750-3382-4a14-b048-1af02d0ae192"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e11ab53e-b10d-4ea3-8c07-cb828ae6f786"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c3f836ce-96e5-4f02-adf8-7803592ee15b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a6bb469e-9365-4cbe-b70c-b2a7e683f3b6"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae7ec29d-f33a-4ae5-ae9f-d7d84264c2ad"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Selection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbef3199-bca4-458c-95b1-e5e35397991d"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraZoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""7e552fbc-571d-42a5-9a3c-f3a1a38913de"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraRotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""796cf4cf-b642-4d27-a6ea-896453b68bd9"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraRotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""04e35834-2f8a-478c-8273-14630c13031b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraRotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1000,6 +1150,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_UI_Rotate = m_UI.FindAction("Rotate", throwIfNotFound: true);
         m_UI_CycleAttachPoint = m_UI.FindAction("CycleAttachPoint", throwIfNotFound: true);
         m_UI_CycleVehicle = m_UI.FindAction("CycleVehicle", throwIfNotFound: true);
+        // Campaign
+        m_Campaign = asset.FindActionMap("Campaign", throwIfNotFound: true);
+        m_Campaign_CameraControl = m_Campaign.FindAction("CameraControl", throwIfNotFound: true);
+        m_Campaign_CameraZoom = m_Campaign.FindAction("CameraZoom", throwIfNotFound: true);
+        m_Campaign_CameraRotate = m_Campaign.FindAction("CameraRotate", throwIfNotFound: true);
+        m_Campaign_Selection = m_Campaign.FindAction("Selection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1271,6 +1427,63 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Campaign
+    private readonly InputActionMap m_Campaign;
+    private ICampaignActions m_CampaignActionsCallbackInterface;
+    private readonly InputAction m_Campaign_CameraControl;
+    private readonly InputAction m_Campaign_CameraZoom;
+    private readonly InputAction m_Campaign_CameraRotate;
+    private readonly InputAction m_Campaign_Selection;
+    public struct CampaignActions
+    {
+        private @InputMaster m_Wrapper;
+        public CampaignActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CameraControl => m_Wrapper.m_Campaign_CameraControl;
+        public InputAction @CameraZoom => m_Wrapper.m_Campaign_CameraZoom;
+        public InputAction @CameraRotate => m_Wrapper.m_Campaign_CameraRotate;
+        public InputAction @Selection => m_Wrapper.m_Campaign_Selection;
+        public InputActionMap Get() { return m_Wrapper.m_Campaign; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CampaignActions set) { return set.Get(); }
+        public void SetCallbacks(ICampaignActions instance)
+        {
+            if (m_Wrapper.m_CampaignActionsCallbackInterface != null)
+            {
+                @CameraControl.started -= m_Wrapper.m_CampaignActionsCallbackInterface.OnCameraControl;
+                @CameraControl.performed -= m_Wrapper.m_CampaignActionsCallbackInterface.OnCameraControl;
+                @CameraControl.canceled -= m_Wrapper.m_CampaignActionsCallbackInterface.OnCameraControl;
+                @CameraZoom.started -= m_Wrapper.m_CampaignActionsCallbackInterface.OnCameraZoom;
+                @CameraZoom.performed -= m_Wrapper.m_CampaignActionsCallbackInterface.OnCameraZoom;
+                @CameraZoom.canceled -= m_Wrapper.m_CampaignActionsCallbackInterface.OnCameraZoom;
+                @CameraRotate.started -= m_Wrapper.m_CampaignActionsCallbackInterface.OnCameraRotate;
+                @CameraRotate.performed -= m_Wrapper.m_CampaignActionsCallbackInterface.OnCameraRotate;
+                @CameraRotate.canceled -= m_Wrapper.m_CampaignActionsCallbackInterface.OnCameraRotate;
+                @Selection.started -= m_Wrapper.m_CampaignActionsCallbackInterface.OnSelection;
+                @Selection.performed -= m_Wrapper.m_CampaignActionsCallbackInterface.OnSelection;
+                @Selection.canceled -= m_Wrapper.m_CampaignActionsCallbackInterface.OnSelection;
+            }
+            m_Wrapper.m_CampaignActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CameraControl.started += instance.OnCameraControl;
+                @CameraControl.performed += instance.OnCameraControl;
+                @CameraControl.canceled += instance.OnCameraControl;
+                @CameraZoom.started += instance.OnCameraZoom;
+                @CameraZoom.performed += instance.OnCameraZoom;
+                @CameraZoom.canceled += instance.OnCameraZoom;
+                @CameraRotate.started += instance.OnCameraRotate;
+                @CameraRotate.performed += instance.OnCameraRotate;
+                @CameraRotate.canceled += instance.OnCameraRotate;
+                @Selection.started += instance.OnSelection;
+                @Selection.performed += instance.OnSelection;
+                @Selection.canceled += instance.OnSelection;
+            }
+        }
+    }
+    public CampaignActions @Campaign => new CampaignActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1343,5 +1556,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnCycleAttachPoint(InputAction.CallbackContext context);
         void OnCycleVehicle(InputAction.CallbackContext context);
+    }
+    public interface ICampaignActions
+    {
+        void OnCameraControl(InputAction.CallbackContext context);
+        void OnCameraZoom(InputAction.CallbackContext context);
+        void OnCameraRotate(InputAction.CallbackContext context);
+        void OnSelection(InputAction.CallbackContext context);
     }
 }
