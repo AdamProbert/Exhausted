@@ -38,7 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - CampaignInteractable
   - MetaColliders
   - MapProp
   m_SortingLayers:

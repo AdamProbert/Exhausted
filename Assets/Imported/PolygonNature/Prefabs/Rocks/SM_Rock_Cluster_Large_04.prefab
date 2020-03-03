@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 4232939154390888}
   - component: {fileID: 33878937887811142}
   - component: {fileID: 23798053378272814}
-  - component: {fileID: 95641192353857036}
-  - component: {fileID: 604494541}
+  - component: {fileID: 2919477634199995027}
   m_Layer: 0
   m_Name: SM_Rock_Cluster_Large_04
   m_TagString: Untagged
@@ -81,26 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &95641192353857036
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207724868542064}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 108d8e85fe1296f48a2aca1f8a7bbce1, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &604494541
+--- !u!64 &2919477634199995027
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,6 +91,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 108d8e85fe1296f48a2aca1f8a7bbce1, type: 3}
