@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4898071424285268}
   - component: {fileID: 33282753071054012}
   - component: {fileID: 23292605932810014}
-  - component: {fileID: -3524992005335770331}
+  - component: {fileID: 248589554835352961}
   m_Layer: 0
   m_Name: SM_Rock_Cluster_Large_03
   m_TagString: Untagged
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-3524992005335770331
+--- !u!64 &248589554835352961
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,6 +91,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 690f3b5126e54a74eac23b9a0a34160d, type: 3}

@@ -12,7 +12,8 @@ public class WeaponController : MonoBehaviour
 
     public void PlayerActive() 
     {
-        if(weaponUIUpdate)
+        Debug.Log("Weapon controller: Player active called");
+        if(!weaponUIUpdate)
         {
             weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();    
         }
@@ -38,7 +39,7 @@ public class WeaponController : MonoBehaviour
 
     private void WeaponRegister()
     {        
-        if(!IsAI && weaponUIUpdate)
+        if(!IsAI)
         {
             weaponUIUpdate.RegisterWeapons(weapons);
         }
@@ -67,6 +68,14 @@ public class WeaponController : MonoBehaviour
                 }
                 
             }
+        }
+    }
+
+    public void PlayerDied()
+    {
+        foreach(BaseWeapon w in weapons)
+        {
+            w.gameObject.SetActive(false);
         }
     }
 }

@@ -51,10 +51,12 @@ public class GameManager : Singleton<GameManager> {
     }
 
     public void SetGameState(GameState state){
+        Debug.Log("GameManager set game state called. New state: " + state);
         this.gameState = state;
-        if(OnStateChange != null && OnStateChange.Target != null)
+        if(OnStateChange != null)
         {
             OnStateChange();
         }
+        
     }
 }

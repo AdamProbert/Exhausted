@@ -6,19 +6,53 @@ using UnityEngine.InputSystem;
 public class TesterScript : MonoBehaviour
 {
     [SerializeField] GameObject car;
+    [SerializeField] BaseWeapon weapon;
+    
+    [SerializeField] Vector3 spawnpoint;
+
+    [SerializeField] Transform instantiationPoint;
+
+    [SerializeField] InteractableMapProp barrel;
+
+    private InteractableMapProp myBarrel;
+
+    bool weaponfiriing = false;
     // Update is called once per frame
+
+    
+    private void Start() 
+    {
+        weapon.Init();     
+    }
+    
     void Update()
     {
         if(Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            BroadcastMessage("PlayerDied");
+            // myBarrel.ExplodeProp();
+            if(!weaponfiriing)
+            {
+                weapon.StartFiring();
+                weaponfiriing = true;
+            }
+            else
+            {
+                weapon.StopFiring();
+                weaponfiriing = false;
+            }
+            
+            
+            // car.BroadcastMessage("PlayerDied");
         }
 
-        if(Keyboard.current.backspaceKey.wasPressedThisFrame)
-        {
-            Destroy(car);
-            car = Instantiate(car, transform.position, Quaternion.identity, transform);
-        }
+        // if(Keyboard.current.backspaceKey.wasPressedThisFrame)
+        // {
+        //     if(myBarrel != null)
+        //     {
+        //         Destroy(myBarrel);
+        //     }
+        //     myBarrel = Instantiate(barrel, instantiationPoint.position, instantiationPoint.rotation).GetComponent<InteractableMapProp>();
+        // }
 
     }
 }

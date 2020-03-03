@@ -31,7 +31,7 @@ namespace NodeCanvas.Tasks.Conditions
         {
             foreach(GameObject target in targets.value)
             {
-                if(AIHelperFunctions.CanSeeTarget(
+                if(target && AIHelperFunctions.CanSeeTarget(
                     agent,
                     target.transform,
                     maxDistance.value,

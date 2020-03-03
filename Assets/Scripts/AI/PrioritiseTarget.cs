@@ -38,7 +38,7 @@ namespace NodeCanvas.Tasks.Actions
 
             foreach(GameObject target in possibleTargets.value)
             {
-                if(AIHelperFunctions.CanSeeTarget(
+                if(target && AIHelperFunctions.CanSeeTarget(
                     agent,
                     target.transform,
                     maxDistance.value,

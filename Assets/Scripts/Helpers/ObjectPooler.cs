@@ -7,11 +7,16 @@ public class ObjectPooler : MonoBehaviour
     public GameObject pooledObject;
     [SerializeField][Range(1,99999)] public float pooledAmount;
     public bool willGrow = true;
+    private bool isProjectile = false;
     
     public List<GameObject> pooledObjects;
     
     void Start ()
     {
+        if(pooledObject.GetComponent<BaseProjectile>())
+        {
+            isProjectile = true;
+        }
         pooledObjects = new List<GameObject>();
         for(int i = 0; i < pooledAmount; i++)
         {
@@ -31,6 +36,7 @@ public class ObjectPooler : MonoBehaviour
             }
             if(!pooledObjects[i].activeInHierarchy)
             {
+                pooledObjects[i].transform.parent = transform;
                 return pooledObjects[i];
             }    
         }
@@ -50,6 +56,10 @@ public class ObjectPooler : MonoBehaviour
         if(appendToList)
         {
             pooledObjects.Add(obj);
+        }
+        if(isProjectile)
+        {
+            obj.GetComponent<BaseProjectile>().playerShooter = transform.root;
         }
         obj.transform.parent = transform;
         obj.SetActive(false);

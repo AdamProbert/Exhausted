@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5006802412952818384}
   - component: {fileID: -2041831213611976780}
   - component: {fileID: 1545057341454795647}
+  - component: {fileID: 7772913817701803776}
   m_Layer: 10
   m_Name: CrezyRocket
   m_TagString: Untagged
@@ -109,7 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a98ee21c3d8fa45a65d54de4909613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 25
+  collisionSound: {fileID: 0}
+  playerShooter: {fileID: 0}
   flightTimeBeforeWiggle: 0.5
   wiggle: 1
   wiggleAmount: 0.5
@@ -142,10 +145,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 1000
-  radius: 13
-  upwardMultiplier: 10
+  radius: 2
+  upwardMultiplier: 5
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 3221228598
   effect: {fileID: 19849376, guid: b42b8677df418c047aef5d8ce9c66663, type: 3}
   explosionSound: {fileID: 8300000, guid: 8dfcae34791b3a447b81d6653208f596, type: 3}
+  shrapnelItemPrefabs:
+  - {fileID: 1239673110073358, guid: 89a0fdc0463814f489cd8f25abba65f6, type: 3}
+  - {fileID: 1511868952250108, guid: d8d48504fc5c6a4479427ebe83518acb, type: 3}
+  - {fileID: 1438361652473040, guid: 287311a6a938ad44eba34a72474966c1, type: 3}
+  - {fileID: 1535647755537840, guid: fa38b57f4b77c3e42a514f5a8a6cade6, type: 3}
+  - {fileID: 1242744296811784, guid: b298eb27be7fb0142bd74abd63d7f96a, type: 3}
+  - {fileID: 1758905757572084, guid: 32fcecfe35d6ec84eacd93e891376e04, type: 3}
+  - {fileID: 1758905757572084, guid: eb19ffdae5867f847879a3fe54515a8b, type: 3}
+  shrapnelCount: 5
+--- !u!114 &7772913817701803776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080410123433332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 5
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 1000
 --- !u!1001 &2654164594781788449
 PrefabInstance:
   m_ObjectHideFlags: 0

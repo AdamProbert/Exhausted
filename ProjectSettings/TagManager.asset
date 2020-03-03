@@ -20,6 +20,7 @@ TagManager:
   - Player
   - Ground
   - Projectile
+  - Shrapnel
   - 
   - 
   - 
@@ -37,8 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - CampaignInteractable
   - MetaColliders
   - MapProp
   m_SortingLayers:

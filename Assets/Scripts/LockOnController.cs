@@ -67,7 +67,7 @@ public class LockOnController : MonoBehaviour
         }
         else if(state == lockState.Locked)
         {
-            // umm2?
+
         }
 
         // Update lockOnIndicator position/rotation
@@ -97,6 +97,7 @@ public class LockOnController : MonoBehaviour
 
     public void RemoveLock()
     {
+        possibleTargets.Remove(lockedTarget);
         lockedTarget = null;
         lockOnIndicator.SetActive(false);
         state = lockState.NoLock;
