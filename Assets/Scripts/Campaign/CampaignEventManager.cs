@@ -47,6 +47,7 @@ public class CampaignEventManager : MonoBehaviour
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent += listener;
+            instance.eventDictionary[eventName] = thisEvent;
         }
  
         else

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiImage: {fileID: 21300000, guid: c82f5294c81968346953d64c0ad82da9, type: 3}
-  uiName: Saw Launcher
+  uiName: Saw Flinger
 --- !u!82 &7680127452197486893
 AudioSource:
   m_ObjectHideFlags: 0

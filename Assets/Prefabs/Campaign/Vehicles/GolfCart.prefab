@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4072415504368194}
   - component: {fileID: 33178017518452706}
   - component: {fileID: 23092553701710684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_GolfCart_Wheel_rl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4942025353545580}
   - component: {fileID: 33546409231675118}
   - component: {fileID: 23511973347654606}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_GolfCart_SteeringW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,9 +169,7 @@ GameObject:
   - component: {fileID: 4182080328442488}
   - component: {fileID: 33111924376231628}
   - component: {fileID: 23701397555428154}
-  - component: {fileID: 5581270282212753269}
-  - component: {fileID: 4445221115378626564}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GolfCart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,9 +183,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170052622600160}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4369512360827906}
   - {fileID: 4942025353545580}
@@ -196,6 +194,7 @@ Transform:
   - {fileID: 4072415504368194}
   - {fileID: 4108099484542370}
   - {fileID: 4400993473896052}
+  - {fileID: 6787427144690123499}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -246,41 +245,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!195 &5581270282212753269
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170052622600160}
-  m_Enabled: 1
-  m_AgentTypeID: -1372625422
-  m_Radius: 1.4717804
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 4.134146
-  m_BaseOffset: 2.067073
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!65 &4445221115378626564
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170052622600160}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.376133, y: 1.93819, z: 2.9435608}
-  m_Center: {x: 0, y: 1.0979781, z: 0}
 --- !u!1 &1280873926634338
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +256,7 @@ GameObject:
   - component: {fileID: 4148763773788662}
   - component: {fileID: 33560728845611462}
   - component: {fileID: 23182330178854256}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_GolfCart_Wheel_fr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +335,7 @@ GameObject:
   - component: {fileID: 4239974490153736}
   - component: {fileID: 33498832869227942}
   - component: {fileID: 23551547181168542}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_GolfCart_Wheel_fl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +414,7 @@ GameObject:
   - component: {fileID: 4108099484542370}
   - component: {fileID: 33968680229817872}
   - component: {fileID: 23743988642243968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_GolfCart_Wheel_rr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +493,7 @@ GameObject:
   - component: {fileID: 4369512360827906}
   - component: {fileID: 33302197334148858}
   - component: {fileID: 23023912443893294}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_GolfCart_Armour_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +572,7 @@ GameObject:
   - component: {fileID: 4400993473896052}
   - component: {fileID: 33551294188527594}
   - component: {fileID: 23618105367854914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Veh_GolfCart_WireMesh_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -676,3 +640,95 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &4288558058706228257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6787427144690123499}
+  - component: {fileID: 8820835970455463016}
+  m_Layer: 8
+  m_Name: Lights
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6787427144690123499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288558058706228257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.018, y: 0.504, z: 1.303}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4182080328442488}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &8820835970455463016
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288558058706228257}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 50
+  m_InnerSpotAngle: 5
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 1
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0

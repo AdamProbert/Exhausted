@@ -429,7 +429,7 @@ PrefabInstance:
     - target: {fileID: 6141373093325465424, guid: 2e3f66772351c9d42bafab97bd6a503a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.21798033
+      value: -0.2179803
       objectReference: {fileID: 0}
     - target: {fileID: 6141373093325465424, guid: 2e3f66772351c9d42bafab97bd6a503a,
         type: 3}
@@ -1789,32 +1789,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ebfe7eacf279e74ea1e2b9938215c90, type: 3}
---- !u!114 &687153353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59306422a2ca4454aabce3daa79c3334, type: 3}
-  m_Name: New Aura Base Settings
-  m_EditorClassIdentifier: 
-  useDensity: 1
-  density: 0.25
-  useScattering: 1
-  scattering: 0.5
-  useAmbientLighting: 1
-  ambientLightingStrength: 1
-  useColor: 0
-  color: {r: 0, g: 0.5, b: 0.5, a: 0.5}
-  colorStrength: 1
-  useTint: 0
-  tint: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  tintStrength: 1
-  useExtinction: 0
-  extinction: 0.75
 --- !u!1001 &690138533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3534,9 +3508,9 @@ Transform:
   - {fileID: 30818634}
   - {fileID: 1493857497}
   - {fileID: 2122561730}
+  - {fileID: 840252839}
   - {fileID: 1923979455}
   - {fileID: 1517429096}
-  - {fileID: 840252839}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5162,6 +5136,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2099043436}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2099911079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59306422a2ca4454aabce3daa79c3334, type: 3}
+  m_Name: New Aura Base Settings
+  m_EditorClassIdentifier: 
+  useDensity: 1
+  density: 0.25
+  useScattering: 1
+  scattering: 0.5
+  useAmbientLighting: 1
+  ambientLightingStrength: 1
+  useColor: 0
+  color: {r: 0, g: 0.5, b: 0.5, a: 0.5}
+  colorStrength: 1
+  useTint: 0
+  tint: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  tintStrength: 1
+  useExtinction: 0
+  extinction: 0.75
 --- !u!1001 &2116139405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5372,6 +5372,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1546768840}
     m_Modifications:
+    - target: {fileID: 2326291883139154134, guid: e444de515d2678140af4b2dc58414166,
+        type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2326291883139154134, guid: e444de515d2678140af4b2dc58414166,
+        type: 3}
+      propertyPath: m_Flare
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434067019468698988, guid: e444de515d2678140af4b2dc58414166,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.018
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434067019468698988, guid: e444de515d2678140af4b2dc58414166,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.432
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434067019468698988, guid: e444de515d2678140af4b2dc58414166,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.131
+      objectReference: {fileID: 0}
     - target: {fileID: 2434725539678792650, guid: e444de515d2678140af4b2dc58414166,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5445,7 +5470,7 @@ PrefabInstance:
     - target: {fileID: 2438828541695428882, guid: e444de515d2678140af4b2dc58414166,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.404
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2438857785543194065, guid: e444de515d2678140af4b2dc58414166,
         type: 3}
@@ -5897,7 +5922,7 @@ RectTransform:
   m_Father: {fileID: 7839189380324010522}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.000000059604645}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -6029,7 +6054,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7839622297703978366}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

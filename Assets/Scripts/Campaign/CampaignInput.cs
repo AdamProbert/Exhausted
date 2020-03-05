@@ -22,6 +22,7 @@ public class CampaignInput : MonoBehaviour
     {
         controls = new InputMaster();
         controls.Campaign.Selection.performed += ctx => HandleSelectionInput();
+        controls.Campaign.CameraZoom.performed += ctx => HandleZoomInput();
     }
 
     private void Update() 
@@ -62,16 +63,26 @@ public class CampaignInput : MonoBehaviour
         }
     }
 
-
     void HandleSelectionInput()
     {
         Vector3 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        // ignoring interactables
+        if(CampaignStateMachine.instance.state == CampaignStateMachine.CampaignState.DEFAULT)
         {
-            
-            agent.SetAgentDestination(hit.point);
+            if(Physics.Raycast(ray, out hit, 1000f, ~interactableLayers))
+            {
+                agent.SetAgentDestination(hit.point);    
+            }
+        }   
+    }
+
+    void HandleZoomInput()
+    {
+        if(CampaignStateMachine.instance.state == CampaignStateMachine.CampaignState.LANDMARK)
+        {
+            CampaignEventManager.TriggerEvent("CancelInteractable", null);
         }
     }
 
