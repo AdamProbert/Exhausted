@@ -82,7 +82,7 @@ public class CampaignInput : MonoBehaviour
     {
         if(CampaignStateMachine.instance.state == CampaignStateMachine.CampaignState.LANDMARK)
         {
-            CampaignEventManager.TriggerEvent("CancelInteractable", null);
+            CampaignEventManager.TriggerEvent("CancelLandmark", null);
         }
     }
 

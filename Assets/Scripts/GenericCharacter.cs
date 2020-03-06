@@ -15,8 +15,6 @@ public class GenericCharacter : MonoBehaviour
     private Dictionary<animChoice, string> animDictionary;
     private Animator animator;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
