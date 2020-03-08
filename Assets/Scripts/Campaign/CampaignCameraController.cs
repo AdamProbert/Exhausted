@@ -17,7 +17,9 @@ public class CampaignCameraController : MonoBehaviour
  
     private void Awake()
     {
+        player = FindObjectOfType<CampaignPlayer>().transform;
         controls = new InputMaster();
+        trackingObject.position = player.transform.position;
      }
  
     private void Update()

@@ -15,8 +15,6 @@ public class Interactable : MonoBehaviour
     bool hidden = false;
     bool isActive = false;
 
-
-
     // Start is called before the first frame update
     void Start()
     {

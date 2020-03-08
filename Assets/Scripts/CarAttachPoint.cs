@@ -16,7 +16,10 @@ public class CarAttachPoint : MonoBehaviour
     {
         hasAttachment = true;
         currentAttachment = attachment;
-        transform.root.GetComponent<WeaponController>().AddWeapon(attachment.GetComponent<BaseWeapon>());
+        if(transform.root.GetComponent<WeaponController>())
+        {
+            transform.root.GetComponent<WeaponController>().AddWeapon(attachment.GetComponent<BaseWeapon>());
+        }   
     }
 
     public void Detach()

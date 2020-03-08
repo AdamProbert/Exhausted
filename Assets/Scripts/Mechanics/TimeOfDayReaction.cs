@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class TimeOfDayReaction : MonoBehaviour
 {
-    [SerializeField] GameObject[] reactors;
+    [SerializeField] List<GameObject> reactors = new List<GameObject>();
+    [SerializeField] bool autoFindLights = true;
 
+    private void Start() 
+    {
+        if(autoFindLights)
+        {
+            foreach (Light l in transform.GetComponentsInChildren<Light>())
+            {
+                reactors.Add(l.gameObject);
+            }
+        }
+    }
     void Sunrise(GameObject notused)
     {
         foreach (GameObject item in reactors)
