@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 using UnityEngine.InputSystem;
 using UnityStandardAssets.Vehicles.Car;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof (UnityStandardAssets.Vehicles.Car.CarController))]
 public class AIInput2 : MonoBehaviour
@@ -198,7 +199,7 @@ public class AIInput2 : MonoBehaviour
         {
             if(hit.collider.gameObject.layer == 9 || hit.collider.CompareTag("World"))
             {
-                Debug.DrawLine(sensorsStartPos, transform.forward * 5f, sensorColor, 10f);
+                Debug.DrawLine(sensorsStartPos, transform.forward * sensorLength, sensorColor, 10f);
                 float revSteer = 0f;
                 Vector3 perp = Vector3.Cross(transform.forward, m_Target.position - transform.position);
                 float dir = Vector3.Dot(perp, transform.up);
@@ -358,6 +359,14 @@ public class AIInput2 : MonoBehaviour
         }
     }
 
+    public bool HasReachedDestination()
+    {
+        if(Vector3.Distance(transform.position, endDestination) < m_ReachTargetThreshold)
+        {
+            return true;
+        }
+        return false;
+    }
 
     private void OnCollisionStay(Collision col)
     {
@@ -390,7 +399,6 @@ public class AIInput2 : MonoBehaviour
             }
         }
     }
-
 
     public void SetPlayerTarget(Player target)
     {
