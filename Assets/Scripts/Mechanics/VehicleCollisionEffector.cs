@@ -7,6 +7,7 @@ public class VehicleCollisionEffector : MonoBehaviour
 {
     [SerializeField] ParticleSystem fxPrefab;
     [SerializeField] float minRigidBodyVelocity;
+    [SerializeField] LayerMask collisionLayers;
     ParticleSystem fx;
 
     Rigidbody rb;
@@ -47,7 +48,10 @@ public class VehicleCollisionEffector : MonoBehaviour
     {
         if(fx == null)
         {
-            fx = Instantiate(fxPrefab, transform.position, Quaternion.LookRotation(-rb.velocity));
+            if(collisionLayers == (collisionLayers | (1 << other.gameObject.layer)))
+            {
+                fx = Instantiate(fxPrefab, transform.position, Quaternion.LookRotation(-rb.velocity));
+            }
         }   
     }
 
