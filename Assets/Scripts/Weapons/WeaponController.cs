@@ -39,7 +39,7 @@ public class WeaponController : MonoBehaviour
 
     private void WeaponRegister()
     {        
-        if(!IsAI)
+        if(!IsAI & weaponUIUpdate!=null)
         {
             weaponUIUpdate.RegisterWeapons(weapons);
         }

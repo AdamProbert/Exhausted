@@ -4,6 +4,7 @@
 // =================================
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // =================================	
 // Define namespace.
@@ -63,7 +64,7 @@ namespace MirzaBeig
 
                 void Update()
                 {
-                    Vector3 mousePosition = Input.mousePosition;
+                    Vector3 mousePosition = Mouse.current.position.ReadValue();
                     mousePosition.z = distanceFromCamera;
 
                     Vector3 mouseScreenToWorld = Camera.main.ScreenToWorldPoint(mousePosition);

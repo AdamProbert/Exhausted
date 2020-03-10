@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
                 }
 
                 transform.Find("Camera").gameObject.SetActive(true);
-                if(!healthBar)
+                if(!healthBar & !testMode)
                 {
                     healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
                     ogHealhBarSize = healthBar.sizeDelta;

@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 // =================================	
 // Define namespace.
@@ -326,12 +327,12 @@ namespace MirzaBeig
                 {
                     // ...
 
-                    input.x = Input.GetAxis("Horizontal");
-                    input.y = Input.GetAxis("Vertical");
+                    input.x = Mouse.current.delta.ReadValue().x;
+                    input.y = Mouse.current.delta.ReadValue().y;
 
                     // Get targets.
 
-                    if (Input.GetKey(KeyCode.LeftShift))
+                    if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
                     {
                         targetCameraPosition.z += input.y * cameraMoveAmount;
                         targetCameraPosition.z = Mathf.Clamp(targetCameraPosition.z, -6.3f, -1.0f);
@@ -363,25 +364,25 @@ namespace MirzaBeig
 
                     // Scroll through systems.
 
-                    if (Input.GetAxis("Mouse ScrollWheel") < 0)
+                    if (Mouse.current.scroll.ReadValue().y < 0)
                     {
                         Next();
                     }
-                    else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+                    else if (Mouse.current.scroll.ReadValue().y > 0)
                     {
                         Previous();
                     }
 
                     // Toggle UI.
 
-                    if (Input.GetKeyDown(KeyCode.U))
-                    {
-                        ui.SetActive(!ui.activeSelf);
-                    }
+                    // if (Input.GetKeyDown(KeyCode.U))
+                    // {
+                    //     ui.SetActive(!ui.activeSelf);
+                    // }
 
                     // Switch between one-shot and looping prefabs.
 
-                    if (Input.GetKeyDown(KeyCode.O))
+                    if (Keyboard.current.oKey.wasPressedThisFrame)
                     {
                         if (particleMode == ParticleMode.looping)
                         {
@@ -395,15 +396,15 @@ namespace MirzaBeig
 
                     // Cycle levels.
 
-                    if (Input.GetKeyDown(KeyCode.L))
+                    if (Keyboard.current.lKey.wasPressedThisFrame)
                     {
                         SetLevel((Level)((int)(currentLevel + 1) % System.Enum.GetNames(typeof(Level)).Length));
                     }
 
                     // Random prefab while holding key.
 
-                    else if (Input.GetKey(KeyCode.R))
-                    {
+                    // else if (Input.GetKey(KeyCode.R))
+                    // {
                         //if (particleMode == ParticleMode.oneshot)
                         //{
                         //    oneshotParticleSystems.randomize();
@@ -416,16 +417,16 @@ namespace MirzaBeig
                         //        //oneshotParticleSystems.instantiateParticlePrefabRandom();
                         //    }
                         //}
-                    }
+                    // }
 
                     // Left-click to spawn once.
                     // Right-click to continously spawn.
 
                     if (particleMode == ParticleMode.oneshot)
                     {
-                        Vector3 mousePosition = Input.mousePosition;
+                        Vector3 mousePosition = Mouse.current.position.ReadValue();
 
-                        if (Input.GetMouseButtonDown(0))
+                        if (Mouse.current.leftButton.wasPressedThisFrame)
                         {
                             CameraShake cameraShake = FindObjectOfType<CameraShake>();
 
@@ -434,7 +435,7 @@ namespace MirzaBeig
 
                             oneshotParticleSystems.InstantiateParticlePrefab(mousePosition, mouse.distanceFromCamera);
                         }
-                        if (Input.GetMouseButton(1))
+                        if (Mouse.current.leftButton.wasPressedThisFrame)
                         {
                             oneshotParticleSystems.InstantiateParticlePrefab(mousePosition, mouse.distanceFromCamera);
                         }
@@ -442,7 +443,7 @@ namespace MirzaBeig
 
                     // Reset.
 
-                    if (Input.GetKeyDown(KeyCode.R))
+                    if (Keyboard.current.kKey.wasPressedThisFrame)
                     {
                         ResetCameraTransformTargets();
                     }
