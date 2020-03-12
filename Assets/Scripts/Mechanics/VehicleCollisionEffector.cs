@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[RequireComponent(typeof(AudioSource))]
 public class VehicleCollisionEffector : MonoBehaviour
 {
     [SerializeField] ParticleSystem fxPrefab;
     [SerializeField] float minRigidBodyVelocity;
     [SerializeField] LayerMask collisionLayers;
     ParticleSystem fx;
+    AudioSource audioSource;
+    [SerializeField] AudioClip scrapeSound;
 
     Rigidbody rb;
+    [SerializeField] float minVelocityExplosion;
 
     [Header("States")]
     [SerializeField] bool scraping = false;
@@ -19,6 +23,9 @@ public class VehicleCollisionEffector : MonoBehaviour
     private void Start() 
     {
         rb = transform.root.GetComponent<Rigidbody>();    
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
+        audioSource.Pause();
     }
 
     private void Update() 
@@ -37,6 +44,7 @@ public class VehicleCollisionEffector : MonoBehaviour
             else
             {
                 fx.Stop();
+                audioSource.Pause();
                 Destroy(fx.gameObject, 2f);
                 fx = null; 
             }
@@ -51,8 +59,11 @@ public class VehicleCollisionEffector : MonoBehaviour
             if(collisionLayers == (collisionLayers | (1 << other.gameObject.layer)))
             {
                 fx = Instantiate(fxPrefab, transform.position, Quaternion.LookRotation(-rb.velocity));
+                
             }
-        }   
+        }
+        
+        audioSource.Play();
     }
 
     private void OnTriggerExit(Collider other) 
@@ -60,6 +71,7 @@ public class VehicleCollisionEffector : MonoBehaviour
         if(fx != null)
         {
             fx.Stop();
+            audioSource.Pause();
             Destroy(fx.gameObject, 2f);
             fx = null;
         }

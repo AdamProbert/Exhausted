@@ -14,6 +14,7 @@ public class Explode : MonoBehaviour
     [Header("FX and sound")]
     [SerializeField]public ParticleSystem effect;
     [SerializeField] private AudioClip explosionSound;
+    [SerializeField] AudioSource audioSource;
 
     [Header("Shrapnel")]
     [SerializeField] private List<GameObject> shrapnelItemPrefabs = new List<GameObject>();
@@ -22,6 +23,11 @@ public class Explode : MonoBehaviour
 
     public void DOIT()
     {
+        // Sound
+        if(audioSource != null & explosionSound != null)
+        {
+            audioSource.PlayOneShot(explosionSound, 1);
+        }
         // Fx
         Debug.Log("Fx running");
         ParticleSystem x = Instantiate(effect, transform.position, Quaternion.identity);
@@ -90,6 +96,10 @@ public class Explode : MonoBehaviour
         if(shrapnelCount > 0)
         {
             SpawnShrapnel();
+        }
+        if(audioSource == null & GetComponent<AudioSource>() != null)
+        {
+            audioSource = GetComponent<AudioSource>();
         }
     }
 

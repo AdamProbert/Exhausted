@@ -192,17 +192,26 @@ MonoBehaviour:
   m_BrakeCondition: 1
   m_Driving: 1
   m_Target: {fileID: 0}
-  m_StopWhenTargetReached: 1
-  m_ReachTargetThreshold: 10
+  m_StopWhenTargetReached: 0
+  m_ReachTargetThreshold: 25
   endDestination: {x: 0, y: 0, z: 0}
   secondsPerPathUpdate: 1
-  sensorColor: {r: 1, g: 0.10849059, b: 0.23201117, a: 0}
-  hitSensorLength: 5
+  sensorColor: {r: 1, g: 0, b: 0.13656378, a: 1}
+  hitSensorPositionOffset: {x: 0, y: 1, z: 1}
+  hitSensorLength: 3.5
   reverseSensorLength: 10
+  avoidSensorLength: 8
+  avoidSensorLeftPositionOffset: {x: 0, y: 0.6, z: 0}
+  avoidSensorRightPositionOffset: {x: 0, y: 0.6, z: 0}
+  avoidSensorRotation: 45
+  hitSensorXRotation: 15
+  sensorLayerMask:
+    serializedVersion: 2
+    m_Bits: 513
+  reversing: 0
   avoiding: 0
-  frontSensorPosOffset: {x: 0, y: 0, z: 0}
   m_NavTarget: {fileID: 0}
-  debugMode: 0
+  pointAndClickMode: 0
 --- !u!114 &5927849582270387990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +228,7 @@ MonoBehaviour:
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"navTarget":{"_propertyPath":"AIInput2.navTarget","_name":"navTarget","_id":"50f5a4d1-2660-408d-9ea9-ad786698aa57","$type":"NodeCanvas.Framework.Variable`1[[Player,
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"Players":{"_value":[],"_name":"Players","_id":"ade0004e-7574-40c4-b48e-a3faf6f8b99f","$type":"NodeCanvas.Framework.Variable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"Health":{"_propertyPath":"Player.currentHealth","_name":"Health","_id":"936dd4a2-7394-44f6-a479-8ec400f78436","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
   _serializedVariables:
@@ -230,6 +240,9 @@ MonoBehaviour:
     _references: []
   - _json: '{"_value":[],"_name":"Players","_id":"ade0004e-7574-40c4-b48e-a3faf6f8b99f","$type":"NodeCanvas.Framework.Variable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"Player.currentHealth","_name":"Health","_id":"936dd4a2-7394-44f6-a479-8ec400f78436","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
 --- !u!114 &1681143631
