@@ -2620,9 +2620,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3c6f239671e5f4fbb3e79013df2230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  humanPlayer: {fileID: 0}
   endGameUI: {fileID: 2121600663}
   autoEndGame: 0
-  requestedEnemyCount: 3
+  requestedEnemyCount: 4
 --- !u!114 &2982420971241834487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2650,7 +2651,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 1531000730, guid: 52b51f7496abcf54093f1a8132f9fb54, type: 3}
+  - {fileID: 4276757395620055223, guid: bdc6793a7330d2f408f8a6b4751ba880, type: 3}
+  - {fileID: 4276757395620055223, guid: 6a76d83842ec012468bbf89d82109a10, type: 3}
+  - {fileID: 3293379012416626310, guid: dc8cb7debf5532a48985b4fed9516471, type: 3}
+  - {fileID: 3293379012416626310, guid: 436de3467834953468799acceb8598b4, type: 3}
 --- !u!82 &443717917
 AudioSource:
   m_ObjectHideFlags: 0

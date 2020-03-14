@@ -8,8 +8,9 @@ public class Player : MonoBehaviour
     private WeaponController weaponController;
     private AIInput2 aIInput;
     public bool isAI = true;
-
     public bool testMode = false;
+
+    [SerializeField] public Transform centrePoint;
 
     [Header("Health")]
     [SerializeField] float maxHealth;
@@ -75,7 +76,7 @@ public class Player : MonoBehaviour
 
         currentHealth = maxHealth;
         this.OnHealthChange += StatusHandler;
-        weaponController = GetComponent<WeaponController>();
+        weaponController = GetComponent<WeaponController>();        
 
         // Is us AI?
         if(GetComponent<AIInput2>() && !GetComponent<UserInput>())

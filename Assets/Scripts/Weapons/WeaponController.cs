@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     WeaponUIUpdate weaponUIUpdate;
-    [SerializeField] List<BaseWeapon> weapons = new List<BaseWeapon>();
+    [SerializeField][Tooltip("Will auto find if 0 length")] List<BaseWeapon> weapons = new List<BaseWeapon>();
 
     private bool IsAI = false;
     [SerializeField] bool enableAutoAim = false;
@@ -17,6 +17,10 @@ public class WeaponController : MonoBehaviour
         {
             weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();    
         }
+        if(weapons.Count == 0)
+        {
+            FindWeapons();
+        }
         WeaponRegister();
         SetupAutoFindOnWeapons();
     }
@@ -26,6 +30,10 @@ public class WeaponController : MonoBehaviour
         IsAI = true;
     }
 
+    private void FindWeapons()
+    {
+        weapons.AddRange(GetComponentsInChildren<BaseWeapon>());
+    }
 
     public void AddWeapon(BaseWeapon weapon)
     {

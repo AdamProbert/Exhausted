@@ -21,13 +21,26 @@ namespace NodeCanvas.Tasks.Actions
             min = Mathf.Clamp(min, 0.01f, max);
             max = Mathf.Clamp(max, min, max);
 
-            NavMeshTriangulation navMeshData = NavMesh.CalculateTriangulation();
-            // Pick the first indice of a random triangle in the nav mesh
-            int t = Random.Range(0, navMeshData.indices.Length-3);
+            var wanderPos = agent.transform.position;
+            while ( ( wanderPos - agent.transform.position ).sqrMagnitude < min ) {
+                wanderPos = ( Random.insideUnitSphere * max ) + agent.transform.position;
+            }
             
-            // Select a random point on it
-            Vector3 finalPosition = Vector3.Lerp(navMeshData.vertices[navMeshData.indices[t]], navMeshData.vertices[navMeshData.indices[t+1]], Random.value);
-            Vector3.Lerp(finalPosition, navMeshData.vertices[navMeshData.indices[t+2]], Random.value);    
+            int bestnavmask = 1 << NavMesh.GetAreaFromName("BestDriving");
+            NavMeshHit hit;
+            Vector3 finalPosition = agent.transform.position;
+            if ( NavMesh.SamplePosition(wanderPos, out hit, float.PositiveInfinity, bestnavmask) ) {
+                finalPosition = hit.position;
+            }
+
+
+            // NavMeshTriangulation navMeshData = NavMesh.CalculateTriangulation();
+            // // Pick the first indice of a random triangle in the nav mesh
+            // int t = Random.Range(0, navMeshData.indices.Length-3);
+            
+            // // Select a random point on it
+            // finalPosition = Vector3.Lerp(navMeshData.vertices[navMeshData.indices[t]], navMeshData.vertices[navMeshData.indices[t+1]], Random.value);
+            // Vector3.Lerp(finalPosition, navMeshData.vertices[navMeshData.indices[t+2]], Random.value);    
             
             saveAs.value = finalPosition;
             EndAction(true);    
