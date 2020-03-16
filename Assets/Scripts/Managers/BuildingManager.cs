@@ -22,6 +22,9 @@ public class BuildingManager : MonoBehaviour
     List<CarAttachPoint> attachPoints = new List<CarAttachPoint>();
     private int currentAttachPointIndex = -1;
 
+    // Save/Load
+    PlayerConfig config;
+
     // Inputs
     float rotateInput = 0;
     float cycleAttachPointInput = 0;
@@ -29,6 +32,7 @@ public class BuildingManager : MonoBehaviour
     private void Awake() 
     {
         controls = new InputMaster();
+        config = SaveSystem.LoadPlayerConfig();
     }
 
     // Start is called before the first frame update
@@ -38,7 +42,15 @@ public class BuildingManager : MonoBehaviour
         controls.UI.CycleAttachPoint.performed += ctx => CycleAttachPoint(ctx.ReadValue<float>());
         controls.UI.CycleVehicle.performed += ctx => CycleVehicle();
         buildingUIManager = GetComponent<BuildingUIManager>();
-        SwapVehicle();
+
+        // Try loading saved vehicle
+        LoadVehicle();
+  
+        if(currentVehicle == null)
+        {
+            SwapVehicle();
+        }
+
         PopulateUI();
         GameManager.Instance.SetGameState(GameManager.GameState.BUILD);
     }
@@ -49,6 +61,35 @@ public class BuildingManager : MonoBehaviour
         if(rotateInput != 0)
         {
             RotateVehicle();
+        }
+    }
+
+    private void LoadVehicle()
+    {
+        if(config.baseCarPrefabName != null)
+        {
+            currentVehicle = Instantiate(Resources.Load("Cars/" + config.baseCarPrefabName) as GameObject, player.transform.position, player.transform.rotation, player.transform.Find("BaseVehicle"));
+            attachPoints.AddRange(currentVehicle.GetComponentsInChildren<CarAttachPoint>());
+            foreach(CarAttachPoint cap in attachPoints)
+            {
+                Instantiate(attachPointGraphic, cap.transform.position, cap.transform.rotation, cap.transform);
+            }
+            
+            if(config.weaponPrefabNames != null)
+            {
+                for (int i = 0; i < config.weaponPrefabNames.Length; i++)
+                {
+                    if(config.weaponPrefabNames[i] != "NONE")
+                    {
+                        Attachment w = Instantiate(Resources.Load<GameObject>("CarWeapons/" + config.weaponPrefabNames[i])).GetComponent<Attachment>();
+
+                        w.transform.position = attachPoints[i].transform.position;
+                        w.transform.rotation = attachPoints[i].transform.rotation;
+                        w.transform.parent = attachPoints[i].transform;
+                        attachPoints[i].Attach(w);    
+                    }
+                }
+            }
         }
     }
 
@@ -66,15 +107,18 @@ public class BuildingManager : MonoBehaviour
                 attachments[attachmentIndex],
                 attachPoints[currentAttachPointIndex].transform.position,
                 attachPoints[currentAttachPointIndex].transform.rotation,
-                player.transform.Find("Weapons")
+                attachPoints[currentAttachPointIndex].transform
             );
 
-            attachPoints[currentAttachPointIndex].Attach(newAttachment.GetComponent<Attachment>());
+            attachPoints[currentAttachPointIndex].Attach(newAttachment);
         }
     }
 
     public void OnPlayClicked()
     {
+        // Save config
+        SaveSystem.SavePlayerConfig(player);
+
         // Notifiy manager
         GameManager.Instance.BuildComplete(player);
         foreach(CarAttachPoint cap in attachPoints)
@@ -112,13 +156,16 @@ public class BuildingManager : MonoBehaviour
             Destroy(currentVehicle);
             attachPoints.Clear();
             currentAttachPointIndex = -1;
-            foreach(Transform g in player.transform.Find("Weapons"))
+            foreach(BaseWeapon g in transform.GetComponentsInChildren<BaseWeapon>())
             {
                 Destroy(g.gameObject);
             }
         }
+
         
-        currentVehicle = Instantiate(vehicles[currentVehicleIndex], player.transform.position, player.transform.rotation, player.transform);
+        currentVehicle = Instantiate(vehicles[currentVehicleIndex], player.transform.position, player.transform.rotation, player.transform.Find("BaseVehicle"));
+        
+        
         ParticleSystem effect = Instantiate(spawnVehicleEffect, player.transform.position, Quaternion.Euler(90, 0, 0));
         Destroy(effect.gameObject, 5f);
 

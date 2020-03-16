@@ -9,7 +9,8 @@ public class CampaignInput : MonoBehaviour
     public InputMaster controls;
 
     [Header("Hover interactions")]
-    [SerializeField] LayerMask interactableLayers;
+    [SerializeField] LayerMask landmarkLayer;
+    [SerializeField] LayerMask interactableLayer;
     Ray hoverRay;
     RaycastHit hoverHit;
     GameObject currentHoverObject;
@@ -22,6 +23,7 @@ public class CampaignInput : MonoBehaviour
     {
         controls = new InputMaster();
         controls.Campaign.Selection.performed += ctx => HandleSelectionInput();
+        controls.Campaign.CameraZoom.performed += ctx => HandleZoomInput();
     }
 
     private void Update() 
@@ -32,13 +34,20 @@ public class CampaignInput : MonoBehaviour
     void HandleHoverInteractions()
     {
         hoverRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if(Physics.Raycast(hoverRay, out hoverHit, 1000f, interactableLayers))
+        bool triggered = false;
+
+        if(CampaignStateMachine.instance.state == CampaignStateMachine.CampaignState.DEFAULT)
         {
-            if(debug)
-            {
-                    Debug.DrawLine(Camera.main.transform.position, hoverHit.point, Color.red, 1f);
-                    Debug.Log("We hovered over: " + hoverHit.collider.name);
-            }
+            triggered = Physics.Raycast(hoverRay, out hoverHit, 1000f, landmarkLayer);
+        }
+        else if(CampaignStateMachine.instance.state == CampaignStateMachine.CampaignState.LANDMARK)
+        {
+            triggered = Physics.Raycast(hoverRay, out hoverHit, 1000f, interactableLayer);
+        }
+
+        if(triggered)
+        {
+
 
             if(currentHoverObject == null)
             {
@@ -51,7 +60,13 @@ public class CampaignInput : MonoBehaviour
                 return;
             }
 
-            CampaignEventManager.TriggerEvent("TriggerHover", hoverHit.collider.gameObject);                
+            CampaignEventManager.TriggerEvent("TriggerHover", hoverHit.collider.gameObject);
+            
+            if(debug)
+            {
+                    Debug.DrawLine(Camera.main.transform.position, hoverHit.point, Color.red, 1f);
+                    Debug.Log("We hovered over: " + hoverHit.collider.name);
+            }                
         }
 
         // Stopped hovering
@@ -62,16 +77,26 @@ public class CampaignInput : MonoBehaviour
         }
     }
 
-
     void HandleSelectionInput()
     {
         Vector3 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        // ignoring interactables
+        if(CampaignStateMachine.instance.state == CampaignStateMachine.CampaignState.DEFAULT)
         {
-            
-            agent.SetAgentDestination(hit.point);
+            if(Physics.Raycast(ray, out hit, 1000f, ~landmarkLayer))
+            {
+                agent.SetAgentDestination(hit.point);    
+            }
+        }   
+    }
+
+    void HandleZoomInput()
+    {
+        if(CampaignStateMachine.instance.state == CampaignStateMachine.CampaignState.LANDMARK)
+        {
+            CampaignEventManager.TriggerEvent("CancelLandmark", null);
         }
     }
 

@@ -93,6 +93,11 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("!Player must have either AIInput script or UserInput!");
         }
+
+        if(testMode)
+        {
+            HandlePlayerStateChange(playerState.Alive, this);
+        }
     }
 
     private void OnNavTargetChange(Player newTarget)

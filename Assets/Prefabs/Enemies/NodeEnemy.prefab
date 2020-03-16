@@ -192,8 +192,8 @@ MonoBehaviour:
   m_BrakeCondition: 1
   m_Driving: 1
   m_Target: {fileID: 0}
-  m_StopWhenTargetReached: 0
-  m_ReachTargetThreshold: 5
+  m_StopWhenTargetReached: 1
+  m_ReachTargetThreshold: 10
   endDestination: {x: 0, y: 0, z: 0}
   secondsPerPathUpdate: 1
   sensorColor: {r: 1, g: 0.10849059, b: 0.23201117, a: 0}
@@ -274,10 +274,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAI: 1
-  testMode: 0
+  testMode: 1
   maxHealth: 3000
   m_currentHealth: 0
-  m_state: 0
+  m_state: 2
 --- !u!114 &-6291496810190881940
 MonoBehaviour:
   m_ObjectHideFlags: 0

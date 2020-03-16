@@ -34,8 +34,11 @@ public class LightFlickerEffect : MonoBehaviour {
     /// restart you can do.
     /// </summary>
     public void Reset() {
-        smoothQueue.Clear();
-        lastSum = 0;
+        if(smoothQueue != null)
+        {
+            smoothQueue.Clear();
+            lastSum = 0;
+        }
     }
 
     void Start() {
@@ -64,4 +67,8 @@ public class LightFlickerEffect : MonoBehaviour {
         light.intensity = lastSum / (float)smoothQueue.Count;
     }
 
+    private void OnEnable() 
+    {
+        Reset();    
+    }
 }

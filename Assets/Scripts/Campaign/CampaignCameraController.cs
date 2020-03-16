@@ -17,7 +17,9 @@ public class CampaignCameraController : MonoBehaviour
  
     private void Awake()
     {
+        player = FindObjectOfType<CampaignPlayer>().transform;
         controls = new InputMaster();
+        trackingObject.position = player.transform.position;
      }
  
     private void Update()
@@ -38,12 +40,6 @@ public class CampaignCameraController : MonoBehaviour
         Vector3 pos = trackingObject.position;
         pos.y = Terrain.activeTerrain.SampleHeight(trackingObject.position);
         trackingObject.position = pos;
-        // Vector3 currentPosition = trackingObject.position;
-        // currentPosition.x += lookCamera.x * trackingObjectSpeed * Time.deltaTime;
-        // currentPosition.z += lookCamera.y * trackingObjectSpeed * Time.deltaTime;
-        // trackingObject.position = currentPosition;
-
-
         trackingObject.Rotate(0, rotateCamera * trackingObjectRotationSpeed * Time.deltaTime, 0);
     }
  

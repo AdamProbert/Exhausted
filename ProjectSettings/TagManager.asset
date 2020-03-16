@@ -36,8 +36,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - CampaignLandmark
+  - PostProcessing
   - CampaignInteractable
   - MetaColliders
   - MapProp

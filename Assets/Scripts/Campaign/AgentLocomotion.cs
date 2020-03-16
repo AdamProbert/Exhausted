@@ -18,6 +18,9 @@ public class AgentLocomotion : MonoBehaviour
     NavMeshAgent agent;
     Vector3 currentDestination;
 
+    // Agent status
+    bool moving = false;
+
     private void Start() 
     {
         agent = GetComponent<NavMeshAgent>();    
@@ -31,7 +34,37 @@ public class AgentLocomotion : MonoBehaviour
 
     private void Update() 
     {
-        DebugStuff();    
+        DebugStuff();
+        AgentBeganMovingCheck();
+        DestinationReachedCheck();
+    }
+
+    void AgentBeganMovingCheck()
+    {
+        if(!moving)
+        {
+            if(agent.velocity.sqrMagnitude > 0f)
+            {
+                CampaignEventManager.TriggerEvent("PlayerStartedMoving", null);
+                moving = true;
+
+            }
+        }
+    }
+
+    void DestinationReachedCheck()
+    {
+        if(moving & agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    moving = false;
+                    CampaignEventManager.TriggerEvent("PlayerReachedDestination", null);
+                }
+            }
+        }
     }
 
     void DebugStuff()
@@ -41,7 +74,6 @@ public class AgentLocomotion : MonoBehaviour
             elapsedDebugTime += Time.deltaTime;
             if(elapsedDebugTime > debugPathTime)
             {
-                Debug.Log("Should be drawing");
                 elapsedDebugTime = 0f;
                 NavMesh.CalculatePath(transform.position, currentDestination, NavMesh.AllAreas, path);
                 for (int i = 0; i < path.corners.Length - 1; i++)
