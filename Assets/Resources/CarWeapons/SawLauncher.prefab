@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac9dfc29f1f6241a45727d690f3d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoFindTarget: 0
   maxRotation: 180
   rotationSpeed: 5
   searchRadius: 100

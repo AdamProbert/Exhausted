@@ -6,6 +6,11 @@ public class Bullet : BaseProjectile
 {
     [SerializeField] ParticleSystem bulletDecalMetal;
 
+    private void Awake() 
+    {
+        base.Init();    
+    }
+
     private void OnCollisionEnter(Collision other) 
     {
         base.HandleCollision(other);

@@ -12,6 +12,11 @@ public class Saw : BaseProjectile
     bool active = false;
     
 
+    private void Awake() 
+    {
+        base.Init();    
+    }
+    
     private void OnEnable()
     {
         startTime = Time.time;

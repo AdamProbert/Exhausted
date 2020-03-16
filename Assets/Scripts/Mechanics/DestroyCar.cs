@@ -78,10 +78,10 @@ public class DestroyCar : MonoBehaviour
     private IEnumerator BurnAfterDeath() 
     {
         Explosion();
-        yield return new WaitForSeconds(.5f);
-        Explosion2();
         instantiatedBurnMaterial = new Material(destroyMaterial); 
         m_Renderer.material = instantiatedBurnMaterial;
+        yield return new WaitForSeconds(Random.Range(0.1f, 0.6f));
+        Explosion2();
         float burnDissolveAmountMax = 1.1f;
         float currentDissolveAmount = 0f;
         float currentBurnAmount = 0f;

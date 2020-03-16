@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.Audio;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -50,6 +51,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private AudioSource m_HighDecel; // Source for the high deceleration sounds
         private bool m_StartedSound; // flag for knowing if we have started sounds
         private CarController m_CarController; // Reference to car we are controlling
+        [SerializeField] AudioMixerGroup mixerGroup;
 
 
         private void StartSound()
@@ -105,6 +107,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
             if (m_StartedSound)
             {
+
                 // The pitch is interpolated between the min and max values, according to the car's revs.
                 float pitch = ULerp(lowPitchMin, lowPitchMax, m_CarController.Revs);
 
@@ -173,6 +176,7 @@ namespace UnityStandardAssets.Vehicles.Car
             source.minDistance = 5;
             source.maxDistance = maxRolloffDistance;
             source.dopplerLevel = 0;
+            source.outputAudioMixerGroup = mixerGroup;
             return source;
         }
 

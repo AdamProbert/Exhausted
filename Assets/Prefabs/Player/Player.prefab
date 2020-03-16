@@ -464,8 +464,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2230654937125663050}
-  m_LocalRotation: {x: 0.331007, y: 0.000000041280472, z: -0.000000014480411, w: 0.9436283}
-  m_LocalPosition: {x: 0, y: 12, z: -15}
+  m_LocalRotation: {x: 0.3241498, y: -0.00000003987123, z: 0.000000013661915, w: 0.94600576}
+  m_LocalPosition: {x: 0, y: 3.2993755, z: -4.249218}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2230654936008038494}
@@ -521,7 +521,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2230654937125663050}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &2057726217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +647,7 @@ GameObject:
   - component: {fileID: 1419037756}
   - component: {fileID: -8504682281707413827}
   - component: {fileID: 5567468740629723513}
+  - component: {fileID: 8799060490863452126}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -680,7 +681,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2230654937173857582}
   serializedVersion: 2
-  m_Mass: 600
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -739,14 +740,14 @@ MonoBehaviour:
   m_MaximumSteerAngle: 30
   m_SteerHelper: 0
   m_TractionControl: 0.5
-  m_FullTorqueOverAllWheels: 3000
+  m_FullTorqueOverAllWheels: 2500
   boostTorqueMultiplier: 3
   m_ReverseTorque: 1000
   handbrakeTorqueMultiplier: 1000
   m_Downforce: 100
   m_SpeedType: 0
   m_Topspeed: 80
-  m_RevRangeBoundary: 1
+  m_RevRangeBoundary: 0.5
   m_SlipLimit: 1
   m_BrakeTorque: 5000
 --- !u!114 &1419037756
@@ -774,7 +775,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2230654937173857582}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fa55eb64c5cea4aa3c71ae19c434bf, type: 3}
   m_Name: 
@@ -784,14 +785,16 @@ MonoBehaviour:
   lowDecelClip: {fileID: 8300000, guid: 5699dddcce16c4543b95951c4ce0e092, type: 3}
   highAccelClip: {fileID: 8300000, guid: 03e3bd08a6e70684dbe299a3e185fdd2, type: 3}
   highDecelClip: {fileID: 8300000, guid: 03bf91d88fce91c41995d27de63cc967, type: 3}
-  pitchMultiplier: 1
+  pitchMultiplier: 0.6
   lowPitchMin: 1
   lowPitchMax: 5
-  highPitchMultiplier: 0.25
+  highPitchMultiplier: 0.5
   maxRolloffDistance: 500
-  dopplerLevel: 1
+  dopplerLevel: 5
   useDoppler: 1
-  cam: {fileID: 0}
+  cam: {fileID: 437092859318290983, guid: a26d056e2f9995744a4faa1afb146aa8, type: 3}
+  mixerGroup: {fileID: -936230241595661256, guid: cc0bf72c5763743468b1ee3d764d3d04,
+    type: 2}
 --- !u!114 &5567468740629723513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +818,14 @@ MonoBehaviour:
   Master: {fileID: 0}
   OverrideMaster: 0
   MeshFilter: {fileID: 0}
+--- !u!81 &8799060490863452126
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230654937173857582}
+  m_Enabled: 1
 --- !u!1 &3962074272083941606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,7 +1102,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5335162458371240003}
-  m_LocalRotation: {x: -0.22202414, y: -0.00000005309882, z: 0.0000001600485, w: -0.9750412}
+  m_LocalRotation: {x: -0.21494183, y: -0.000000049304614, z: 0.00000015856854, w: -0.9766269}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1165,7 +1176,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8344344173915939854}
-  m_LocalRotation: {x: -0.22202414, y: -0.00000034164938, z: 0.0000014015945, w: -0.9750412}
+  m_LocalRotation: {x: -0.21494184, y: -0.00000032654518, z: 0.0000013935172, w: -0.9766269}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1239,7 +1250,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8457954917267656621}
-  m_LocalRotation: {x: -0.33100694, y: -0.0000002456899, z: 0.0000006727555, w: -0.9436284}
+  m_LocalRotation: {x: -0.32414976, y: -0.00000018728426, z: 0.0000006492735, w: -0.9460058}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

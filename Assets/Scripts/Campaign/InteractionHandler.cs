@@ -10,6 +10,7 @@ public class InteractionHandler : MonoBehaviour
 
     [Header("Battle")]
     [SerializeField] int enemyCount;
+    [SerializeField] string battleSceneName;
 
     CampaignPlayer player;
 
@@ -37,7 +38,7 @@ public class InteractionHandler : MonoBehaviour
 
     public void OnClickBattle()
     {
-        CampaignManager.instance.RequestBattle(enemyCount);
+        CampaignManager.instance.RequestBattle(enemyCount, battleSceneName);
     }
  
     public void DoAThing(int bleh)

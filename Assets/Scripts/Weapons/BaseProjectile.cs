@@ -13,7 +13,7 @@ public class BaseProjectile : MonoBehaviour
     protected AudioSource audioSource;
     Quaternion rotation;
 
-    private void Awake() 
+    public void Init() 
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();

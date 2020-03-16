@@ -2622,7 +2622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   humanPlayer: {fileID: 0}
   endGameUI: {fileID: 2121600663}
-  autoEndGame: 0
+  autoEndGame: 1
   requestedEnemyCount: 4
 --- !u!114 &2982420971241834487
 MonoBehaviour:

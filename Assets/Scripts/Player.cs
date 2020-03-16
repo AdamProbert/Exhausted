@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
     public delegate void OnStateChangeDelegate(playerState newState, Player thisPlayer);
     public event OnStateChangeDelegate OnStateChange;
 
-
     private void Awake()
     {
         GameManager.Instance.OnStateChange += HandleGameStateChange;    

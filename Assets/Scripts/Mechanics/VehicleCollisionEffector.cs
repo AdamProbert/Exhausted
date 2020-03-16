@@ -12,7 +12,6 @@ public class VehicleCollisionEffector : MonoBehaviour
     ParticleSystem fx;
     AudioSource audioSource;
     [SerializeField] AudioClip scrapeSound;
-
     Rigidbody rb;
     [SerializeField] float minVelocityExplosion;
 
@@ -26,6 +25,11 @@ public class VehicleCollisionEffector : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.Play();
         audioSource.Pause();
+    }
+
+    public void PlayerDied()
+    {
+        audioSource.Stop();
     }
 
     private void Update() 
@@ -71,9 +75,9 @@ public class VehicleCollisionEffector : MonoBehaviour
         if(fx != null)
         {
             fx.Stop();
-            audioSource.Pause();
             Destroy(fx.gameObject, 2f);
             fx = null;
         }
+        audioSource.Pause();
     }
 }

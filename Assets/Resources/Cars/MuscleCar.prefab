@@ -524,8 +524,8 @@ MonoBehaviour:
   burnSpeed: 0.01
   burnTickRate: 0
   carExplodePS: {fileID: 782365431, guid: a663016779ce653458b08fe54f658621, type: 3}
-  carExplodePS2: {fileID: 0}
-  explosionForce: 15
+  carExplodePS2: {fileID: 782365431, guid: 51b7910c684fd3549afce06137326116, type: 3}
+  explosionForce: 10
   disableComponents:
   - {fileID: 9053489945751409351}
   - {fileID: 1754991359}

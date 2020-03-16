@@ -10,6 +10,11 @@ public class BoomStick : BaseProjectile
     private float hitTime;
     private bool flying;
 
+    private void Awake() 
+    {
+        base.Init();    
+    }
+    
     private void OnEnable() 
     {
         flying = true;

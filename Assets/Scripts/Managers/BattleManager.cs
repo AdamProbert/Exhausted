@@ -15,6 +15,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private bool autoEndGame = true;
     [SerializeField] public int requestedEnemyCount = 0;
 
+    bool playerLoaded = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -107,6 +109,7 @@ public class BattleManager : MonoBehaviour
         {
             Debug.Log("No saved vehicle! - go make one");
         }
+
     }
 
     private IEnumerator EndGame()

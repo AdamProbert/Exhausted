@@ -16,6 +16,7 @@ public class Rocket : BaseProjectile
     private void Awake() 
     {
         explode = GetComponent<Explode>();
+        base.Init();
     }
 
     private void OnEnable() 
