@@ -80,10 +80,8 @@ public class AIInput2 : MonoBehaviour
         set{
             if(m_NavTarget == value) return;
             m_NavTarget = value;
-            Debug.Log("AIInput: Setting new target");
             if(OnTargetChange != null)
             {
-                Debug.Log("AIInput: New target event sent");
                 OnTargetChange(m_NavTarget);
             }
         }
@@ -221,7 +219,6 @@ public class AIInput2 : MonoBehaviour
             }
             m_CarController.Move(revSteer, -1, -1, 0, 0f);
             reversing = true;
-            Debug.Log("Should be reversing with dir: " + revSteer);
             Debug.DrawRay(sensorsStartPos, Quaternion.AngleAxis(-hitSensorXRotation, transform.right) * transform.forward * sensorLength, Color.green);
             return true;
         }

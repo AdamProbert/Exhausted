@@ -58,16 +58,14 @@ public class VehicleCollisionEffector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(fx == null)
+        if(collisionLayers == (collisionLayers | (1 << other.gameObject.layer)))
         {
-            if(collisionLayers == (collisionLayers | (1 << other.gameObject.layer)))
+            if(fx == null)
             {
                 fx = Instantiate(fxPrefab, transform.position, Quaternion.LookRotation(-rb.velocity));
-                
             }
-        }
-        
-        audioSource.Play();
+            audioSource.Play();    
+        }    
     }
 
     private void OnTriggerExit(Collider other) 

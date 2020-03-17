@@ -33,6 +33,29 @@ public class Player : MonoBehaviour
 
     public delegate void OnHealthChangeDelegate(float newVal);
     public event OnHealthChangeDelegate OnHealthChange;
+
+    [Header("Armour")]
+    [SerializeField] public float maxArmour;
+    [SerializeField] float m_currentArmour;
+
+    private RectTransform armourBar;
+    private Vector2 ogArmourSize;
+
+    [SerializeField] public float currentArmour{ // Initally set from ArmourManager
+        get{return m_currentArmour;}
+        set{
+            if(m_currentArmour == value) return;
+            m_currentArmour = value;
+            if(OnArmourChange != null)
+            {
+                OnArmourChange(m_currentArmour);
+            }
+        }
+    }
+
+    public delegate void OnArmourChangeDelegate(float newVal);
+    public event OnArmourChangeDelegate OnArmourChange;
+
     
     [SerializeField] private playerState m_state;
     public playerState state{
@@ -73,8 +96,10 @@ public class Player : MonoBehaviour
 
         Debug.Log("Player state set in awake to: " +state);
 
-        currentHealth = maxHealth;
+        // Set health    
         this.OnHealthChange += StatusHandler;
+        currentHealth = maxHealth;
+
         weaponController = GetComponent<WeaponController>();        
 
         // Is us AI?
@@ -133,6 +158,15 @@ public class Player : MonoBehaviour
         
     }
 
+    private void ArmourChangeHandler(float newArmour)
+    {
+        if(armourBar)
+        {
+            float percent = (newArmour/maxArmour) * ogArmourSize.x;
+            armourBar.sizeDelta = new Vector2(percent, armourBar.sizeDelta.y);
+        }
+    }
+
     private void KillPlayer()
     {
         state = playerState.Dead;
@@ -174,7 +208,20 @@ public class Player : MonoBehaviour
         // TODO: Apply armour modifiers
         if(state == playerState.Alive)
         {
-            currentHealth -= damage;
+            if(currentArmour > 0)
+            {
+                currentArmour -= damage;
+
+                // If we drop below 0, remove the remainder from health
+                if(currentArmour < 0)
+                {
+                    currentHealth += currentArmour; 
+                }
+            }
+            else
+            {
+                currentHealth -= damage;
+            }
         }
     }
 
@@ -216,8 +263,19 @@ public class Player : MonoBehaviour
                 transform.Find("Camera").gameObject.SetActive(true);
                 if(!healthBar & !testMode)
                 {
-                    healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
+                    healthBar = GameObject.Find("HealthForeground").GetComponent<RectTransform>();
                     ogHealhBarSize = healthBar.sizeDelta;
+                }
+
+                // Set armour
+                this.OnArmourChange += ArmourChangeHandler;
+                maxArmour = GetComponentInChildren<ArmourManager>().GetTotalArmour();
+                currentArmour = maxArmour;
+
+                if(!armourBar & !testMode)
+                {
+                    armourBar = GameObject.Find("ArmourForeground").GetComponent<RectTransform>();
+                    ogArmourSize = armourBar.sizeDelta;
                 }      
             }        
             BroadcastMessage("PlayerActive");

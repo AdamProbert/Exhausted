@@ -8,10 +8,12 @@ public class BaseProjectile : MonoBehaviour
 {
     [SerializeField] protected float damage;
     [SerializeField] protected AudioClip collisionSound;
+    [SerializeField] LayerMask collideableLayers;
     [SerializeField] public Transform playerShooter; // Populated by object pooler
     protected Rigidbody rb;
     protected AudioSource audioSource;
     Quaternion rotation;
+    
 
     public void Init() 
     {
@@ -30,10 +32,15 @@ public class BaseProjectile : MonoBehaviour
         }
     }
 
+    public float GetDamage()
+    {
+        return damage;
+    }
+
     protected void HandleCollision(Collision other) 
     {
 
-        if(other.gameObject.layer == 8 && other.transform.root != playerShooter)
+        if(collideableLayers == (collideableLayers | (1 << other.gameObject.layer)) && other.transform.root != playerShooter)
         {
             other.gameObject.GetComponent<Player>().TakeDamage(damage);
         }
