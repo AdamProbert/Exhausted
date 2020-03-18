@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
         set{
             if(m_currentArmour == value) return;
             m_currentArmour = value;
+            if(m_currentArmour > maxArmour) m_currentArmour = maxArmour;
             if(OnArmourChange != null)
             {
                 OnArmourChange(m_currentArmour);

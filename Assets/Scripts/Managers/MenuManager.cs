@@ -17,4 +17,9 @@ public class MenuManager : MonoBehaviour
     {
         GameManager.Instance.LoadMap(mapname);
     }
+
+    public void LoadCampaign()
+    {
+        GameManager.Instance.LoadCampaign();
+    }
 }

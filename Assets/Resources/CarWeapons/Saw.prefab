@@ -64,6 +64,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   collisionSound: {fileID: 8300000, guid: 32271f4d498c33d4dbfcc5df3a9f6522, type: 3}
+  collideableLayers:
+    serializedVersion: 2
+    m_Bits: 4352
+  playerShooter: {fileID: 0}
   rotationSpeed: 90
   stickableSurfaces:
     serializedVersion: 2

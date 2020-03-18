@@ -112,6 +112,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 25
   collisionSound: {fileID: 0}
+  collideableLayers:
+    serializedVersion: 2
+    m_Bits: 4352
   playerShooter: {fileID: 0}
   flightTimeBeforeWiggle: 0.5
   wiggle: 1
@@ -152,6 +155,7 @@ MonoBehaviour:
     m_Bits: 3221228598
   effect: {fileID: 19849376, guid: b42b8677df418c047aef5d8ce9c66663, type: 3}
   explosionSound: {fileID: 8300000, guid: 8dfcae34791b3a447b81d6653208f596, type: 3}
+  audioSource: {fileID: 0}
   shrapnelItemPrefabs:
   - {fileID: 1239673110073358, guid: 89a0fdc0463814f489cd8f25abba65f6, type: 3}
   - {fileID: 1511868952250108, guid: d8d48504fc5c6a4479427ebe83518acb, type: 3}

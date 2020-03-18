@@ -73,6 +73,7 @@ MonoBehaviour:
     m_Bits: 3221228598
   effect: {fileID: 7695127627156860864, guid: 3a5206cb4286e4549b733db3e84972ff, type: 3}
   explosionSound: {fileID: 8300000, guid: 8dfcae34791b3a447b81d6653208f596, type: 3}
+  audioSource: {fileID: 0}
   shrapnelItemPrefabs:
   - {fileID: 1239673110073358, guid: 89a0fdc0463814f489cd8f25abba65f6, type: 3}
   - {fileID: 1511868952250108, guid: d8d48504fc5c6a4479427ebe83518acb, type: 3}
@@ -112,11 +113,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   collisionSound: {fileID: 8300000, guid: 0f467dc08bf4d9a48b276245e7aef969, type: 3}
+  collideableLayers:
+    serializedVersion: 2
+    m_Bits: 4352
   playerShooter: {fileID: 0}
   fuseTime: 1
   stickableSurfaces:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 4352
 --- !u!82 &2938755455111853006
 AudioSource:
   m_ObjectHideFlags: 0

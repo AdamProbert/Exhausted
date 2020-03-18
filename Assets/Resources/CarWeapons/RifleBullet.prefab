@@ -63,6 +63,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 15
+  collisionSound: {fileID: 0}
+  collideableLayers:
+    serializedVersion: 2
+    m_Bits: 4352
+  playerShooter: {fileID: 0}
   bulletDecalMetal: {fileID: 198272901577952178, guid: 6d990eb8e29d9c647a06a43b40b03632,
     type: 3}
 --- !u!65 &1141106305602192677

@@ -75,6 +75,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7979698016321969746, guid: 52b51f7496abcf54093f1a8132f9fb54,
+        type: 3}
+      propertyPath: Hardness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979698016321969746, guid: 52b51f7496abcf54093f1a8132f9fb54,
+        type: 3}
+      propertyPath: MaxDeformationRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979698016321969746, guid: 52b51f7496abcf54093f1a8132f9fb54,
+        type: 3}
+      propertyPath: MaxVertexMov
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979698016321969746, guid: 52b51f7496abcf54093f1a8132f9fb54,
+        type: 3}
+      propertyPath: MeshFilter
+      value: 
+      objectReference: {fileID: 33299481239779160, guid: 77e05c4d821e2ad43a627d09e59c31ab,
+        type: 3}
     - target: {fileID: 9167826977869132905, guid: 52b51f7496abcf54093f1a8132f9fb54,
         type: 3}
       propertyPath: m_LocalPosition.x

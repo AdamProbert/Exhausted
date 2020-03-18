@@ -548,9 +548,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3381e3b78b9bca24da27d55561f6d32c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hardness: 2.5
-  MaxDeformationRadius: 0
-  MaxVertexMov: 0
+  Hardness: 5
+  MaxDeformationRadius: 5
+  MaxVertexMov: 5
   RandomFactorDeformation: 0
   DeformationsScale: {x: 1, y: 1, z: 1}
   DeformMeshCollider: 0

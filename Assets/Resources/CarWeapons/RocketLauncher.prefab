@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac9dfc29f1f6241a45727d690f3d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoFindTarget: 0
   maxRotation: 180
   rotationSpeed: 2.81
   searchRadius: 25
@@ -140,17 +141,17 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -8746721390987911425, guid: 5f1f3c25a04eee04daf9345cc091c38b,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 111
+  Priority: 20
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

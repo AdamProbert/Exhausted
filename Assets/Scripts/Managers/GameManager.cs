@@ -26,6 +26,11 @@ public class GameManager : Singleton<GameManager> {
         SceneManager.LoadScene("DesertArena");
     }
 
+    public void LoadCampaign()
+    {
+        SceneManager.LoadScene("CampaignMap");
+    }
+
     public void LoadMap(string mapName)
     {
         requestedMap = mapName;

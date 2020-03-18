@@ -29,6 +29,7 @@ public class ArmourManager : MonoBehaviour
             {
                 item.EnableFlyingMode();
                 StartCoroutine (MoveOverSpeed (item, Random.Range(30f,70f)));
+                player.currentArmour += item.MaxStrength;
             }
         }
     }
@@ -84,7 +85,6 @@ public class ArmourManager : MonoBehaviour
         }
         impulseSource.GenerateImpulse();
         pieceToMove.ReAttach();
-        player.currentArmour += pieceToMove.MaxStrength;
     }
 
     private void OnCollisionEnter(Collision other) 
