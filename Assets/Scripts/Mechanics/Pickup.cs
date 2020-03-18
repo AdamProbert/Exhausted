@@ -26,10 +26,11 @@ public class Pickup : MonoBehaviour
     public void PickItUp()
     {
         audioSource.PlayOneShot(pickupSound);
-        ParticleSystem fx = Instantiate(pickupFx, transform.position + transform.up * 2, Quaternion.identity, transform);
+        ParticleSystem fx = Instantiate(pickupFx, transform.position + (Vector3.up * 2), Quaternion.identity, transform);
 
         GetComponentInChildren<MeshRenderer>().enabled = false;
         GetComponentInChildren<Collider>().enabled = false;
+        Destroy(GetComponentInChildren<ParticleSystem>().gameObject);
 
         Destroy(this.gameObject, 5f);
     }
