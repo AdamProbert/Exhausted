@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6771050430910594523}
-  - component: {fileID: 8727088961950827896}
   - component: {fileID: 4149698880877036662}
   - component: {fileID: 5619489168035031761}
   - component: {fileID: 2143332102076114045}
@@ -37,23 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8727088961950827896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4000601011492793620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3c2bc443d60fd49a621c1990da09d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObject: {fileID: 2058201599352487386, guid: 5c099a1da4bd3504ea21b1c4b0d67fcb,
-    type: 3}
-  pooledAmount: 500
-  willGrow: 1
-  pooledObjects: []
 --- !u!114 &4149698880877036662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,11 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed874024d63689479af33e867430dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 100
+  projectileSpeed: 150
   projectileSpawn: {fileID: 8402867351572036405}
   fireRate: 10
-  parentRigidBody: {fileID: 0}
   uiImage: {fileID: 21300000, guid: 821132cd34be1c143b411ee1a3c0eb6d, type: 3}
+  projectileName: RifleBullet
   currentStatus: 0
   fireSound: {fileID: 8300000, guid: 727e85301e987d24c907d694259f61bf, type: 3}
   fireEffectPrefab: {fileID: 19896092, guid: 5c2bdcf6f0badc34f9f192b0995e4a79, type: 3}

@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbccbc3f434b40a4d9d4085c48ab83d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 100
   collisionSound: {fileID: 8300000, guid: 0f467dc08bf4d9a48b276245e7aef969, type: 3}
   collideableLayers:
     serializedVersion: 2
@@ -143,7 +143,7 @@ AudioSource:
   Priority: 111
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 200
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

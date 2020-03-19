@@ -2659,6 +2659,7 @@ GameObject:
   - component: {fileID: 443717918}
   - component: {fileID: 2982420971241834487}
   - component: {fileID: 647435389935291943}
+  - component: {fileID: 1632311294}
   - component: {fileID: 443717917}
   m_Layer: 0
   m_Name: BattleManager
@@ -2710,7 +2711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0806f44438690b149b99f87ea7e85747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skidmarksMaterial: {fileID: 2100000, guid: 944c39b017cd45d4ba430b27e81cb3d3, type: 2}
+  skidmarksMaterial: {fileID: 2100000, guid: 3361a194db73eb14e8fe5e2aa8707fc7, type: 2}
   MAX_MARKS: 10000
 --- !u!114 &647435389935291943
 MonoBehaviour:
@@ -2729,6 +2730,35 @@ MonoBehaviour:
   - {fileID: 4276757395620055223, guid: 6a76d83842ec012468bbf89d82109a10, type: 3}
   - {fileID: 3293379012416626310, guid: dc8cb7debf5532a48985b4fed9516471, type: 3}
   - {fileID: 3293379012416626310, guid: 436de3467834953468799acceb8598b4, type: 3}
+--- !u!114 &1632311294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982420971241834473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9fd9edfaba338244ab200a657ba52ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: RifleBullet
+    prefab: {fileID: 2058201599352487386, guid: 5c099a1da4bd3504ea21b1c4b0d67fcb,
+      type: 3}
+    size: 1000
+  - tag: BoomStick
+    prefab: {fileID: 2938755455111852992, guid: e63b4546a85241940ae72ab27c5dbe10,
+      type: 3}
+    size: 100
+  - tag: CrezyRocket
+    prefab: {fileID: 1080410123433332, guid: d018ad52fc569c0469ecc776b5619ac0, type: 3}
+    size: 100
+  - tag: Saw
+    prefab: {fileID: 8954661981093505819, guid: 3d8f98aa2fdc35a4ea1cae45f41ac7b6,
+      type: 3}
+    size: 200
+  poolObjectParent: {fileID: 0}
 --- !u!82 &443717917
 AudioSource:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
  
 [RequireComponent(typeof(Spawner))]
 public class BattleManager : MonoBehaviour
@@ -11,16 +12,24 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] Player humanPlayer;
     private IEnumerator endGameRoutine;
+    private IEnumerator startGameRoutine;
+
     [SerializeField] private GameObject endGameUI;
     [SerializeField] private bool autoEndGame = true;
+    [SerializeField] private bool skipStartSequence = true;
     [SerializeField] public int requestedEnemyCount = 0;
 
+    [Header("Camera stuff")]
+    [SerializeField] float timePerCinemachineMove = 3;
+
     bool playerLoaded = false;
+
+    Spawner spawner;
 
     // Start is called before the first frame update
     void Awake()
     {
-
+        spawner = GetComponent<Spawner>();
         LoadPlayerVehicle();
 
         if(BattleData.noOfEnemies > 0)
@@ -31,11 +40,11 @@ public class BattleManager : MonoBehaviour
         // Spawn player in correct position first if they are here
         if(humanPlayer)
         {
-            GetComponent<Spawner>().SpawnPlayer(humanPlayer);
+            spawner.SpawnPlayer(humanPlayer);
         }
         
         // Then spawn the AI in the remaining places
-        GetComponent<Spawner>().SpawnThem(requestedEnemyCount);
+        spawner.SpawnThem(requestedEnemyCount);
 
         // Then collect references to everyone
         foreach(Player p in FindObjectsOfType<Player>())
@@ -44,6 +53,7 @@ public class BattleManager : MonoBehaviour
             p.OnStateChange += HandlePlayerStateChange;
         }
 
+        startGameRoutine = StartGame();
         endGameRoutine = EndGame();
         endGameUI.SetActive(false);
         
@@ -54,7 +64,14 @@ public class BattleManager : MonoBehaviour
 
     private void Start() 
     {
-        GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
+        if(!skipStartSequence)
+        {
+            StartCoroutine(startGameRoutine);
+        }
+        else
+        {
+            GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
+        }
     }
 
     public void HandlePlayerStateChange(Player.playerState newstate, Player player)
@@ -110,6 +127,37 @@ public class BattleManager : MonoBehaviour
             Debug.Log("No saved vehicle! - go make one");
         }
 
+    }
+
+    private IEnumerator StartGame() 
+    {
+        CinemachineFreeLook playerCam = humanPlayer.GetComponentInChildren<CinemachineFreeLook>();
+        List<SpawnPoint> spawnPoints = spawner.GetAllSpawnPoints();
+        List<CinemachineVirtualCamera> cams = new List<CinemachineVirtualCamera>();
+
+        foreach (SpawnPoint spawn in spawnPoints)
+        {
+            if(spawn.occupied != null)
+            {
+                cams.Add(spawn.virtualCamera);
+            }
+            spawn.virtualCamera.gameObject.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(1);
+        playerCam.gameObject.SetActive(false);
+
+        foreach (CinemachineVirtualCamera cam in cams)
+        {
+            cam.gameObject.SetActive(true);
+            yield return new WaitForSeconds(timePerCinemachineMove);
+            cam.gameObject.SetActive(false);    
+        }
+
+        playerCam.gameObject.SetActive(true);
+        yield return new WaitForSeconds(timePerCinemachineMove);
+
+        GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
     }
 
     private IEnumerator EndGame()

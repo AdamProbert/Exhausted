@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using NodeCanvas.StateMachines;
+using NodeCanvas;
 
 [RequireComponent(typeof(WeaponController))]
 public class Player : MonoBehaviour
@@ -185,25 +186,6 @@ public class Player : MonoBehaviour
         BroadcastMessage("PlayerDied"); // Player removal handled in DestroyCar
     }
 
-    // Old collision based damage
-    // private void OnCollisionEnter(Collision other) 
-    // {   
-    //     // if projectile hit us
-    //     if(other.gameObject.layer == 10)
-    //     {
-    //         float forceHit = other.relativeVelocity.magnitude;
-    //         forceHit *= other.rigidbody.mass;
-
-    //         //Debug.Log("Player: " + gameObject.name + " hit for " + forceHit + " damage");
-
-    //         if(state == playerState.Alive)
-    //         {
-    //             currentHealth -= forceHit;
-    //         }
-            
-    //     }    
-    // }
-
     public void TakeDamage(float damage)
     {
         // TODO: Apply armour modifiers
@@ -243,17 +225,28 @@ public class Player : MonoBehaviour
     private void HandlePlayerStateChange(playerState newstate, Player player)
     {
         Debug.Log("Player state changed to: " + newstate);
-        if(newstate == Player.playerState.Building)
+        if(newstate == Player.playerState.Building || newstate == Player.playerState.Inactive)
         {
             if(!isAI)
             {
                 GetComponent<UserInput>().Deactivate();
                 transform.Find("Camera").gameObject.SetActive(false);
             }
+            else
+            {
+                GetComponent<AIInput2>().enabled = false;
+                GetComponent<FSMOwner>().enabled = false;
+            }
         }
 
         if(newstate == Player.playerState.Alive)
         {
+
+            // Set armour
+            this.OnArmourChange += ArmourChangeHandler;
+            maxArmour = GetComponentInChildren<ArmourManager>().GetTotalArmour();
+            currentArmour = maxArmour;
+
             if(!isAI)
             {
                 if(GetComponent<UserInput>())
@@ -268,17 +261,20 @@ public class Player : MonoBehaviour
                     ogHealhBarSize = healthBar.sizeDelta;
                 }
 
-                // Set armour
-                this.OnArmourChange += ArmourChangeHandler;
-                maxArmour = GetComponentInChildren<ArmourManager>().GetTotalArmour();
-                currentArmour = maxArmour;
-
                 if(!armourBar & !testMode)
                 {
                     armourBar = GameObject.Find("ArmourForeground").GetComponent<RectTransform>();
                     ogArmourSize = armourBar.sizeDelta;
                 }      
-            }        
+            }
+
+            else
+            {
+                GetComponent<AIInput2>().enabled = true;
+                GetComponent<FSMOwner>().enabled = true;
+            }
+                    
+
             BroadcastMessage("PlayerActive");
         }
     }

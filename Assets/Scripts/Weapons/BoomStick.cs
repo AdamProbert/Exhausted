@@ -7,8 +7,8 @@ public class BoomStick : BaseProjectile
 {
     [SerializeField] float fuseTime;
     [SerializeField] LayerMask stickableSurfaces;
-    private float hitTime;
     private bool flying;
+    private Transform previousParent;
 
     private void Awake() 
     {
@@ -18,7 +18,8 @@ public class BoomStick : BaseProjectile
     private void OnEnable() 
     {
         flying = true;
-        transform.parent = null;
+        previousParent = transform.parent;
+        GetComponent<Collider>().enabled = true;
     }
 
     private void OnDisable() 
@@ -39,16 +40,17 @@ public class BoomStick : BaseProjectile
     {
         yield return new WaitForSeconds(fuseTime);    
         GetComponent<Explode>().DOIT();
-        Destroy(this.gameObject);
+        transform.parent = previousParent;
+        gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision other) 
     {
         if(flying)
         {
-            if(other.gameObject && other.gameObject.layer == 8 && other.transform.root != base.playerShooter)
-            {   
-                other.gameObject.GetComponent<Player>().TakeDamage(base.damage);
+            if(base.collideableLayers == (base.collideableLayers | (1 << other.gameObject.layer)) && other.transform.root != playerShooter)
+            {
+                other.gameObject.GetComponentInParent<Player>().TakeDamage(base.damage);
             }
 
             // Stick it in the thing
@@ -56,12 +58,10 @@ public class BoomStick : BaseProjectile
             {
                 Debug.Log("Sticking to: " + other.gameObject.name);
                 transform.position += transform.forward * .3f;
-                
                 transform.parent = other.transform;
                 base.rb.isKinematic = true;
                 GetComponent<Collider>().enabled = false;
                 flying = false;
-
                 StartCoroutine(ExplodeOnTimer());
             }
         }

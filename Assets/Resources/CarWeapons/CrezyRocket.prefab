@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -2041831213611976780}
   - component: {fileID: 1545057341454795647}
   - component: {fileID: 7772913817701803776}
+  - component: {fileID: 1218713865118880851}
   m_Layer: 10
   m_Name: CrezyRocket
   m_TagString: Untagged
@@ -155,7 +156,7 @@ MonoBehaviour:
     m_Bits: 3221228598
   effect: {fileID: 19849376, guid: b42b8677df418c047aef5d8ce9c66663, type: 3}
   explosionSound: {fileID: 8300000, guid: 8dfcae34791b3a447b81d6653208f596, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1218713865118880851}
   shrapnelItemPrefabs:
   - {fileID: 1239673110073358, guid: 89a0fdc0463814f489cd8f25abba65f6, type: 3}
   - {fileID: 1511868952250108, guid: d8d48504fc5c6a4479427ebe83518acb, type: 3}
@@ -206,6 +207,103 @@ MonoBehaviour:
     m_DirectionMode: 0
     m_DissipationMode: 2
     m_DissipationDistance: 1000
+--- !u!82 &1218713865118880851
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080410123433332}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -6598510220592668516, guid: 5f1f3c25a04eee04daf9345cc091c38b,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 111
+  DopplerLevel: 1
+  MinDistance: 0
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.125
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &2654164594781788449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -284,6 +382,30 @@ PrefabInstance:
     - target: {fileID: 8210142, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19824690, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19824690, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19845296, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19845296, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19845296, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19845296, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8210142, guid: fa5941c5e058b254bbfbdcac8e5c36c1, type: 3}

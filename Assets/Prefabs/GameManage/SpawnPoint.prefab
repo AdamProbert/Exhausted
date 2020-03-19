@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupied: {fileID: 0}
+  virtualCamera: {fileID: 7891235778961580499}
 --- !u!1 &4286842271515206943
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,8 +100,9 @@ GameObject:
   m_Component:
   - component: {fileID: 973542343561077750}
   - component: {fileID: 7891235778961580499}
+  - component: {fileID: 3695834865266657772}
   m_Layer: 0
-  m_Name: CM vcam2
+  m_Name: CM vcam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4446508701849472933}
   m_LocalRotation: {x: 0.3566779, y: -0.51172817, z: 0.35505122, w: 0.6963145}
-  m_LocalPosition: {x: 4.7, y: 8.22, z: -0.91}
+  m_LocalPosition: {x: 18.16, y: 32.25, z: -0.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2798776349278124146}
@@ -137,9 +139,9 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 1
+  m_Priority: 100
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 3881355387866389308}
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
@@ -156,6 +158,36 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2798776349278124146}
+--- !u!114 &3695834865266657772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446508701849472933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 769
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 5
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 1
+  m_MaximumEffort: 4
+  m_SmoothingTime: 1
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1 &6326257948336222995
 GameObject:
   m_ObjectHideFlags: 0

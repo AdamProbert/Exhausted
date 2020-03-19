@@ -6,14 +6,17 @@ using UnityEngine;
 public class CollisionsManager : MonoBehaviour
 {
 
+    [SerializeField] float maxSpeed = 100;
     private AudioSource audioSource;
     private int requestScrapeSoundCount;
-
     private bool started;
+    private float volumeModifier;
+    private Rigidbody parentRB;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();    
+        parentRB = transform.root.GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
         requestScrapeSoundCount = 0;
         audioSource.Play();
         audioSource.Pause();
@@ -30,7 +33,8 @@ public class CollisionsManager : MonoBehaviour
     private void HandleAudioChange() 
     {   
         if(started)
-        {
+        {   
+            audioSource.volume = Mathf.Clamp01(parentRB.velocity.magnitude / maxSpeed);
             if(requestScrapeSoundCount > 0 & !audioSource.isPlaying)
             {
                 audioSource.Play();
@@ -51,7 +55,10 @@ public class CollisionsManager : MonoBehaviour
 
     public void RequestStopAudio()
     {
-        requestScrapeSoundCount -= 1;
-        HandleAudioChange();
+        if(requestScrapeSoundCount > 0)
+        {
+            requestScrapeSoundCount -= 1;    
+            HandleAudioChange();
+        }
     }
 }

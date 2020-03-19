@@ -1,5 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1379742486703943787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4927133848708454244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c7bdf61c825254ea8e9b086eadd508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupLayer:
+    serializedVersion: 2
+    m_Bits: 67108864
+--- !u!114 &8548923929348105518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4927133848708454244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3381e3b78b9bca24da27d55561f6d32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hardness: 1
+  MaxDeformationRadius: 0
+  MaxVertexMov: 0
+  RandomFactorDeformation: 0
+  DeformationsScale: {x: 1, y: 1, z: 1}
+  DeformMeshCollider: 0
+  LimitDeformationToMeshBounds: 1
+  RecalculateNormals: 1
+  Master: {fileID: 0}
+  OverrideMaster: 0
+  MeshFilter: {fileID: 0}
 --- !u!1001 &2748370367265035876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59,7 +97,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Master
       value: 
-      objectReference: {fileID: 6190071382411764095}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1102d228d962ce46bd2efcb00c224d2, type: 3}
 --- !u!4 &1186006235422825447 stripped
@@ -75,6 +113,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1531000730, guid: 52b51f7496abcf54093f1a8132f9fb54, type: 3}
+      propertyPath: m_state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531000730, guid: 52b51f7496abcf54093f1a8132f9fb54, type: 3}
+      propertyPath: isAI
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531000730, guid: 52b51f7496abcf54093f1a8132f9fb54, type: 3}
+      propertyPath: testMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2931875226663893868, guid: 52b51f7496abcf54093f1a8132f9fb54,
+        type: 3}
+      propertyPath: enableAutoAim
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7979698016321969746, guid: 52b51f7496abcf54093f1a8132f9fb54,
         type: 3}
       propertyPath: Hardness
@@ -156,26 +211,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car-minigun
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7979698016321969746, guid: 52b51f7496abcf54093f1a8132f9fb54, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 52b51f7496abcf54093f1a8132f9fb54, type: 3}
+--- !u!1 &4927133848708454244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9167826977869424713, guid: 52b51f7496abcf54093f1a8132f9fb54,
+    type: 3}
+  m_PrefabInstance: {fileID: 4276757396874100525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4927133848708680516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9167826977869132905, guid: 52b51f7496abcf54093f1a8132f9fb54,
     type: 3}
   m_PrefabInstance: {fileID: 4276757396874100525}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6190071382411764095 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7979698016321969746, guid: 52b51f7496abcf54093f1a8132f9fb54,
-    type: 3}
-  m_PrefabInstance: {fileID: 4276757396874100525}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3381e3b78b9bca24da27d55561f6d32c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6573158633149549892
 PrefabInstance:
   m_ObjectHideFlags: 0

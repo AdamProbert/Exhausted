@@ -46,7 +46,7 @@ public class ArmourPiece : MonoBehaviour
             trailPS =  Instantiate(trailFX, transform.position, Quaternion.identity, transform);
         }
         
-        rb.AddExplosionForce(fallAwayForce*3, transform.position, 1f, 1f);
+        rb.AddExplosionForce(fallAwayForce*10, transform.position, 1f, 1f);
     }
 
     public void BreakAway()

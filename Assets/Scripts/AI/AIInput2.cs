@@ -47,6 +47,7 @@ public class AIInput2 : MonoBehaviour
     private float m_AvoidPathOffset;          // direction (-1 or 1) in which to offset path to avoid other car, whilst avoiding
     private Rigidbody m_Rigidbody;
 
+    private Player thisPlayer;
 
     [Header("Pathing")]
     NavMeshPath m_Path;
@@ -94,7 +95,9 @@ public class AIInput2 : MonoBehaviour
     [SerializeField] private bool pointAndClickMode;
 
     private void Awake()
-    {
+    {   
+        thisPlayer = GetComponent<Player>();
+
         if(m_Target==null)
         {
             m_Target = new GameObject("AI-Target").transform;
@@ -181,12 +184,15 @@ public class AIInput2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SetTarget();
-        if(!Sensors())
+        if(thisPlayer.state == Player.playerState.Alive)
         {
-            MoveIt();
+            SetTarget();
+            if(!Sensors())
+            {
+                MoveIt();
+            }
+            CheckDesinationReached();
         }
-        CheckDesinationReached();
     }
 
     private bool Sensors()

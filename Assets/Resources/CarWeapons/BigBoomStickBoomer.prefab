@@ -39,7 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1636134828111195499}
-  - component: {fileID: 1636134828111195498}
   - component: {fileID: 1636134828111195413}
   - component: {fileID: 1636134828111195502}
   - component: {fileID: 1636134828111195497}
@@ -68,23 +67,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1636134828111195498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636134828111195412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3c2bc443d60fd49a621c1990da09d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObject: {fileID: 2938755455111852992, guid: e63b4546a85241940ae72ab27c5dbe10,
-    type: 3}
-  pooledAmount: 50
-  willGrow: 1
-  pooledObjects: []
 --- !u!114 &1636134828111195413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,11 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed874024d63689479af33e867430dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 60
+  projectileSpeed: 75
   projectileSpawn: {fileID: 1636134827602162083}
   fireRate: 0.5
-  parentRigidBody: {fileID: 0}
   uiImage: {fileID: 21300000, guid: cb5603fdd7f17fe418f6c53c3733a61d, type: 3}
+  projectileName: BoomStick
   currentStatus: 0
   fireSound: {fileID: 8300000, guid: d1675c28d6f05aa47ab50c7bb538b0c3, type: 3}
   fireEffectPrefab: {fileID: 1682595293372135396, guid: a56eb1392f15d34408c2ae49eef51eb4,
