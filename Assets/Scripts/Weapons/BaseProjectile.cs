@@ -4,16 +4,17 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(AudioSource))]
-public class BaseProjectile : MonoBehaviour
+public class BaseProjectile : BaseDamager
 {
-    [SerializeField] protected float damage;
     [SerializeField] protected AudioClip collisionSound;
+    [SerializeField] protected LayerMask collideableLayers;
     [SerializeField] public Transform playerShooter; // Populated by object pooler
     protected Rigidbody rb;
     protected AudioSource audioSource;
     Quaternion rotation;
+    
 
-    private void Awake() 
+    public void Init() 
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
@@ -33,9 +34,9 @@ public class BaseProjectile : MonoBehaviour
     protected void HandleCollision(Collision other) 
     {
 
-        if(other.gameObject.layer == 8 && other.transform.root != playerShooter)
+        if(collideableLayers == (collideableLayers | (1 << other.gameObject.layer)) && other.transform.root != playerShooter)
         {
-            other.gameObject.GetComponent<Player>().TakeDamage(damage);
+            other.gameObject.GetComponentInParent<Player>().TakeDamage(base.GetDamage());
         }
 
         gameObject.SetActive(false);

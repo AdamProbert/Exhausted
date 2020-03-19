@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Bullet : BaseProjectile
 {
-    [SerializeField] ParticleSystem bulletDecalMetal;
+    [SerializeField] ParticleSystem bulletHitEffectPrefab;
+    private ParticleSystem hiteffect;
+
+    private void Awake() 
+    {
+        base.Init();
+        hiteffect = Instantiate(bulletHitEffectPrefab);    
+    }
 
     private void OnCollisionEnter(Collision other) 
     {
         base.HandleCollision(other);
-        ContactPoint hit = other.contacts[0];
-        GameObject bulletDecal = Instantiate(bulletDecalMetal, hit.point + hit.normal * 0.01f, Quaternion.FromToRotation(Vector3.forward, hit.normal)).gameObject;
-        bulletDecal.transform.SetParent(other.transform);
-        Destroy(bulletDecal, 10f);
+        hiteffect.Play();
     }
 }

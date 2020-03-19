@@ -151,6 +151,10 @@ public class UserInput : MonoBehaviour
 
     public void SetActive()
     {
+        if(controls == null)
+        {
+            Awake();
+        }
         controls.Player.Enable();
         isActive = true;
     }

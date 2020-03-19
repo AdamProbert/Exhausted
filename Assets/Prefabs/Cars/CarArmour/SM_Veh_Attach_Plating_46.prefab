@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 33209899879476836}
   - component: {fileID: 23797585868861798}
   - component: {fileID: -5999710176439805096}
-  m_Layer: 0
+  - component: {fileID: -3594025587186000002}
+  - component: {fileID: 4221294323068789356}
+  m_Layer: 12
   m_Name: SM_Veh_Attach_Plating_46
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,3 +96,38 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: b3159846579730a48a3b0f453d138325, type: 3}
+--- !u!54 &-3594025587186000002
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093993957480894}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
+--- !u!114 &4221294323068789356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093993957480894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6661f3854096d41a902adc1b54ad47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxStrength: 50
+  fallAwayForce: 200
+  attachFX: {fileID: 198408394531385598, guid: 6b101824d228d684baacfa2210303925, type: 3}
+  trailFX: {fileID: 19891584, guid: a1cea836e7ef006418d722d444c96168, type: 3}
+  attachSound: {fileID: 8300000, guid: b77f3203f69f2924f8f98f996270d2fa, type: 3}
+  currentStrength: 0
+  currentState: 1

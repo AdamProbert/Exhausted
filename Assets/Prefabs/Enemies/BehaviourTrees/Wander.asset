@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Wander
   m_EditorClassIdentifier: 
   _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"dynamic":true,"_position":{"x":402.0,"y":257.0},"$type":"NodeCanvas.BehaviourTrees.Selector","$id":"0"},{"dynamic":true,"_position":{"x":104.0,"y":384.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"1"},{"_condition":{"valueA":{"_name":"MoveCount","_targetVariableID":"dc3cf3e6-5815-48bd-9436-ddf53b18cf01"},"checkType":1,"valueB":{"_value":3},"$type":"NodeCanvas.Tasks.Conditions.CheckInt"},"_position":{"x":-47.19601,"y":511.9915},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"2"},{"_action":{"actions":[{"valueA":{"_name":"MoveCount","_targetVariableID":"dc3cf3e6-5815-48bd-9436-ddf53b18cf01"},"valueB":{},"$type":"NodeCanvas.Tasks.Actions.SetFloat"},{"$type":"NodeCanvas.Tasks.Actions.ForceFinishGraph"}],"$type":"NodeCanvas.Framework.ActionList"},"_position":{"x":139.868,"y":498.8852},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"3"},{"dynamic":true,"_position":{"x":661.0,"y":348.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"4"},{"_condition":{"checkMode":1,"conditions":[{"method":{"_baseInfo":"AIInput2|HasReachedDestination|System.Boolean","_paramsInfo":""},"parameters":[],"checkValue":{"_type":"System.Boolean","_value":{"$content":true,"$type":"System.Boolean"}},"$type":"NodeCanvas.Tasks.Conditions.CheckFunction_Multiplatform"},{"valueA":{"_name":"EndDestination","_targetVariableID":"6699e5fb-7cb1-44d6-a389-088d7aace87c"},"valueB":{},"$type":"NodeCanvas.Tasks.Conditions.CheckVariable`1[[UnityEngine.Vector3,
-    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},{"checkType":2,"value":{"_value":0.1},"$type":"NodeCanvas.Tasks.Actions.CheckSpeed"}],"$type":"NodeCanvas.Framework.ConditionList"},"_position":{"x":414.0,"y":520.0},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"5"},{"childWeights":[{"_value":3.0},{"_value":1.0}],"failChance":{},"_position":{"x":800.0,"y":457.0},"$type":"NodeCanvas.BehaviourTrees.ProbabilitySelector","$id":"6"},{"_action":{"saveAs":{"_name":"EndDestination","_targetVariableID":"6699e5fb-7cb1-44d6-a389-088d7aace87c"},"minWanderDistance":{"_value":5.0},"maxWanderDistance":{"_value":20.0},"$type":"NodeCanvas.Tasks.Actions.GetPointOnNavemeshInFrontOfPlayer"},"_position":{"x":589.0,"y":649.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"7"},{"_action":{"saveAs":{"_name":"EndDestination","_targetVariableID":"6699e5fb-7cb1-44d6-a389-088d7aace87c"},"minWanderDistance":{"_value":20.0},"maxWanderDistance":{"_value":50.0},"$type":"NodeCanvas.Tasks.Actions.GetRandomPointOnNavemesh"},"_position":{"x":765.0,"y":726.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"8"},{"_action":{"actions":[{"valueA":{"_name":"MoveCount","_targetVariableID":"dc3cf3e6-5815-48bd-9436-ddf53b18cf01"},"Operation":1,"valueB":{"_value":1},"$type":"NodeCanvas.Tasks.Actions.SetInt"},{"waitTime":{"_value":1.5},"$type":"NodeCanvas.Tasks.Actions.Wait"}],"$type":"NodeCanvas.Framework.ActionList"},"_position":{"x":969.0,"y":448.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"9"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"MoveCount":{"_name":"MoveCount","_id":"dc3cf3e6-5815-48bd-9436-ddf53b18cf01","$type":"NodeCanvas.Framework.Variable`1[[System.Int32,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}],"$type":"NodeCanvas.Framework.ConditionList"},"_position":{"x":371.0623,"y":518.8708},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"5"},{"childWeights":[{"_value":3.0},{"_value":1.0}],"failChance":{},"_position":{"x":800.0,"y":457.0},"$type":"NodeCanvas.BehaviourTrees.ProbabilitySelector","$id":"6"},{"_action":{"saveAs":{"_name":"EndDestination","_targetVariableID":"6699e5fb-7cb1-44d6-a389-088d7aace87c"},"minWanderDistance":{"_value":10.0},"maxWanderDistance":{"_value":30.0},"$type":"NodeCanvas.Tasks.Actions.GetPointOnNavemeshInFrontOfPlayer"},"_position":{"x":589.0,"y":649.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"7"},{"_action":{"saveAs":{"_name":"EndDestination","_targetVariableID":"6699e5fb-7cb1-44d6-a389-088d7aace87c"},"minWanderDistance":{"_value":10.0},"maxWanderDistance":{"_value":30.0},"$type":"NodeCanvas.Tasks.Actions.GetRandomPointOnNavemesh"},"_position":{"x":803.3235,"y":721.7418},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"8"},{"_action":{"actions":[{"valueA":{"_name":"MoveCount","_targetVariableID":"dc3cf3e6-5815-48bd-9436-ddf53b18cf01"},"Operation":1,"valueB":{"_value":1},"$type":"NodeCanvas.Tasks.Actions.SetInt"},{"waitTime":{"_value":1.5},"$type":"NodeCanvas.Tasks.Actions.Wait"}],"$type":"NodeCanvas.Framework.ActionList"},"_position":{"x":969.0,"y":448.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"9"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"MoveCount":{"_name":"MoveCount","_id":"dc3cf3e6-5815-48bd-9436-ddf53b18cf01","$type":"NodeCanvas.Framework.Variable`1[[System.Int32,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
   _objectReferences: []
   _graphSource:
     _version: 3.03
     _category: 
     _comments: 
-    _translation: {x: 90, y: 258}
-    _zoomFactor: 0.62246895
+    _translation: {x: -99, y: 161}
+    _zoomFactor: 0.76112086
   _haltSerialization: 0
 #---GRAPH_START---
 #The pretty formatted json serialization bellow is only a reference to help in version control diff. Other than that it is not used at all.
@@ -128,20 +128,13 @@ MonoBehaviour:
 #
 #                        },
 #                        "$type": "NodeCanvas.Tasks.Conditions.CheckVariable`1[[UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
-#                    },
-#                    {
-#                        "checkType": 2,
-#                        "value": {
-#                            "_value": 0.1
-#                        },
-#                        "$type": "NodeCanvas.Tasks.Actions.CheckSpeed"
 #                    }
 #                ],
 #                "$type": "NodeCanvas.Framework.ConditionList"
 #            },
 #            "_position": {
-#                "x": 414.0,
-#                "y": 520.0
+#                "x": 371.0623,
+#                "y": 518.8708
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.ConditionNode",
 #            "$id": "5"
@@ -172,10 +165,10 @@ MonoBehaviour:
 #                    "_targetVariableID": "6699e5fb-7cb1-44d6-a389-088d7aace87c"
 #                },
 #                "minWanderDistance": {
-#                    "_value": 5.0
+#                    "_value": 10.0
 #                },
 #                "maxWanderDistance": {
-#                    "_value": 20.0
+#                    "_value": 30.0
 #                },
 #                "$type": "NodeCanvas.Tasks.Actions.GetPointOnNavemeshInFrontOfPlayer"
 #            },
@@ -193,16 +186,16 @@ MonoBehaviour:
 #                    "_targetVariableID": "6699e5fb-7cb1-44d6-a389-088d7aace87c"
 #                },
 #                "minWanderDistance": {
-#                    "_value": 20.0
+#                    "_value": 10.0
 #                },
 #                "maxWanderDistance": {
-#                    "_value": 50.0
+#                    "_value": 30.0
 #                },
 #                "$type": "NodeCanvas.Tasks.Actions.GetRandomPointOnNavemesh"
 #            },
 #            "_position": {
-#                "x": 765.0,
-#                "y": 726.0
+#                "x": 803.3235,
+#                "y": 721.7418
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.ActionNode",
 #            "$id": "8"

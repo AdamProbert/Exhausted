@@ -47,6 +47,7 @@ public class AIInput2 : MonoBehaviour
     private float m_AvoidPathOffset;          // direction (-1 or 1) in which to offset path to avoid other car, whilst avoiding
     private Rigidbody m_Rigidbody;
 
+    private Player thisPlayer;
 
     [Header("Pathing")]
     NavMeshPath m_Path;
@@ -59,11 +60,20 @@ public class AIInput2 : MonoBehaviour
 
     [Header("Sensors")]
     [SerializeField] Color sensorColor;
+    [SerializeField] Vector3 hitSensorPositionOffset;
     [SerializeField] float hitSensorLength = 5;
     [SerializeField] float reverseSensorLength = 10;
-    [SerializeField] bool avoiding = false;
+    [SerializeField] float avoidSensorLength = 10;
+    [SerializeField] Vector3 avoidSensorLeftPositionOffset;
+    [SerializeField] Vector3 avoidSensorRightPositionOffset;
 
-    [SerializeField] Vector3 frontSensorPosOffset;
+    [SerializeField] float avoidSensorRotation = 45f;
+    [SerializeField] float hitSensorXRotation = 60f;
+
+    [SerializeField] LayerMask sensorLayerMask;
+    
+    [SerializeField] bool reversing = false;
+    [SerializeField] bool avoiding = false;
 
     [SerializeField] private Player m_NavTarget;
     [SerializeField] public Player navTarget{
@@ -71,10 +81,8 @@ public class AIInput2 : MonoBehaviour
         set{
             if(m_NavTarget == value) return;
             m_NavTarget = value;
-            Debug.Log("AIInput: Setting new target");
             if(OnTargetChange != null)
             {
-                Debug.Log("AIInput: New target event sent");
                 OnTargetChange(m_NavTarget);
             }
         }
@@ -84,10 +92,12 @@ public class AIInput2 : MonoBehaviour
     public event OnTargetChangeDelegate OnTargetChange;
 
     // Debug
-    [SerializeField] private bool debugMode;
+    [SerializeField] private bool pointAndClickMode;
 
     private void Awake()
-    {
+    {   
+        thisPlayer = GetComponent<Player>();
+
         if(m_Target==null)
         {
             m_Target = new GameObject("AI-Target").transform;
@@ -120,7 +130,7 @@ public class AIInput2 : MonoBehaviour
 
     private void UpdatePath()
     {
-        if(debugMode)
+        if(pointAndClickMode)
         {
             Vector3 pos = GetClickPosition();
             endDestination = m_HitInfo.point;
@@ -145,6 +155,7 @@ public class AIInput2 : MonoBehaviour
             if (m_Path.corners == null || m_Path.corners.Length == 0)
             {
                 destination = Vector3.zero;
+                endDestination = Vector3.zero;
                 return;
             }
     
@@ -152,6 +163,7 @@ public class AIInput2 : MonoBehaviour
             if (pathIter >= m_Path.corners.Length)
             {
                 destination = Vector3.zero;
+                endDestination = Vector3.zero;
                 return;
             }
 
@@ -172,10 +184,14 @@ public class AIInput2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SetTarget();
-        if(!Sensors())
+        if(thisPlayer.state == Player.playerState.Alive)
         {
-            MoveIt();
+            SetTarget();
+            if(!Sensors())
+            {
+                MoveIt();
+            }
+            CheckDesinationReached();
         }
     }
 
@@ -183,10 +199,9 @@ public class AIInput2 : MonoBehaviour
     {
         // Sensors will override movement
         RaycastHit hit;
-        Vector3 sensorsStartPos = transform.position;
-        sensorsStartPos += frontSensorPosOffset;
+        Vector3 sensorsStartPos = transform.position + hitSensorPositionOffset;
         float sensorLength;
-        if(avoiding)
+        if(reversing)
         {
            sensorLength = reverseSensorLength;
         } 
@@ -195,27 +210,67 @@ public class AIInput2 : MonoBehaviour
             sensorLength = hitSensorLength;
         }
 
-        if(Physics.SphereCast(sensorsStartPos, 1f, transform.forward, out hit, sensorLength))
+        Debug.DrawRay(sensorsStartPos, Quaternion.AngleAxis(-hitSensorXRotation, transform.right) * transform.forward * sensorLength, sensorColor);
+        
+        if(Physics.SphereCast(sensorsStartPos, 1f, Quaternion.AngleAxis(-hitSensorXRotation, transform.right) * transform.forward , out hit, sensorLength, sensorLayerMask))
         {
-            if(hit.collider.gameObject.layer == 9 || hit.collider.CompareTag("World"))
-            {
-                Debug.DrawLine(sensorsStartPos, transform.forward * sensorLength, sensorColor, 10f);
-                float revSteer = 0f;
-                Vector3 perp = Vector3.Cross(transform.forward, m_Target.position - transform.position);
-                float dir = Vector3.Dot(perp, transform.up);
-                
-                if (dir > 0f) {
-                    revSteer = -1f;
-                } else if (dir < 0f) {
-                    revSteer = 1f;
-                }
-                m_CarController.Move(revSteer, -1, -1, 0, 0);
-                avoiding = true;
-                return true;
+            float revSteer = 0f;
+            Vector3 perp = Vector3.Cross(transform.forward, m_Target.position - transform.position);
+            float dir = Vector3.Dot(perp, transform.up);
+            
+            if (dir > 0f) {
+                revSteer = -1f;
+            } else if (dir < 0f) {
+                revSteer = 1f;
             }
+            m_CarController.Move(revSteer, -1, -1, 0, 0f);
+            reversing = true;
+            Debug.DrawRay(sensorsStartPos, Quaternion.AngleAxis(-hitSensorXRotation, transform.right) * transform.forward * sensorLength, Color.green);
+            return true;
+        }
+
+        Vector3 leftSensorStartPosition = transform.position + avoidSensorLeftPositionOffset;
+        Vector3 rightSensorStartPosition = transform.position + avoidSensorRightPositionOffset;
+
+        Debug.DrawRay(leftSensorStartPosition, Quaternion.AngleAxis(-avoidSensorRotation, transform.up) * transform.forward * avoidSensorLength, sensorColor);
+        Debug.DrawRay(rightSensorStartPosition, Quaternion.AngleAxis(avoidSensorRotation, transform.up) * transform.forward * avoidSensorLength, sensorColor);
+
+        if(Physics.Raycast(leftSensorStartPosition, Quaternion.AngleAxis(-avoidSensorRotation, transform.up)*transform.forward * avoidSensorLength, out hit, avoidSensorLength, sensorLayerMask))
+        {
+            m_CarController.Move(.5f, .5f, 0, 0, 0);
+            avoiding = true;
+            reversing = false;
+            Debug.DrawRay(leftSensorStartPosition, Quaternion.AngleAxis(-avoidSensorRotation, transform.up) * transform.forward * avoidSensorLength, Color.green);
+            return true;
+        }
+
+        if(Physics.Raycast(rightSensorStartPosition, Quaternion.AngleAxis(avoidSensorRotation, transform.up) * transform.forward * avoidSensorLength, out hit, avoidSensorLength, sensorLayerMask))
+        {
+            m_CarController.Move(-.5f, .5f, 0, 0, 0);
+            avoiding = true;
+            reversing = false;
+            Debug.DrawRay(rightSensorStartPosition, Quaternion.AngleAxis(avoidSensorRotation, transform.up) * transform.forward * avoidSensorLength, Color.green);
+            return true;
         }
         
+        avoiding = false;
+        reversing = false;
         return false;
+    }
+
+    private void CheckDesinationReached()
+    {
+        Vector3 localTarget = transform.InverseTransformPoint(m_Target.position);
+        // if appropriate, stop driving when we're close enough to the target.
+        if (localTarget.magnitude < m_ReachTargetThreshold)
+        {
+            // m_Driving = false;
+            ++pathIter;
+            if (pathIter >= m_Path.corners.Length)
+            {
+                destination = Vector3.zero;
+            }
+        }
     }
 
     private void SetTarget()
@@ -235,7 +290,6 @@ public class AIInput2 : MonoBehaviour
 
     private void MoveIt()
     {
-        avoiding = false;
         if (m_Target == null || destination == Vector3.zero)
         {
             // Car should not be moving,
@@ -345,17 +399,6 @@ public class AIInput2 : MonoBehaviour
 
             // feed input to the car controller.
             m_CarController.Move(steer, accel, accel, 0f);
-
-            // if appropriate, stop driving when we're close enough to the target.
-            if (localTarget.magnitude < m_ReachTargetThreshold)
-            {
-                // m_Driving = false;
-                ++pathIter;
-                if (pathIter >= m_Path.corners.Length)
-                {
-                    destination = Vector3.zero;
-                }
-            }
         }
     }
 
@@ -363,6 +406,7 @@ public class AIInput2 : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, endDestination) < m_ReachTargetThreshold)
         {
+            
             return true;
         }
         return false;
@@ -443,5 +487,18 @@ public class AIInput2 : MonoBehaviour
                 Gizmos.DrawCube(m_Path.corners[pathIter], new Vector3(.5f, .5f, .5f));
             }
         }
+
+        // // Sensor gizmos
+        // Gizmos.color = sensorColor;
+        // if(reversing)
+        //     Gizmos.color = Color.green;
+        // Gizmos.DrawLine(transform.position + hitSensorPositionOffset, transform.position + hitSensorPositionOffset + transform.forward * hitSensorLength);
+
+        // Gizmos.color = sensorColor;
+        // if(avoiding)
+        //     Gizmos.color = Color.green;
+        // Gizmos.DrawLine(transform.position + avoidSensorLeftPositionOffset, transform.position + avoidSensorLeftPositionOffset + avoidSensorLeftRotation * avoidSensorLength);
+        // Gizmos.DrawLine(transform.position + avoidSensorRightPositionOffset, transform.position + avoidSensorRightPositionOffset + avoidSensorRightRotation * avoidSensorLength);
+
     }
 }

@@ -27,10 +27,10 @@ public class CampaignManager : MonoBehaviour
         }
     }
 
-    public void RequestBattle(int noOfEnemies)
+    public void RequestBattle(int noOfEnemies, string mapScene)
     {
         CampaignEventManager.TriggerEvent("BattleStarting", null);
         BattleData.noOfEnemies = noOfEnemies;
-        SceneManager.LoadScene("DesertArena");
+        SceneManager.LoadScene(mapScene);
     }
 }

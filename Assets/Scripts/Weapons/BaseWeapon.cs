@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(ObjectPooler))]
 abstract public class BaseWeapon : MonoBehaviour
 {
     [SerializeField] protected float projectileSpeed;
     [SerializeField] public Transform projectileSpawn;
     [Tooltip ("Bullets spawned per second")]
     [SerializeField] protected float fireRate;
-    [SerializeField] protected Rigidbody parentRigidBody;
-
     [SerializeField] Sprite uiImage;
-
-    protected ObjectPooler projectilePool;
+    [SerializeField] string projectileName;
 
     public status currentStatus = status.Inactive;
+    protected Rigidbody parentRigidBody;
     public enum status
     {
         Active,
@@ -32,7 +29,6 @@ abstract public class BaseWeapon : MonoBehaviour
 
     public void Init() 
     {
-        projectilePool = GetComponent<ObjectPooler>();    
         audioSource = GetComponent<AudioSource>();
         parentRigidBody = transform.root.GetComponent<Rigidbody>();
         if(fireEffectPrefab)
@@ -51,6 +47,22 @@ abstract public class BaseWeapon : MonoBehaviour
         Debug.Log("Base weapon: PLayer active received");
         currentStatus = status.Active;
         Init();
+    }
+
+    public GameObject GetProjectile()
+    {
+        GameObject x = PoolManager.Instance.GetPooledObject(projectileName);
+        x.GetComponent<BaseProjectile>().playerShooter = transform.root;
+        return  x;
+    }
+
+    public void FireProjectile()
+    {
+        GameObject projectile = GetProjectile();
+        projectile.SetActive(true);
+        projectile.transform.position = projectileSpawn.position;
+        projectile.transform.rotation = projectileSpawn.rotation;
+        projectile.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed + GetParentVelocity();
     }
 
     protected Vector3 GetParentVelocity()

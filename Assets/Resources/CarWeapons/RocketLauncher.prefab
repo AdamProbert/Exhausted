@@ -39,7 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 148879633549439454}
-  - component: {fileID: 2694928511872684069}
   - component: {fileID: 3675153390946322659}
   - component: {fileID: 5563357935945700472}
   - component: {fileID: 5848967748269740640}
@@ -67,23 +66,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2694928511872684069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7522007734434652433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3c2bc443d60fd49a621c1990da09d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObject: {fileID: 1080410123433332, guid: d018ad52fc569c0469ecc776b5619ac0,
-    type: 3}
-  pooledAmount: 50
-  willGrow: 1
-  pooledObjects: []
 --- !u!114 &3675153390946322659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,8 +81,8 @@ MonoBehaviour:
   projectileSpeed: 50
   projectileSpawn: {fileID: 3133251987110557488}
   fireRate: 0.3
-  parentRigidBody: {fileID: 0}
   uiImage: {fileID: 21300000, guid: d8a07b1c66eaa724db557715967ffa32, type: 3}
+  projectileName: CrezyRocket
   currentStatus: 0
   fireSound: {fileID: 8300000, guid: 7f60c2e8183eb524ca83f5d800cc93fb, type: 3}
   fireEffectPrefab: {fileID: 0}
@@ -118,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ac9dfc29f1f6241a45727d690f3d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoFindTarget: 0
   maxRotation: 180
   rotationSpeed: 2.81
   searchRadius: 25
@@ -126,7 +109,7 @@ MonoBehaviour:
     m_Bits: 256
   raycastIgnoreLayers:
     serializedVersion: 2
-    m_Bits: 2147484471
+    m_Bits: 769
   aimOffset: {x: 0, y: 1, z: -1}
 --- !u!82 &5848967748269740640
 AudioSource:
@@ -140,17 +123,17 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -8746721390987911425, guid: 5f1f3c25a04eee04daf9345cc091c38b,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 111
+  Priority: 20
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

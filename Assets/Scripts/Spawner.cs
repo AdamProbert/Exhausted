@@ -6,7 +6,17 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] List<Player> enemyPrefabs;
 
-    private List<SpawnPoint> FindSpawnPoints()
+    public List<SpawnPoint> GetAllSpawnPoints()
+    {
+        List<SpawnPoint> availableSpawnPoints = new List<SpawnPoint>();
+        foreach(SpawnPoint p in Object.FindObjectsOfType<SpawnPoint>())
+        {
+            availableSpawnPoints.Add(p);
+        }
+        return availableSpawnPoints;
+    }
+    
+    public List<SpawnPoint> FindSpawnPoints()
     {
         List<SpawnPoint> availableSpawnPoints = new List<SpawnPoint>();
         foreach(SpawnPoint p in Object.FindObjectsOfType<SpawnPoint>())

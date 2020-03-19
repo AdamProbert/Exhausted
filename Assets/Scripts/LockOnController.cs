@@ -44,6 +44,12 @@ public class LockOnController : MonoBehaviour
     
     private void LateUpdate()
     {
+        if(lockedTarget && lockedTarget.state != Player.playerState.Alive)
+        {
+            RemoveLock();
+            return;
+        }
+
         // Rotate collider same direction as camera
         // transform.rotation = cam.transform.rotation;
         transform.eulerAngles =  new Vector3(0, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);

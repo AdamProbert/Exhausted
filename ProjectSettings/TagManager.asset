@@ -21,6 +21,9 @@ TagManager:
   - Ground
   - Projectile
   - Shrapnel
+  - Armour
+  - MeleeWeapon
+  - Wheels
   - 
   - 
   - 
@@ -32,10 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Pickup
   - CampaignLandmark
   - PostProcessing
   - CampaignInteractable

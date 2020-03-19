@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using NodeCanvas.StateMachines;
+using NodeCanvas;
 
 [RequireComponent(typeof(WeaponController))]
 public class Player : MonoBehaviour
@@ -8,8 +9,9 @@ public class Player : MonoBehaviour
     private WeaponController weaponController;
     private AIInput2 aIInput;
     public bool isAI = true;
-
     public bool testMode = false;
+
+    [SerializeField] public Transform centrePoint;
 
     [Header("Health")]
     [SerializeField] float maxHealth;
@@ -32,6 +34,30 @@ public class Player : MonoBehaviour
 
     public delegate void OnHealthChangeDelegate(float newVal);
     public event OnHealthChangeDelegate OnHealthChange;
+
+    [Header("Armour")]
+    [SerializeField] public float maxArmour;
+    [SerializeField] float m_currentArmour;
+
+    private RectTransform armourBar;
+    private Vector2 ogArmourSize;
+
+    [SerializeField] public float currentArmour{ // Initally set from ArmourManager
+        get{return m_currentArmour;}
+        set{
+            if(m_currentArmour == value) return;
+            m_currentArmour = value;
+            if(m_currentArmour > maxArmour) m_currentArmour = maxArmour;
+            if(OnArmourChange != null)
+            {
+                OnArmourChange(m_currentArmour);
+            }
+        }
+    }
+
+    public delegate void OnArmourChangeDelegate(float newVal);
+    public event OnArmourChangeDelegate OnArmourChange;
+
     
     [SerializeField] private playerState m_state;
     public playerState state{
@@ -56,7 +82,6 @@ public class Player : MonoBehaviour
     public delegate void OnStateChangeDelegate(playerState newState, Player thisPlayer);
     public event OnStateChangeDelegate OnStateChange;
 
-
     private void Awake()
     {
         GameManager.Instance.OnStateChange += HandleGameStateChange;    
@@ -73,9 +98,11 @@ public class Player : MonoBehaviour
 
         Debug.Log("Player state set in awake to: " +state);
 
-        currentHealth = maxHealth;
+        // Set health    
         this.OnHealthChange += StatusHandler;
-        weaponController = GetComponent<WeaponController>();
+        currentHealth = maxHealth;
+
+        weaponController = GetComponent<WeaponController>();        
 
         // Is us AI?
         if(GetComponent<AIInput2>() && !GetComponent<UserInput>())
@@ -133,6 +160,15 @@ public class Player : MonoBehaviour
         
     }
 
+    private void ArmourChangeHandler(float newArmour)
+    {
+        if(armourBar)
+        {
+            float percent = (newArmour/maxArmour) * ogArmourSize.x;
+            armourBar.sizeDelta = new Vector2(percent, armourBar.sizeDelta.y);
+        }
+    }
+
     private void KillPlayer()
     {
         state = playerState.Dead;
@@ -150,31 +186,25 @@ public class Player : MonoBehaviour
         BroadcastMessage("PlayerDied"); // Player removal handled in DestroyCar
     }
 
-    // Old collision based damage
-    // private void OnCollisionEnter(Collision other) 
-    // {   
-    //     // if projectile hit us
-    //     if(other.gameObject.layer == 10)
-    //     {
-    //         float forceHit = other.relativeVelocity.magnitude;
-    //         forceHit *= other.rigidbody.mass;
-
-    //         //Debug.Log("Player: " + gameObject.name + " hit for " + forceHit + " damage");
-
-    //         if(state == playerState.Alive)
-    //         {
-    //             currentHealth -= forceHit;
-    //         }
-            
-    //     }    
-    // }
-
     public void TakeDamage(float damage)
     {
         // TODO: Apply armour modifiers
         if(state == playerState.Alive)
         {
-            currentHealth -= damage;
+            if(currentArmour > 0)
+            {
+                currentArmour -= damage;
+
+                // If we drop below 0, remove the remainder from health
+                if(currentArmour < 0)
+                {
+                    currentHealth += currentArmour; 
+                }
+            }
+            else
+            {
+                currentHealth -= damage;
+            }
         }
     }
 
@@ -195,17 +225,28 @@ public class Player : MonoBehaviour
     private void HandlePlayerStateChange(playerState newstate, Player player)
     {
         Debug.Log("Player state changed to: " + newstate);
-        if(newstate == Player.playerState.Building)
+        if(newstate == Player.playerState.Building || newstate == Player.playerState.Inactive)
         {
             if(!isAI)
             {
                 GetComponent<UserInput>().Deactivate();
                 transform.Find("Camera").gameObject.SetActive(false);
             }
+            else
+            {
+                GetComponent<AIInput2>().enabled = false;
+                GetComponent<FSMOwner>().enabled = false;
+            }
         }
 
         if(newstate == Player.playerState.Alive)
         {
+
+            // Set armour
+            this.OnArmourChange += ArmourChangeHandler;
+            maxArmour = GetComponentInChildren<ArmourManager>().GetTotalArmour();
+            currentArmour = maxArmour;
+
             if(!isAI)
             {
                 if(GetComponent<UserInput>())
@@ -214,12 +255,26 @@ public class Player : MonoBehaviour
                 }
 
                 transform.Find("Camera").gameObject.SetActive(true);
-                if(!healthBar)
+                if(!healthBar & !testMode)
                 {
-                    healthBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
+                    healthBar = GameObject.Find("HealthForeground").GetComponent<RectTransform>();
                     ogHealhBarSize = healthBar.sizeDelta;
+                }
+
+                if(!armourBar & !testMode)
+                {
+                    armourBar = GameObject.Find("ArmourForeground").GetComponent<RectTransform>();
+                    ogArmourSize = armourBar.sizeDelta;
                 }      
-            }        
+            }
+
+            else
+            {
+                GetComponent<AIInput2>().enabled = true;
+                GetComponent<FSMOwner>().enabled = true;
+            }
+                    
+
             BroadcastMessage("PlayerActive");
         }
     }

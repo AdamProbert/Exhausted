@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Cinemachine;
-
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(CinemachineImpulseSource))]
 
@@ -22,12 +21,12 @@ public class DestroyCar : MonoBehaviour
     private IEnumerator playerBurnRoutine;
     private MeshRenderer m_Renderer;
 
-
     private void Awake()
     {
         playerBurnRoutine = BurnAfterDeath();
         m_Renderer = GetComponent<MeshRenderer>();
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+        GetComponent<ImpactDeformable>().OverrideMaster = true;
     }
 
     // Broadcast receiver    
@@ -67,7 +66,12 @@ public class DestroyCar : MonoBehaviour
     {
         if(explosionForce > 0f)
         {
-            transform.root.GetComponent<Rigidbody>().AddExplosionForce(explosionForce/2, transform.position, 1f, 2f, ForceMode.VelocityChange);
+            Vector3 randsplodePosition = transform.position;
+            randsplodePosition.x += Random.Range(-3, 3);
+            randsplodePosition.y += Random.Range(-3, 3);
+            randsplodePosition.z += Random.Range(-3, 3);
+
+            transform.root.GetComponent<Rigidbody>().AddExplosionForce(explosionForce/2, randsplodePosition, 1f, 2f, ForceMode.VelocityChange);
         }
         
         ParticleSystem x = Instantiate(carExplodePS2, transform.position, Quaternion.identity);
@@ -78,10 +82,10 @@ public class DestroyCar : MonoBehaviour
     private IEnumerator BurnAfterDeath() 
     {
         Explosion();
-        yield return new WaitForSeconds(.5f);
-        Explosion2();
         instantiatedBurnMaterial = new Material(destroyMaterial); 
         m_Renderer.material = instantiatedBurnMaterial;
+        yield return new WaitForSeconds(Random.Range(0.3f, 1f));
+        Explosion2();
         float burnDissolveAmountMax = 1.1f;
         float currentDissolveAmount = 0f;
         float currentBurnAmount = 0f;
