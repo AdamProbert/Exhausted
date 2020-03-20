@@ -6,6 +6,7 @@ using Cinemachine;
 
 public class DestroyCar : MonoBehaviour
 {
+    PlayerEventManager playerEventManager;
     [SerializeField] Material destroyMaterial;
     [SerializeField] float burnSpeed;
     [SerializeField] float burnTickRate;
@@ -23,6 +24,8 @@ public class DestroyCar : MonoBehaviour
 
     private void Awake()
     {
+        playerEventManager =  transform.root.GetComponent<PlayerEventManager>();
+        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
         playerBurnRoutine = BurnAfterDeath();
         m_Renderer = GetComponent<MeshRenderer>();
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
@@ -30,10 +33,13 @@ public class DestroyCar : MonoBehaviour
     }
 
     // Broadcast receiver    
-    public void PlayerDied()
+    public void HandlePlayerStateChange(Player.state newstate)
     {
-        EnableDestroyedParts();
-        StartCoroutine(playerBurnRoutine);
+        if(newstate == Player.state.Dead)
+        {
+            EnableDestroyedParts();
+            StartCoroutine(playerBurnRoutine);
+        }
     }
 
     private void EnableDestroyedParts()

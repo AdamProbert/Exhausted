@@ -8,10 +8,11 @@ using TMPro;
 // [RequireComponent(typeof(CarController))]
 [RequireComponent(typeof(WeaponController))]
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerEventManager))]
 
 public class UserInput : MonoBehaviour
 {
-
+    private PlayerEventManager playerEventManager;
     public InputMaster controls; // Our custom InputSystem control scheme
     private Vector2 lookDelta;
     private Vector2 moveInput;
@@ -28,35 +29,23 @@ public class UserInput : MonoBehaviour
     private WeaponController weaponController;
     private LockOnController lockOnController;
 
-    private bool isActive = true;
+    private bool isActive = false;
 
     [SerializeField] bool debugMode;
 
     private void Awake() 
     {
+        playerEventManager = GetComponent<PlayerEventManager>();
         controls = new InputMaster();
-        controls.Player.Enable();
-
-        controls.Player.Zoom.performed += ctx => HandleZoom();
-
-        // controls.Player.Weapon1.performed += ctx => HandleWeaponSwitch(1);
-        // controls.Player.Weapon2.performed += ctx => HandleWeaponSwitch(2);
-        // controls.Player.Weapon3.performed += ctx => HandleWeaponSwitch(3);
-        // controls.Player.Weapon4.performed += ctx => HandleWeaponSwitch(4);
+        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;    
     }
 
     private void Start() 
     {
+        Debug.Log("UserInput: Start called");
         carController = GetComponent<UnityStandardAssets.Vehicles.Car.CarController>();
         weaponController = GetComponent<WeaponController>();
         lockOnController = transform.GetComponentInChildren<LockOnController>();
-
-        if(lockOnController)
-        {
-            controls.Player.LockOn.started += ctx => HandleLockOn(0);
-            controls.Player.LockOn.performed += ctx => HandleLockOn(1);
-            controls.Player.LockOn.canceled += ctx => HandleLockOn(2);
-        }
     }
 
     private void Update() 
@@ -64,12 +53,6 @@ public class UserInput : MonoBehaviour
         // Need this for Cinemachine free look camera
         CinemachineCore.GetInputAxis = GetAxisCustom;
     }
-
-    // private void HandleWeaponSwitch(int weaponNumber)
-    // {
-    //     if(debugMode) Debug.Log("Player requested switch to weapon: " + weaponNumber);
-    //     weaponController.SelectWeapon(weaponNumber);
-    // }
 
     private void HandleLockOn(float lockstate)
     {
@@ -94,31 +77,33 @@ public class UserInput : MonoBehaviour
         zoomToggle = !zoomToggle;
     }
 
-
     public float GetAxisCustom(string axisName)
     {
         //-------------------------------------------------------------------------------------------------//
         // Unfortunately this function is required as Cinemachine does not support the new input system yet..
         //-------------------------------------------------------------------------------------------------//
-
-        lookDelta = controls.Player.Look.ReadValue<Vector2>(); // reads the available camera values and uses them.
-        lookDelta.Normalize();
-
-        if (axisName == "Look X")
+        if(controls.Player.enabled)
         {
-            return lookDelta.x;
-        }
-        else if (axisName == "Zoom")
-        {
-            if(zoomToggle)
+            lookDelta = controls.Player.Look.ReadValue<Vector2>(); // reads the available camera values and uses them.
+            lookDelta.Normalize();
+
+            if (axisName == "Look X")
             {
-                return 100;
+                return lookDelta.x;
             }
-            else
+            else if (axisName == "Zoom")
             {
-                return -100;
-            }
+                if(zoomToggle)
+                {
+                    return 100;
+                }
+                else
+                {
+                    return -100;
+                }
+            }   
         }
+
         return 0;
     }
 
@@ -138,26 +123,33 @@ public class UserInput : MonoBehaviour
         }
     }
 
-    private void OnEnable() 
+    public void HandlePlayerStateChange(Player.state newstate)
     {
-        controls.Player.Enable();    
-    }
-
-    private void OnDisable() 
-    {
-        if(carController)carController.Move(0, 0, 1, 1, 0);
-        controls.Player.Disable();
-    }
-
-    public void SetActive()
-    {
-        if(controls == null)
+        Debug.Log("UserInput: Player state changed to:" + newstate);
+        if(newstate != Player.state.Alive)
         {
-            Awake();
+            Deactivate();
         }
+        else
+        {
+            Activate();
+        }
+    }
+
+    public void Activate()
+    {       
         controls.Player.Enable();
         isActive = true;
+        controls.Player.Zoom.performed += ctx => HandleZoom();
+        
+        if(lockOnController)
+        {
+            controls.Player.LockOn.started += ctx => HandleLockOn(0);
+            controls.Player.LockOn.performed += ctx => HandleLockOn(1);
+            controls.Player.LockOn.canceled += ctx => HandleLockOn(2);
+        }
     }
+
     public void Deactivate()
     {
         controls.Player.Disable();

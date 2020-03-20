@@ -6,6 +6,7 @@ using UnityEngine;
 public class CollisionsManager : MonoBehaviour
 {
 
+    PlayerEventManager playerEventManager;
     [SerializeField] float maxSpeed = 100;
     private AudioSource audioSource;
     private int requestScrapeSoundCount;
@@ -13,21 +14,31 @@ public class CollisionsManager : MonoBehaviour
     private float volumeModifier;
     private Rigidbody parentRB;
 
-    void Start()
-    {
+    private void Awake() {
+        playerEventManager = transform.root.GetComponent<PlayerEventManager>();
+        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
+
         parentRB = transform.root.GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+
         requestScrapeSoundCount = 0;
+
         audioSource.Play();
         audioSource.Pause();
-        started = true;
     }
 
-    // Message
-    public void PlayerDied()
+    public void HandlePlayerStateChange(Player.state newstate)
     {
-        audioSource.Stop();
-        started = false;
+        if(newstate == Player.state.Alive)
+        {
+            started = true;
+        }
+
+        if(newstate != Player.state.Alive)
+        {
+            audioSource.Stop();
+            started = false;
+        }
     }
 
     private void HandleAudioChange() 

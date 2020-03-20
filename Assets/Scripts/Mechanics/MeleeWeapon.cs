@@ -31,7 +31,7 @@ public class MeleeWeapon : BaseDamager
         {
             if(canDamage == (canDamage | (1 << other.gameObject.layer))) // And in colidable layer
             {
-                other.gameObject.GetComponentInParent<Player>().TakeDamage(base.GetDamage());
+                other.transform.root.gameObject.GetComponent<Player>().TakeDamage(base.GetDamage());
                 hitEffect.Play();
                 audioSource.PlayOneShot(hitSound, .3f);
 

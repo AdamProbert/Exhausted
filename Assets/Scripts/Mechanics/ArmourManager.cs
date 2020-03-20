@@ -7,8 +7,8 @@ using Cinemachine;
 [RequireComponent(typeof(AudioSource))]
 public class ArmourManager : MonoBehaviour
 {
+    PlayerEventManager playerEventManager;
     ArmourPiece[] equipedArmour;
-    Player player;
     int armourLayer;
 
     AudioSource audioSource;
@@ -21,15 +21,24 @@ public class ArmourManager : MonoBehaviour
 
     [SerializeField] bool debug;
 
-    public void MessagePickupArmour()
+    private void Awake() 
     {
-        foreach (ArmourPiece item in equipedArmour)
+        playerEventManager = transform.root.GetComponent<PlayerEventManager>();
+        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
+        playerEventManager.OnPickupItem += HandlePickupItem;   
+    }
+
+    public void HandlePickupItem(Pickup pickup)
+    {
+        if(pickup.PType == Pickup.PTypes.Armour)
         {
-            if(item.currentState == ArmourPiece.State.Broken)
+            foreach (ArmourPiece item in equipedArmour)
             {
-                item.EnableFlyingMode();
-                StartCoroutine (MoveOverSpeed (item, Random.Range(30f,70f)));
-                player.currentArmour += item.MaxStrength;
+                if(item.currentState == ArmourPiece.State.Broken)
+                {
+                    item.EnableFlyingMode();
+                    StartCoroutine (MoveOverSpeed (item, Random.Range(30f,70f)));
+                }
             }
         }
     }
@@ -45,14 +54,16 @@ public class ArmourManager : MonoBehaviour
         }    
     }
 
-    public void PlayerActive() 
+    public void HandlePlayerStateChange(Player.state newstate) 
     {
-        player = transform.root.GetComponent<Player>();
-        audioSource = GetComponent<AudioSource>();
-        impulseSource = GetComponent<CinemachineImpulseSource>();
-        if(equipedArmour == null)
+        if(newstate == Player.state.Alive)
         {
-            equipedArmour = GetComponentsInChildren<ArmourPiece>();
+            audioSource = GetComponent<AudioSource>();
+            impulseSource = GetComponent<CinemachineImpulseSource>();
+            if(equipedArmour == null)
+            {
+                equipedArmour = GetComponentsInChildren<ArmourPiece>();
+            }
         }
     }
     
@@ -85,6 +96,7 @@ public class ArmourManager : MonoBehaviour
         }
         impulseSource.GenerateImpulse();
         pieceToMove.ReAttach();
+        playerEventManager.OnPlayerArmourChanged(pieceToMove.MaxStrength);
     }
 
     private void OnCollisionEnter(Collision other) 

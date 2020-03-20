@@ -1407,10 +1407,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4276757395620055223, guid: bdc6793a7330d2f408f8a6b4751ba880,
+        type: 3}
+      propertyPath: m_state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276757395620055223, guid: bdc6793a7330d2f408f8a6b4751ba880,
+        type: 3}
+      propertyPath: testMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4927133848708454244, guid: bdc6793a7330d2f408f8a6b4751ba880,
         type: 3}
       propertyPath: m_Name
       value: Car-boomstick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927133848708454244, guid: bdc6793a7330d2f408f8a6b4751ba880,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4927133848708680516, guid: bdc6793a7330d2f408f8a6b4751ba880,
         type: 3}
@@ -1476,6 +1491,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4276757395620055223, guid: 6a76d83842ec012468bbf89d82109a10,
+        type: 3}
+      propertyPath: m_state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276757395620055223, guid: 6a76d83842ec012468bbf89d82109a10,
+        type: 3}
+      propertyPath: testMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4927133848708454244, guid: 6a76d83842ec012468bbf89d82109a10,
         type: 3}
       propertyPath: m_Name
@@ -3682,6 +3707,66 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511802036}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1514911103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514911105}
+  - component: {fileID: 1514911104}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1514911104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514911103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9fd9edfaba338244ab200a657ba52ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: RifleBullet
+    prefab: {fileID: 2058201599352487386, guid: 5c099a1da4bd3504ea21b1c4b0d67fcb,
+      type: 3}
+    size: 300
+  - tag: BoomStick
+    prefab: {fileID: 2938755455111852992, guid: e63b4546a85241940ae72ab27c5dbe10,
+      type: 3}
+    size: 150
+  - tag: CrezyRocket
+    prefab: {fileID: 1080410123433332, guid: d018ad52fc569c0469ecc776b5619ac0, type: 3}
+    size: 50
+  - tag: Saw
+    prefab: {fileID: 8954661981093505819, guid: 3d8f98aa2fdc35a4ea1cae45f41ac7b6,
+      type: 3}
+    size: 300
+  poolObjectParent: {fileID: 1781308403}
+--- !u!4 &1514911105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514911103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 278.39203, y: 35.69002, z: 43.755287}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1542241387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3689,6 +3774,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3293379012416626310, guid: 436de3467834953468799acceb8598b4,
+        type: 3}
+      propertyPath: m_state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293379012416626310, guid: 436de3467834953468799acceb8598b4,
+        type: 3}
+      propertyPath: testMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5948908569137061237, guid: 436de3467834953468799acceb8598b4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3748,6 +3843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Heavy-saw-minigun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948908569137414485, guid: 436de3467834953468799acceb8598b4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 436de3467834953468799acceb8598b4, type: 3}
@@ -4113,10 +4213,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4276757395620055223, guid: 6a76d83842ec012468bbf89d82109a10,
+        type: 3}
+      propertyPath: m_state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276757395620055223, guid: 6a76d83842ec012468bbf89d82109a10,
+        type: 3}
+      propertyPath: testMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4927133848708454244, guid: 6a76d83842ec012468bbf89d82109a10,
         type: 3}
       propertyPath: m_Name
       value: Car-minigun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927133848708454244, guid: 6a76d83842ec012468bbf89d82109a10,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4927133848708680516, guid: 6a76d83842ec012468bbf89d82109a10,
         type: 3}

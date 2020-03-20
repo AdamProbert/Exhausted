@@ -7,6 +7,7 @@ using Cinemachine;
 [RequireComponent(typeof(Spawner))]
 public class BattleManager : MonoBehaviour
 {
+    PlayerEventManager playerEventManager;
     private List<Player> activePlayers = new List<Player>();
     private List<Player> deadPlayers = new List<Player>();
 
@@ -26,8 +27,7 @@ public class BattleManager : MonoBehaviour
 
     Spawner spawner;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake() 
     {
         spawner = GetComponent<Spawner>();
         LoadPlayerVehicle();
@@ -41,6 +41,7 @@ public class BattleManager : MonoBehaviour
         if(humanPlayer)
         {
             spawner.SpawnPlayer(humanPlayer);
+            playerEventManager = humanPlayer.GetComponent<PlayerEventManager>();
         }
         
         // Then spawn the AI in the remaining places
@@ -50,9 +51,12 @@ public class BattleManager : MonoBehaviour
         foreach(Player p in FindObjectsOfType<Player>())
         {
             activePlayers.Add(p);
-            p.OnStateChange += HandlePlayerStateChange;
+            p.GetComponent<PlayerEventManager>().GlobalPlayerStateChange += HandlePlayerStateChange;
         }
+    }
 
+    void Start()
+    {
         startGameRoutine = StartGame();
         endGameRoutine = EndGame();
         endGameUI.SetActive(false);
@@ -60,10 +64,7 @@ public class BattleManager : MonoBehaviour
         // Lock cursor for gameplay
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-    }
 
-    private void Start() 
-    {
         if(!skipStartSequence)
         {
             StartCoroutine(startGameRoutine);
@@ -74,9 +75,9 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void HandlePlayerStateChange(Player.playerState newstate, Player player)
+    public void HandlePlayerStateChange(Player player, Player.state newstate)
     {
-        if(newstate == Player.playerState.Dead)
+        if(newstate == Player.state.Dead)
         {
             activePlayers.Remove(player);
             deadPlayers.Add(player);

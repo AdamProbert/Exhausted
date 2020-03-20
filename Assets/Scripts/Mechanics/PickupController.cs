@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PickupController : MonoBehaviour
 {
+    PlayerEventManager playerEventManager;
+
     [SerializeField] LayerMask pickupLayer;
+
+    private void Awake() 
+    {
+        playerEventManager = GetComponent<PlayerEventManager>();
+    }
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -12,10 +19,7 @@ public class PickupController : MonoBehaviour
         {
             Pickup pickup = other.gameObject.GetComponentInParent<Pickup>();
             pickup.PickItUp();
-            if(pickup.PType == Pickup.PTypes.Armour)
-            {
-                BroadcastMessage("MessagePickupArmour");
-            }
+            playerEventManager.OnPickupItem(pickup);
         }
     }
 }

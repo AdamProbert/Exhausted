@@ -94,7 +94,7 @@ public class AIInput2 : MonoBehaviour
     // Debug
     [SerializeField] private bool pointAndClickMode;
 
-    private void Awake()
+    private void Start()
     {   
         thisPlayer = GetComponent<Player>();
 
@@ -184,7 +184,7 @@ public class AIInput2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(thisPlayer.state == Player.playerState.Alive)
+        if(thisPlayer.playerState == Player.state.Alive)
         {
             SetTarget();
             if(!Sensors())

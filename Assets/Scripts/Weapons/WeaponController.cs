@@ -4,32 +4,60 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    PlayerEventManager playerEventManager;
     WeaponUIUpdate weaponUIUpdate;
     [SerializeField][Tooltip("Will auto find if 0 length")] List<BaseWeapon> weapons = new List<BaseWeapon>();
 
     private bool IsAI = false;
     [SerializeField] bool enableAutoAim = false;
 
-    public void PlayerActive() 
+    private void Start() 
     {
-        Debug.Log("Weapon controller: Player active called");
-        if(!weaponUIUpdate)
-        {
-            weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();    
-        }
-        if(weapons.Count == 0)
-        {
-            FindWeapons();
-        }
-        WeaponRegister();
-        SetupAutoFindOnWeapons();
+        playerEventManager = GetComponent<PlayerEventManager>();
+        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;    
     }
 
-    public void RegisterAsAI()
+    public void HandlePlayerStateChange(Player.state newstate) 
     {
-        IsAI = true;
-    }
+        Debug.Log("WeaponCopntroller: Player state set to: " + newstate);
+        if(newstate == Player.state.Alive)
+        {
+            if(!weaponUIUpdate)
+            {
+                weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();    
+            }
 
+            if(weapons.Count == 0)
+            {
+                FindWeapons();
+            }
+
+            if(!GetComponent<Player>().isAI)
+            {
+                WeaponRegister();
+                IsAI = false;
+            }
+            else
+            {
+                IsAI = true;
+            }
+
+            foreach(BaseWeapon w in weapons)
+            {
+                w.currentStatus = BaseWeapon.status.Active;
+            }
+
+            SetupAutoFindOnWeapons();
+        }
+
+        else if(newstate != Player.state.Alive)
+        {
+            foreach(BaseWeapon w in weapons)
+            {
+                w.currentStatus = BaseWeapon.status.Inactive;
+            }
+        }
+    }
     private void FindWeapons()
     {
         weapons.AddRange(GetComponentsInChildren<BaseWeapon>());
@@ -66,7 +94,7 @@ public class WeaponController : MonoBehaviour
         {
             if(bw.GetComponent<AutoAimAndFIre>())
             {
-                if(enableAutoAim)
+                if(enableAutoAim || IsAI)
                 {
                     bw.GetComponent<AutoAimAndFIre>().SetAutoFindTarget(true);
                 }
@@ -76,14 +104,6 @@ public class WeaponController : MonoBehaviour
                 }
                 
             }
-        }
-    }
-
-    public void PlayerDied()
-    {
-        foreach(BaseWeapon w in weapons)
-        {
-            w.gameObject.SetActive(false);
         }
     }
 }

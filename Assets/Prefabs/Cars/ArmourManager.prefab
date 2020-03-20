@@ -165,7 +165,7 @@ MonoBehaviour:
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
     m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 2
+    m_AmplitudeGain: 5
     m_FrequencyGain: 1
     m_RepeatMode: 0
     m_Randomize: 1

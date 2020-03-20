@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(WheelCollider))]
 public class WheelFX : MonoBehaviour {
 
+	PlayerEventManager playerEventManager;
+
 	// INSPECTOR SETTINGS
 	Rigidbody rb;
 	Skidmarks skidmarksController;
@@ -30,14 +32,23 @@ public class WheelFX : MonoBehaviour {
 
 	// #### UNITY INTERNAL METHODS ####
 
-	public void PlayerActive() 
+	private void Awake() 
 	{
-		wheelCollider = GetComponent<WheelCollider>();
-		lastFixedUpdateTime = Time.time;
-		skidmarksController = GameObject.FindObjectOfType<Skidmarks>();
-		rb = transform.root.GetComponent<Rigidbody>();
-		tireSmoke = Instantiate(tireSmokePrefab, transform.position, Quaternion.identity, transform);
-		active = true;
+		playerEventManager = transform.root.GetComponent<PlayerEventManager>();
+		playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;	
+	}
+
+	public void HandlePlayerStateChange(Player.state newstate) 
+	{
+		if(newstate == Player.state.Alive)
+		{
+			wheelCollider = GetComponent<WheelCollider>();
+			lastFixedUpdateTime = Time.time;
+			skidmarksController = GameObject.FindObjectOfType<Skidmarks>();
+			rb = transform.root.GetComponent<Rigidbody>();
+			tireSmoke = Instantiate(tireSmokePrefab, transform.position, Quaternion.identity, transform);
+			active = true;
+		}
 	}
 
 	protected void FixedUpdate() {

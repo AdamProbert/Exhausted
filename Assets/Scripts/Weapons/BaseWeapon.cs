@@ -5,6 +5,8 @@ using UnityEngine;
 
 abstract public class BaseWeapon : MonoBehaviour
 {
+
+    PlayerEventManager playerEventManager;
     [SerializeField] protected float projectileSpeed;
     [SerializeField] public Transform projectileSpawn;
     [Tooltip ("Bullets spawned per second")]
@@ -27,6 +29,12 @@ abstract public class BaseWeapon : MonoBehaviour
     [SerializeField] private ParticleSystem fireEffectPrefab;
     protected ParticleSystem fireEffect;
 
+    private void Start()
+    {
+        playerEventManager = transform.root.GetComponent<PlayerEventManager>();
+        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
+    }
+
     public void Init() 
     {
         audioSource = GetComponent<AudioSource>();
@@ -37,16 +45,17 @@ abstract public class BaseWeapon : MonoBehaviour
         }
     }
 
-    public void PlayerDied()
+    public void HandlePlayerStateChange(Player.state newstate)
     {
-        currentStatus = status.Inactive;
-    }
-
-    public void PlayerActive()
-    {
-        Debug.Log("Base weapon: PLayer active received");
-        currentStatus = status.Active;
-        Init();
+        if(newstate == Player.state.Alive)
+        {
+            currentStatus = status.Active;
+            Init();
+        }
+        else if(newstate == Player.state.Dead || newstate == Player.state.Inactive)
+        {
+            currentStatus = status.Inactive;
+        }
     }
 
     public GameObject GetProjectile()

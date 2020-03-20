@@ -23,15 +23,16 @@ public class OLDWeaponController : MonoBehaviour
         right
     }
 
-    public void PlayerActive() 
-    {
-        if(weaponUIUpdate)
-        {
-            weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();    
-        }
-        WeaponRegister();
-        SetupAutoFindOnWeapons();
-    }
+    // USed to be Player A c t ive
+    // public void dfsfsdfsdfsdfs() 
+    // {
+    //     if(weaponUIUpdate)
+    //     {
+    //         weaponUIUpdate =  GameObject.FindObjectOfType<WeaponUIUpdate>();    
+    //     }
+    //     WeaponRegister();
+    //     SetupAutoFindOnWeapons();
+    // }
 
     private void WeaponRegister()
     {        

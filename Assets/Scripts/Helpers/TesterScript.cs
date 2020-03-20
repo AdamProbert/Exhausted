@@ -42,7 +42,6 @@ public class TesterScript : MonoBehaviour
             }
             
             
-            // car.BroadcastMessage("PlayerDied");
         }
 
         // if(Keyboard.current.backspaceKey.wasPressedThisFrame)

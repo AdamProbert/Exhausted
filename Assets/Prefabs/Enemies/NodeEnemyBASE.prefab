@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 1531000730}
   - component: {fileID: 2931875226663893868}
   - component: {fileID: 7979698016321969746}
+  - component: {fileID: 3994175211281128631}
   m_Layer: 8
   m_Name: NodeEnemyBASE
   m_TagString: Player
@@ -141,6 +142,7 @@ MonoBehaviour:
   dopplerLevel: 1
   useDoppler: 1
   cam: {fileID: 0}
+  mixerGroup: {fileID: 0}
 --- !u!114 &9167826978727361370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +268,8 @@ MonoBehaviour:
   centrePoint: {fileID: 209958745232635829}
   maxHealth: 1500
   m_currentHealth: 0
+  maxArmour: 0
+  m_currentArmour: 0
   m_state: 2
 --- !u!114 &2931875226663893868
 MonoBehaviour:
@@ -304,3 +308,15 @@ MonoBehaviour:
   Master: {fileID: 0}
   OverrideMaster: 0
   MeshFilter: {fileID: 0}
+--- !u!114 &3994175211281128631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167826977869424713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3bf90cc112d9a45a2720e270c9d006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

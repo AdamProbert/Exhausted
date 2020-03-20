@@ -337,7 +337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 12.090088, y: -9.369995}
+  m_AnchoredPosition: {x: 12.090088, y: -9.369873}
   m_SizeDelta: {x: 300, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &76353793
@@ -1313,7 +1313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME OVER BITCH
+  m_text: GAME OVER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2698,7 +2698,9 @@ MonoBehaviour:
   humanPlayer: {fileID: 0}
   endGameUI: {fileID: 2121600663}
   autoEndGame: 1
+  skipStartSequence: 1
   requestedEnemyCount: 4
+  timePerCinemachineMove: 3
 --- !u!114 &2982420971241834487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2746,18 +2748,18 @@ MonoBehaviour:
   - tag: RifleBullet
     prefab: {fileID: 2058201599352487386, guid: 5c099a1da4bd3504ea21b1c4b0d67fcb,
       type: 3}
-    size: 1000
+    size: 300
   - tag: BoomStick
     prefab: {fileID: 2938755455111852992, guid: e63b4546a85241940ae72ab27c5dbe10,
       type: 3}
-    size: 100
+    size: 150
   - tag: CrezyRocket
     prefab: {fileID: 1080410123433332, guid: d018ad52fc569c0469ecc776b5619ac0, type: 3}
-    size: 100
+    size: 50
   - tag: Saw
     prefab: {fileID: 8954661981093505819, guid: 3d8f98aa2fdc35a4ea1cae45f41ac7b6,
       type: 3}
-    size: 200
+    size: 300
   poolObjectParent: {fileID: 0}
 --- !u!82 &443717917
 AudioSource:
@@ -2893,7 +2895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 12.090088, y: -41.6}
+  m_AnchoredPosition: {x: 12.090088, y: -41.600098}
   m_SizeDelta: {x: 300, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &276666733429229108

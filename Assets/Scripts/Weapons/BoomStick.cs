@@ -62,7 +62,11 @@ public class BoomStick : BaseProjectile
                 base.rb.isKinematic = true;
                 GetComponent<Collider>().enabled = false;
                 flying = false;
-                StartCoroutine(ExplodeOnTimer());
+                // Player can be dead on first hit, so have to check dis
+                if(this.isActiveAndEnabled)
+                {
+                    StartCoroutine(ExplodeOnTimer());    
+                }
             }
         }
     }

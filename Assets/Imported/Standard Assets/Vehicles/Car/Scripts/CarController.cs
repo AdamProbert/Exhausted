@@ -19,6 +19,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
     public class CarController : MonoBehaviour
     {
+        PlayerEventManager playerEventManager;
         [SerializeField] private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
         [SerializeField] private List<WheelCollider> m_WheelColliders = new List<WheelCollider>();
         [SerializeField] private List<GameObject> m_WheelMeshes = new List<GameObject>();
@@ -57,7 +58,21 @@ namespace UnityStandardAssets.Vehicles.Car
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
 
-        public void PlayerActive()
+        private void Awake() 
+        {
+            playerEventManager = GetComponent<PlayerEventManager>();
+            playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
+        }
+
+        public void HandlePlayerStateChange(Player.state newstate)
+        {
+            if(newstate == Player.state.Alive)
+            {
+                InitializeVehicle();
+            }
+        }
+
+        private void InitializeVehicle()
         {
             // Find colliders and wheels if not assigned
             if(m_WheelColliders.Count == 0)
@@ -94,7 +109,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody = GetComponent<Rigidbody>();
             // m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
-
         }
 
 
@@ -297,8 +311,10 @@ namespace UnityStandardAssets.Vehicles.Car
         // this is used to add more grip in relation to speed
         private void AddDownForce()
         {
-            m_WheelColliders[0].attachedRigidbody.AddForce(-transform.up*m_Downforce*
-                                                         m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
+            if(m_WheelColliders[0] != null)
+            {
+                m_WheelColliders[0].attachedRigidbody.AddForce(-transform.up*m_Downforce*m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
+            }
         }
 
 

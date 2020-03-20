@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4170768137796624712}
-  - component: {fileID: 4170768137796624713}
   - component: {fileID: 4170768137796624714}
-  m_Layer: 30
+  m_Layer: 8
   m_Name: LockOnController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,19 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4170768137796624713
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4170768137796624719}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 20, y: 30, z: 100}
-  m_Center: {x: 0, y: 2.7241707, z: 47.3}
 --- !u!114 &4170768137796624714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  possibleTargets: []
+  allEnemies: []
+  lockOnLayers:
+    serializedVersion: 2
+    m_Bits: 4352
   lockedTarget: {fileID: 0}
   reticleCanvas: {fileID: 0}
   lockOnIndicatorPrefab: {fileID: 5899034968480260218, guid: 1f5d0dd8898767049b1d012c5b6d134a,
@@ -75,7 +64,7 @@ GameObject:
   - component: {fileID: 4170768138387737405}
   - component: {fileID: 4170768138387737407}
   - component: {fileID: 4170768138387737406}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +138,7 @@ GameObject:
   - component: {fileID: 4170768139564073817}
   - component: {fileID: 4170768139564073816}
   - component: {fileID: 4170768139564073823}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ReticleCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

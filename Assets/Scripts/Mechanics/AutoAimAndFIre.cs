@@ -5,21 +5,25 @@ using UnityEngine;
 [RequireComponent(typeof(BaseWeapon))]
 public class AutoAimAndFIre : MonoBehaviour
 {
+
+    PlayerEventManager playerEventManager;
+
     [SerializeField] private bool autoFindTarget;
     [SerializeField][Range(0,180)] protected float maxRotation;
     [SerializeField][Range(.1f, 10f)] protected float rotationSpeed;
     [SerializeField][Range(5f, 100f)] private float searchRadius;
     [SerializeField] private LayerMask searchLayers;
     [SerializeField] private LayerMask raycastIgnoreLayers;
-    [SerializeField] private Vector3 aimOffset = new Vector3(0,1,-1);
 
     private Player target;
     private float turnRateRadians;
 
     BaseWeapon weapon;
 
-    private void Start() 
+    void Start()
     {
+        playerEventManager = transform.root.GetComponent<PlayerEventManager>();
+        playerEventManager.OnWeaponTargetChange += NewTargetAcquired;    
         weapon = GetComponent<BaseWeapon>();    
         turnRateRadians = rotationSpeed * Mathf.PI;
     }
@@ -100,7 +104,7 @@ public class AutoAimAndFIre : MonoBehaviour
     {
         if(target != null)
         {
-            if(target.state == Player.playerState.Dead)
+            if(target.playerState == Player.state.Dead)
             {
                 target = null;
                 Debug.Log("Current target be dead");
@@ -112,7 +116,7 @@ public class AutoAimAndFIre : MonoBehaviour
     {
         if (target != null)
         {
-            Vector3 targetDir = (target.transform.position + aimOffset) - transform.position;
+            Vector3 targetDir = (target.centrePoint.position) - transform.position;
             targetDir = targetDir.normalized;
 
             Vector3 currentDir = transform.forward;
@@ -142,7 +146,7 @@ public class AutoAimAndFIre : MonoBehaviour
                     continue;
                 }
 
-                if(hit.GetComponent<Player>() && hit.GetComponent<Player>().state == Player.playerState.Dead)
+                if(hit.GetComponent<Player>() && hit.GetComponent<Player>().playerState == Player.state.Dead)
                 {
                     continue;
                 }
@@ -166,14 +170,16 @@ public class AutoAimAndFIre : MonoBehaviour
 
     public void NewTargetAcquired(Player newTarget)
     {
-        Debug.Log("AutoAim: New target received");
+        if(newTarget != null)
+        {
+            Debug.Log("AutoAim: New target received: " + newTarget);    
+        }
+        else
+        {
+            Debug.Log("AutoAim: Null target recieved");
+        }
+        
         target = newTarget;
-    }
-
-    public void TargetLost()
-    {
-        Debug.Log("AutoAim: Target lost");
-        target = null;  
     }
 
     public void SetAutoFindTarget(bool val)
