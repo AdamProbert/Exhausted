@@ -5,35 +5,46 @@ using UnityEngine.SceneManagement;
 using Cinemachine;
  
 [RequireComponent(typeof(Spawner))]
+[RequireComponent(typeof(GameModeBase))]
 public class BattleManager : MonoBehaviour
 {
-    PlayerEventManager playerEventManager;
-    private List<Player> activePlayers = new List<Player>();
-    private List<Player> deadPlayers = new List<Player>();
-
+    PlayerEventManager playerEventManager;    
     [SerializeField] Player humanPlayerPrefab;
     Player humanPlayer;
     private IEnumerator endGameRoutine;
     private IEnumerator startGameRoutine;
-
     [SerializeField] private GameObject endGameUI;
     [SerializeField] private bool autoEndGame = true;
     [SerializeField] private bool skipStartSequence = true;
     [SerializeField] public int requestedEnemyCount = 0;
+    [SerializeField] public GameModeBase.GameModeType requestedGameMode;
 
     [Header("Camera stuff")]
     [SerializeField] float timePerCinemachineMove = 3;
 
-    bool playerLoaded = false;
-
     Spawner spawner;
+    GameModeBase gameModeBase;
 
     private void Awake() 
     {
         spawner = GetComponent<Spawner>();
+
+        // Select the game mode
+        foreach (GameModeBase gmb in GetComponents<GameModeBase>())
+        {
+            if(gmb.type == requestedGameMode)
+            {
+                gameModeBase = gmb;        
+            }
+        }
+        
         LoadPlayerVehicle();
 
-        if(BattleData.noOfEnemies > 0)
+        if(requestedEnemyCount == -1)
+        {
+            requestedEnemyCount = 0;
+        }
+        else if(BattleData.noOfEnemies > 0)
         {
             requestedEnemyCount = BattleData.noOfEnemies;
         }
@@ -47,13 +58,7 @@ public class BattleManager : MonoBehaviour
         
         // Then spawn the AI in the remaining places
         spawner.SpawnThem(requestedEnemyCount);
-
-        // Then collect references to everyone
-        foreach(Player p in FindObjectsOfType<Player>())
-        {
-            activePlayers.Add(p);
-            p.GetComponent<PlayerEventManager>().GlobalPlayerStateChange += HandlePlayerStateChange;
-        }
+        gameModeBase.Setup(requestedEnemyCount, humanPlayer);
     }
 
     void Start()
@@ -76,26 +81,10 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void HandlePlayerStateChange(Player player, Player.state newstate)
+    public void GameModeFinished(bool playerWon)
     {
-        if(newstate == Player.state.Dead)
-        {
-            activePlayers.Remove(player);
-            deadPlayers.Add(player);
-            if(player == humanPlayer)
-            {
-                Debug.Log("Player died ending game");
-                BattleData.winning = false;
-                StartCoroutine(endGameRoutine);
-            }   
-        }
-
-        if(activePlayers.Count == 1)
-        {
-            Debug.Log("One player left! " + activePlayers[0].name + " WON!");
-            BattleData.winning = true;
-            StartCoroutine(endGameRoutine);
-        }
+        BattleData.winning = playerWon;
+        StartCoroutine(endGameRoutine);
     }
 
     public void LoadPlayerVehicle()
@@ -126,7 +115,6 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
-
         // If no saved vehicle - load the default golf cart lol
         else
         {

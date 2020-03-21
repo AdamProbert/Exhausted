@@ -21,6 +21,8 @@ public class PlayerEventManager : MonoBehaviour
 
     public Action<Player, Player.state> GlobalPlayerStateChange = delegate{};
 
+    public Action<Player, Waypoint> GlobalPlayerReachedWaypoint = delegate{};
+
 
     // Start is called before the first frame update
     void Awake()

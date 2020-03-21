@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Waypoint : MonoBehaviour
 {
     public Waypoint previousWaypoint;
     public Waypoint nextWaypoint;
+    [SerializeField] public bool start;
+    [SerializeField] public bool finish;
 
     [Range(0f, 5f)]
     public float width = 1.5f;
