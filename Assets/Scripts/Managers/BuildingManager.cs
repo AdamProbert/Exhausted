@@ -81,11 +81,17 @@ public class BuildingManager : MonoBehaviour
                 {
                     if(config.weaponPrefabNames[i] != "NONE")
                     {
-                        Attachment w = Instantiate(Resources.Load<GameObject>("CarWeapons/" + config.weaponPrefabNames[i])).GetComponent<Attachment>();
+                        Attachment w = Instantiate(
+                            Resources.Load<GameObject>(
+                                "CarWeapons/" + config.weaponPrefabNames[i]),
+                                attachPoints[i].transform.position,
+                                attachPoints[i].transform.rotation,
+                                attachPoints[i].transform
+                        ).GetComponent<Attachment>();
 
-                        w.transform.position = attachPoints[i].transform.position;
-                        w.transform.rotation = attachPoints[i].transform.rotation;
-                        w.transform.parent = attachPoints[i].transform;
+                        // w.transform.position = attachPoints[i].transform.position;
+                        // w.transform.rotation = attachPoints[i].transform.rotation;
+                        // w.transform.parent = attachPoints[i].transform;
                         attachPoints[i].Attach(w);    
                     }
                 }
@@ -121,10 +127,10 @@ public class BuildingManager : MonoBehaviour
 
         // Notifiy manager
         GameManager.Instance.BuildComplete(player);
-        foreach(CarAttachPoint cap in attachPoints)
-        {
-            cap.gameObject.SetActive(false);
-        }
+        // foreach(CarAttachPoint cap in attachPoints)
+        // {
+        //     cap.gameObject.SetActive(false);
+        // }
     }
 
     private void PopulateUI()

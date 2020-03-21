@@ -39,7 +39,6 @@ public class GameManager : Singleton<GameManager> {
 
     public void BuildComplete(Player player)
     {
-        DontDestroyOnLoad(player);
         if(requestedMap != null)
         {
             SceneManager.LoadScene(requestedMap);    

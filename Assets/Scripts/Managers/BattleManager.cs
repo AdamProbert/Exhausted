@@ -11,7 +11,8 @@ public class BattleManager : MonoBehaviour
     private List<Player> activePlayers = new List<Player>();
     private List<Player> deadPlayers = new List<Player>();
 
-    [SerializeField] Player humanPlayer;
+    [SerializeField] Player humanPlayerPrefab;
+    Player humanPlayer;
     private IEnumerator endGameRoutine;
     private IEnumerator startGameRoutine;
 
@@ -99,6 +100,7 @@ public class BattleManager : MonoBehaviour
 
     public void LoadPlayerVehicle()
     {
+        humanPlayer = Instantiate(humanPlayerPrefab);
         PlayerConfig config = SaveSystem.LoadPlayerConfig();
         if(config.baseCarPrefabName != null)
         {
@@ -111,11 +113,14 @@ public class BattleManager : MonoBehaviour
                 {
                     if(config.weaponPrefabNames[i] != "NONE")
                     {
-                        Attachment w = Instantiate(Resources.Load<GameObject>("CarWeapons/" + config.weaponPrefabNames[i])).GetComponent<Attachment>();
-
-                        w.transform.position = attachPoints[i].transform.position;
-                        w.transform.rotation = attachPoints[i].transform.rotation;
-                        w.transform.parent = attachPoints[i].transform;
+                        Attachment w = Instantiate(
+                            Resources.Load<GameObject>(
+                                "CarWeapons/" + config.weaponPrefabNames[i]),
+                                attachPoints[i].transform.position,
+                                attachPoints[i].transform.rotation,
+                                attachPoints[i].transform
+                        ).GetComponent<Attachment>();
+                        
                         attachPoints[i].Attach(w);    
                     }
                 }
@@ -166,11 +171,19 @@ public class BattleManager : MonoBehaviour
         if(autoEndGame)
         {
             endGameUI.SetActive(true);
-            yield return new WaitForSeconds(10);
-            SceneManager.LoadScene("CampaignMap");
-            Destroy(humanPlayer.gameObject); // Make sure we clean up the player
+            yield return new WaitForSeconds(5);
             UnityEngine.Cursor.visible = true;
             UnityEngine.Cursor.lockState = CursorLockMode.None;
+            
+            if(BattleData.returnScene != null)
+            {
+                SceneManager.LoadScene(BattleData.returnScene);
+            }
+            else
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+            
         }
     }
 }

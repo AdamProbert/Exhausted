@@ -641,6 +641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2230654937173857581}
   - component: {fileID: 2230654937173857580}
+  - component: {fileID: 7781007997166697843}
   - component: {fileID: 3884167383507351449}
   - component: {fileID: 1184396456}
   - component: {fileID: 1408003090}
@@ -648,7 +649,6 @@ GameObject:
   - component: {fileID: -8504682281707413827}
   - component: {fileID: 8799060490863452126}
   - component: {fileID: 5758574555716273527}
-  - component: {fileID: 7781007997166697843}
   - component: {fileID: 473984638065820537}
   m_Layer: 8
   m_Name: Player
@@ -691,6 +691,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &7781007997166697843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230654937173857582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3bf90cc112d9a45a2720e270c9d006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3884167383507351449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,18 +842,6 @@ MonoBehaviour:
   Master: {fileID: 0}
   OverrideMaster: 0
   MeshFilter: {fileID: 0}
---- !u!114 &7781007997166697843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2230654937173857582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df3bf90cc112d9a45a2720e270c9d006, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &473984638065820537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,7 +1207,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8344344173915939854}
-  m_LocalRotation: {x: 0.22202414, y: 0.000000023726159, z: -0.00000000540262, w: 0.9750412}
+  m_LocalRotation: {x: 0.22202414, y: -0.000000023726166, z: 0.0000000054026277, w: 0.9750412}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1528,7 +1528,7 @@ PrefabInstance:
         type: 3}
       propertyPath: reticleCanvas
       value: 
-      objectReference: {fileID: 1813821985457371314}
+      objectReference: {fileID: 0}
     - target: {fileID: 4170768137796624714, guid: a1602e62766239d478e52820b5701b45,
         type: 3}
       propertyPath: lockOnLayers.m_Bits
@@ -1561,12 +1561,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1602e62766239d478e52820b5701b45, type: 3}
---- !u!1 &1813821985457371314 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4170768139564073821, guid: a1602e62766239d478e52820b5701b45,
-    type: 3}
-  m_PrefabInstance: {fileID: 2362831771424340975}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1813821984537287335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4170768137796624712, guid: a1602e62766239d478e52820b5701b45,

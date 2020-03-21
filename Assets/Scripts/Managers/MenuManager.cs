@@ -15,11 +15,17 @@ public class MenuManager : MonoBehaviour
     // Button events
     public void OnClickLoadMap(string mapname)
     {
+        BattleData.returnScene = "MainMenu";
         GameManager.Instance.LoadMap(mapname);
     }
 
     public void LoadCampaign()
     {
         GameManager.Instance.LoadCampaign();
+    }
+
+    public void QuitGame()
+    {
+        GameManager.Instance.ExitGame();
     }
 }

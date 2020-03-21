@@ -31,6 +31,7 @@ public class CampaignManager : MonoBehaviour
     {
         CampaignEventManager.TriggerEvent("BattleStarting", null);
         BattleData.noOfEnemies = noOfEnemies;
+        BattleData.returnScene = "CampaignMap";
         SceneManager.LoadScene(mapScene);
     }
 }

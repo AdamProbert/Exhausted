@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Start() 
+    private void Awake() 
     {
         // Listeners
         playerEventManager = GetComponent<PlayerEventManager>();
@@ -71,20 +71,10 @@ public class Player : MonoBehaviour
         playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
         playerEventManager.OnPlayerArmourChanged += ArmourChangeHandler;
         playerEventManager.OnPlayerHealthChanged += HealthChangeHandler;
+    }
 
-        if(GameManager.Instance.gameState == GameManager.GameState.BUILD)
-        {
-            playerState=state.Building;    
-        }
-        else if(GameManager.Instance.gameState == GameManager.GameState.PLAY)
-        {
-            playerState=state.Alive;    
-        }
-        else if(testMode)
-        {
-            playerState = state.Alive;
-        }
-
+    private void Start() 
+    {
         // Set health    
         currentHealth = maxHealth;
 
@@ -123,6 +113,13 @@ public class Player : MonoBehaviour
             float percentHealth = (currentHealth/maxHealth) * ogHealhBarSize.x;
             healthBar.sizeDelta = new Vector2(percentHealth, healthBar.sizeDelta.y);
         }
+    }
+
+    public void SetupArmour(float armour)
+    {
+        maxArmour = armour;
+        currentArmour = armour;
+        UpdateArmourUI();
     }
 
     private void ArmourChangeHandler(float armourDifference)
@@ -186,7 +183,6 @@ public class Player : MonoBehaviour
             if(!isAI)
             {
                 GetComponent<UserInput>().Deactivate();
-                transform.Find("Camera").gameObject.SetActive(false);
             }
             else
             {
@@ -197,14 +193,8 @@ public class Player : MonoBehaviour
 
         if(newstate == Player.state.Alive)
         {
-
-            // Set armour
-            maxArmour = GetComponentInChildren<ArmourManager>().GetTotalArmour();
-            currentArmour = maxArmour;
-
             if(!isAI)
             {
-                transform.Find("Camera").gameObject.SetActive(true);
                 if(!healthBar & !testMode)
                 {
                     healthBar = GameObject.Find("HealthForeground").GetComponent<RectTransform>();

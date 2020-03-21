@@ -11,7 +11,6 @@ public class LockOnController : MonoBehaviour
 
     [SerializeField] LayerMask layermask;
     [SerializeField] Player lockedTarget;
-    [SerializeField] GameObject reticleCanvas;
     [SerializeField] GameObject lockOnIndicatorPrefab;
     GameObject lockOnIndicator;
     Animator animator;
@@ -56,7 +55,6 @@ public class LockOnController : MonoBehaviour
                 animator.Rebind();
                 lockOnIndicator.SetActive(false);       
             }
-            reticleCanvas.SetActive(true);
             state = lockState.NoLock;
         }
     }   

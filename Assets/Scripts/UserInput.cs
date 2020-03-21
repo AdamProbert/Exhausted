@@ -33,11 +33,16 @@ public class UserInput : MonoBehaviour
 
     [SerializeField] bool debugMode;
 
-    private void Awake() 
+    private void OnEnable() 
     {
         playerEventManager = GetComponent<PlayerEventManager>();
         controls = new InputMaster();
         playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;    
+    }
+
+    private void OnDisable() 
+    {
+        playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;    
     }
 
     private void Start() 

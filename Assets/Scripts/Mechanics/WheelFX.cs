@@ -32,10 +32,15 @@ public class WheelFX : MonoBehaviour {
 
 	// #### UNITY INTERNAL METHODS ####
 
-	private void Awake() 
+	private void OnEnable() 
 	{
 		playerEventManager = transform.root.GetComponent<PlayerEventManager>();
 		playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;	
+	}
+
+	private void OnDisable() 
+	{
+		playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;	
 	}
 
 	public void HandlePlayerStateChange(Player.state newstate) 

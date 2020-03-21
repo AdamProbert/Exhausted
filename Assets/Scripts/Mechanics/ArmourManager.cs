@@ -21,11 +21,17 @@ public class ArmourManager : MonoBehaviour
 
     [SerializeField] bool debug;
 
-    private void Awake() 
+    private void OnEnable() 
     {
         playerEventManager = transform.root.GetComponent<PlayerEventManager>();
         playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
-        playerEventManager.OnPickupItem += HandlePickupItem;   
+        playerEventManager.OnPickupItem += HandlePickupItem;
+    }
+
+    private void OnDisable() 
+    {
+        playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;
+        playerEventManager.OnPickupItem -= HandlePickupItem;
     }
 
     public void HandlePickupItem(Pickup pickup)
@@ -64,6 +70,8 @@ public class ArmourManager : MonoBehaviour
             {
                 equipedArmour = GetComponentsInChildren<ArmourPiece>();
             }
+
+            transform.root.GetComponent<Player>().SetupArmour(GetTotalArmour());
         }
     }
     

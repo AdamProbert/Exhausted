@@ -58,10 +58,15 @@ namespace UnityStandardAssets.Vehicles.Car
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
 
-        private void Awake() 
+        private void OnEnable() 
         {
             playerEventManager = GetComponent<PlayerEventManager>();
             playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
+        }
+
+        private void OnDisable() 
+        {
+            playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;    
         }
 
         public void HandlePlayerStateChange(Player.state newstate)

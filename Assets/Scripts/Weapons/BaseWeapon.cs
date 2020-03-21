@@ -29,10 +29,15 @@ abstract public class BaseWeapon : MonoBehaviour
     [SerializeField] private ParticleSystem fireEffectPrefab;
     protected ParticleSystem fireEffect;
 
-    private void Start()
+    private void OnEnable()
     {
         playerEventManager = transform.root.GetComponent<PlayerEventManager>();
         playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
+    }
+
+    private void OnDisable() 
+    {
+        playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;
     }
 
     public void Init() 
@@ -67,11 +72,14 @@ abstract public class BaseWeapon : MonoBehaviour
 
     public void FireProjectile()
     {
-        GameObject projectile = GetProjectile();
-        projectile.SetActive(true);
-        projectile.transform.position = projectileSpawn.position;
-        projectile.transform.rotation = projectileSpawn.rotation;
-        projectile.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed + GetParentVelocity();
+        if(currentStatus == status.Active)
+        {
+            GameObject projectile = GetProjectile();
+            projectile.SetActive(true);
+            projectile.transform.position = projectileSpawn.position;
+            projectile.transform.rotation = projectileSpawn.rotation;
+            projectile.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed + GetParentVelocity();
+        }
     }
 
     protected Vector3 GetParentVelocity()

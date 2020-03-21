@@ -11,10 +11,15 @@ public class WeaponController : MonoBehaviour
     private bool IsAI = false;
     [SerializeField] bool enableAutoAim = false;
 
-    private void Start() 
+    private void OnEnable() 
     {
         playerEventManager = GetComponent<PlayerEventManager>();
         playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;    
+    }
+
+    private void OnDisable() 
+    {
+        playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;
     }
 
     public void HandlePlayerStateChange(Player.state newstate) 
