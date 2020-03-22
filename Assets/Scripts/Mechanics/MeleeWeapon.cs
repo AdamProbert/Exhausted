@@ -26,7 +26,6 @@ public class MeleeWeapon : BaseDamager
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision enter called");
         if(parentRB.velocity.magnitude > minVelocityForImpact & other.transform.root != transform.root) // If going fast enough and not us..
         {
             if(canDamage == (canDamage | (1 << other.gameObject.layer))) // And in colidable layer

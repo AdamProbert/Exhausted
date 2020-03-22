@@ -78,7 +78,6 @@ public class Player : MonoBehaviour
         // Set health    
         currentHealth = maxHealth;
 
-
         // Is us AI?
         if(GetComponent<AIInput2>() && !GetComponent<UserInput>())
         {

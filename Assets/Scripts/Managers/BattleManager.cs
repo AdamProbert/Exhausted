@@ -38,7 +38,10 @@ public class BattleManager : MonoBehaviour
             }
         }
         
-        LoadPlayerVehicle();
+        if(humanPlayerPrefab != null)
+        {
+            LoadPlayerVehicle();
+        }
 
         if(requestedEnemyCount == -1)
         {
@@ -58,11 +61,20 @@ public class BattleManager : MonoBehaviour
         
         // Then spawn the AI in the remaining places
         spawner.SpawnThem(requestedEnemyCount);
-        gameModeBase.Setup(requestedEnemyCount, humanPlayer);
     }
 
     void Start()
     {
+        if(humanPlayer != null)
+        {
+            gameModeBase.Setup(requestedEnemyCount, humanPlayer);
+        }
+        else
+        {
+            gameModeBase.Setup(requestedEnemyCount);
+        }
+        
+
         startGameRoutine = StartGame();
         endGameRoutine = EndGame();
         endGameUI.SetActive(false);
@@ -170,8 +182,7 @@ public class BattleManager : MonoBehaviour
             else
             {
                 SceneManager.LoadScene("MainMenu");
-            }
-            
+            }   
         }
     }
 }

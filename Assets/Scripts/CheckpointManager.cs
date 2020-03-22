@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckpointManager : MonoBehaviour
 {
     [SerializeField] LayerMask checkpointLayer;
-    private Waypoint targetPoint;
+    public Waypoint targetPoint;
     private PlayerEventManager playerEventManager;
 
     private void OnEnable()
@@ -20,9 +20,10 @@ public class CheckpointManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(targetPoint)
+        Debug.Log("Chekpoint manager: trigger enter");
+        if(targetPoint !=null)
         {
-            if(checkpointLayer == (checkpointLayer | (1 << other.gameObject.layer)) & other.gameObject == targetPoint.gameObject)
+            if(other.gameObject == targetPoint.gameObject)
             {
                 playerEventManager.GlobalPlayerReachedWaypoint(GetComponent<Player>(), other.GetComponent<Waypoint>());
                 SetTargetPoint(other.GetComponent<Waypoint>().nextWaypoint.GetComponent<Waypoint>());

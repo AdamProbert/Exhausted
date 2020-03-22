@@ -2661,6 +2661,8 @@ GameObject:
   - component: {fileID: 647435389935291943}
   - component: {fileID: 1632311294}
   - component: {fileID: 443717917}
+  - component: {fileID: -5042786305277347220}
+  - component: {fileID: 4432241722589696728}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -2701,6 +2703,7 @@ MonoBehaviour:
   autoEndGame: 1
   skipStartSequence: 0
   requestedEnemyCount: 4
+  requestedGameMode: 0
   timePerCinemachineMove: 3
 --- !u!114 &2982420971241834487
 MonoBehaviour:
@@ -2859,6 +2862,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-5042786305277347220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982420971241834473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7fdcdc594b1c94f9d3c408a464bfca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+--- !u!114 &4432241722589696728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982420971241834473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6242e962503464f8c8694a207b2876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  checkpointSound: {fileID: 8300000, guid: 9338792ed26b4eb4e852a64f3e6f8bfa, type: 3}
 --- !u!1 &5100482097562554658
 GameObject:
   m_ObjectHideFlags: 0

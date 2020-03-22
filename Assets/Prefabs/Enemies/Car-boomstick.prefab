@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &960799008304537830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4927133848708454244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55c7bdf61c825254ea8e9b086eadd508, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupLayer:
-    serializedVersion: 2
-    m_Bits: 67108864
 --- !u!114 &568343371028661238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,6 +23,21 @@ MonoBehaviour:
   Master: {fileID: 0}
   OverrideMaster: 0
   MeshFilter: {fileID: 0}
+--- !u!114 &960799008304537830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4927133848708454244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c7bdf61c825254ea8e9b086eadd508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupLayer:
+    serializedVersion: 2
+    m_Bits: 67108864
 --- !u!1001 &2748370367265035876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,17 +154,17 @@ PrefabInstance:
     - target: {fileID: 9167826977869132905, guid: 52b51f7496abcf54093f1a8132f9fb54,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -60.547287
       objectReference: {fileID: 0}
     - target: {fileID: 9167826977869132905, guid: 52b51f7496abcf54093f1a8132f9fb54,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.2923257e-17
       objectReference: {fileID: 0}
     - target: {fileID: 9167826977869132905, guid: 52b51f7496abcf54093f1a8132f9fb54,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -47.66903
       objectReference: {fileID: 0}
     - target: {fileID: 9167826977869132905, guid: 52b51f7496abcf54093f1a8132f9fb54,
         type: 3}

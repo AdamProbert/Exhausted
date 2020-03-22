@@ -6,6 +6,7 @@ abstract public class GameModeBase : MonoBehaviour
 {
     public enum GameModeType
     {
+        None,
         FreeForAll,
         Race
     }
@@ -13,4 +14,5 @@ abstract public class GameModeBase : MonoBehaviour
     public GameModeType type;
 
     public abstract void Setup(int noOfEnemies, Player humanPlayer);
+    public abstract void Setup(int noOfEnemies);
 }

@@ -27,7 +27,17 @@ public class FreeForAll : GameModeBase
             activePlayers.Add(p);
             p.GetComponent<PlayerEventManager>().GlobalPlayerStateChange += HandlePlayerStateChange;
         }
-    }   
+    }
+
+    public override void Setup(int numberOfEnemies)
+    {
+        // Then collect references to everyone
+        foreach(Player p in FindObjectsOfType<Player>())
+        {
+            activePlayers.Add(p);
+            p.GetComponent<PlayerEventManager>().GlobalPlayerStateChange += HandlePlayerStateChange;
+        }
+    }
 
     public void HandlePlayerStateChange(Player player, Player.state newstate)
     {
@@ -36,7 +46,8 @@ public class FreeForAll : GameModeBase
             player.GetComponent<PlayerEventManager>().GlobalPlayerStateChange -= HandlePlayerStateChange;
             activePlayers.Remove(player);
             deadPlayers.Add(player);
-            if(player == humanPlayer)
+
+            if(humanPlayer != null & player == humanPlayer)
             {
                 battleManager.GameModeFinished(false);
             }   
@@ -44,7 +55,7 @@ public class FreeForAll : GameModeBase
 
         if(activePlayers.Count == 1)
         {
-            Debug.Log("Human Player won the FreeForAll!");
+            Debug.Log(activePlayers[0].name + " won the FreeForAll!");
             battleManager.GameModeFinished(true);            
         }
     }

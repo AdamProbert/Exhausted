@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f945e777233a59f4aba40aeca29093a6, type: 3}
   m_Name: EnemyFSM
   m_EditorClassIdentifier: 
-  _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_nestedBT":{"_value":1},"_transitionEvaluation":1,"_position":{"x":517.0,"y":186.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"0"},{"_nestedBT":{"_value":2},"_name":"Wander","_position":{"x":722.0,"y":387.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"1"},{"_nestedBT":{"_value":3},"_position":{"x":922.0,"y":487.7122},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"2"},{"_nestedBT":{"_value":4},"executionMode":0,"_name":"Hunt","_position":{"x":1107.0,"y":723.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"3"},{"_position":{"x":1266.0,"y":92.0},"$type":"NodeCanvas.StateMachines.AnyState","$id":"4"},{"_nestedBT":{"_value":5},"_name":"Flee","_position":{"x":1004.814,"y":222.6249},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"5"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"valueA":{"_name":"navTarget","_targetVariableID":"50f5a4d1-2660-408d-9ea9-ad786698aa57"},"valueB":{},"_invert":true,"$type":"NodeCanvas.Tasks.Conditions.CheckVariable`1[[UnityEngine.GameObject,
+  _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_nestedBT":{"_value":1},"_transitionEvaluation":1,"_position":{"x":510.0,"y":105.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"0"},{"_nestedBT":{"_value":2},"_name":"Wander","_position":{"x":1020.0,"y":330.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"1"},{"_nestedBT":{"_value":3},"_position":{"x":1215.0,"y":420.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"2"},{"_nestedBT":{"_value":4},"executionMode":0,"_name":"Hunt","_position":{"x":1395.0,"y":660.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"3"},{"_nestedBT":{"_value":5},"_position":{"x":300.0,"y":315.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"4"},{"_position":{"x":1560.0,"y":30.0},"$type":"NodeCanvas.StateMachines.AnyState","$id":"5"},{"_nestedBT":{"_value":6},"_name":"Flee","_position":{"x":1290.0,"y":165.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"6"}],"connections":[{"_condition":{"valueA":{"_name":"GameMode","_targetVariableID":"7ecfde79-8c05-4a9d-a67e-86d1de802b1e"},"valueB":{"_value":1},"$type":"NodeCanvas.Tasks.Conditions.CheckVariable`1[[GameModeBase+GameModeType,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"valueA":{"_name":"GameMode","_targetVariableID":"7ecfde79-8c05-4a9d-a67e-86d1de802b1e"},"valueB":{"_value":2},"$type":"NodeCanvas.Tasks.Conditions.CheckVariable`1[[GameModeBase+GameModeType,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"valueA":{"_name":"navTarget","_targetVariableID":"50f5a4d1-2660-408d-9ea9-ad786698aa57"},"valueB":{},"_invert":true,"$type":"NodeCanvas.Tasks.Conditions.CheckVariable`1[[UnityEngine.GameObject,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"checkMode":1,"conditions":[{"valueA":{"_name":"navTarget","_targetVariableID":"50f5a4d1-2660-408d-9ea9-ad786698aa57"},"valueB":{},"$type":"NodeCanvas.Tasks.Conditions.CheckVariable`1[[UnityEngine.GameObject,
-    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},{"timeout":{"_value":15.0},"$type":"NodeCanvas.Tasks.Conditions.Timeout"}],"$type":"NodeCanvas.Framework.ConditionList"},"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"valueA":{"_name":"Health","_targetVariableID":"936dd4a2-7394-44f6-a479-8ec400f78436"},"checkType":2,"valueB":{"_value":200.0},"$type":"NodeCanvas.Tasks.Conditions.CheckFloat"},"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"valueA":{"_name":"Health","_targetVariableID":"936dd4a2-7394-44f6-a479-8ec400f78436"},"checkType":1,"valueB":{"_value":200.0},"$type":"NodeCanvas.Tasks.Conditions.CheckFloat"},"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"HealthLost3sec":{"_name":"HealthLost3sec","_id":"d20da55d-071c-4abe-b9ca-16509f042e4f","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},{"timeout":{"_value":15.0},"$type":"NodeCanvas.Tasks.Conditions.Timeout"}],"$type":"NodeCanvas.Framework.ConditionList"},"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"valueA":{"_name":"Health","_targetVariableID":"936dd4a2-7394-44f6-a479-8ec400f78436"},"checkType":2,"valueB":{"_value":200.0},"$type":"NodeCanvas.Tasks.Conditions.CheckFloat"},"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"valueA":{"_name":"Health","_targetVariableID":"936dd4a2-7394-44f6-a479-8ec400f78436"},"checkType":1,"valueB":{"_value":200.0},"$type":"NodeCanvas.Tasks.Conditions.CheckFloat"},"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"HealthLost3sec":{"_name":"HealthLost3sec","_id":"d20da55d-071c-4abe-b9ca-16509f042e4f","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}}'
   _objectReferences:
   - {fileID: 0}
@@ -22,13 +24,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4430ebf24000f7f4da47687c81a82443, type: 2}
   - {fileID: 11400000, guid: 2d62daf2cc7f25446b61fd037db090db, type: 2}
   - {fileID: 11400000, guid: ff58b0b396ccdda40894466ac6a24dc7, type: 2}
+  - {fileID: 11400000, guid: b8fae9735b28a3942a176dff3d4be2af, type: 2}
   - {fileID: 11400000, guid: 0e0fb428cba062f45946cf450f6a9005, type: 2}
   _graphSource:
     _version: 3.03
     _category: 
     _comments: 
-    _translation: {x: -426, y: 97}
-    _zoomFactor: 0.99835074
+    _translation: {x: -185, y: 208}
+    _zoomFactor: 0.93750936
   _haltSerialization: 0
 #---GRAPH_START---
 #The pretty formatted json serialization bellow is only a reference to help in version control diff. Other than that it is not used at all.
@@ -41,8 +44,8 @@ MonoBehaviour:
 #            },
 #            "_transitionEvaluation": 1,
 #            "_position": {
-#                "x": 517.0,
-#                "y": 186.0
+#                "x": 510.0,
+#                "y": 105.0
 #            },
 #            "$type": "NodeCanvas.StateMachines.NestedBTState",
 #            "$id": "0"
@@ -53,8 +56,8 @@ MonoBehaviour:
 #            },
 #            "_name": "Wander",
 #            "_position": {
-#                "x": 722.0,
-#                "y": 387.0
+#                "x": 1020.0,
+#                "y": 330.0
 #            },
 #            "$type": "NodeCanvas.StateMachines.NestedBTState",
 #            "$id": "1"
@@ -64,8 +67,8 @@ MonoBehaviour:
 #                "_value": 3
 #            },
 #            "_position": {
-#                "x": 922.0,
-#                "y": 487.7122
+#                "x": 1215.0,
+#                "y": 420.0
 #            },
 #            "$type": "NodeCanvas.StateMachines.NestedBTState",
 #            "$id": "2"
@@ -77,40 +80,80 @@ MonoBehaviour:
 #            "executionMode": 0,
 #            "_name": "Hunt",
 #            "_position": {
-#                "x": 1107.0,
-#                "y": 723.0
+#                "x": 1395.0,
+#                "y": 660.0
 #            },
 #            "$type": "NodeCanvas.StateMachines.NestedBTState",
 #            "$id": "3"
 #        },
 #        {
-#            "_position": {
-#                "x": 1266.0,
-#                "y": 92.0
-#            },
-#            "$type": "NodeCanvas.StateMachines.AnyState",
-#            "$id": "4"
-#        },
-#        {
 #            "_nestedBT": {
 #                "_value": 5
 #            },
-#            "_name": "Flee",
 #            "_position": {
-#                "x": 1004.814,
-#                "y": 222.6249
+#                "x": 300.0,
+#                "y": 315.0
 #            },
 #            "$type": "NodeCanvas.StateMachines.NestedBTState",
+#            "$id": "4"
+#        },
+#        {
+#            "_position": {
+#                "x": 1560.0,
+#                "y": 30.0
+#            },
+#            "$type": "NodeCanvas.StateMachines.AnyState",
 #            "$id": "5"
+#        },
+#        {
+#            "_nestedBT": {
+#                "_value": 6
+#            },
+#            "_name": "Flee",
+#            "_position": {
+#                "x": 1290.0,
+#                "y": 165.0
+#            },
+#            "$type": "NodeCanvas.StateMachines.NestedBTState",
+#            "$id": "6"
 #        }
 #    ],
 #    "connections": [
 #        {
+#            "_condition": {
+#                "valueA": {
+#                    "_name": "GameMode",
+#                    "_targetVariableID": "7ecfde79-8c05-4a9d-a67e-86d1de802b1e"
+#                },
+#                "valueB": {
+#                    "_value": 1
+#                },
+#                "$type": "NodeCanvas.Tasks.Conditions.CheckVariable`1[[GameModeBase+GameModeType, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+#            },
 #            "_sourceNode": {
 #                "$ref": "0"
 #            },
 #            "_targetNode": {
 #                "$ref": "1"
+#            },
+#            "$type": "NodeCanvas.StateMachines.FSMConnection"
+#        },
+#        {
+#            "_condition": {
+#                "valueA": {
+#                    "_name": "GameMode",
+#                    "_targetVariableID": "7ecfde79-8c05-4a9d-a67e-86d1de802b1e"
+#                },
+#                "valueB": {
+#                    "_value": 2
+#                },
+#                "$type": "NodeCanvas.Tasks.Conditions.CheckVariable`1[[GameModeBase+GameModeType, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+#            },
+#            "_sourceNode": {
+#                "$ref": "0"
+#            },
+#            "_targetNode": {
+#                "$ref": "4"
 #            },
 #            "$type": "NodeCanvas.StateMachines.FSMConnection"
 #        },
@@ -187,10 +230,10 @@ MonoBehaviour:
 #                "$type": "NodeCanvas.Tasks.Conditions.CheckFloat"
 #            },
 #            "_sourceNode": {
-#                "$ref": "4"
+#                "$ref": "5"
 #            },
 #            "_targetNode": {
-#                "$ref": "5"
+#                "$ref": "6"
 #            },
 #            "$type": "NodeCanvas.StateMachines.FSMConnection"
 #        },
@@ -207,7 +250,7 @@ MonoBehaviour:
 #                "$type": "NodeCanvas.Tasks.Conditions.CheckFloat"
 #            },
 #            "_sourceNode": {
-#                "$ref": "5"
+#                "$ref": "6"
 #            },
 #            "_targetNode": {
 #                "$ref": "1"

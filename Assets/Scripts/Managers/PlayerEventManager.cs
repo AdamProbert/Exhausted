@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using NodeCanvas.StateMachines;
 public class PlayerEventManager : MonoBehaviour
 {
-
     // Actions
     public Action<GameManager.GameState> OnGameStateChanged;
     public Action<float> OnPlayerHealthChanged;
@@ -23,10 +22,18 @@ public class PlayerEventManager : MonoBehaviour
 
     public Action<Player, Waypoint> GlobalPlayerReachedWaypoint = delegate{};
 
+    // Node canvas
+    private FSMOwner owner;
 
     // Start is called before the first frame update
     void Awake()
     {
+        if(GetComponent<FSMOwner>())
+        {
+            owner = GetComponent<FSMOwner>();
+            GlobalPlayerReachedWaypoint += HandleWaypointReachedForAI;
+        }
+
         // Listen for game state changes and propogate down
         GameManager.Instance.OnStateChange += HandleGameStateChange;
     }
@@ -37,5 +44,18 @@ public class PlayerEventManager : MonoBehaviour
         {
             OnGameStateChanged(GameManager.Instance.gameState);
         }
+    }
+
+    public void HandleWaypointReachedForAI(Player player, Waypoint waypoint)
+    {
+        if(owner != null)
+        {
+            owner.SendEvent<Waypoint>("WaypointReached", waypoint, this);
+        }
+    }
+
+    private void OnDisable() 
+    {
+        GlobalPlayerReachedWaypoint -= HandleWaypointReachedForAI;    
     }
 }

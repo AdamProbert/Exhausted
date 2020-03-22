@@ -10,8 +10,20 @@ public class Waypoint : MonoBehaviour
     [SerializeField] public bool start;
     [SerializeField] public bool finish;
 
+    [SerializeField] private GameObject visuals;
+
     [Range(0f, 5f)]
     public float width = 1.5f;
+
+    public void EnableVisuals()
+    {
+        visuals.SetActive(true);
+    }
+
+    public void DisableVisuals()
+    {
+        visuals.SetActive(false);
+    }
 
     public Vector3 GetPosition()
     {

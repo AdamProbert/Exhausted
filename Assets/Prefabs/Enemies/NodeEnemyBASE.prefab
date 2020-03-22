@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 2931875226663893868}
   - component: {fileID: 7979698016321969746}
   - component: {fileID: 3994175211281128631}
+  - component: {fileID: 6769966990710759612}
   m_Layer: 8
   m_Name: NodeEnemyBASE
   m_TagString: Player
@@ -320,3 +321,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df3bf90cc112d9a45a2720e270c9d006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6769966990710759612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167826977869424713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf882294267aaee49bf78ee2cd758b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointLayer:
+    serializedVersion: 2
+    m_Bits: 1073741824
