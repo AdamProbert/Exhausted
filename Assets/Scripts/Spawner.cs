@@ -6,22 +6,25 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] List<Player> enemyPrefabs;
 
-    public List<SpawnPoint> GetAllSpawnPoints()
+    public List<SpawnPoint> GetAllSpawnPoints(GameModeBase.GameModeType type)
     {
         List<SpawnPoint> availableSpawnPoints = new List<SpawnPoint>();
         foreach(SpawnPoint p in Object.FindObjectsOfType<SpawnPoint>())
         {
-            availableSpawnPoints.Add(p);
+            if(p.spawnPointType == type)
+            {
+                availableSpawnPoints.Add(p);
+            }
         }
         return availableSpawnPoints;
     }
     
-    public List<SpawnPoint> FindSpawnPoints()
+    public List<SpawnPoint> FindSpawnPoints(GameModeBase.GameModeType type)
     {
         List<SpawnPoint> availableSpawnPoints = new List<SpawnPoint>();
         foreach(SpawnPoint p in Object.FindObjectsOfType<SpawnPoint>())
         {
-            if(!p.occupied)
+            if(!p.occupied & p.spawnPointType == type)
             {
                 availableSpawnPoints.Add(p);
             }
@@ -29,9 +32,9 @@ public class Spawner : MonoBehaviour
         return availableSpawnPoints;
     }
 
-    public void SpawnThem(int noOfEnemiesToSpawn = -1)
+    public void SpawnThem(GameModeBase.GameModeType type, int noOfEnemiesToSpawn = -1)
     {
-        List<SpawnPoint> availableSpawnPoints = FindSpawnPoints();
+        List<SpawnPoint> availableSpawnPoints = FindSpawnPoints(type);
         if(noOfEnemiesToSpawn == -1)
             noOfEnemiesToSpawn = availableSpawnPoints.Count;
 
@@ -48,9 +51,9 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void SpawnPlayer(Player player)
+    public void SpawnPlayer(Player player, GameModeBase.GameModeType type)
     {
-        List<SpawnPoint> availableSpawnPoints = FindSpawnPoints();
+        List<SpawnPoint> availableSpawnPoints = FindSpawnPoints(type);
         int selection = Random.Range(0, availableSpawnPoints.Count);
 
         player.transform.position = availableSpawnPoints[selection].transform.position;

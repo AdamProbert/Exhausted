@@ -53,7 +53,7 @@ MonoBehaviour:
   fireRate: 10
   uiImage: {fileID: 21300000, guid: 821132cd34be1c143b411ee1a3c0eb6d, type: 3}
   projectileName: RifleBullet
-  currentStatus: 0
+  currentStatus: 1
   fireSound: {fileID: 8300000, guid: 727e85301e987d24c907d694259f61bf, type: 3}
   fireEffectPrefab: {fileID: 19896092, guid: 5c2bdcf6f0badc34f9f192b0995e4a79, type: 3}
 --- !u!114 &5619489168035031761
@@ -92,7 +92,6 @@ MonoBehaviour:
   raycastIgnoreLayers:
     serializedVersion: 2
     m_Bits: 769
-  aimOffset: {x: 0, y: 1, z: -1}
 --- !u!82 &6306070126883971312
 AudioSource:
   m_ObjectHideFlags: 0

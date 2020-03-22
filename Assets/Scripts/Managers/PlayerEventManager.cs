@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using NodeCanvas.StateMachines;
+using NodeCanvas.Framework;
+
 public class PlayerEventManager : MonoBehaviour
 {
     // Actions
@@ -11,6 +13,8 @@ public class PlayerEventManager : MonoBehaviour
     public Action<float> OnPlayerArmourChanged;
 
     public Action<Player.state> OnPlayerStateChanged;
+
+    public Action<BaseWeapon.status> OnWeaponStatusChange;
 
     public Action<Player> OnNavTargetChange;
 
@@ -22,6 +26,11 @@ public class PlayerEventManager : MonoBehaviour
 
     public Action<Player, Waypoint> GlobalPlayerReachedWaypoint = delegate{};
 
+    public Action<Player, int> GlobalRacePositionChanged = delegate{};
+
+    public Action OnRaceAheadOfPlayer;
+    public Action OnRaceBehindPlayer;
+
     // Node canvas
     private FSMOwner owner;
 
@@ -31,11 +40,7 @@ public class PlayerEventManager : MonoBehaviour
         if(GetComponent<FSMOwner>())
         {
             owner = GetComponent<FSMOwner>();
-            GlobalPlayerReachedWaypoint += HandleWaypointReachedForAI;
-        }
-
-        // Listen for game state changes and propogate down
-        GameManager.Instance.OnStateChange += HandleGameStateChange;
+        }   
     }
 
     void HandleGameStateChange()
@@ -54,8 +59,26 @@ public class PlayerEventManager : MonoBehaviour
         }
     }
 
+    public void HandlePickupAI(Pickup p)
+    {
+        if(owner != null)
+        {
+            // owner.SendEvent<Pickup>("PickupReached", p, this);
+            Graph.SendGlobalEvent("PickupReached", p, this);
+        }
+    }
+
+    private void OnEnable() 
+    {
+        // Listen for game state changes and propogate down
+        GameManager.Instance.OnStateChange += HandleGameStateChange;
+        GlobalPlayerReachedWaypoint += HandleWaypointReachedForAI;
+        OnPickupItem += HandlePickupAI;
+    }
+
     private void OnDisable() 
     {
         GlobalPlayerReachedWaypoint -= HandleWaypointReachedForAI;    
+        OnPickupItem -= HandlePickupAI;
     }
 }

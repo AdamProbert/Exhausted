@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
     [SerializeField] public float currentHealth{
         get{return m_currentHealth;}
         set{
-            if(m_currentHealth == value) return;
             m_currentHealth = value;
         }
     }
@@ -33,12 +32,11 @@ public class Player : MonoBehaviour
     [Header("Armour")]
     [SerializeField] public float maxArmour;
     [SerializeField] float m_currentArmour;
-    [SerializeField] public float currentArmour{ // Initally set from ArmourManager
+    [SerializeField] public float currentArmour{
         get{return m_currentArmour;}
         set{
-            if(m_currentArmour == value) return;
             m_currentArmour = value;
-            if(m_currentArmour > maxArmour) m_currentArmour = maxArmour;
+            if(m_currentArmour > maxArmour){m_currentArmour = maxArmour;};
         }
     }
 
@@ -67,10 +65,6 @@ public class Player : MonoBehaviour
     {
         // Listeners
         playerEventManager = GetComponent<PlayerEventManager>();
-        playerEventManager.OnGameStateChanged += HandleGameStateChange;
-        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
-        playerEventManager.OnPlayerArmourChanged += ArmourChangeHandler;
-        playerEventManager.OnPlayerHealthChanged += HealthChangeHandler;
     }
 
     private void Start() 
@@ -222,5 +216,21 @@ public class Player : MonoBehaviour
                 GetComponent<AIInput2>().enabled = false;
             }
         }
+    }
+
+    private void OnEnable() 
+    {
+        playerEventManager.OnGameStateChanged += HandleGameStateChange;
+        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
+        playerEventManager.OnPlayerArmourChanged += ArmourChangeHandler;
+        playerEventManager.OnPlayerHealthChanged += HealthChangeHandler;   
+    }
+
+    private void OnDisable() 
+    {
+        playerEventManager.OnGameStateChanged -= HandleGameStateChange;
+        playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;
+        playerEventManager.OnPlayerArmourChanged -= ArmourChangeHandler;
+        playerEventManager.OnPlayerHealthChanged -= HealthChangeHandler;    
     }
 }

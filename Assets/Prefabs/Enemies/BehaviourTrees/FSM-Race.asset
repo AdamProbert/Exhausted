@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f945e777233a59f4aba40aeca29093a6, type: 3}
+  m_Name: FSM-Race
+  m_EditorClassIdentifier: 
+  _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_nestedBT":{"_value":1},"_position":{"x":330.0,"y":465.0},"$type":"NodeCanvas.StateMachines.NestedBTState"}],"connections":[],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: b8fae9735b28a3942a176dff3d4be2af, type: 2}
+  _graphSource:
+    _version: 3.03
+    _category: 
+    _comments: 
+    _translation: {x: -72, y: -22}
+    _zoomFactor: 1
+  _haltSerialization: 0
+#---GRAPH_START---
+#The pretty formatted json serialization bellow is only a reference to help in version control diff. Other than that it is not used at all.
+#{
+#    "type": "NodeCanvas.StateMachines.FSM",
+#    "nodes": [
+#        {
+#            "_nestedBT": {
+#                "_value": 1
+#            },
+#            "_position": {
+#                "x": 330.0,
+#                "y": 465.0
+#            },
+#            "$type": "NodeCanvas.StateMachines.NestedBTState"
+#        }
+#    ],
+#    "connections": [],
+#    "canvasGroups": [],
+#    "localBlackboard": {
+#        "_variables": {
+#
+#        }
+#    }
+#}
+#---GRAPH_END---

@@ -84,7 +84,7 @@ MonoBehaviour:
   fireRate: 0.5
   uiImage: {fileID: 21300000, guid: cb5603fdd7f17fe418f6c53c3733a61d, type: 3}
   projectileName: BoomStick
-  currentStatus: 0
+  currentStatus: 1
   fireSound: {fileID: 8300000, guid: d1675c28d6f05aa47ab50c7bb538b0c3, type: 3}
   fireEffectPrefab: {fileID: 1682595293372135396, guid: a56eb1392f15d34408c2ae49eef51eb4,
     type: 3}
@@ -110,7 +110,6 @@ MonoBehaviour:
   raycastIgnoreLayers:
     serializedVersion: 2
     m_Bits: 769
-  aimOffset: {x: 0, y: 1, z: -1}
 --- !u!114 &1636134828111195497
 MonoBehaviour:
   m_ObjectHideFlags: 0

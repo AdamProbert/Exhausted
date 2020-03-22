@@ -47,10 +47,10 @@ public class WeaponController : MonoBehaviour
                 IsAI = true;
             }
 
-            foreach(BaseWeapon w in weapons)
-            {
-                w.currentStatus = BaseWeapon.status.Active;
-            }
+            // foreach(BaseWeapon w in weapons)
+            // {
+            //     w.currentStatus = BaseWeapon.status.Active;
+            // }
 
             SetupAutoFindOnWeapons();
         }

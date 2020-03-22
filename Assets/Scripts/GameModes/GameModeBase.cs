@@ -4,6 +4,8 @@ using UnityEngine;
 
 abstract public class GameModeBase : MonoBehaviour
 {
+    [SerializeField] protected float timePerCinemachineMove = 3;
+
     public enum GameModeType
     {
         None,
@@ -15,4 +17,6 @@ abstract public class GameModeBase : MonoBehaviour
 
     public abstract void Setup(int noOfEnemies, Player humanPlayer);
     public abstract void Setup(int noOfEnemies);
+
+    public abstract void StartItUp(bool wholeSequence);
 }

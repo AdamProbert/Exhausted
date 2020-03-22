@@ -18,21 +18,26 @@ public class AutomaticWeapon : BaseWeapon
 
     public override void Fire()
     {
-        if(Time.time < nextFireTime)
+        if(base.currentStatus == BaseWeapon.status.Active)
         {
-            return;
-        }
+            if(Time.time < nextFireTime)
+            {
+                return;
+            }
 
-        nextFireTime = Time.time + (1 / base.fireRate);
+            nextFireTime = Time.time + (1 / base.fireRate);
 
-        audioSource.PlayOneShot(base.fireSound, 1f);
-        if(fireEffect)
-        {
-            fireEffect.Play();
+            audioSource.PlayOneShot(base.fireSound, 1f);
+
+            if(fireEffect)
+            {
+                fireEffect.Play();
+            }
+            
+            base.FireProjectile();
         }
-        
-        base.FireProjectile();
     }
+    
     public override void StartFiring()
     {
         firing = true;

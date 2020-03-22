@@ -114,7 +114,7 @@ MonoBehaviour:
   handbrakeTorqueMultiplier: 1000
   m_Downforce: 100
   m_SpeedType: 0
-  m_Topspeed: 100
+  m_Topspeed: 80
   m_RevRangeBoundary: 1
   m_SlipLimit: 1
   m_BrakeTorque: 5000
@@ -156,10 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7edfdae22b7c4240a60fb9a2ca47670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CautiousSpeedFactor: 0.3
-  m_CautiousMaxAngle: 90
-  m_CautiousMaxDistance: 2
-  m_CautiousAngularVelocityFactor: 30
+  m_CautiousSpeedFactor: 1
+  m_CautiousMaxAngle: 360
+  m_CautiousMaxDistance: 10
+  m_CautiousAngularVelocityFactor: 50
   m_SteerSensitivity: 0.05
   m_AccelSensitivity: 0.4
   m_BrakeSensitivity: 1
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_LateralWanderSpeed: 0.2
   m_AccelWanderAmount: 0.1
   m_AccelWanderSpeed: 0.1
-  m_BrakeCondition: 1
+  m_BrakeCondition: 0
   m_Driving: 1
   m_Target: {fileID: 0}
   m_StopWhenTargetReached: 0
@@ -207,6 +207,13 @@ MonoBehaviour:
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"Players":{"_value":[],"_name":"Players","_id":"ade0004e-7574-40c4-b48e-a3faf6f8b99f","$type":"NodeCanvas.Framework.Variable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"Health":{"_propertyPath":"Player.currentHealth","_name":"Health","_id":"936dd4a2-7394-44f6-a479-8ec400f78436","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"GameMode":{"_name":"GameMode","_id":"9b1f40a8-49f2-40b8-9079-81fb6f8860aa","$type":"NodeCanvas.Framework.Variable`1[[GameModeBase+GameModeType,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"targetWaypoint":{"_propertyPath":"CheckpointManager.targetPoint","_name":"targetWaypoint","_id":"4b943f23-5984-46d1-bd37-1b0880ce2085","$type":"NodeCanvas.Framework.Variable`1[[Waypoint,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"currentArmour":{"_propertyPath":"Player.currentArmour","_name":"currentArmour","_id":"a19491c6-2720-4c88-9bd5-7491cd1f5744","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"Pickups":{"_value":[],"_name":"Pickups","_id":"50308ad9-c543-42a8-b260-b5f914788fa5","$type":"NodeCanvas.Framework.Variable`1[[System.Collections.Generic.List`1[[Pickup,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib,
+    Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"MaxArmour":{"_propertyPath":"Player.maxArmour","_name":"MaxArmour","_id":"800369a4-bbf1-42d5-bef8-13efcbcc60ea","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"RequireArmour":{"_name":"RequireArmour","_id":"34a9bf07-57e1-442f-82e6-20caab43328b","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
   _serializedVariables:
@@ -221,6 +228,25 @@ MonoBehaviour:
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
   - _json: '{"_propertyPath":"Player.currentHealth","_name":"Health","_id":"936dd4a2-7394-44f6-a479-8ec400f78436","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_name":"GameMode","_id":"9b1f40a8-49f2-40b8-9079-81fb6f8860aa","$type":"NodeCanvas.Framework.Variable`1[[GameModeBase+GameModeType,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"CheckpointManager.targetPoint","_name":"targetWaypoint","_id":"4b943f23-5984-46d1-bd37-1b0880ce2085","$type":"NodeCanvas.Framework.Variable`1[[Waypoint,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"Player.currentArmour","_name":"currentArmour","_id":"a19491c6-2720-4c88-9bd5-7491cd1f5744","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_value":[],"_name":"Pickups","_id":"50308ad9-c543-42a8-b260-b5f914788fa5","$type":"NodeCanvas.Framework.Variable`1[[System.Collections.Generic.List`1[[Pickup,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib,
+      Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"Player.maxArmour","_name":"MaxArmour","_id":"800369a4-bbf1-42d5-bef8-13efcbcc60ea","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_name":"RequireArmour","_id":"34a9bf07-57e1-442f-82e6-20caab43328b","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
 --- !u!114 &1681143631
@@ -336,3 +362,4 @@ MonoBehaviour:
   checkpointLayer:
     serializedVersion: 2
     m_Bits: 1073741824
+  targetPoint: {fileID: 0}

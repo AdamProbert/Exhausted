@@ -34,7 +34,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float handbrakeTorqueMultiplier;
         [SerializeField] private float m_Downforce = 100f;
         [SerializeField] private SpeedType m_SpeedType;
-        [SerializeField] private float m_Topspeed = 200;
+        [SerializeField] public float m_Topspeed = 200;
         [SerializeField] private static int NoOfGears = 5;
         [SerializeField] private float m_RevRangeBoundary = 1f;
         [SerializeField] private float m_SlipLimit;
@@ -55,6 +55,7 @@ namespace UnityStandardAssets.Vehicles.Car
         public float CurrentSteerAngle{ get { return m_SteerAngle; }}
         public float CurrentSpeed{ get { return m_Rigidbody.velocity.magnitude*2.23693629f; }}
         public float MaxSpeed{get { return m_Topspeed; }}
+        public float OriginalMaxSpeed;
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
 
@@ -79,6 +80,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void InitializeVehicle()
         {
+            OriginalMaxSpeed = MaxSpeed;
             // Find colliders and wheels if not assigned
             if(m_WheelColliders.Count == 0)
             {

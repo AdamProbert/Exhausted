@@ -12,15 +12,11 @@ public class BattleManager : MonoBehaviour
     [SerializeField] Player humanPlayerPrefab;
     Player humanPlayer;
     private IEnumerator endGameRoutine;
-    private IEnumerator startGameRoutine;
     [SerializeField] private GameObject endGameUI;
     [SerializeField] private bool autoEndGame = true;
-    [SerializeField] private bool skipStartSequence = true;
+    [SerializeField] private bool dontSkipStartSequence = true;
     [SerializeField] public int requestedEnemyCount = 0;
     [SerializeField] public GameModeBase.GameModeType requestedGameMode;
-
-    [Header("Camera stuff")]
-    [SerializeField] float timePerCinemachineMove = 3;
 
     Spawner spawner;
     GameModeBase gameModeBase;
@@ -55,12 +51,12 @@ public class BattleManager : MonoBehaviour
         // Spawn player in correct position first if they are here
         if(humanPlayer)
         {
-            spawner.SpawnPlayer(humanPlayer);
+            spawner.SpawnPlayer(humanPlayer, gameModeBase.type);
             playerEventManager = humanPlayer.GetComponent<PlayerEventManager>();
         }
         
         // Then spawn the AI in the remaining places
-        spawner.SpawnThem(requestedEnemyCount);
+        spawner.SpawnThem(gameModeBase.type, requestedEnemyCount);
     }
 
     void Start()
@@ -74,8 +70,6 @@ public class BattleManager : MonoBehaviour
             gameModeBase.Setup(requestedEnemyCount);
         }
         
-
-        startGameRoutine = StartGame();
         endGameRoutine = EndGame();
         endGameUI.SetActive(false);
         
@@ -83,15 +77,9 @@ public class BattleManager : MonoBehaviour
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 
-        if(!skipStartSequence)
-        {
-            StartCoroutine(startGameRoutine);
-        }
-        else
-        {
-            GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
-        }
+        gameModeBase.StartItUp(dontSkipStartSequence);
     }
+
 
     public void GameModeFinished(bool playerWon)
     {
@@ -133,37 +121,6 @@ public class BattleManager : MonoBehaviour
             Debug.Log("No saved vehicle! - go make one");
         }
 
-    }
-
-    private IEnumerator StartGame() 
-    {
-        CinemachineFreeLook playerCam = humanPlayer.GetComponentInChildren<CinemachineFreeLook>();
-        List<SpawnPoint> spawnPoints = spawner.GetAllSpawnPoints();
-        List<CinemachineVirtualCamera> cams = new List<CinemachineVirtualCamera>();
-
-        foreach (SpawnPoint spawn in spawnPoints)
-        {
-            if(spawn.occupied != null)
-            {
-                cams.Add(spawn.virtualCamera);
-            }
-            spawn.virtualCamera.gameObject.SetActive(false);
-        }
-
-        yield return new WaitForSeconds(1);
-        playerCam.gameObject.SetActive(false);
-
-        foreach (CinemachineVirtualCamera cam in cams)
-        {
-            cam.gameObject.SetActive(true);
-            yield return new WaitForSeconds(timePerCinemachineMove);
-            cam.gameObject.SetActive(false);    
-        }
-
-        playerCam.gameObject.SetActive(true);
-        yield return new WaitForSeconds(timePerCinemachineMove);
-
-        GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
     }
 
     private IEnumerator EndGame()

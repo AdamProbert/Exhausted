@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 [RequireComponent(typeof(BattleManager))]
 public class FreeForAll : GameModeBase
 {
@@ -11,9 +11,11 @@ public class FreeForAll : GameModeBase
     private BattleManager battleManager;
     Player humanPlayer;
     Spawner spawner;
+    private IEnumerator startGameRoutine;
 
     private void Awake() 
     {
+        spawner = GetComponent<Spawner>();
         battleManager = GetComponent<BattleManager>();    
         base.type = GameModeType.FreeForAll;
     }
@@ -37,6 +39,54 @@ public class FreeForAll : GameModeBase
             activePlayers.Add(p);
             p.GetComponent<PlayerEventManager>().GlobalPlayerStateChange += HandlePlayerStateChange;
         }
+    }
+
+    public override void StartItUp(bool wholeSequence)
+    {
+        if(wholeSequence)
+        {
+            StartCoroutine(startGameRoutine);
+        }
+        else
+        {
+            GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
+        }
+        
+    }
+
+
+    private IEnumerator StartGame() 
+    {
+        if(humanPlayer != null)
+        {
+            CinemachineFreeLook playerCam = humanPlayer.GetComponentInChildren<CinemachineFreeLook>();
+            List<SpawnPoint> spawnPoints = spawner.GetAllSpawnPoints(type);
+            List<CinemachineVirtualCamera> cams = new List<CinemachineVirtualCamera>();
+
+            foreach (SpawnPoint spawn in spawnPoints)
+            {
+                if(spawn.occupied != null)
+                {
+                    cams.Add(spawn.virtualCamera);
+                }
+                spawn.virtualCamera.gameObject.SetActive(false);
+            }
+
+            yield return new WaitForSeconds(1);
+            playerCam.gameObject.SetActive(false);
+
+            foreach (CinemachineVirtualCamera cam in cams)
+            {
+                cam.gameObject.SetActive(true);
+                yield return new WaitForSeconds(timePerCinemachineMove);
+                cam.gameObject.SetActive(false);    
+            }
+
+            playerCam.gameObject.SetActive(true);
+            yield return new WaitForSeconds(timePerCinemachineMove);
+        }
+        
+        GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
     }
 
     public void HandlePlayerStateChange(Player player, Player.state newstate)

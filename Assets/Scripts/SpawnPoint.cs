@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class SpawnPoint : MonoBehaviour
 {
+    [SerializeField] public GameModeBase.GameModeType spawnPointType;
     public Player occupied;
     [SerializeField] public CinemachineVirtualCamera virtualCamera; 
-    
 }

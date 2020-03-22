@@ -7,6 +7,9 @@ public class Waypoint : MonoBehaviour
 {
     public Waypoint previousWaypoint;
     public Waypoint nextWaypoint;
+
+    public int WaypointNumber;
+    
     [SerializeField] public bool start;
     [SerializeField] public bool finish;
 

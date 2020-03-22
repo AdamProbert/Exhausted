@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a686a47eee2fa44cb0a34b5d86e4d5e, type: 3}
   m_Name: FindEnemies
   m_EditorClassIdentifier: 
-  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":585.2593,"y":225.4167},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"0"},{"_action":{"saveAs":{"_name":"Players","_targetVariableID":"ade0004e-7574-40c4-b48e-a3faf6f8b99f"},"searchTag":"Player","ignoreCurrent":true,"$type":"NodeCanvas.Tasks.Actions.GetAllTargets"},"_position":{"x":361.9536,"y":386.1712},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"1"},{"_action":{"saveAs":{"_name":"GameMode","_targetVariableID":"7ecfde79-8c05-4a9d-a67e-86d1de802b1e"},"$type":"NodeCanvas.Tasks.Actions.DetermineGameMode"},"_position":{"x":630.0,"y":402.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"2"},{"_action":{"$type":"NodeCanvas.Tasks.Actions.ForceFinishGraph"},"_position":{"x":936.0,"y":394.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"3"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
+  _serializedGraph: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":585.0,"y":225.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"0"},{"_action":{"saveAs":{"_name":"Players","_targetVariableID":"ade0004e-7574-40c4-b48e-a3faf6f8b99f"},"searchTag":"Player","ignoreCurrent":true,"$type":"NodeCanvas.Tasks.Actions.GetAllTargets"},"_position":{"x":255.0,"y":390.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"1"},{"_action":{"saveAs":{"_name":"GameMode","_targetVariableID":"9b1f40a8-49f2-40b8-9079-81fb6f8860aa"},"$type":"NodeCanvas.Tasks.Actions.DetermineGameMode"},"_position":{"x":480.0,"y":390.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"2"},{"_action":{"saveAs":{"_name":"Pickups","_targetVariableID":"50308ad9-c543-42a8-b260-b5f914788fa5"},"$type":"NodeCanvas.Tasks.Actions.FindPickups"},"_position":{"x":720.0,"y":480.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"3"},{"_action":{"$type":"NodeCanvas.Tasks.Actions.ForceFinishGraph"},"_position":{"x":870.0,"y":360.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"4"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
   _objectReferences: []
   _graphSource:
     _version: 3.03
@@ -28,8 +28,8 @@ MonoBehaviour:
 #    "nodes": [
 #        {
 #            "_position": {
-#                "x": 585.2593,
-#                "y": 225.4167
+#                "x": 585.0,
+#                "y": 225.0
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.Sequencer",
 #            "$id": "0"
@@ -45,8 +45,8 @@ MonoBehaviour:
 #                "$type": "NodeCanvas.Tasks.Actions.GetAllTargets"
 #            },
 #            "_position": {
-#                "x": 361.9536,
-#                "y": 386.1712
+#                "x": 255.0,
+#                "y": 390.0
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.ActionNode",
 #            "$id": "1"
@@ -55,27 +55,42 @@ MonoBehaviour:
 #            "_action": {
 #                "saveAs": {
 #                    "_name": "GameMode",
-#                    "_targetVariableID": "7ecfde79-8c05-4a9d-a67e-86d1de802b1e"
+#                    "_targetVariableID": "9b1f40a8-49f2-40b8-9079-81fb6f8860aa"
 #                },
 #                "$type": "NodeCanvas.Tasks.Actions.DetermineGameMode"
 #            },
 #            "_position": {
-#                "x": 630.0,
-#                "y": 402.0
+#                "x": 480.0,
+#                "y": 390.0
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.ActionNode",
 #            "$id": "2"
 #        },
 #        {
 #            "_action": {
-#                "$type": "NodeCanvas.Tasks.Actions.ForceFinishGraph"
+#                "saveAs": {
+#                    "_name": "Pickups",
+#                    "_targetVariableID": "50308ad9-c543-42a8-b260-b5f914788fa5"
+#                },
+#                "$type": "NodeCanvas.Tasks.Actions.FindPickups"
 #            },
 #            "_position": {
-#                "x": 936.0,
-#                "y": 394.0
+#                "x": 720.0,
+#                "y": 480.0
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.ActionNode",
 #            "$id": "3"
+#        },
+#        {
+#            "_action": {
+#                "$type": "NodeCanvas.Tasks.Actions.ForceFinishGraph"
+#            },
+#            "_position": {
+#                "x": 870.0,
+#                "y": 360.0
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.ActionNode",
+#            "$id": "4"
 #        }
 #    ],
 #    "connections": [
@@ -103,6 +118,15 @@ MonoBehaviour:
 #            },
 #            "_targetNode": {
 #                "$ref": "3"
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
+#        },
+#        {
+#            "_sourceNode": {
+#                "$ref": "0"
+#            },
+#            "_targetNode": {
+#                "$ref": "4"
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
 #        }

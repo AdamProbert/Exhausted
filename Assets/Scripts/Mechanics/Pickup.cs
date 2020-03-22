@@ -16,7 +16,7 @@ public class Pickup : MonoBehaviour
 
     [SerializeField] public PTypes PType;
 
-
+    public bool available = true;
 
     private void Start() 
     {
@@ -25,6 +25,7 @@ public class Pickup : MonoBehaviour
 
     public void PickItUp()
     {
+        available = false;
         audioSource.PlayOneShot(pickupSound);
         ParticleSystem fx = Instantiate(pickupFx, transform.position + (Vector3.up * 2), Quaternion.identity, transform);
 

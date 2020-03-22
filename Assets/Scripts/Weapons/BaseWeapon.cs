@@ -33,11 +33,13 @@ abstract public class BaseWeapon : MonoBehaviour
     {
         playerEventManager = transform.root.GetComponent<PlayerEventManager>();
         playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
+        playerEventManager.OnWeaponStatusChange += WeaponsLive;
     }
 
     private void OnDisable() 
     {
         playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;
+        playerEventManager.OnWeaponStatusChange -= WeaponsLive;
     }
 
     public void Init() 
@@ -52,15 +54,12 @@ abstract public class BaseWeapon : MonoBehaviour
 
     public void HandlePlayerStateChange(Player.state newstate)
     {
-        if(newstate == Player.state.Alive)
-        {
-            currentStatus = status.Active;
-            Init();
-        }
-        else if(newstate == Player.state.Dead || newstate == Player.state.Inactive)
-        {
-            currentStatus = status.Inactive;
-        }
+        Init();
+    }
+
+    public void WeaponsLive(BaseWeapon.status status)
+    {
+        currentStatus = status;
     }
 
     public GameObject GetProjectile()

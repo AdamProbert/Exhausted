@@ -29,7 +29,6 @@ public class Explode : MonoBehaviour
             audioSource.PlayOneShot(explosionSound, 1);
         }
         // Fx
-        Debug.Log("Fx running");
         ParticleSystem x = Instantiate(effect, transform.position, Quaternion.identity);
         Destroy(x.gameObject, 5f);
 
