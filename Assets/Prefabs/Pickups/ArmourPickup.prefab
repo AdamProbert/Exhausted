@@ -145,6 +145,7 @@ MonoBehaviour:
   pickupFx: {fileID: 198552259928792682, guid: bb1c70a7b69cb4e408e31bde844ac837, type: 3}
   pickupSound: {fileID: 8300000, guid: d6d3853860213ba49abe8e5a96171c16, type: 3}
   PType: 0
+  available: 1
 --- !u!1 &8892169649732962550
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +237,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.80083644, y: 0.78901017, z: 1.456761}
+  m_Size: {x: 1.5, y: 1.5, z: 3}
   m_Center: {x: -0.0040385425, y: 0.39450508, z: -0.32392377}
 --- !u!1001 &1589798435745637220
 PrefabInstance:

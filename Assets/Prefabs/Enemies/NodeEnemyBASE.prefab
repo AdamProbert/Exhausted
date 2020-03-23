@@ -118,6 +118,7 @@ MonoBehaviour:
   m_RevRangeBoundary: 1
   m_SlipLimit: 1
   m_BrakeTorque: 5000
+  OriginalMaxSpeed: 0
 --- !u!114 &9167826977875959283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +214,6 @@ MonoBehaviour:
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"Pickups":{"_value":[],"_name":"Pickups","_id":"50308ad9-c543-42a8-b260-b5f914788fa5","$type":"NodeCanvas.Framework.Variable`1[[System.Collections.Generic.List`1[[Pickup,
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], mscorlib,
     Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"MaxArmour":{"_propertyPath":"Player.maxArmour","_name":"MaxArmour","_id":"800369a4-bbf1-42d5-bef8-13efcbcc60ea","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
-    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"RequireArmour":{"_name":"RequireArmour","_id":"34a9bf07-57e1-442f-82e6-20caab43328b","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
   _serializedVariables:
@@ -244,9 +244,6 @@ MonoBehaviour:
       Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
   - _json: '{"_propertyPath":"Player.maxArmour","_name":"MaxArmour","_id":"800369a4-bbf1-42d5-bef8-13efcbcc60ea","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
-    _references: []
-  - _json: '{"_name":"RequireArmour","_id":"34a9bf07-57e1-442f-82e6-20caab43328b","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
 --- !u!114 &1681143631
@@ -363,3 +360,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1073741824
   targetPoint: {fileID: 0}
+  currentLap: 0

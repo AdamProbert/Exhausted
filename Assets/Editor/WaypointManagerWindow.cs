@@ -84,7 +84,6 @@ public class WaypointManagerWindow : EditorWindow
             waypoint.transform.position = waypoint.previousWaypoint.transform.position;
             waypoint.transform.forward = waypoint.previousWaypoint.transform.forward;
         }
-        waypoint.WaypointNumber = waypoint.transform.GetSiblingIndex();
         Selection.activeGameObject = waypoint.gameObject;
     }
 
@@ -111,8 +110,6 @@ public class WaypointManagerWindow : EditorWindow
         selectedWaypoint.previousWaypoint = newWaypoint;
 
         newWaypoint.transform.SetSiblingIndex(selectedWaypoint.transform.GetSiblingIndex());
-        newWaypoint.WaypointNumber = newWaypoint.transform.GetSiblingIndex();
-        selectedWaypoint.WaypointNumber = selectedWaypoint.transform.GetSiblingIndex();
         Selection.activeGameObject = newWaypoint.gameObject;
     }
     
@@ -139,9 +136,6 @@ public class WaypointManagerWindow : EditorWindow
 
         selectedWaypoint.nextWaypoint = newWaypoint;
         newWaypoint.transform.SetSiblingIndex(selectedWaypoint.transform.GetSiblingIndex());
-
-        newWaypoint.WaypointNumber = newWaypoint.transform.GetSiblingIndex();
-        selectedWaypoint.WaypointNumber = selectedWaypoint.transform.GetSiblingIndex();
 
         Selection.activeGameObject = newWaypoint.gameObject;
     }

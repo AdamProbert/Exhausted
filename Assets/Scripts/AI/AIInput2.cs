@@ -75,6 +75,10 @@ public class AIInput2 : MonoBehaviour
     [SerializeField] bool reversing = false;
     [SerializeField] bool avoiding = false;
 
+    [Header("Race mode")]
+    float aheadOfPlayerModifier = 0.6f;
+    float behindPlayerModifier = 1.6f;
+
     [SerializeField] private Player m_NavTarget;
     [SerializeField] public Player navTarget{
         get{return m_NavTarget;}
@@ -443,13 +447,13 @@ public class AIInput2 : MonoBehaviour
     public void HandleRacePositionAheadOfPlayer()
     {
         Debug.Log("Slowing down");
-        m_CarController.m_Topspeed = m_CarController.OriginalMaxSpeed * 0.8f;
+        m_CarController.m_Topspeed = m_CarController.OriginalMaxSpeed * aheadOfPlayerModifier;
     }
 
     public void HandleRacePositionBehindPlayer()
     {
         Debug.Log("Speeding up");
-        m_CarController.m_Topspeed = m_CarController.OriginalMaxSpeed * 1.2f;
+        m_CarController.m_Topspeed = m_CarController.OriginalMaxSpeed * behindPlayerModifier;
     }
 
     private void OnDrawGizmos()

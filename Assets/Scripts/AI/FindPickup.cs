@@ -37,7 +37,8 @@ namespace NodeCanvas.Tasks.Conditions
                 {
                     continue;
                 }
-                if (Vector3.Angle(agent.position - target.transform.position, agent.forward) > viewAngle.value) 
+            
+                if (Vector3.Angle((target.transform.position - agent.position).normalized, agent.transform.forward) > viewAngle.value)
                 {
                     continue;
                 }

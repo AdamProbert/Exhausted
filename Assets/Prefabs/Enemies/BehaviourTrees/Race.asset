@@ -18,14 +18,15 @@ MonoBehaviour:
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":-135.0,"y":1260.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"4"},{"isDynamic":true,"_condition":{"checkMode":1,"conditions":[{"eventName":{"_value":"WaypointReached"},"$type":"NodeCanvas.Tasks.Conditions.CheckEvent"},{"eventName":{"_value":"PickupReached"},"value":{"_name":"TargetPickup","_targetVariableID":"8ef5b245-99c4-409f-9f73-5f2f999cdebd"},"$type":"NodeCanvas.Tasks.Conditions.CheckEventValue`1[[Pickup,
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}],"$type":"NodeCanvas.Framework.ConditionList"},"_position":{"x":105.0,"y":1110.0},"$type":"NodeCanvas.BehaviourTrees.ConditionalEvaluator","$id":"5"},{"_action":{"actions":[{"valueA":{"_name":"EndDestination","_targetVariableID":"6699e5fb-7cb1-44d6-a389-088d7aace87c"},"valueB":{"_name":"targetWaypoint","_targetVariableID":"4b943f23-5984-46d1-bd37-1b0880ce2085"},"$type":"NodeCanvas.Tasks.Actions.SetVariable`1[[UnityEngine.Vector3,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},{"valueA":{"_name":"TargetPickup","_targetVariableID":"8ef5b245-99c4-409f-9f73-5f2f999cdebd"},"valueB":{},"$type":"NodeCanvas.Tasks.Actions.SetVariable`1[[Pickup,
-    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}],"$type":"NodeCanvas.Framework.ActionList"},"_position":{"x":150.0,"y":1275.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"6"},{"dynamic":true,"_position":{"x":660.0,"y":1080.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"7"},{"_condition":{"conditions":[{"valueA":{"_name":"currentArmour","_targetVariableID":"a19491c6-2720-4c88-9bd5-7491cd1f5744"},"checkType":2,"valueB":{"_value":200.0},"differenceThreshold":0.0478,"$type":"NodeCanvas.Tasks.Conditions.CheckFloat"},{"valueA":{"_name":"MaxArmour","_targetVariableID":"800369a4-bbf1-42d5-bef8-13efcbcc60ea"},"checkType":3,"valueB":{"_value":200.0},"$type":"NodeCanvas.Tasks.Conditions.CheckFloat"}],"$type":"NodeCanvas.Framework.ConditionList"},"_position":{"x":570.0,"y":1230.0},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"8"},{"maxCount":{"_value":1},"coolDownTime":{"_value":1.0},"_position":{"x":795.0,"y":1185.0},"$type":"NodeCanvas.BehaviourTrees.Filter","$id":"9"},{"_action":{"targets":{"_name":"Pickups","_targetVariableID":"50308ad9-c543-42a8-b260-b5f914788fa5"},"saveAs":{"_name":"TargetPickup","_targetVariableID":"8ef5b245-99c4-409f-9f73-5f2f999cdebd"},"pickupType":{},"maxDistance":{"_value":50.0},"awarnessDistance":{"_value":50.0},"viewAngle":{"_value":145.0},"$type":"NodeCanvas.Tasks.Conditions.FindPickup"},"_position":{"x":765.0,"y":1305.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"10"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"TargetPickup":{"_name":"TargetPickup","_id":"8ef5b245-99c4-409f-9f73-5f2f999cdebd","$type":"NodeCanvas.Framework.Variable`1[[Pickup,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}],"$type":"NodeCanvas.Framework.ActionList"},"_position":{"x":150.0,"y":1275.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"6"},{"dynamic":true,"_position":{"x":660.0,"y":1080.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"7"},{"_condition":{"conditions":[{"valueA":{"_name":"currentArmour","_targetVariableID":"a19491c6-2720-4c88-9bd5-7491cd1f5744"},"checkType":2,"valueB":{"_value":200.0},"differenceThreshold":0.0478,"$type":"NodeCanvas.Tasks.Conditions.CheckFloat"},{"valueA":{"_name":"MaxArmour","_targetVariableID":"800369a4-bbf1-42d5-bef8-13efcbcc60ea"},"checkType":3,"valueB":{"_value":200.0},"$type":"NodeCanvas.Tasks.Conditions.CheckFloat"}],"$type":"NodeCanvas.Framework.ConditionList"},"_position":{"x":570.0,"y":1230.0},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"8"},{"_condition":{"valueA":{"_name":"TargetPickup","_targetVariableID":"8ef5b245-99c4-409f-9f73-5f2f999cdebd"},"valueB":{},"$type":"NodeCanvas.Tasks.Conditions.CheckVariable`1[[Pickup,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"_position":{"x":825.0,"y":1200.0},"$type":"NodeCanvas.BehaviourTrees.ConditionalEvaluator","$id":"9"},{"maxCount":{"_value":1},"coolDownTime":{"_value":1.0},"_position":{"x":855.0,"y":1305.0},"$type":"NodeCanvas.BehaviourTrees.Filter","$id":"10"},{"_action":{"targets":{"_name":"Pickups","_targetVariableID":"50308ad9-c543-42a8-b260-b5f914788fa5"},"saveAs":{"_name":"TargetPickup","_targetVariableID":"8ef5b245-99c4-409f-9f73-5f2f999cdebd"},"pickupType":{},"maxDistance":{"_value":60.0},"awarnessDistance":{"_value":60.0},"viewAngle":{"_value":90.0},"$type":"NodeCanvas.Tasks.Conditions.FindPickup"},"_position":{"x":810.0,"y":1425.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"11"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"11"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"TargetPickup":{"_name":"TargetPickup","_id":"8ef5b245-99c4-409f-9f73-5f2f999cdebd","$type":"NodeCanvas.Framework.Variable`1[[Pickup,
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
   _objectReferences: []
   _graphSource:
     _version: 3.03
     _category: 
     _comments: 
-    _translation: {x: 229, y: -149}
+    _translation: {x: 99, y: 10}
     _zoomFactor: 0.63017404
   _haltSerialization: 0
 #---GRAPH_START---
@@ -216,6 +217,24 @@ MonoBehaviour:
 #            "$id": "8"
 #        },
 #        {
+#            "_condition": {
+#                "valueA": {
+#                    "_name": "TargetPickup",
+#                    "_targetVariableID": "8ef5b245-99c4-409f-9f73-5f2f999cdebd"
+#                },
+#                "valueB": {
+#
+#                },
+#                "$type": "NodeCanvas.Tasks.Conditions.CheckVariable`1[[Pickup, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+#            },
+#            "_position": {
+#                "x": 825.0,
+#                "y": 1200.0
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.ConditionalEvaluator",
+#            "$id": "9"
+#        },
+#        {
 #            "maxCount": {
 #                "_value": 1
 #            },
@@ -223,11 +242,11 @@ MonoBehaviour:
 #                "_value": 1.0
 #            },
 #            "_position": {
-#                "x": 795.0,
-#                "y": 1185.0
+#                "x": 855.0,
+#                "y": 1305.0
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.Filter",
-#            "$id": "9"
+#            "$id": "10"
 #        },
 #        {
 #            "_action": {
@@ -243,22 +262,22 @@ MonoBehaviour:
 #
 #                },
 #                "maxDistance": {
-#                    "_value": 50.0
+#                    "_value": 60.0
 #                },
 #                "awarnessDistance": {
-#                    "_value": 50.0
+#                    "_value": 60.0
 #                },
 #                "viewAngle": {
-#                    "_value": 145.0
+#                    "_value": 90.0
 #                },
 #                "$type": "NodeCanvas.Tasks.Conditions.FindPickup"
 #            },
 #            "_position": {
-#                "x": 765.0,
-#                "y": 1305.0
+#                "x": 810.0,
+#                "y": 1425.0
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.ActionNode",
-#            "$id": "10"
+#            "$id": "11"
 #        }
 #    ],
 #    "connections": [
@@ -349,6 +368,15 @@ MonoBehaviour:
 #            },
 #            "_targetNode": {
 #                "$ref": "10"
+#            },
+#            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
+#        },
+#        {
+#            "_sourceNode": {
+#                "$ref": "10"
+#            },
+#            "_targetNode": {
+#                "$ref": "11"
 #            },
 #            "$type": "NodeCanvas.BehaviourTrees.BTConnection"
 #        }

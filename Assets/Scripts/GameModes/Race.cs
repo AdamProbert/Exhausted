@@ -20,8 +20,8 @@ public class Race : GameModeBase
     private BattleManager battleManager;
     private AudioSource audioSource;
 
-    private Dictionary<Player, int> lapCounter;
-    private Dictionary<Player, int> progressTracker; 
+    private static Dictionary<Player, int> lapCounter;
+    private static Dictionary<Player, int> checkpointCounter; 
 
     private List<Player> racePositions;
     Player humanPlayer;
@@ -37,7 +37,7 @@ public class Race : GameModeBase
     private void Awake() 
     {
         lapCounter = new Dictionary<Player, int>();
-        progressTracker = new Dictionary<Player, int>();
+        checkpointCounter = new Dictionary<Player, int>();
         spawner = GetComponent<Spawner>();
         audioSource = GetComponent<AudioSource>();
         battleManager = GetComponent<BattleManager>();    
@@ -69,7 +69,7 @@ public class Race : GameModeBase
             p.GetComponent<PlayerEventManager>().GlobalPlayerStateChange += HandlePlayerStateChange;
             p.GetComponent<PlayerEventManager>().GlobalPlayerReachedWaypoint += HandlePlayerReachedWaypoint;
             lapCounter.Add(p, -1);
-            progressTracker.Add(p,-1);
+            checkpointCounter.Add(p,-1);
         }
     }
 
@@ -85,7 +85,7 @@ public class Race : GameModeBase
             p.GetComponent<PlayerEventManager>().GlobalPlayerStateChange += HandlePlayerStateChange;
             p.GetComponent<PlayerEventManager>().GlobalPlayerReachedWaypoint += HandlePlayerReachedWaypoint;
             lapCounter.Add(p, -1);
-            progressTracker.Add(p,-1);
+            checkpointCounter.Add(p,-1);
         }
     }
 
@@ -157,12 +157,7 @@ public class Race : GameModeBase
 
     public void HandlePlayerReachedWaypoint(Player player, Waypoint waypoint)
     {
-        if(progressTracker[player] == waypoint.WaypointNumber)
-        {
-            return;
-        }
-
-        progressTracker[player] = waypoint.WaypointNumber;
+        checkpointCounter[player] += 1;
 
         if(waypoint.finish && lapCounter[player] != -1)
         {
@@ -201,8 +196,8 @@ public class Race : GameModeBase
             waypoint.DisableVisuals();
         }
 
-        racePositions = GetRacePositions();
-        UpdatePlayerPositions(racePositions);
+        GetRacePositions();
+        UpdatePlayerPositions();
     }
 
     public void HandlePlayerStateChange(Player player, Player.state newstate)
@@ -225,13 +220,12 @@ public class Race : GameModeBase
         }
     }
 
-    private void UpdatePlayerPositions(List<Player> positions)
+    private void UpdatePlayerPositions()
     {
-        int playerPos = positions.IndexOf(humanPlayer);
-        for (int i = 0; i < positions.Count; i++)
+        int playerPos = activePlayers.IndexOf(humanPlayer);
+        for (int i = 0; i < activePlayers.Count; i++)
         {
-            Debug.Log("Player positions: " + i + " : " + positions[i].name);
-            positions[i].GetComponent<CheckpointManager>().SetRacePosition(i, playerPos);
+            activePlayers[i].GetComponent<CheckpointManager>().SetRacePosition(i, playerPos);
         }
         playerPos += 1;
         racePositionText.SetText(playerPos.ToString());
@@ -239,16 +233,47 @@ public class Race : GameModeBase
 
     private List<Player> GetRacePositions()
     {
-        var sorted = activePlayers.OrderBy
-        (
-            item => lapCounter[item]
-        ).ThenBy(
-            item => progressTracker[item]
-        ).ThenBy(
-            item => Vector3.Distance(item.transform.position, item.GetComponent<CheckpointManager>().targetPoint.transform.position)
-        );
+        activePlayers.Sort(SortByRacePosition);
+        return activePlayers;
+    }
 
-        List<Player> x = new List<Player>(sorted);
-        return x;
+    static int SortByRacePosition(Player a, Player b)
+    {        
+        if(lapCounter[a] > lapCounter[b])
+        {
+            return -1;
+        }
+
+        if(lapCounter[a] < lapCounter[b])
+        {
+            return 1;
+        }
+
+        if(checkpointCounter[a] > checkpointCounter[b])
+        {
+            return -1;
+        }
+
+        if(checkpointCounter[a] < checkpointCounter[b])
+        {
+            return 1;
+        }
+
+        float aDistanceToCheckpoint = Vector3.Distance(a.transform.position, a.GetComponent<CheckpointManager>().targetPoint.transform.position);
+        float bDistanceToCheckpoint = Vector3.Distance(b.transform.position, b.GetComponent<CheckpointManager>().targetPoint.transform.position);
+
+        if(aDistanceToCheckpoint < bDistanceToCheckpoint)
+        {
+            return -1;
+        }
+
+        if(aDistanceToCheckpoint > bDistanceToCheckpoint)
+        {
+            return 1;
+        }
+        
+        //everything matched, somehow they are at the exact same point?
+        Debug.LogWarning("Race: compareRacePositions returned the exact same when comparing: " + a.name + " and " + b.name);
+        return 0; 
     }
 }

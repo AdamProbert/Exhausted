@@ -44,9 +44,9 @@ public class ArmourManager : MonoBehaviour
                 {
                     item.EnableFlyingMode();
                     StartCoroutine (MoveOverSpeed (item, Random.Range(30f,70f)));
-                    playerEventManager.OnPlayerArmourChanged(GetTotalArmour());
                 }
             }
+            playerEventManager.OnPlayerArmourChanged(GetTotalArmour());
         }
     }
 

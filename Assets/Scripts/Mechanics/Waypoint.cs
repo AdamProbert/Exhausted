@@ -6,10 +6,7 @@ using UnityEngine;
 public class Waypoint : MonoBehaviour
 {
     public Waypoint previousWaypoint;
-    public Waypoint nextWaypoint;
-
-    public int WaypointNumber;
-    
+    public Waypoint nextWaypoint;    
     [SerializeField] public bool start;
     [SerializeField] public bool finish;
 

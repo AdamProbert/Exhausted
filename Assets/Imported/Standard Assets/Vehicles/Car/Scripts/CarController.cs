@@ -211,7 +211,6 @@ namespace UnityStandardAssets.Vehicles.Car
                 //Assuming that wheels 2 and 3 are the rear wheels.
                 if (handbrake > 0f)
                 {
-                    Debug.Log("Handbraking!");
                     var hbTorque = handbrake*handbrakeTorqueMultiplier;
                     m_WheelColliders[2].brakeTorque = hbTorque;
                     m_WheelColliders[3].brakeTorque = hbTorque;
