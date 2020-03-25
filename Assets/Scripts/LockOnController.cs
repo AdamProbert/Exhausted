@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LockOnController : MonoBehaviour
 {
@@ -8,12 +9,15 @@ public class LockOnController : MonoBehaviour
     [SerializeField] private Camera cam;
     private bool enableLockOn;
     [SerializeField] List<Player> allEnemies = new List<Player>();
-
     [SerializeField] LayerMask layermask;
     [SerializeField] Player lockedTarget;
-    [SerializeField] GameObject lockOnIndicatorPrefab;
-    GameObject lockOnIndicator;
+    [SerializeField] Sprite lockingOnImage;
+    [SerializeField] Sprite lockedImage;
+
+    [SerializeField] AudioClip lockOnSound;
+    Image lockOnIndicator;
     Animator animator;
+    AudioSource audioSource;
 
 
     private enum lockState {
@@ -27,8 +31,20 @@ public class LockOnController : MonoBehaviour
 
     private void Awake() 
     {
+        audioSource = GetComponent<AudioSource>();
         playerEventManager = transform.root.GetComponent<PlayerEventManager>();
-        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
+        lockOnIndicator = GameObject.Find("LockOnTargetImage").GetComponent<Image>();
+        lockOnIndicator.enabled = false;
+    }
+
+    private void OnEnable() 
+    {
+        playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;    
+    }
+
+    private void OnDisable() 
+    {
+        playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;
     }
 
     private void Start() 
@@ -50,31 +66,28 @@ public class LockOnController : MonoBehaviour
         {
             if(lockOnIndicator == null)
             {
-                lockOnIndicator = Instantiate(lockOnIndicatorPrefab);
-                animator = lockOnIndicator.GetComponent<Animator>();
-                animator.Rebind();
-                lockOnIndicator.SetActive(false);       
+                // animator = lockOnIndicator.GetComponent<Animator>();
+                // animator.Rebind();
+                // lockOnIndicator.SetActive(false);       
             }
             state = lockState.NoLock;
         }
     }   
 
-    
-    private void LateUpdate()
+    private void LateUpdate() 
     {
         if(lockedTarget && lockedTarget.playerState != Player.state.Alive)
         {
             RemoveLock();
             return;
         }
-
+    }
+    private void FixedUpdate()
+    {
         // Update lockOnIndicator position/rotation
         if(lockedTarget != null)
         {
-            lockOnIndicator.transform.position = lockedTarget.transform.position;
-            lockOnIndicator.transform.LookAt(cam.transform);
-    
-            lockOnIndicator.transform.position += lockOnIndicator.transform.forward *1.5f;
+            lockOnIndicator.transform.position = Vector3.Lerp(lockOnIndicator.transform.position, cam.WorldToScreenPoint(lockedTarget.transform.position), .5f);
         }
     }
 
@@ -90,14 +103,14 @@ public class LockOnController : MonoBehaviour
         
         foreach (Player enemy in allEnemies)
         {
-            Vector3 screenPoint = cam.WorldToViewportPoint(enemy.transform.position);
+            Vector3 screenPoint = cam.WorldToViewportPoint(enemy.centrePoint.transform.position);
             bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
             if(!onScreen)
             {
                 continue;
             }
 
-            Vector3 enemyDir = enemy.transform.position - cam.transform.position;
+            Vector3 enemyDir = enemy.centrePoint.transform.position - cam.transform.position;
             // Does the ray ientersect any objects?
             if (Physics.Raycast(cam.transform.position, enemyDir, out hit, Mathf.Infinity, layermask))
             {
@@ -110,10 +123,6 @@ public class LockOnController : MonoBehaviour
                         bestTargetValue = dotProduct;
                     }
                 }
-            }
-            else
-            {
-                Debug.Log("We hit something else: " + hit.transform.gameObject.name);
             }
         }
         return bestTarget;
@@ -138,8 +147,9 @@ public class LockOnController : MonoBehaviour
         lockedTarget = GetTarget();
         if(lockedTarget)
         {
-            lockOnIndicator.SetActive(true);
-            animator.SetBool("acquiring", true);
+            lockOnIndicator.enabled = true;
+            lockOnIndicator.sprite = lockingOnImage;
+            // animator.SetBool("acquiring", true);
             state=lockState.Acquiring;
         }
     }
@@ -150,7 +160,9 @@ public class LockOnController : MonoBehaviour
         if(state == lockState.Acquiring)
         {
             playerEventManager.OnWeaponTargetChange(lockedTarget);
-            animator.SetBool("acquired", true);
+            // animator.SetBool("acquired", true);
+            audioSource.PlayOneShot(lockOnSound);
+            lockOnIndicator.sprite = lockedImage;
             state=lockState.Acquired;
         }
     }
@@ -159,10 +171,11 @@ public class LockOnController : MonoBehaviour
     {
         Debug.Log("Remove lock called");
         lockedTarget = null;
-        lockOnIndicator.SetActive(false);
+        lockOnIndicator.sprite = null;
+        lockOnIndicator.enabled = false;
         state = lockState.NoLock;
-        animator.SetBool("acquiring", false);
-        animator.SetBool("acquired", false);
+        // animator.SetBool("acquiring", false);
+        // animator.SetBool("acquired", false);
         playerEventManager.OnWeaponTargetChange(null);
     }
 }

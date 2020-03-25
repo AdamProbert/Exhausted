@@ -46,7 +46,7 @@ public class ArmourManager : MonoBehaviour
                     StartCoroutine (MoveOverSpeed (item, Random.Range(30f,70f)));
                 }
             }
-            playerEventManager.OnPlayerArmourChanged(GetTotalArmour());
+            playerEventManager.OnPlayerArmourChanged(GetMaxArmour());
         }
     }
 
@@ -72,11 +72,11 @@ public class ArmourManager : MonoBehaviour
                 equipedArmour = GetComponentsInChildren<ArmourPiece>();
             }
 
-            transform.root.GetComponent<Player>().SetupArmour(GetTotalArmour());
+            transform.root.GetComponent<Player>().SetupArmour(GetMaxArmour());
         }
     }
     
-    public float GetTotalArmour()
+    public float GetCurrentArmour()
     {
         if(equipedArmour == null)
         {
@@ -90,6 +90,21 @@ public class ArmourManager : MonoBehaviour
             {
                 totalArmour += item.MaxStrength;
             }
+        }
+        return totalArmour;
+    }
+
+    public float GetMaxArmour()
+    {
+        if(equipedArmour == null)
+        {
+            equipedArmour = GetComponentsInChildren<ArmourPiece>();
+        }
+        
+        float totalArmour = 0;
+        foreach (ArmourPiece item in equipedArmour)
+        {
+            totalArmour += item.MaxStrength;
         }
         return totalArmour;
     }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using NodeCanvas.StateMachines;
 using NodeCanvas;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(WeaponController))]
 [RequireComponent(typeof(PlayerEventManager))]
@@ -26,8 +27,7 @@ public class Player : MonoBehaviour
             m_currentHealth = value;
         }
     }
-    private RectTransform healthBar;
-    private Vector2 ogHealhBarSize;
+    private Image healthBar;
 
     [Header("Armour")]
     [SerializeField] public float maxArmour;
@@ -37,12 +37,10 @@ public class Player : MonoBehaviour
         set{
             m_currentArmour = value;
             if(m_currentArmour > maxArmour){m_currentArmour = maxArmour;};
+            UpdateArmourUI();
         }
     }
-
-    private RectTransform armourBar;
-    private Vector2 ogArmourSize;
-
+    private Image armourBar;
     
     public enum state{
         Inactive,
@@ -86,6 +84,11 @@ public class Player : MonoBehaviour
             Debug.LogError("!Player must have either AIInput script or UserInput!");
         }
 
+        if(testMode)
+        {
+            playerState=state.Alive;
+        }   
+
         Debug.Log("Player state set in awake to: " + playerState);
     }
 
@@ -103,8 +106,17 @@ public class Player : MonoBehaviour
     {
         if(healthBar)
         {
-            float percentHealth = (currentHealth/maxHealth) * ogHealhBarSize.x;
-            healthBar.sizeDelta = new Vector2(percentHealth, healthBar.sizeDelta.y);
+            float percentHealth = (currentHealth/maxHealth);
+            healthBar.fillAmount = percentHealth;
+        }
+    }
+
+    private void UpdateArmourUI()
+    {
+        if(armourBar)
+        {
+            float percent = (currentArmour/maxArmour);
+            armourBar.fillAmount = percent;
         }
     }
 
@@ -112,22 +124,11 @@ public class Player : MonoBehaviour
     {
         maxArmour = armour;
         currentArmour = armour;
-        UpdateArmourUI();
     }
 
     private void ArmourChangeHandler(float armourDifference)
     {
         currentArmour += armourDifference;
-        UpdateArmourUI();
-    }
-
-    private void UpdateArmourUI()
-    {
-        if(armourBar)
-        {
-            float percent = (currentArmour/maxArmour) * ogArmourSize.x;
-            armourBar.sizeDelta = new Vector2(percent, armourBar.sizeDelta.y);
-        }
     }
 
     public void TakeDamage(float damage)
@@ -190,14 +191,12 @@ public class Player : MonoBehaviour
             {
                 if(!healthBar & !testMode)
                 {
-                    healthBar = GameObject.Find("HealthForeground").GetComponent<RectTransform>();
-                    ogHealhBarSize = healthBar.sizeDelta;
+                    healthBar = GameObject.Find("HealthForeground").GetComponent<Image>();
                 }
 
                 if(!armourBar & !testMode)
                 {
-                    armourBar = GameObject.Find("ArmourForeground").GetComponent<RectTransform>();
-                    ogArmourSize = armourBar.sizeDelta;
+                    armourBar = GameObject.Find("ArmourForeground").GetComponent<Image>();
                 }      
             }
             else

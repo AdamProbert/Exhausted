@@ -99,10 +99,10 @@ public class Race : GameModeBase
         {
             GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
             // Activate weapons
-            // foreach (Player p in activePlayers)
-            // {
-            //     p.GetComponent<PlayerEventManager>().OnWeaponStatusChange(BaseWeapon.status.Active);
-            // }
+            foreach (Player p in activePlayers)
+            {
+                p.GetComponent<PlayerEventManager>().OnWeaponStatusChange(BaseWeapon.status.Active);
+            }
         }
     }
 

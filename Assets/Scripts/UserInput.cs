@@ -35,7 +35,6 @@ public class UserInput : MonoBehaviour
 
     private void OnEnable() 
     {
-        playerEventManager = GetComponent<PlayerEventManager>();
         controls = new InputMaster();
         playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;    
     }
@@ -45,12 +44,13 @@ public class UserInput : MonoBehaviour
         playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;    
     }
 
-    private void Start() 
+    private void Awake() 
     {
-        Debug.Log("UserInput: Start called");
+        Debug.Log("UserInput: Awake called");
+        playerEventManager = GetComponent<PlayerEventManager>();
         carController = GetComponent<UnityStandardAssets.Vehicles.Car.CarController>();
         weaponController = GetComponent<WeaponController>();
-        lockOnController = transform.GetComponentInChildren<LockOnController>();
+        lockOnController = transform.GetComponent<LockOnController>();
     }
 
     private void Update() 
@@ -121,7 +121,22 @@ public class UserInput : MonoBehaviour
             boost = controls.Player.Boost.ReadValue<float>();
             brake = controls.Player.Brake.ReadValue<float>();
             brake *= -1;
-            carController.Move(moveInput.x, accelerate, brake, 0, boost);
+            if(carController.Grounded)
+            {
+                carController.Move(moveInput.x, accelerate, brake, 0, boost);
+            }
+            else
+            {
+                if(brake < 0)
+                {
+                    carController.FlyingMove(brake, -moveInput.x * -1);
+                }
+                else
+                {
+                    carController.FlyingMove(accelerate, moveInput.x * -1);
+                }
+            }
+            
         
             // firing = controls.Player.Fire.ReadValue<float>();
             // HandleFire(firing);

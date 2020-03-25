@@ -34,10 +34,8 @@ public class Explode : MonoBehaviour
 
         // Get all affected colliders
         List<Collider> colliders = new List<Collider>(Physics.OverlapSphere(transform.position, radius, ignoreLayers));
-        Debug.Log("Colliders collected");
         if(shrapnelCount > 0)
         {
-            Debug.Log("Getting shrapnel");
             foreach (GameObject s in shrapnelItems)
             {
                 s.transform.parent = null;
@@ -55,13 +53,11 @@ public class Explode : MonoBehaviour
             Rigidbody rb = c.transform.root.GetComponent<Rigidbody>();
             if(rb != null && c.gameObject.layer == 11) //Shrapnel layer
             {
-                Debug.Log("Adding forces to shrapnel");
                 rb.AddForce(new Vector3(Random.Range(-force, force), force/5, Random.Range(-force, force)), ForceMode.Force);
             }
 
             else if(rb != null)
             {
-                Debug.Log("Adding forces to rb: " + rb.gameObject.name);
                 rb.AddExplosionForce(force, transform.position, radius, upwardMultiplier);
             }
         }

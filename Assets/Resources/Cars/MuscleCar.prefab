@@ -502,7 +502,7 @@ MonoBehaviour:
     type: 3}
   carExplodePS2: {fileID: 198263866997273600, guid: b5195f1bc5ffde8498b6de71ce48a806,
     type: 3}
-  explosionForce: 10
+  explosionForce: 20
   disableComponents:
   - {fileID: 9053489945751409351}
   - {fileID: 1754991359}
@@ -2801,6 +2801,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.122
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478570213747323941, guid: b44cc60edf1b87c42b43e5bde6e0316c,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b44cc60edf1b87c42b43e5bde6e0316c, type: 3}

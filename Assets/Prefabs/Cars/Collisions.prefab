@@ -277,7 +277,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3680732441564220173, guid: cc0bf72c5763743468b1ee3d764d3d04,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: c4f3c5bba7f4a4b42899df78175397f4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5a61b4188c6e6be4a8ea45d512300b86, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04ba1746a3a36649bed7dea4fe40e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 100
 --- !u!1 &1251295264438080012
 GameObject:
   m_ObjectHideFlags: 0

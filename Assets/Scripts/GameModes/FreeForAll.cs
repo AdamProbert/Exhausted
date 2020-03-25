@@ -18,6 +18,7 @@ public class FreeForAll : GameModeBase
         spawner = GetComponent<Spawner>();
         battleManager = GetComponent<BattleManager>();    
         base.type = GameModeType.FreeForAll;
+        startGameRoutine = StartGame();
     }
     
     public override void Setup(int numberOfEnemies, Player humanPlayer)
@@ -50,8 +51,12 @@ public class FreeForAll : GameModeBase
         else
         {
             GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
+            // Activate weapons
+            foreach (Player p in activePlayers)
+            {
+                p.GetComponent<PlayerEventManager>().OnWeaponStatusChange(BaseWeapon.status.Active);
+            }
         }
-        
     }
 
 
@@ -87,6 +92,11 @@ public class FreeForAll : GameModeBase
         }
         
         GameManager.Instance.SetGameState(GameManager.GameState.PLAY);
+        // Activate weapons
+        foreach (Player p in activePlayers)
+        {
+            p.GetComponent<PlayerEventManager>().OnWeaponStatusChange(BaseWeapon.status.Active);
+        }
     }
 
     public void HandlePlayerStateChange(Player player, Player.state newstate)

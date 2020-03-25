@@ -39,6 +39,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_RevRangeBoundary = 1f;
         [SerializeField] private float m_SlipLimit;
         [SerializeField] private float m_BrakeTorque;
+        [SerializeField] private float flyingRotationTorque = 5f;
 
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
@@ -54,6 +55,7 @@ namespace UnityStandardAssets.Vehicles.Car
         public float BrakeInput { get; private set; }
         public float CurrentSteerAngle{ get { return m_SteerAngle; }}
         public float CurrentSpeed{ get { return m_Rigidbody.velocity.magnitude*2.23693629f; }}
+        public bool Grounded = true;
         public float MaxSpeed{get { return m_Topspeed; }}
         public float OriginalMaxSpeed;
         public float Revs { get; private set; }
@@ -172,6 +174,13 @@ namespace UnityStandardAssets.Vehicles.Car
             Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
         }
 
+        public void FlyingMove(float xRotationInput, float zRotationInput)
+        {
+            // Apply rotation to car if airborn, Barrel roll and forward/backward tilt
+            m_Rigidbody.AddRelativeTorque(new Vector3(xRotationInput*flyingRotationTorque, 0, zRotationInput*flyingRotationTorque), ForceMode.Force);
+            CheckGrounded();
+        }
+
         public void Move(float steering, float accel, float footbrake, float handbrake, float boost = 0f)
         {
             if(m_WheelColliders.Count > 0)
@@ -228,9 +237,31 @@ namespace UnityStandardAssets.Vehicles.Car
                 AddDownForce();
                 CheckForWheelSpin();
                 TractionControl();
+                CheckGrounded();
             }
         }
 
+        private void CheckGrounded()
+        {
+            int totalHits = 0;
+            // loop through all wheels
+            for (int i = 0; i < 4; i++)
+            {
+                WheelHit wheelHit;
+                m_WheelColliders[i].GetGroundHit(out wheelHit);
+                if(wheelHit.normal != Vector3.zero)
+                {
+                    totalHits += 1;
+                }
+            }
+
+            if(totalHits == 0)
+            {
+                Grounded = false;
+                return;
+            }
+            Grounded = true;
+        }
 
         private void CapSpeed()
         {

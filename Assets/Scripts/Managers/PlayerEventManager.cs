@@ -14,7 +14,7 @@ public class PlayerEventManager : MonoBehaviour
 
     public Action<Player.state> OnPlayerStateChanged;
 
-    public Action<BaseWeapon.status> OnWeaponStatusChange;
+    public Action<BaseWeapon.status> OnWeaponStatusChange = delegate{};
 
     public Action<Player> OnNavTargetChange;
 

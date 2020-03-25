@@ -431,6 +431,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5919324983912548959, guid: 2ca76765606194c8a91ea8465ad1db98,
+        type: 3}
+      propertyPath: spawnPointType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ca76765606194c8a91ea8465ad1db98, type: 3}
 --- !u!1001 &44541246
@@ -3309,6 +3314,10 @@ PrefabInstance:
     - target: {fileID: 443717918, guid: fded8108c8674b64ca82ba005dbf4431, type: 3}
       propertyPath: skipStartSequence
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443717918, guid: fded8108c8674b64ca82ba005dbf4431, type: 3}
+      propertyPath: requestedGameMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 591598713, guid: fded8108c8674b64ca82ba005dbf4431, type: 3}
       propertyPath: m_IsActive
@@ -6551,6 +6560,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5919324983912548959, guid: 2ca76765606194c8a91ea8465ad1db98,
+        type: 3}
+      propertyPath: spawnPointType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ca76765606194c8a91ea8465ad1db98, type: 3}
 --- !u!1001 &1548353539
@@ -7300,6 +7314,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5919324983912548959, guid: 2ca76765606194c8a91ea8465ad1db98,
+        type: 3}
+      propertyPath: spawnPointType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ca76765606194c8a91ea8465ad1db98, type: 3}
 --- !u!1001 &1745606914
@@ -8048,6 +8067,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919324983912548959, guid: 2ca76765606194c8a91ea8465ad1db98,
+        type: 3}
+      propertyPath: spawnPointType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ca76765606194c8a91ea8465ad1db98, type: 3}

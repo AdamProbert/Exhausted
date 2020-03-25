@@ -25,8 +25,8 @@ MonoBehaviour:
     _version: 3.03
     _category: 
     _comments: 
-    _translation: {x: 243, y: -28}
-    _zoomFactor: 0.7525745
+    _translation: {x: 246, y: -205}
+    _zoomFactor: 0.9976384
   _haltSerialization: 0
 #---GRAPH_START---
 #The pretty formatted json serialization bellow is only a reference to help in version control diff. Other than that it is not used at all.

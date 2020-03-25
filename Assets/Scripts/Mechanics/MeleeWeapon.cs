@@ -18,7 +18,7 @@ public class MeleeWeapon : BaseDamager
     private Rigidbody parentRB;
 
 
-    private void Start() 
+    private void Awake() 
     {
         audioSource = GetComponent<AudioSource>();
         parentRB = transform.root.GetComponent<Rigidbody>();

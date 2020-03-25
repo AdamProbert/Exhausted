@@ -66,7 +66,7 @@ public class BuildingManager : MonoBehaviour
 
     private void LoadVehicle()
     {
-        if(config.baseCarPrefabName != null)
+        if(config != null && config.baseCarPrefabName != null)
         {
             currentVehicle = Instantiate(Resources.Load("Cars/" + config.baseCarPrefabName) as GameObject, player.transform.position, player.transform.rotation, player.transform.Find("BaseVehicle"));
             attachPoints.AddRange(currentVehicle.GetComponentsInChildren<CarAttachPoint>());
@@ -96,6 +96,11 @@ public class BuildingManager : MonoBehaviour
                     }
                 }
             }
+        }
+        // This is the first play
+        else
+        {
+            SwapVehicle();
         }
     }
 
