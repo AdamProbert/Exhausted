@@ -110,7 +110,7 @@ MonoBehaviour:
   m_TractionControl: 1
   m_FullTorqueOverAllWheels: 3000
   boostTorqueMultiplier: 0
-  m_ReverseTorque: 150
+  m_ReverseTorque: 1000
   handbrakeTorqueMultiplier: 1000
   m_Downforce: 100
   m_SpeedType: 0
@@ -118,6 +118,8 @@ MonoBehaviour:
   m_RevRangeBoundary: 1
   m_SlipLimit: 1
   m_BrakeTorque: 5000
+  flyingRotationTorque: 5
+  Grounded: 1
   OriginalMaxSpeed: 0
 --- !u!114 &9167826977875959283
 MonoBehaviour:

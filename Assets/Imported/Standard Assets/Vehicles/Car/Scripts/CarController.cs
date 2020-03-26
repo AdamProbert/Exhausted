@@ -20,6 +20,7 @@ namespace UnityStandardAssets.Vehicles.Car
     public class CarController : MonoBehaviour
     {
         PlayerEventManager playerEventManager;
+        CarModifier carModifier;
         [SerializeField] private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
         [SerializeField] private List<WheelCollider> m_WheelColliders = new List<WheelCollider>();
         [SerializeField] private List<GameObject> m_WheelMeshes = new List<GameObject>();
@@ -61,9 +62,14 @@ namespace UnityStandardAssets.Vehicles.Car
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
 
+    
+        private void Awake() 
+        {
+            carModifier = GetComponent<CarModifier>();
+            playerEventManager = GetComponent<PlayerEventManager>();
+        }
         private void OnEnable() 
         {
-            playerEventManager = GetComponent<PlayerEventManager>();
             playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;
         }
 
@@ -205,13 +211,13 @@ namespace UnityStandardAssets.Vehicles.Car
                 m_SteerAngle = steering*m_MaximumSteerAngle;
                 m_WheelColliders[0].steerAngle = m_SteerAngle;
                 m_WheelColliders[1].steerAngle = m_SteerAngle;
-
+                
                 //Add boost
-                if(boost > 0)
+                if(boost > 0 && carModifier.currentBoost > 0)
                 {
                     accel*=boostTorqueMultiplier;
                 }
-                
+
                 SteerHelper();
                 ApplyDrive(accel, footbrake);
                 CapSpeed();

@@ -142,4 +142,9 @@ public class BattleManager : MonoBehaviour
             }   
         }
     }
+
+    public Player GetHumanPlayer()
+    {
+        return humanPlayer;
+    }
 }

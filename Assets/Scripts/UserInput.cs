@@ -25,9 +25,12 @@ public class UserInput : MonoBehaviour
     private float firing = 0; // Float not bool cause InputSystem
     private bool zoomToggle = false;
 
+    private bool boosting;
+
     private CarController carController;    // Reference to actual car controller we are controlling
     private WeaponController weaponController;
     private LockOnController lockOnController;
+    private CarModifier carModifier;
 
     private bool isActive = false;
 
@@ -51,6 +54,7 @@ public class UserInput : MonoBehaviour
         carController = GetComponent<UnityStandardAssets.Vehicles.Car.CarController>();
         weaponController = GetComponent<WeaponController>();
         lockOnController = transform.GetComponent<LockOnController>();
+        carModifier = GetComponent<CarModifier>();
     }
 
     private void Update() 
@@ -137,9 +141,14 @@ public class UserInput : MonoBehaviour
                 }
             }
             
-        
-            // firing = controls.Player.Fire.ReadValue<float>();
-            // HandleFire(firing);
+            if(boost > 0)
+            {
+                carModifier.Boost(true);
+            }
+            else
+            {
+                carModifier.Boost(false);
+            }
         }
     }
 

@@ -14,8 +14,11 @@ public class WheelFX : MonoBehaviour {
 	Skidmarks skidmarksController;
 
 	[SerializeField] ParticleSystem tireSmokePrefab;
+	[SerializeField] ParticleSystem tireBoostPrefab;
 	[SerializeField] float wheelSpinForSmoke;
+	[SerializeField] bool showBoost;
 	ParticleSystem tireSmoke;
+	ParticleSystem tireBoost;
 
 	// END INSPECTOR SETTINGS
 
@@ -32,15 +35,35 @@ public class WheelFX : MonoBehaviour {
 
 	// #### UNITY INTERNAL METHODS ####
 
+	private void Awake() 
+	{
+		playerEventManager = transform.root.GetComponent<PlayerEventManager>();	
+	}
+
 	private void OnEnable() 
 	{
-		playerEventManager = transform.root.GetComponent<PlayerEventManager>();
 		playerEventManager.OnPlayerStateChanged += HandlePlayerStateChange;	
+		playerEventManager.OnPlayerBoost += HandleTyreBoost;
 	}
 
 	private void OnDisable() 
 	{
 		playerEventManager.OnPlayerStateChanged -= HandlePlayerStateChange;	
+	}
+
+	public void HandleTyreBoost(bool isBoosting)
+	{
+		if(showBoost)
+		{
+			if(isBoosting)
+			{
+				tireBoost.Play();
+			}
+			else
+			{
+				tireBoost.Stop();
+			}	
+		}
 	}
 
 	public void HandlePlayerStateChange(Player.state newstate) 
@@ -52,6 +75,12 @@ public class WheelFX : MonoBehaviour {
 			skidmarksController = GameObject.FindObjectOfType<Skidmarks>();
 			rb = transform.root.GetComponent<Rigidbody>();
 			tireSmoke = Instantiate(tireSmokePrefab, transform.position, Quaternion.identity, transform);
+			tireSmoke.Stop();
+			if(showBoost)
+			{
+				tireBoost = Instantiate(tireBoostPrefab, transform.position, Quaternion.identity, transform);
+				tireBoost.Stop();
+			}
 			active = true;
 		}
 	}
@@ -64,13 +93,9 @@ public class WheelFX : MonoBehaviour {
 	{
 		if(active)
 		{
-			var emission = tireSmoke.emission;
-
 			if (wheelCollider.GetGroundHit(out wheelHitInfo) && skidmarksController)
 			{
-				
 				// Check sideways speed
-
 				// Gives velocity with +z being the car's forward axis
 				Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
 				float skidTotal = Mathf.Abs(localVelocity.x);
@@ -101,18 +126,16 @@ public class WheelFX : MonoBehaviour {
 
 				if(skidTotal >= wheelSpinForSmoke)
 				{
-					emission.enabled = true;
+					tireSmoke.Play();
 				}
 				else
 				{
-					emission.enabled = false;
+					tireSmoke.Stop();
 				}
-
-				
 			}
 			else {
 				lastSkid = -1;
-				emission.enabled = false;
+				tireSmoke.Stop();
 			}
 		}
 	}

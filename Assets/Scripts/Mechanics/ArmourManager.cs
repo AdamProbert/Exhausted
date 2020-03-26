@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityStandardAssets.Vehicles.Car;
 
 [RequireComponent(typeof(AudioSource))]
 public class ArmourManager : MonoBehaviour

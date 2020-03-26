@@ -31,6 +31,8 @@ public class PlayerEventManager : MonoBehaviour
     public Action OnRaceAheadOfPlayer;
     public Action OnRaceBehindPlayer;
 
+    public Action<bool> OnPlayerBoost;
+
     // Node canvas
     private FSMOwner owner;
 

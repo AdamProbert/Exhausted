@@ -54,7 +54,7 @@ WheelCollider:
     m_ExtremumValue: 6
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_SidewaysFriction:
     m_ExtremumSlip: 3
     m_ExtremumValue: 35
@@ -75,7 +75,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tireSmokePrefab: {fileID: 19884158, guid: f58174c15f3aded468f3c0e232dcdf99, type: 3}
+  tireBoostPrefab: {fileID: 19836958, guid: 08a7f1382d149924a85ae08543c8289e, type: 3}
   wheelSpinForSmoke: 10
+  showBoost: 1
 --- !u!1 &315950383
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +277,7 @@ WheelCollider:
     m_ExtremumValue: 6
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_SidewaysFriction:
     m_ExtremumSlip: 3
     m_ExtremumValue: 35
@@ -296,7 +298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tireSmokePrefab: {fileID: 19884158, guid: f58174c15f3aded468f3c0e232dcdf99, type: 3}
+  tireBoostPrefab: {fileID: 19836958, guid: 08a7f1382d149924a85ae08543c8289e, type: 3}
   wheelSpinForSmoke: 10
+  showBoost: 0
 --- !u!1 &808755471
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +577,7 @@ WheelCollider:
     m_ExtremumValue: 6
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_SidewaysFriction:
     m_ExtremumSlip: 3
     m_ExtremumValue: 35
@@ -594,7 +598,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tireSmokePrefab: {fileID: 19884158, guid: f58174c15f3aded468f3c0e232dcdf99, type: 3}
+  tireBoostPrefab: {fileID: 19836958, guid: 08a7f1382d149924a85ae08543c8289e, type: 3}
   wheelSpinForSmoke: 10
+  showBoost: 0
 --- !u!1 &1457409287
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,7 +766,7 @@ WheelCollider:
     m_ExtremumValue: 6
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 0.5
   m_SidewaysFriction:
     m_ExtremumSlip: 3
     m_ExtremumValue: 35
@@ -781,7 +787,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tireSmokePrefab: {fileID: 19884158, guid: f58174c15f3aded468f3c0e232dcdf99, type: 3}
+  tireBoostPrefab: {fileID: 19836958, guid: 08a7f1382d149924a85ae08543c8289e, type: 3}
   wheelSpinForSmoke: 10
+  showBoost: 1
 --- !u!1 &1754991359
 GameObject:
   m_ObjectHideFlags: 0
