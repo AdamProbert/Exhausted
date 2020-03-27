@@ -568,6 +568,7 @@ GameObject:
   - component: {fileID: 3994175211281128631}
   - component: {fileID: 6769966990710759612}
   - component: {fileID: 8012721936881985502}
+  - component: {fileID: -4015475982885589296}
   m_Layer: 8
   m_Name: NodeEnemyBASE
   m_TagString: Player
@@ -623,7 +624,6 @@ MonoBehaviour:
   m_WheelColliders: []
   m_WheelMeshes: []
   m_WheelEffects: []
-  m_CentreOfMassOffset: {x: 0, y: -0.3, z: -0.3}
   m_MaximumSteerAngle: 30
   m_SteerHelper: 0.7
   m_TractionControl: 1
@@ -897,6 +897,24 @@ MonoBehaviour:
   playerHealth: {fileID: 6482229645459793382}
   playerArmour: {fileID: 9001469636040545852}
   canvas: {fileID: 2925100124793681446}
+--- !u!114 &-4015475982885589296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167826977869424713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8059e64f5e065624586d432fdf94cc4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostFXPrefab: {fileID: 0}
+  boostSound: {fileID: 0}
+  maxBoost: 100
+  boostRestoreSpeed: 0.3
+  boostUsedSpeed: 0.7
+  currentBoost: 0
 --- !u!1 &9174382432515830068
 GameObject:
   m_ObjectHideFlags: 0

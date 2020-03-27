@@ -33,6 +33,8 @@ public class PlayerEventManager : MonoBehaviour
 
     public Action<bool> OnPlayerBoost;
 
+    public Action OnVehicleLoad;
+
     // Node canvas
     private FSMOwner owner;
 

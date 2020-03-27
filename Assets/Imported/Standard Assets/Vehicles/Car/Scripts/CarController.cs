@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-    internal enum CarDriveType
+    public enum CarDriveType
     {
         FrontWheelDrive,
         RearWheelDrive,
@@ -21,15 +21,14 @@ namespace UnityStandardAssets.Vehicles.Car
     {
         PlayerEventManager playerEventManager;
         CarModifier carModifier;
-        [SerializeField] private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
+        [SerializeField] public CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
         [SerializeField] private List<WheelCollider> m_WheelColliders = new List<WheelCollider>();
         [SerializeField] private List<GameObject> m_WheelMeshes = new List<GameObject>();
         [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
-        [SerializeField] private Vector3 m_CentreOfMassOffset;
-        [SerializeField] private float m_MaximumSteerAngle;
+        [SerializeField] public float m_MaximumSteerAngle;
         [Range(0, 1)] [SerializeField] private float m_SteerHelper; // 0 is raw physics , 1 the car will grip in the direction it is facing
         [Range(0, 1)] [SerializeField] private float m_TractionControl; // 0 is no traction control, 1 is full interference
-        [SerializeField] private float m_FullTorqueOverAllWheels;
+        [SerializeField] public float m_FullTorqueOverAllWheels;
         [SerializeField] private float boostTorqueMultiplier;
         [SerializeField] private float m_ReverseTorque;
         [SerializeField] private float handbrakeTorqueMultiplier;
@@ -40,7 +39,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_RevRangeBoundary = 1f;
         [SerializeField] private float m_SlipLimit;
         [SerializeField] private float m_BrakeTorque;
-        [SerializeField] private float flyingRotationTorque = 5f;
+        [SerializeField] public float flyingRotationTorque = 5f;
 
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
@@ -60,9 +59,7 @@ namespace UnityStandardAssets.Vehicles.Car
         public float MaxSpeed{get { return m_Topspeed; }}
         public float OriginalMaxSpeed;
         public float Revs { get; private set; }
-        public float AccelInput { get; private set; }
-
-    
+        public float AccelInput { get; private set; }    
         private void Awake() 
         {
             carModifier = GetComponent<CarModifier>();
@@ -120,7 +117,6 @@ namespace UnityStandardAssets.Vehicles.Car
             {
                 m_WheelMeshLocalRotations[i] = m_WheelMeshes[i].transform.localRotation;
             }
-            m_WheelColliders[0].attachedRigidbody.centerOfMass = m_CentreOfMassOffset;
 
             m_Rigidbody = GetComponent<Rigidbody>();
             // m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);

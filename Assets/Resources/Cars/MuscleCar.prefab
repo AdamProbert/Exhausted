@@ -54,13 +54,13 @@ WheelCollider:
     m_ExtremumValue: 6
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 0.4
+    m_Stiffness: 0.5
   m_SidewaysFriction:
     m_ExtremumSlip: 3
     m_ExtremumValue: 35
     m_AsymptoteSlip: 5
     m_AsymptoteValue: 7.5
-    m_Stiffness: 0.2
+    m_Stiffness: 0.25
   m_Enabled: 1
 --- !u!114 &1007965597303820822
 MonoBehaviour:
@@ -166,13 +166,13 @@ WheelCollider:
     m_ExtremumValue: 6
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 0.4
+    m_Stiffness: 0.5
   m_SidewaysFriction:
     m_ExtremumSlip: 3
     m_ExtremumValue: 35
     m_AsymptoteSlip: 5
     m_AsymptoteValue: 7.5
-    m_Stiffness: 0.2
+    m_Stiffness: 0.25
   m_Enabled: 1
 --- !u!114 &1987023828870216099
 MonoBehaviour:
@@ -244,13 +244,13 @@ WheelCollider:
     m_ExtremumValue: 6
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 0.4
+    m_Stiffness: 0.5
   m_SidewaysFriction:
     m_ExtremumSlip: 3
     m_ExtremumValue: 35
     m_AsymptoteSlip: 5
     m_AsymptoteValue: 7.5
-    m_Stiffness: 0.2
+    m_Stiffness: 0.25
   m_Enabled: 1
 --- !u!114 &3131596836017625306
 MonoBehaviour:
@@ -322,13 +322,13 @@ WheelCollider:
     m_ExtremumValue: 6
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 0.4
+    m_Stiffness: 0.5
   m_SidewaysFriction:
     m_ExtremumSlip: 3
     m_ExtremumValue: 35
     m_AsymptoteSlip: 5
     m_AsymptoteValue: 7.5
-    m_Stiffness: 0.2
+    m_Stiffness: 0.25
   m_Enabled: 1
 --- !u!114 &8990127577008150104
 MonoBehaviour:
@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 5201491629796880600}
   - component: {fileID: 8604080617159378885}
   - component: {fileID: 2021915710549294892}
+  - component: {fileID: 2339934284952163145}
   m_Layer: 8
   m_Name: MuscleCar
   m_TagString: Untagged
@@ -588,6 +589,25 @@ MonoBehaviour:
     m_DirectionMode: 0
     m_DissipationMode: 2
     m_DissipationDistance: 1000
+--- !u!114 &2339934284952163145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504709610077770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff429daa8cee7649b90cadc69e3e4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vehicleMass: 1000
+  centrOfMass: {x: 0, y: -0.5, z: 0}
+  maxSteeringAngle: 35
+  maxSpeed: 80
+  driveType: 2
+  torqueOverAllWheels: 5000
+  flyingRotationTorque: 10000
 --- !u!1 &127590608834460945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,15 +2150,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cff19c7a5720d04caade3a265cd203c, type: 3}
---- !u!4 &2242578634505188638 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4575547151173292, guid: 9cff19c7a5720d04caade3a265cd203c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2238143937184707506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2236625311950739104 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1524831542453522, guid: 9cff19c7a5720d04caade3a265cd203c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2238143937184707506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2242578634505188638 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4575547151173292, guid: 9cff19c7a5720d04caade3a265cd203c,
     type: 3}
   m_PrefabInstance: {fileID: 2238143937184707506}
   m_PrefabAsset: {fileID: 0}

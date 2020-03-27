@@ -40,10 +40,10 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14501765}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.4
+  m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 6000
-    damper: 1000
+    spring: 35000
+    damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: 0
@@ -263,10 +263,10 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551990275}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.4
+  m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 6000
-    damper: 1000
+    spring: 35000
+    damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: 0
@@ -563,10 +563,10 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994939705}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.4
+  m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 6000
-    damper: 1000
+    spring: 35000
+    damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: 0
@@ -752,10 +752,10 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652723067}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.4
+  m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 6000
-    damper: 1000
+    spring: 35000
+    damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.4
   m_ForceAppPointDistance: 0
@@ -918,6 +918,7 @@ GameObject:
   - component: {fileID: 5201491629796880600}
   - component: {fileID: 6848777142164449086}
   - component: {fileID: 6526217464202908453}
+  - component: {fileID: -1066306201498044170}
   m_Layer: 8
   m_Name: MediumCar
   m_TagString: Untagged
@@ -1102,6 +1103,25 @@ MonoBehaviour:
     m_DirectionMode: 0
     m_DissipationMode: 2
     m_DissipationDistance: 1000
+--- !u!114 &-1066306201498044170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504709610077770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff429daa8cee7649b90cadc69e3e4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vehicleMass: 900
+  centrOfMass: {x: 0, y: -0.5, z: 0}
+  maxSteeringAngle: 35
+  maxSpeed: 80
+  driveType: 2
+  torqueOverAllWheels: 4000
+  flyingRotationTorque: 9000
 --- !u!1 &1633980107479564
 GameObject:
   m_ObjectHideFlags: 0
