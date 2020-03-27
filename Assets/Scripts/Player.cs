@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] public Transform centrePoint;
 
     [Header("Health")]
-    [SerializeField] float maxHealth;
+    [SerializeField] public float maxHealth;
     [SerializeField] float m_currentHealth;
     [SerializeField] public float currentHealth{
         get{return m_currentHealth;}
@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
             m_currentHealth = value;
         }
     }
-    private Image healthBar;
 
     [Header("Armour")]
     [SerializeField] public float maxArmour;
@@ -37,10 +36,8 @@ public class Player : MonoBehaviour
         set{
             m_currentArmour = value;
             if(m_currentArmour > maxArmour){m_currentArmour = maxArmour;};
-            UpdateArmourUI();
         }
     }
-    private Image armourBar;
     
     public enum state{
         Inactive,
@@ -95,28 +92,9 @@ public class Player : MonoBehaviour
     private void HealthChangeHandler(float healthDiff)
     {    
         currentHealth += healthDiff;        
-        UpdateHealthUI();
         if(currentHealth <= 0)
         {
             playerState = state.Dead; 
-        }
-    }
-
-    private void UpdateHealthUI()
-    {
-        if(healthBar)
-        {
-            float percentHealth = (currentHealth/maxHealth);
-            healthBar.fillAmount = percentHealth;
-        }
-    }
-
-    private void UpdateArmourUI()
-    {
-        if(armourBar)
-        {
-            float percent = (currentArmour/maxArmour);
-            armourBar.fillAmount = percent;
         }
     }
 
@@ -187,19 +165,7 @@ public class Player : MonoBehaviour
 
         if(newstate == Player.state.Alive)
         {
-            if(!isAI)
-            {
-                if(!healthBar & !testMode)
-                {
-                    healthBar = GameObject.Find("HealthForeground").GetComponent<Image>();
-                }
-
-                if(!armourBar & !testMode)
-                {
-                    armourBar = GameObject.Find("ArmourForeground").GetComponent<Image>();
-                }      
-            }
-            else
+            if(isAI)
             {
                 GetComponent<AIInput2>().enabled = true;
                 GetComponent<FSMOwner>().enabled = true;

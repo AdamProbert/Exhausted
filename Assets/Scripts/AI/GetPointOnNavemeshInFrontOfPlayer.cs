@@ -42,7 +42,6 @@ namespace NodeCanvas.Tasks.Actions
                 // Select a random point on it
                 finalPosition = Vector3.Lerp(navMeshData.vertices[navMeshData.indices[t]], navMeshData.vertices[navMeshData.indices[t+1]], Random.value);
                 Vector3.Lerp(finalPosition, navMeshData.vertices[navMeshData.indices[t+2]], Random.value);    
-                Debug.Log("GetPointOnNavmesh: Resorted to rando point");
             }
             saveAs.value = finalPosition;
             EndAction(true);    

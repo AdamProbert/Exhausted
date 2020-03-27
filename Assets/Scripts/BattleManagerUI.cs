@@ -13,15 +13,17 @@ public class BattleManagerUI : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI currentSpeedUI;
     [SerializeField] Image currentBoostUI;
+    [SerializeField] Image currentHealthUI;
+    [SerializeField] Image currentArmourUI;
 
     [Header("Debug")]
     [SerializeField] bool debugMode;
     [SerializeField] TextMeshProUGUI currentSpeedDebugUI;
     [SerializeField] TextMeshProUGUI currentBoostDebugUI;
 
-    private void Start() 
+    private void OnEnable() 
     {
-        battleManager = GetComponent<BattleManager>();
+        battleManager = GetComponentInParent<BattleManager>();
         player = battleManager.GetHumanPlayer();
         playerCar = player.GetComponent<CarController>();
         carModifier = player.GetComponent<CarModifier>();
@@ -31,6 +33,8 @@ public class BattleManagerUI : MonoBehaviour
     {
         currentSpeedUI.SetText(Mathf.RoundToInt(playerCar.CurrentSpeed).ToString());
         currentBoostUI.fillAmount = carModifier.currentBoost / carModifier.maxBoost;
+        currentArmourUI.fillAmount = player.currentArmour / player.maxArmour;
+        currentHealthUI.fillAmount = player.currentHealth / player.maxHealth;
 
         if(debugMode)
         {

@@ -95,7 +95,6 @@ public class AutoAimAndFIre : MonoBehaviour
             if(Vector3.Distance(target.transform.position,transform.position) > searchRadius)
             {
                 target = null;
-                Debug.Log("Current target invalidated");
             }           
         }
     }
@@ -107,7 +106,6 @@ public class AutoAimAndFIre : MonoBehaviour
             if(target.playerState == Player.state.Dead)
             {
                 target = null;
-                Debug.Log("Current target be dead");
             }   
         }
     }
@@ -162,7 +160,6 @@ public class AutoAimAndFIre : MonoBehaviour
             if(closest != null)
             {
                 target = closest.transform.root.GetComponent<Player>();
-                Debug.Log("Found new target: " + target);
             }
                 
         } 

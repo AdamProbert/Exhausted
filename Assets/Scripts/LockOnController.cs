@@ -139,7 +139,6 @@ public class LockOnController : MonoBehaviour
 
     public void InitateLockOn()
     {
-        Debug.Log("Initiate lock called");
         if(lockedTarget != null)
         {
             RemoveLock();
@@ -156,7 +155,6 @@ public class LockOnController : MonoBehaviour
 
     public void LockOn()
     {
-        Debug.Log("Lock on called");
         if(state == lockState.Acquiring)
         {
             playerEventManager.OnWeaponTargetChange(lockedTarget);
@@ -169,7 +167,6 @@ public class LockOnController : MonoBehaviour
 
     public void RemoveLock()
     {
-        Debug.Log("Remove lock called");
         lockedTarget = null;
         lockOnIndicator.sprite = null;
         lockOnIndicator.enabled = false;

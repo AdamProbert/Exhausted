@@ -18,6 +18,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public int requestedEnemyCount = 0;
     [SerializeField] public GameModeBase.GameModeType requestedGameMode;
 
+    [SerializeField] GameObject playerUi;
+
     Spawner spawner;
     GameModeBase gameModeBase;
 
@@ -57,6 +59,7 @@ public class BattleManager : MonoBehaviour
         
         // Then spawn the AI in the remaining places
         spawner.SpawnThem(gameModeBase.type, requestedEnemyCount);
+        playerUi.SetActive(false);
     }
 
     void Start()
@@ -146,5 +149,28 @@ public class BattleManager : MonoBehaviour
     public Player GetHumanPlayer()
     {
         return humanPlayer;
+    }
+
+    public void HandlePlayerStateChange(Player.state newstate)
+    {
+        if(newstate == Player.state.Alive)
+        {
+            playerUi.SetActive(true);
+        }
+
+        else
+        {
+            playerUi.SetActive(false);
+        }
+    }
+
+    private void OnEnable() 
+    {
+        humanPlayer.GetComponent<PlayerEventManager>().OnPlayerStateChanged += HandlePlayerStateChange;    
+    }
+
+    private void OnDisable() 
+    {
+        humanPlayer.GetComponent<PlayerEventManager>().OnPlayerStateChanged -= HandlePlayerStateChange;    
     }
 }
