@@ -10,7 +10,7 @@ public class Bullet : BaseProjectile
     private void Awake() 
     {
         base.Init();
-        hiteffect = Instantiate(bulletHitEffectPrefab);    
+        hiteffect = Instantiate(bulletHitEffectPrefab, transform.position, Quaternion.identity, transform.parent);    
     }
 
     private void OnCollisionEnter(Collision other) 

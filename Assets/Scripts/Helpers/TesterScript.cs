@@ -29,19 +29,18 @@ public class TesterScript : MonoBehaviour
     {
         if(Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            // myBarrel.ExplodeProp();
-            if(!weaponfiriing)
-            {
-                weapon.StartFiring();
-                weaponfiriing = true;
-            }
-            else
-            {
-                weapon.StopFiring();
-                weaponfiriing = false;
-            }
-            
-            
+            // // myBarrel.ExplodeProp();
+            // if(!weaponfiriing)
+            // {
+            //     weapon.StartFiring();
+            //     weaponfiriing = true;
+            // }
+            // else
+            // {
+            //     weapon.StopFiring();
+            //     weaponfiriing = false;
+            // }
+            weapon.StartFiring();
         }
 
         // if(Keyboard.current.backspaceKey.wasPressedThisFrame)

@@ -9,10 +9,10 @@ public class BaseProjectile : BaseDamager
     [SerializeField] protected AudioClip collisionSound;
     [SerializeField] protected LayerMask collideableLayers;
     [SerializeField] public Transform playerShooter; // Populated by object pooler
+    
     protected Rigidbody rb;
     protected AudioSource audioSource;
     Quaternion rotation;
-    
 
     public void Init() 
     {

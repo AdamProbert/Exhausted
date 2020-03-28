@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1545057341454795647}
   - component: {fileID: 7772913817701803776}
   - component: {fileID: 1218713865118880851}
+  - component: {fileID: 3665445746644328008}
   m_Layer: 10
   m_Name: CrezyRocket
   m_TagString: Untagged
@@ -111,15 +112,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a98ee21c3d8fa45a65d54de4909613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 50
   collisionSound: {fileID: 0}
   collideableLayers:
     serializedVersion: 2
     m_Bits: 4352
   playerShooter: {fileID: 0}
-  flightTimeBeforeWiggle: 0.5
+  flightTimeBeforeWiggle: 0.35
   wiggle: 1
-  wiggleAmount: 0.5
+  wiggleAmount: 20
 --- !u!54 &-2041831213611976780
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -128,14 +129,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080410123433332}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.01
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!114 &1545057341454795647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,6 +305,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!75 &3665445746644328008
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080410123433332}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 200, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 90}
 --- !u!1001 &2654164594781788449
 PrefabInstance:
   m_ObjectHideFlags: 0

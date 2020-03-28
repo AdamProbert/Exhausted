@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
         if(testMode)
         {
             playerState=state.Alive;
+            playerEventManager.OnWeaponStatusChange(BaseWeapon.status.Active);
         }   
 
         Debug.Log("Player state set in awake to: " + playerState);

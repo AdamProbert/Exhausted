@@ -8,7 +8,7 @@ public class Rocket : BaseProjectile
     Explode explode;
     [SerializeField] private float flightTimeBeforeWiggle;
     [SerializeField] private bool wiggle;
-    [SerializeField][Range(0, 10)] private float wiggleAmount;
+    [SerializeField][Range(0, 100)] private float wiggleAmount;
 
     private float startTime;
 

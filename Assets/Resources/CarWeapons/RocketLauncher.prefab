@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSpeed: 50
   projectileSpawn: {fileID: 3133251987110557488}
-  fireRate: 0.3
+  fireRate: 1
   uiImage: {fileID: 21300000, guid: d8a07b1c66eaa724db557715967ffa32, type: 3}
   projectileName: CrezyRocket
   currentStatus: 1

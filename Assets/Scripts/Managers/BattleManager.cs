@@ -25,6 +25,7 @@ public class BattleManager : MonoBehaviour
 
     private void Awake() 
     {
+        playerUi.SetActive(false);
         spawner = GetComponent<Spawner>();
 
         // Select the game mode
@@ -59,7 +60,6 @@ public class BattleManager : MonoBehaviour
         
         // Then spawn the AI in the remaining places
         spawner.SpawnThem(gameModeBase.type, requestedEnemyCount);
-        playerUi.SetActive(false);
     }
 
     void Start()

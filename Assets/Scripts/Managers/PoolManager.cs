@@ -40,9 +40,8 @@ public class PoolManager : MonoBehaviour
             Queue<GameObject> objectPool = new Queue<GameObject>();
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab, transform.position, Quaternion.identity, x.transform);
                 obj.SetActive(false);
-                obj.transform.parent = x.transform;
                 objectPool.Enqueue(obj);
             }
 

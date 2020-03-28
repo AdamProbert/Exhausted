@@ -8,19 +8,19 @@ using NodeCanvas.Framework;
 public class PlayerEventManager : MonoBehaviour
 {
     // Actions
-    public Action<GameManager.GameState> OnGameStateChanged;
-    public Action<float> OnPlayerHealthChanged;
-    public Action<float> OnPlayerArmourChanged;
+    public Action<GameManager.GameState> OnGameStateChanged = delegate{};
+    public Action<float> OnPlayerHealthChanged = delegate{};
+    public Action<float> OnPlayerArmourChanged = delegate{};
 
-    public Action<Player.state> OnPlayerStateChanged;
+    public Action<Player.state> OnPlayerStateChanged = delegate{};
 
     public Action<BaseWeapon.status> OnWeaponStatusChange = delegate{};
 
-    public Action<Player> OnNavTargetChange;
+    public Action<Player> OnNavTargetChange = delegate{};
 
-    public Action<Player> OnWeaponTargetChange;
+    public Action<Player> OnWeaponTargetChange = delegate{};
 
-    public Action<Pickup> OnPickupItem;
+    public Action<Pickup> OnPickupItem = delegate{};
 
     public Action<Player, Player.state> GlobalPlayerStateChange = delegate{};
 
@@ -28,12 +28,12 @@ public class PlayerEventManager : MonoBehaviour
 
     public Action<Player, int> GlobalRacePositionChanged = delegate{};
 
-    public Action OnRaceAheadOfPlayer;
-    public Action OnRaceBehindPlayer;
+    public Action OnRaceAheadOfPlayer = delegate{};
+    public Action OnRaceBehindPlayer = delegate{};
 
-    public Action<bool> OnPlayerBoost;
+    public Action<bool> OnPlayerBoost = delegate{};
 
-    public Action OnVehicleLoad;
+    public Action OnVehicleLoad = delegate{};
 
     // Node canvas
     private FSMOwner owner;

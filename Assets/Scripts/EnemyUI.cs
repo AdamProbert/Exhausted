@@ -27,7 +27,10 @@ public class EnemyUI : MonoBehaviour
 
     private void LateUpdate() 
     {
-        canvas.transform.LookAt(cam.transform.position);
+        if(cam != null)
+        {
+            canvas.transform.LookAt(cam.transform.position);
+        }
     }
 
     private void OnEnable() 
