@@ -121,6 +121,7 @@ MonoBehaviour:
   stickableSurfaces:
     serializedVersion: 2
     m_Bits: 4352
+  maxFlightTime: 5
 --- !u!82 &2938755455111853006
 AudioSource:
   m_ObjectHideFlags: 0
@@ -140,7 +141,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 111
+  Priority: 150
   DopplerLevel: 1
   MinDistance: 0
   MaxDistance: 50
