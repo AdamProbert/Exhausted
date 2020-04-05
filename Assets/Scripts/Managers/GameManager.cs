@@ -19,29 +19,58 @@ public class GameManager : Singleton<GameManager> {
 
     // Map selection shiz
     [SerializeField] private string requestedMap;
+    private AsyncOperation LoadingAO;
 
-    
+    private void LoadScene(string sceneName)
+    {
+        IEnumerator lsr = LoadSceneRoutine(sceneName);
+        StartCoroutine(lsr);
+    }
+
+    IEnumerator LoadSceneRoutine(string sceneName)
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
+        yield return new WaitForSeconds(3);
+        LoadingAO = SceneManager.LoadSceneAsync(sceneName);
+        LoadingAO.allowSceneActivation = false;
+    }
+
+    public void AllowNextSceneLoad()
+    {
+        LoadingAO.allowSceneActivation = true;
+    }
+
+    public float GetLoadingProgress()
+    {   
+        if(LoadingAO == null)
+        {
+            return 0;
+        }
+        return LoadingAO.progress;
+    }
+
     public void LoadDessertScene()
     {
-        SceneManager.LoadScene("DesertArena");
+        this.LoadScene("DesertArena");
     }
 
     public void LoadCampaign()
     {
-        SceneManager.LoadScene("CampaignMap");
+        this.LoadScene("CampaignMap");
     }
 
     public void LoadMap(string mapName)
     {
         requestedMap = mapName;
-        SceneManager.LoadScene("BuildScene");
+        this.LoadScene("BuildScene");
     }
 
     public void BuildComplete(Player player)
     {
         if(requestedMap != null)
         {
-            SceneManager.LoadScene(requestedMap);    
+            this.LoadScene(requestedMap);    
         }
         else
         {
@@ -60,7 +89,6 @@ public class GameManager : Singleton<GameManager> {
         if(OnStateChange != null)
         {
             OnStateChange();
-        }
-        
+        }   
     }
 }
