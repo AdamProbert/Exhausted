@@ -70,7 +70,7 @@ public class FreeForAll : GameModeBase
 
             foreach (SpawnPoint spawn in spawnPoints)
             {
-                if(spawn.occupied != null)
+                if(spawn.occupied != null && spawn.occupied != humanPlayer)
                 {
                     cams.Add(spawn.virtualCamera);
                 }
