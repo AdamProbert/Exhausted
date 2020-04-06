@@ -302,7 +302,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2230654937125663050}
-  m_LocalRotation: {x: 0.33100694, y: 0.000000041280458, z: -0.0000000144804035, w: 0.9436283}
+  m_LocalRotation: {x: 0.331007, y: -0.000000041280458, z: 0.000000014480405, w: 0.9436283}
   m_LocalPosition: {x: 0, y: 12, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -652,7 +652,7 @@ MonoBehaviour:
   maxRolloffDistance: 500
   dopplerLevel: 5
   useDoppler: 1
-  cam: {fileID: 437092859318290983, guid: a26d056e2f9995744a4faa1afb146aa8, type: 3}
+  cam: {fileID: 2230654937125663048}
   mixerGroup: {fileID: -936230241595661256, guid: cc0bf72c5763743468b1ee3d764d3d04,
     type: 2}
 --- !u!81 &8799060490863452126
@@ -1353,7 +1353,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8457954917267656621}
-  m_LocalRotation: {x: 0.3310069, y: 0.00000003021939, z: -0.000000010600366, w: 0.9436284}
+  m_LocalRotation: {x: 0.33100694, y: -0.000000011061072, z: 0.0000000038800367, w: 0.9436284}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

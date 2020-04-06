@@ -158,15 +158,8 @@ MonoBehaviour:
   effect: {fileID: 19849376, guid: b42b8677df418c047aef5d8ce9c66663, type: 3}
   explosionSound: {fileID: 8300000, guid: 8dfcae34791b3a447b81d6653208f596, type: 3}
   audioSource: {fileID: 1218713865118880851}
-  shrapnelItemPrefabs:
-  - {fileID: 1239673110073358, guid: 89a0fdc0463814f489cd8f25abba65f6, type: 3}
-  - {fileID: 1511868952250108, guid: d8d48504fc5c6a4479427ebe83518acb, type: 3}
-  - {fileID: 1438361652473040, guid: 287311a6a938ad44eba34a72474966c1, type: 3}
-  - {fileID: 1535647755537840, guid: fa38b57f4b77c3e42a514f5a8a6cade6, type: 3}
-  - {fileID: 1242744296811784, guid: b298eb27be7fb0142bd74abd63d7f96a, type: 3}
-  - {fileID: 1758905757572084, guid: 32fcecfe35d6ec84eacd93e891376e04, type: 3}
-  - {fileID: 1758905757572084, guid: eb19ffdae5867f847879a3fe54515a8b, type: 3}
-  shrapnelCount: 5
+  shrapnelItemPrefabs: []
+  shrapnelCount: 0
 --- !u!114 &7772913817701803776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +223,7 @@ AudioSource:
   Priority: 200
   DopplerLevel: 1
   MinDistance: 0
-  MaxDistance: 50
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
