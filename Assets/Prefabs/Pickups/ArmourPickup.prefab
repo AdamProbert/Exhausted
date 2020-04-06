@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8891027980213935685}
-  - component: {fileID: 8891027980213935707}
   - component: {fileID: 8891027980213935684}
+  - component: {fileID: 8891027980213935707}
   m_Layer: 26
   m_Name: ArmourPickup
   m_TagString: Untagged
@@ -34,6 +34,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8891027980213935684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8891027980213935686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce6a0bbba8bbc447870bc66b6dfc654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupFxPrefab: {fileID: 198408394531385598, guid: 6b101824d228d684baacfa2210303925,
+    type: 3}
+  constantFX: {fileID: 1500192748156201508}
+  pickupSound: {fileID: 8300000, guid: 4691c2314022c3a44a69c750f26105ef, type: 3}
+  PType: 0
+  RespawnDelay: 15
+  RespawnSound: {fileID: 8300000, guid: 4395486dc7c662147bfd56b50da05a11, type: 3}
+  RespawnFXPrefab: {fileID: 19820956, guid: b0b168ca254958d4f9b68146dd05d15b, type: 3}
+  graphic: {fileID: 8892169649732962550}
+  available: 1
 --- !u!82 &8891027980213935707
 AudioSource:
   m_ObjectHideFlags: 0
@@ -43,9 +65,10 @@ AudioSource:
   m_GameObject: {fileID: 8891027980213935686}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4305715377598220585, guid: 5f1f3c25a04eee04daf9345cc091c38b,
+    type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -55,9 +78,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 150
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -90,7 +113,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -105,7 +128,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.125
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -130,22 +153,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8891027980213935684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8891027980213935686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bce6a0bbba8bbc447870bc66b6dfc654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupFx: {fileID: 198552259928792682, guid: bb1c70a7b69cb4e408e31bde844ac837, type: 3}
-  pickupSound: {fileID: 8300000, guid: d6d3853860213ba49abe8e5a96171c16, type: 3}
-  PType: 0
-  available: 1
 --- !u!1 &8892169649732962550
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +320,12 @@ PrefabInstance:
 --- !u!4 &1589798435745200332 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 482216, guid: 32264712662f27b4b8008c38105aaa0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1589798435745637220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1500192748156201508 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198677465757944128, guid: 32264712662f27b4b8008c38105aaa0c,
     type: 3}
   m_PrefabInstance: {fileID: 1589798435745637220}
   m_PrefabAsset: {fileID: 0}
