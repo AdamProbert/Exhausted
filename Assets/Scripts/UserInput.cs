@@ -133,11 +133,11 @@ public class UserInput : MonoBehaviour
             {
                 if(brake < 0.1)
                 {
-                    carController.FlyingMove(brake, -moveInput.x * -1);
+                    carController.FlyingMove(brake, -moveInput.x);
                 }
                 else
                 {
-                    carController.FlyingMove(accelerate, moveInput.x * -1);
+                    carController.FlyingMove(accelerate, moveInput.x);
                 }
             }
             

@@ -34,7 +34,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - MapInteractable
   - Pickup
   - CampaignLandmark
   - PostProcessing
