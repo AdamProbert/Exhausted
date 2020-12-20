@@ -1,4 +1,4 @@
-# Exhausted (renamed)
+# Exhausted
 
 Exhausted is a physics based, apocalyptic themed, vehicular combat game!
 Key points:
